@@ -1,15 +1,18 @@
 package helper;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
 
 import java.util.LinkedList;
 import java.util.Set;
 
+import static utilities.Driver.clear_Cookies_And_Storage;
+
 
 public class BrowserHelper{
 
-	private WebDriver driver;
-
+	private final WebDriver driver;
 
 	public BrowserHelper(WebDriver driver) {
 		this.driver = driver;
@@ -27,7 +30,6 @@ public class BrowserHelper{
 
 	public void refresh() {
 		driver.navigate().refresh();
-
 	}
 
 	public Set<String> getWindowHandles() {
@@ -69,6 +71,15 @@ public class BrowserHelper{
 
 	public void switchToFrame(String nameOrId) {
 		driver.switchTo().frame(nameOrId);
+	}
+
+	@AfterTest
+	public void clearCookiesAndLocalStorage(){
+		if(clear_Cookies_And_Storage){
+			JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+			driver.manage().deleteAllCookies();
+			javascriptExecutor.executeScript("window.sessionStorage()");
+		}
 	}
 
 }

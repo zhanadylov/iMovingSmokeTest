@@ -10,6 +10,8 @@ public class Driver {
     // Singleton pattern
     private Driver() {
     }
+    //if true = clear cookie
+    public static final Boolean clear_Cookies_And_Storage = true;
 
     private static WebDriver driver;
 

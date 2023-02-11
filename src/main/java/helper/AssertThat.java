@@ -1,7 +1,7 @@
 package helper;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class AssertThat  {
 
