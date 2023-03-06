@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class HomePage {
     public HomePage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -79,4 +81,13 @@ public class HomePage {
 
     @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[1]/li/div/div/div/div[3]/form/div/div[4]/a")
     public WebElement backToLoginButtonInReset;
+
+    //Select from dropdown and create
+    @FindBy(xpath = "//*[@id=\"houseTypeSelectList\"]")
+    public WebElement moveOptionList;
+    @FindBy(xpath = "//*[@id=\"hp-nav-select-house\"]")
+    public WebElement sizeOptionList;
+    @FindBy(xpath = "//button[contains(text(),'Compare Quotes')]")
+    public WebElement compareQuotes;
+
 }

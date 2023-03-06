@@ -58,7 +58,7 @@ public class SignInTest extends Hooks implements SetUp{
         Helper.click(homePage.logOut);
     }
 
-    @Test
+    @Test(alwaysRun = false)
     public void forgotPassword(){
         Helper.click(homePage.SignInButton);
         Helper.click(homePage.forgotPassword);
