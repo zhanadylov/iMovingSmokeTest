@@ -14,6 +14,7 @@ public class ChromeWebDriver {
         options.addArguments("--disable-extensions");
         options.addArguments("--window-size=1920,1020");
         options.addArguments("--start-maximized");
+        options.addArguments("--remote-allow-origins=*");
 
         if (Boolean.parseBoolean(ConfigReader.getProperty("headless"))) {
             options.addArguments("--headless");

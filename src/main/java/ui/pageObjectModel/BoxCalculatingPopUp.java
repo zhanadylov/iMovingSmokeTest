@@ -31,4 +31,9 @@ public class BoxCalculatingPopUp {
     @FindBy(xpath = "//a[contains(text(),'Skip')]")
     public WebElement skipButton;
 
+    @FindBy(xpath = "//a[contains(text(),'Skip')]")
+    public WebElement addBoxesButton;
+    @FindBy(xpath = "//a[contains(text(),'Skip')]")
+    public WebElement addItemsButton;
+
 }

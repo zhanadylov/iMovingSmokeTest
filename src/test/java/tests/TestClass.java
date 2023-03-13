@@ -1,17 +1,25 @@
 package tests;
 
+import hooks.Hooks;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import ui.methods.SetUp;
 import ui.methods.StorageOrder;
 
 import java.time.Duration;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class TestClass {
 //    public static void main(String[] args) {
@@ -39,22 +47,27 @@ public class TestClass {
     @BeforeSuite
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://demoqa.com/slider");
+        driver.get("https://demoqa.com/automation-practice-form");
     }
 
     @AfterSuite
     public void tearDown() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         driver.close();
+        driver.quit();
     }
 
     @Test
-    public void testSliderrr(){
-        WebElement slider = driver.findElement(By.xpath("//*[@id=\"sliderContainer\"]/div[1]/span/input"));
+    public void test(){
+//        WebElement slider = driver.findElement(By.xpath("//*[@id=\"sliderContainer\"]/div[1]/span/input"));
 //        storageOrder.chooseFromSlideBar(slider);
+        WebElement date = driver.findElement(By.xpath("(//input[@id='dateOfBirthInput'])[1]"));
+
     }
 
 }

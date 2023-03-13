@@ -27,6 +27,7 @@ public class Full_inventory_Page {
     @FindBy(xpath = "//div[contains(text(),'Save and go to next')]")
     public WebElement saveAndGoToNextButton;
 
+
     @FindBy(xpath = "//h3[contains(text(),'Complete Order')]")
     public WebElement completeOrder;
 
@@ -43,7 +44,7 @@ public class Full_inventory_Page {
     public WebElement searchInput;
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[1]/section/section/div/div[1]/div[1]/span[2]")
-    public WebElement pencilIconBUtton;
+    public WebElement pencilIconButton;
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[1]/section/section/div/div[1]/div[1]/div[2]")
     public WebElement newRoomNameInput;
@@ -74,6 +75,7 @@ public class Full_inventory_Page {
 
     @FindBy(css = "itemTypeSelector")
     public List<WebElement> typeInElement;
+
 
 //    @FindBy(css = "div a[class = 'btn btn-blue']")
 //    @FindBy(css = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[4]")

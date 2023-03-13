@@ -1,11 +1,21 @@
 package helper;
 
 import com.github.javafaker.Faker;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.AddressComponent;
+import com.google.maps.model.GeocodingResult;
+import com.microsoft.sqlserver.jdbc.Geometry;
+import com.mysql.cj.xdevapi.Client;
+import jdk.internal.dynalink.support.Lookup;
 
 import java.util.Locale;
+import java.util.Random;
 
 public class JavaFaker {
-        static Faker faker = new Faker();
+        static Faker faker = new Faker(new Locale("en-US"));
+        public static Random random = new Random();
+
 
         public static String fakeFirstName(){
                 return faker.name().firstName();
@@ -23,73 +33,30 @@ public class JavaFaker {
                 return faker.name().username();
         }
 
-        public static String generateRandomAddress() {
-                // Create a Faker object with the US locale to generate US-specific addresses
-                Faker faker = new Faker(new Locale("en-US"));
 
-                // Generate a random street address, city, state, and zip code using Faker methods
-                String streetNumber = faker.address().buildingNumber();
-//                String streetAddress = faker.address().streetAddress();
-                String streetName = faker.address().streetName();
-                String city = faker.address().city();
-                String state = faker.address().stateAbbr();
-                String zipCode = faker.address().zipCode();
+        private static final String[] STREET_NAMES = {"Main St.", "Oak St.", "Maple Ave.", "Elm St.", "Cedar Rd.",
+                                "Park Ave.", "Hill St.", "Pine Rd.", "Broadway", "Washington Blvd.",
+                                "Church St.", "Chestnut St.", "Grand Ave.", "First St.", "Spring St.",
+                                "Lakeview Dr.", "Sunset Blvd.", "Highland Ave.", "River Rd.", "Linden St.",
+                                "Market St.", "Adams St.", "Jefferson Ave.", "Madison St.", "Monroe Rd.",
+                                "Willow St.", "Franklin Ave.", "Holly Rd.", "Birch St.", "Magnolia Blvd."
+        };
 
-                // Return the random address as a formatted string
-                return streetNumber+" " + streetName + ", " + city + ", " + state + ", " + zipCode;
+        private static final String[] CITY_NAMES = {"New York", "Los Angeles", "Chicago", "Houston", "Philadelphia", "Las Vegas", "San Jose",
+                "Miami", "Dallas", "Seattle", "Boston", "San Francisco", "Austin", "Washington", "Atlanta",
+                "Denver", "Phoenix", "San Diego", "Detroit", "Portland", "Minneapolis", "Baltimore", "Tampa",
+                "Charlotte", "Nashville", "Kansas City", "Oakland", "Raleigh", "Cleveland", "New Orleans"
+        };
+
+        private static final String[] STATE_CODES = {"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"};
+
+        public static String generateAddress() {
+                int streetNumber = random.nextInt(1000) + 1; // Random street number between 1 and 1000
+                String streetName = STREET_NAMES[random.nextInt(STREET_NAMES.length)]; // Random street name
+                String city = CITY_NAMES[random.nextInt(CITY_NAMES.length)]; // Random city name
+                String stateCode = STATE_CODES[random.nextInt(STATE_CODES.length)]; // Random state code
+                int zipCode = random.nextInt(90000) + 10000; // Random zip code between 10000 and 99999
+
+                return String.format("%d %s, %s, %s %d", streetNumber, streetName, city, stateCode, zipCode);
         }
-
-        public static void fillRandomAddress() {
-                // Generate a random US address using Faker
-                Faker faker = new Faker(new Locale("en-US"));
-                String streetNumber = faker.address().buildingNumber();
-                String streetName = faker.address().streetName();
-                String city = faker.address().city();
-                String state = faker.address().stateAbbr();
-                String zipCode = faker.address().zipCode();
-                String randomAddress = streetNumber + " " + streetName + ", " + city + ", " + state + " " + zipCode;
-                System.out.println(randomAddress);
-                // Fill the input field with the random address
-        }
-
-        public static void fillRandomAddress2() {
-
-                // Generate a random US address using Faker with the en-US locale
-                Faker faker = new Faker(new Locale("en-US"));
-                String streetNumber = faker.address().buildingNumber();
-                String streetName = faker.address().streetName();
-                String city = faker.address().city();
-                String state = faker.address().stateAbbr();
-                String zipCode = faker.address().zipCode();
-                String randomAddress = streetNumber + " " + streetName + ", " + city + ", " + state + " " + zipCode;
-
-                // Verify that the address contains a US state abbreviation
-                if (!randomAddress.contains("AL") && !randomAddress.contains("AK") && !randomAddress.contains("AZ") &&
-                        !randomAddress.contains("AR") && !randomAddress.contains("CA") && !randomAddress.contains("CO") &&
-                        !randomAddress.contains("CT") && !randomAddress.contains("DE") && !randomAddress.contains("FL") &&
-                        !randomAddress.contains("GA") && !randomAddress.contains("HI") && !randomAddress.contains("ID") &&
-                        !randomAddress.contains("IL") && !randomAddress.contains("IN") && !randomAddress.contains("IA") &&
-                        !randomAddress.contains("KS") && !randomAddress.contains("KY") && !randomAddress.contains("LA") &&
-                        !randomAddress.contains("ME") && !randomAddress.contains("MD") && !randomAddress.contains("MA") &&
-                        !randomAddress.contains("MI") && !randomAddress.contains("MN") && !randomAddress.contains("MS") &&
-                        !randomAddress.contains("MO") && !randomAddress.contains("MT") && !randomAddress.contains("NE") &&
-                        !randomAddress.contains("NV") && !randomAddress.contains("NH") && !randomAddress.contains("NJ") &&
-                        !randomAddress.contains("NM") && !randomAddress.contains("NY") && !randomAddress.contains("NC") &&
-                        !randomAddress.contains("ND") && !randomAddress.contains("OH") && !randomAddress.contains("OK") &&
-                        !randomAddress.contains("OR") && !randomAddress.contains("PA") && !randomAddress.contains("RI") &&
-                        !randomAddress.contains("SC") && !randomAddress.contains("SD") && !randomAddress.contains("TN") &&
-                        !randomAddress.contains("TX") && !randomAddress.contains("UT") && !randomAddress.contains("VT") &&
-                        !randomAddress.contains("VA") && !randomAddress.contains("WA") && !randomAddress.contains("WV") &&
-                        !randomAddress.contains("WI") && !randomAddress.contains("WY")) {
-                        throw new RuntimeException("Generated address is not in the USA.");
-                }
-                System.out.println(randomAddress);
-
-                // Fill the input field with the random address
-        }
-
-        public static void main(String[] args) {
-             fillRandomAddress2();
-        }
-
 }

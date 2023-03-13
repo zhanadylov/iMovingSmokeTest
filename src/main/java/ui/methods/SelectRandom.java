@@ -26,7 +26,24 @@ import java.util.Random;
 public class SelectRandom {
     private static final Logger logger = (Logger) LogManager.getLogger(Helper.class);
     public List<String> list = new ArrayList<>();
+
     //Random Dropdown Choose
+    public void selectRandomOptionFromDropDown(WebElement element) {
+        Select select = new Select(element);
+        List<WebElement> allOptions = select.getOptions();
+        int optionsCount = allOptions.size();
+        int randomOptionIndex = (int) (Math.random() * optionsCount);
+        String randomOptionText = allOptions.get(randomOptionIndex).getText();
+        select.selectByIndex(randomOptionIndex);
+        list.add(randomOptionText);
+
+        if (list.contains("What are You moving?") || list.contains("Move Size")) {
+            list.remove(randomOptionText); // remove the current option from the list
+            selectRandomOptionFromDropDown(element); // call the method again
+        }
+    }
+
+    //Random Dropdown Choose Old
     public void getOptionFromDropDown(WebElement element){
         Random ran = new Random();
         Select select = new Select(element);

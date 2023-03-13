@@ -15,6 +15,7 @@ public class FirefoxWebDriver {
         FirefoxOptions options = new FirefoxOptions();
         options.setHeadless(Boolean.parseBoolean(ConfigReader.getProperty("headless")));
         options.addArguments("-headless");
+        options.addArguments("--remote-allow-origins=*");
         WebDriver driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
