@@ -69,7 +69,7 @@ public class CreateOrder extends Hooks implements SetUp {
 //    @Test(dependsOnMethods = {"orderStorage","orderHouseApartment"})
     public void moving_Details_Page(){
         Helper.pause(3000);
-        calendarClass.selectRandomDate(driver, moving_detail_page.calendarButton, moving_detail_page.calendarList);
+//        calendarClass.selectRandomDate(driver, moving_detail_page.calendarButton, moving_detail_page.calendarList);
 
         Helper.click(moving_detail_page.pickUpInput);
         Helper.sendKeys(moving_detail_page.pickUpInput, "1234 Wilshire Boulevard, Los Angeles, CA, 90017");
