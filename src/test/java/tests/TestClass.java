@@ -71,7 +71,9 @@ public class TestClass {
         date2 = date2.substring(date2.length()-2);
         int todayDate = Integer.parseInt(date2);
         int num = (int)Math.floor(Math.random() * (31 - todayDate + 1) + 17);
-        System.out.println(num);
+        String path = "/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[5]/div[2]/div[2]/div[2]/div/div/div[2]/div[2]/div/div[contains(text(),'INDEX')]";
+        String path2 = path.replace("INDEX", String.valueOf(num));
+        System.out.println(path2);
 //        System.out.println(date3);
     }
 
