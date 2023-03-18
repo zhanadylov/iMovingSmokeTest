@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import utilities.Driver;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 public class CalendarClass {
+    WebDriver driver = Driver.getDriver();
 
     public static void getDateTest(){
         Random random = new Random();
@@ -32,21 +34,6 @@ public class CalendarClass {
         System.out.println(dateString);
     }
 
-    public static void selectDate(String day, String month, String year){
-//        String monthYearValue = DetailPage.dateCalendarTitle.getText();
-//        while(!(getMonthYear(monthYearValue)[0].equals(month)
-//            &&
-//                getMonthYear(monthYearValue)[1].equals(year))){
-//            Helper.click(DetailPage.nextButton);
-//            monthYearValue = DetailPage.dateCalendarTitle.getText();
-//        }
-//        try{
-//            Helper.click(Driver.getDriver().findElement(By.xpath(DetailPage.dateNumber+day+"']")));
-//        }catch (Exception e){
-//            System.out.println("Wrong date: "+month+" : "+day);
-//        }
-    }
-
     public void selectDate(WebDriver driver, WebElement datepicker, List<WebElement> dates, String date) {
         // Открываем календарь
         datepicker.click();
@@ -60,6 +47,38 @@ public class CalendarClass {
                 element.click();
                 break;
             }
+        }
+    }
+
+    public void getDate(WebElement datePicker, WebElement monthPicker){
+        Helper.click(datePicker);
+        Helper.click(monthPicker);
+        LocalDate date = LocalDate.now();
+        int currentMonth = date.getMonthValue();
+        int todayDate = date.getDayOfMonth();
+
+        // Generate random month in next 6 month
+        int monthInYearRange = (int)Math.floor(Math.random() * (8 - currentMonth + 1) + currentMonth);
+        // Generate random day from present day
+        int dayInMonthRange = (int)Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
+        // Generate random day in month
+        int dayInMonthFull = (int)Math.floor(Math.random() * (31 - 1 + 1) + 1);
+
+        String pathMonth = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[2]/table/tbody/tr/td/span[MonthIndex]";
+        String pathMonthFinal = pathMonth.replace("MonthIndex", String.valueOf(monthInYearRange));
+        WebElement month = driver.findElement(By.xpath(pathMonthFinal));
+        Helper.click(month);
+
+        if(monthInYearRange == currentMonth){
+            String pathDay = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td[contains(text(),'DayIndex')]";
+            String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthRange));
+            WebElement day = driver.findElement(By.xpath(pathDayFinal));
+            Helper.click(day);
+        }else{
+            String pathDay = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td[contains(text(),'DayIndex')]";
+            String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthFull));
+            WebElement day = driver.findElement(By.xpath(pathDayFinal));
+            Helper.click(day);
         }
     }
 }

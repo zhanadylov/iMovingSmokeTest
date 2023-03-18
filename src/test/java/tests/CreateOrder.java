@@ -3,7 +3,10 @@ package tests;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.methods.*;
@@ -45,7 +48,7 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.click(popUps.continueButton);
         Helper.click(popUps.xButtonSecond);
         Helper.click(popUps.okButtonThird);
-        TestRandom.addRandomItemsToAllImages6(full_inventory.imageElement, 3);
+        TestRandom.addEqualItemsToAllImages7(full_inventory.imageElement, 5);
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
@@ -68,20 +71,26 @@ public class CreateOrder extends Hooks implements SetUp {
 
 //    @Test(dependsOnMethods = {"orderStorage","orderHouseApartment"})
     public void moving_Details_Page(){
-        Helper.pause(3000);
-//        calendarClass.selectRandomDate(driver, moving_detail_page.calendarButton, moving_detail_page.calendarList);
-
+        Helper.pause(2000);
+        calendarClass.getDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
         Helper.click(moving_detail_page.pickUpInput);
-        Helper.sendKeys(moving_detail_page.pickUpInput, "1234 Wilshire Boulevard, Los Angeles, CA, 90017");
-
+        Helper.sendAddress(moving_detail_page.pickUpInput, "1234 Wilshire Boulevard, Los Angeles, CA, 90017");
+        Helper.pause(2000);
+        Helper.javascriptScrollIntoView(moving_detail_page.dropOffInput);
+        Helper.navigateToElement(moving_detail_page.dropOffInput);
         Helper.click(moving_detail_page.dropOffInput);
-        Helper.sendKeys(moving_detail_page.dropOffInput, "12340 Boggy Creek Road, Orlando, FL, 32824");
+        Helper.sendAddress(moving_detail_page.dropOffInput, "12340 Boggy Creek Road, Orlando, FL, 32824");
 
-//        Helper.pause(2000);
+        Helper.pause(2000);
+        Helper.javascriptScrollIntoView(moving_detail_page.chooseMoversButton);
         Helper.navigateToElement(moving_detail_page.chooseMoversButton);
         Helper.click(moving_detail_page.chooseMoversButton);
         Helper.pause(3000);
         moving_Result_Page();
+    }
+
+    public void enterAddressAndSelectSuggestion() {
+
     }
 
 //    @Test(dependsOnMethods = {"orderStorage","orderHouseApartment"})

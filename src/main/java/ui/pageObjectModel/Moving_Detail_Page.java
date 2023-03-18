@@ -17,20 +17,21 @@ public class Moving_Detail_Page {
 
     //    @FindBy(xpath = "//input[@placeholder='Choose Date']")
     @FindBy(xpath = "(//a[@id='dropdownMenuDate'])[1]")
-    public WebElement  calendarButton;
-//    @FindBy(xpath = "(//div[@class='dropdown-menu dropdownMenuDate show'])[1]")
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody")
-    public List<WebElement> calendarList;
+    public WebElement  datePicker;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/thead/tr[2]/th[1]")
+    public WebElement  monthInDate;
+
 
     @FindBy(xpath = "//a[@id='dropdownMenuTime']")
     public WebElement  pickUpTime;
 
-//    @FindBy(xpath = "(//input[@name='addressInput'])[1]")
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[1]/div[1]/div[1]/address-selection/div/input-auto-complete-address/span/input")
+    @FindBy(xpath = "(//input[@name='addressInput'])[1]")
+//    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[2]/div[2]/div[1]/address-selection[1]/div[1]/div[1]/div[1]/input-auto-complete-address[1]/span[1]/input[1]")
     public WebElement pickUpInput;
 
-//        @FindBy(xpath = "(//input[@name='addressInput'])[2]")
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[1]/div[1]/div[2]/address-selection/div/input-auto-complete-address/span/input")
+//    @FindBy(xpath = "(//input[@name='addressInput'])[2]")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[3]/div[1]/address-selection/div/div/div[1]/input-auto-complete-address/span/input")
     public WebElement  dropOffInput;
 
     @FindBy(xpath = "(//button[text()='Restrictions'])[1]")

@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import static ui.methods.SetUp.driver;
+
 public class Helper {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -201,6 +203,19 @@ public class Helper {
 
     public static void sendKeys(WebElement element,String value){
         element.sendKeys(value);
+    }
+
+    public static void sendAddress(WebElement addressInputField, String value){
+        // Find the input field for the address and enter the address
+        addressInputField.sendKeys(value);
+
+        // Wait for the suggestion list to appear
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement suggestionList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pac-container")));
+
+        // Select the first suggestion from the list
+        WebElement firstSuggestion = suggestionList.findElement(By.cssSelector(".pac-item:first-child"));
+        firstSuggestion.click();
     }
 
     // We can press keyboard buttons
