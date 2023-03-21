@@ -25,30 +25,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
-public class TestRandom {
+public class AddItemsMethod {
     static WebDriver driver = Driver.getDriver();
     private static Logger logger = (Logger) LogManager.getLogger(Helper.class);
 
-
-    public static void addRandomItemsToAllImages(List<WebElement> imageElements) {
-//        List<WebElement> images = driver.findElements(By.xpath("//img"));
-        Random random = new Random();
-        String xpath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[";
-        for (WebElement image : imageElements) {
-            Actions actions = new Actions(driver);
-            actions.moveToElement(image).build().perform();
-            saveImage(image);
-            int count = random.nextInt(imageElements.size());
-            final String s = xpath + count + "]";
-            WebElement addButton = image.findElement(By.xpath(s));
-            System.out.println(count);
-            System.out.println(s);
-            for (int i = 0; i < 5; i++) {
-                addButton.click();
-            }
-        }
-    }
 
     public static void addRandomItemsToAllImages5(List<WebElement> imageElements) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -94,7 +76,7 @@ public class TestRandom {
         }
     }
 
-    public static void addEqualItemsToAllImages7(List<WebElement> imageElements, int numItems) {
+    public static void addItems(List<WebElement> imageElements, int numItems) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         String addButtonXPath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
 
@@ -106,22 +88,19 @@ public class TestRandom {
                 actions.moveToElement(image).perform();
 
                 WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(
-                        image.findElement(By.xpath(addButtonXPath.replace("INDEX", String.valueOf(i+1))))
+                        image.findElement(By.xpath(addButtonXPath.replace("INDEX", String.valueOf(1))))
                 ));
                 for (int j = 0; j < numItems; j++) {
-//                    addButton.click();
                     Helper.click(addButton);
                 }
                 System.out.println("Added " + numItems + " items for image " + image.getAttribute("src"));
             } catch (TimeoutException e) {
-                System.out.println("Timeout while waiting for Add button for image: " + image.getAttribute("src") + ", " + e.getMessage());
+//                System.out.println("Timeout while waiting for Add button in image: " + image.getAttribute("src") + ", " + e.getMessage());
             } catch (NoSuchElementException | ElementNotInteractableException e) {
-                System.out.println("Unable to add items to image: " + image.getAttribute("src") + ", " + e.getMessage());
+//                System.out.println("Unable to add items in image: " + image.getAttribute("src") + ", " + e.getMessage());
             }
         }
     }
-
-
 
     public static void saveImage(WebElement img){
 //        List<WebElement> img = driver.findElements(By.tagName("img"));

@@ -59,4 +59,5 @@ public class JavaFaker {
 
                 return String.format("%d %s, %s, %s %d", streetNumber, streetName, city, stateCode, zipCode);
         }
+
 }

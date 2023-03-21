@@ -3,10 +3,7 @@ package tests;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.methods.*;
@@ -26,9 +23,6 @@ public class CreateOrder extends Hooks implements SetUp {
     @Test
     public void createOrder(){
         selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
-//        selectRandom.selectUsingVisibleText(homePage.moveOptionList,"My Storage");
-//        selectRandom.selectUsingVisibleText(homePage.sizeOptionList,"200 CF Storage (5' x 5' x 8')");
-//        Helper.pause(1000);
         selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
         Helper.pause(1000);
         System.out.println("list is "+selectRandom.list);
@@ -48,7 +42,7 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.click(popUps.continueButton);
         Helper.click(popUps.xButtonSecond);
         Helper.click(popUps.okButtonThird);
-        TestRandom.addEqualItemsToAllImages7(full_inventory.imageElement, 5);
+        AddItemsMethod.addItems(full_inventory.imageElement, 5);
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
@@ -62,6 +56,7 @@ public class CreateOrder extends Hooks implements SetUp {
     public void orderStorage(){
         Helper.click(homePage.compareQuotes);
         Helper.pause(2000);
+        // Both slider clicker works
 //        storageOrder.selectRandomValueFromSlider(storage_full_inventory_page.sliderLine2, 10, 100);
 //        storageOrder.selectRandomValueFromSlider(storage_full_inventory_page.sliderLine, 0, 100);
 //        Helper.pause(2000);
@@ -77,7 +72,7 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.sendAddress(moving_detail_page.pickUpInput, "1234 Wilshire Boulevard, Los Angeles, CA, 90017");
         Helper.pause(2000);
         Helper.javascriptScrollIntoView(moving_detail_page.dropOffInput);
-        Helper.navigateToElement(moving_detail_page.dropOffInput);
+//        Helper.navigateToElement(moving_detail_page.dropOffInput);
         Helper.click(moving_detail_page.dropOffInput);
         Helper.sendAddress(moving_detail_page.dropOffInput, "12340 Boggy Creek Road, Orlando, FL, 32824");
 
@@ -87,10 +82,6 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.click(moving_detail_page.chooseMoversButton);
         Helper.pause(3000);
         moving_Result_Page();
-    }
-
-    public void enterAddressAndSelectSuggestion() {
-
     }
 
 //    @Test(dependsOnMethods = {"orderStorage","orderHouseApartment"})
