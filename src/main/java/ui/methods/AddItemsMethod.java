@@ -81,7 +81,7 @@ public class AddItemsMethod {
         String addButtonXPath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
 
 //        for (WebElement image : imageElements) {
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i < 3; i++) {
             WebElement image = imageElements.get(i);
             try {
                 Actions actions = new Actions(driver);
@@ -95,7 +95,7 @@ public class AddItemsMethod {
                 }
                 System.out.println("Added " + numItems + " items for image " + image.getAttribute("src"));
             } catch (TimeoutException e) {
-//                System.out.println("Timeout while waiting for Add button in image: " + image.getAttribute("src") + ", " + e.getMessage());
+                System.out.println("Timeout while waiting for Add button in image: " + image.getAttribute("src") + ", " + e.getMessage());
             } catch (NoSuchElementException | ElementNotInteractableException e) {
 //                System.out.println("Unable to add items in image: " + image.getAttribute("src") + ", " + e.getMessage());
             }

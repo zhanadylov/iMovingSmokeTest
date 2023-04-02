@@ -30,9 +30,12 @@ public class Moving_Detail_Page {
 //    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[2]/div[2]/div[1]/address-selection[1]/div[1]/div[1]/div[1]/input-auto-complete-address[1]/span[1]/input[1]")
     public WebElement pickUpInput;
 
-//    @FindBy(xpath = "(//input[@name='addressInput'])[2]")
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[3]/div[1]/address-selection/div/div/div[1]/input-auto-complete-address/span/input")
+    @FindBy(xpath = "(//input[@name='addressInput'])[2]")
+//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[3]/div[1]/address-selection/div/div/div[1]/input-auto-complete-address/span/input")
     public WebElement  dropOffInput;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[3]/div[1]/address-selection/div/h3/span/span[1]")
+    public WebElement  errorMessage;
 
     @FindBy(xpath = "(//button[text()='Restrictions'])[1]")
     public WebElement  restrictionsButton;
@@ -96,7 +99,7 @@ public class Moving_Detail_Page {
     @FindBy(xpath = "//a[normalize-space()='remove additional pickup']")
     public WebElement  removeAdditionalPickUp;
 
-    @FindBy(xpath = "//button[normalize-space()='Check Rates']")
+    @FindBy(xpath = "(//button[normalize-space()='Check Rates'])[1]")
 //    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[2]/button")
     public WebElement  chooseMoversButton;
 

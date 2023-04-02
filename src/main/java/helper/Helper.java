@@ -218,9 +218,16 @@ public class Helper {
         firstSuggestion.click();
     }
 
+    public static void sendAddress2(WebElement addressInputField, String value){
+        JavascriptExecutor jsClick = (JavascriptExecutor) driver;
+        jsClick.executeScript("arguments[0].value=arguments[1]", addressInputField, value);
+//            sendKeys(addressInputField, Keys.ARROW_DOWN, Keys.ENTER);
+     }
+
+
     // We can press keyboard buttons
-    public static void sendKeys(WebElement element,Keys button){
-        element.sendKeys(button);
+    public static void sendKeys(WebElement element,Keys button,Keys button2){
+        element.sendKeys(button,button2);
     }
 
     public static String getAttributeByValue(WebElement element){

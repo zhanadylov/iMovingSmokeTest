@@ -1,32 +1,39 @@
 package tests;
 
 import helper.Helper;
+import hooks.Hooks;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ui.methods.CalendarClass;
-import ui.methods.StorageOrder;
+import ui.methods.*;
+import ui.pageObjectModel.*;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.*;
 
-public class TestClass {
+public class TestClass{
     static WebDriver driver;
     ArrayList<String> al;
     StorageOrder storageOrder = new StorageOrder();
     CalendarClass calendarClass = new CalendarClass();
+    SelectRandom selectRandom = new SelectRandom();
+    HomePage homePage = new HomePage();
+    PopUps popUps = new PopUps();
+    Full_inventory_Page full_inventory = new Full_inventory_Page();
+    Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
+    Moving_Result_Page moving_result_page = new Moving_Result_Page();
+    BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
 
-    @BeforeSuite
+    @BeforeTest
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -34,14 +41,47 @@ public class TestClass {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://demoqa.com/automation-practice-form");
+//        driver.get("https://demoqa.com/automation-practice-form");
+        driver.get("https://qa.imoving.com/");
     }
 
-    @AfterSuite
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(3000);
-        driver.close();
-        driver.quit();
+//    @AfterSuite
+//    public void tearDown() throws InterruptedException {
+//        Thread.sleep(3000);
+//        driver.close();
+//        driver.quit();
+//    }
+
+    @Test
+    public void testClickCheckRates(){
+        Helper.pause(2000);
+        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
+        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
+        Helper.click(homePage.compareQuotes);
+        Helper.click(popUps.continueButton);
+        Helper.click(popUps.xButtonSecond);
+        Helper.click(popUps.okButtonThird);
+        AddItemsMethod.addItems(full_inventory.imageElement, 5);
+        Helper.click(full_inventory.completeOrder);
+        Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
+        Helper.click(boxCalculatingPopUp.addAndContinueButton);
+        if(boxCalculatingPopUp.skipButton.isDisplayed()){
+            Helper.click(boxCalculatingPopUp.skipButton);
+        }
+        Helper.click(full_inventory.completeOrder);
+        Helper.pause(2000);
+        String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
+        String dropOff = "12340 Boggy Creek Road, Orlando, FL, 32824";
+        SetAddress.testMethod(pickUp, moving_detail_page.pickUpInput);
+        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffInput);
+        Helper.pause(2000);
+//        Helper.javascriptScrollIntoView(moving_detail_page.chooseMoversButton);
+//        Helper.navigateToElement(moving_detail_page.chooseMoversButton);
+//        Helper.click(moving_detail_page.chooseMoversButton);
+        Actions act = new Actions(driver);
+        act.moveByOffset(1032, 731).click().build().perform();
+        Helper.pause(4000);
+
     }
 
     @Test
@@ -50,11 +90,14 @@ public class TestClass {
 //        storageOrder.chooseFromSlideBar(slider);
 
 
-        Helper.pause(2000);
-        WebElement input = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[6]/div[2]/div"));
+//        Helper.pause(2000);
+//        WebElement input = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[6]/div[2]/div"));
         Helper.pause(3000);
-        List<WebElement> sugInput = driver.findElements(By.className("subjects-auto-complete__menu css-2613qy-menu"));
-        sendKeys(input, sugInput);
+//        List<WebElement> sugInput = driver.findElements(By.className("subjects-auto-complete__menu css-2613qy-menu"));
+//        sendKeys(input, sugInput);
+        WebElement input2 = driver.findElement(By.xpath("//*[@id=\"subjectsContainer\"]/div/div[1]"));
+
+        sendKeys(input2, "d", Keys.ARROW_DOWN, Keys.ENTER);
     }
 
     public void testNextMonth(WebElement datePicker, WebElement monthPicker){
@@ -87,11 +130,15 @@ public class TestClass {
     public static void sendKeys(WebElement element, List<WebElement> suggesting){
         element.click();
         element.sendKeys("t");
-//        if(!suggesting.isEmpty()){
-//            suggesting.get(0).click();
-//        }
+        if(!suggesting.isEmpty()){
+            suggesting.get(0).click();
+        }
+    }
 
-
+    public static void sendKeys(WebElement element, String value, Keys button, Keys button2){
+        element.click();
+        element.sendKeys(value);
+        element.sendKeys(button, button2);
     }
 
 }

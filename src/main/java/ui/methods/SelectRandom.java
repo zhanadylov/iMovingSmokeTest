@@ -64,7 +64,7 @@ public class SelectRandom {
     public void selectUsingVisibleText(WebElement element, String visibleText){
         Select select = new Select(element);
         select.selectByVisibleText(visibleText);
-        list.add(visibleText);
+//        list.add(visibleText);
     }
 
     //Random select from selector
