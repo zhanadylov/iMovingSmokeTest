@@ -32,7 +32,7 @@ public class SetAddress {
             List<List<String>> data = new ArrayList<>();
             data.add(Collections.singletonList(address));
             Helper.javascriptScrollIntoView(element);
-            Helper.navigateToElement(element);
+//            Helper.navigateToElement(element);
             Helper.sendKeys(element, data.get(0).toString());
             Helper.pause(1000);
             element.sendKeys(Keys.ARROW_DOWN);

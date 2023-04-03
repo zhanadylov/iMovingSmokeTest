@@ -3,16 +3,12 @@ package tests;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.methods.*;
 import ui.pageObjectModel.*;
-
-import java.util.List;
 
 @Listeners(TestStatusListener.class)
 public class CreateOrder extends Hooks implements SetUp {
@@ -71,7 +67,7 @@ public class CreateOrder extends Hooks implements SetUp {
     @Test
     public void moving_Details_Page() throws InterruptedException {
         Helper.pause(2000);
-        calendarClass.getDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
+//        calendarClass.getDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
 //        Helper.click(moving_detail_page.pickUpInput);
 //        Helper.sendAddress(moving_detail_page.pickUpInput, "1234 Wilshire Boulevard, Los Angeles, CA, 90017");
 //        Helper.pause(2000);
@@ -79,20 +75,30 @@ public class CreateOrder extends Hooks implements SetUp {
 ////        Helper.navigateToElement(moving_detail_page.dropOffInput);
 //        Helper.click(moving_detail_page.dropOffInput);
 //        Helper.sendAddress2(moving_detail_page.dropOffInput, "12340 Boggy Creek Road, Orlando, FL, 32824");
-//
 
+///////////////
+        Helper.click(moving_detail_page.datePicker);
+        //This are the columns of the from date picker table
+//        List<WebElement> columns = moving_detail_page.datePicker.findElements(By.tagName("td"));
+//        List<WebElement> columns = moving_detail_page.datePicker.findElements(By.xpath("/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td"));
+//        calendarClass.clickGivenDay(columns, calendarClass.getCurrentDayPlus(8));
+        //Wait a bit to see that we have selected the data properly.
+//        Thread.sleep(5000);
+        WebElement tdButton = moving_detail_page.datePicker.findElement(By.xpath("//td[text()='9']"));
+        Helper.click(tdButton);
+        //////////////////
         Helper.pause(2000);
         String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
         String dropOff = "12340 Boggy Creek Road, Orlando, FL, 32824";
         SetAddress.testMethod(pickUp, moving_detail_page.pickUpInput);
         SetAddress.testMethod2(dropOff, moving_detail_page.dropOffInput);
         Helper.pause(2000);
-//        Helper.javascriptScrollIntoView(moving_detail_page.chooseMoversButton);
-        Helper.navigateToElement(moving_detail_page.chooseMoversButton);
-        Helper.click(moving_detail_page.chooseMoversButton);
-
-        Helper.pause(4000);
+//            Helper.javascriptScrollIntoView(moving_detail_page.checkRatesButton);
+            Helper.navigateToElement(moving_detail_page.checkRatesButton);
+            Helper.click(moving_detail_page.checkRatesButton);
+        
         moving_Result_Page();
+        Helper.pause(4000);
     }
 
     @Test(dependsOnMethods = {"moving_Details_Page"})

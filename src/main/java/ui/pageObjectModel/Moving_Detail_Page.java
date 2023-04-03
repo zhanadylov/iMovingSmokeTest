@@ -16,7 +16,8 @@ public class Moving_Detail_Page {
     public WebElement  setYourRoadText;
 
     //    @FindBy(xpath = "//input[@placeholder='Choose Date']")
-    @FindBy(xpath = "(//a[@id='dropdownMenuDate'])[1]")
+//    @FindBy(xpath = "(//a[@id='dropdownMenuDate'])[1]")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/a")
     public WebElement  datePicker;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/thead/tr[2]/th[1]")
@@ -101,6 +102,6 @@ public class Moving_Detail_Page {
 
     @FindBy(xpath = "(//button[normalize-space()='Check Rates'])[1]")
 //    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[2]/button")
-    public WebElement  chooseMoversButton;
+    public WebElement checkRatesButton;
 
 }
