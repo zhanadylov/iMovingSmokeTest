@@ -23,8 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static helper.JavaFaker.random;
+
 public class SelectRandom {
     private static final Logger logger = (Logger) LogManager.getLogger(Helper.class);
+    static Random random = new Random();
+
     public List<String> list = new ArrayList<>();
 
     //Random Dropdown Choose
@@ -70,9 +74,19 @@ public class SelectRandom {
     //Random select from selector
     public static void SelectHomePage(WebElement element, int cssSelector){
         Select select = new Select(element);
-        Random random = new Random();
         int index = random.nextInt(cssSelector);
         select.selectByIndex(index);
+    }
+
+    //Random click Checkbox
+    public void clickOnRandomCheckBox(List<WebElement> element)
+    {
+        int index = random.nextInt(element.size());
+        if(!element.get(index).isSelected())
+        {
+            Helper.javascriptScrollIntoView(element.get(index));
+            element.get(index).click();
+        }
     }
 
     //Save Image

@@ -1,5 +1,6 @@
 package tests;
 
+import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
@@ -9,6 +10,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.methods.*;
 import ui.pageObjectModel.*;
+
+import java.util.Random;
 
 @Listeners(TestStatusListener.class)
 public class CreateOrder extends Hooks implements SetUp {
@@ -67,25 +70,12 @@ public class CreateOrder extends Hooks implements SetUp {
     @Test
     public void moving_Details_Page() throws InterruptedException {
         Helper.pause(2000);
-//        calendarClass.getDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
-//        Helper.click(moving_detail_page.pickUpInput);
-//        Helper.sendAddress(moving_detail_page.pickUpInput, "1234 Wilshire Boulevard, Los Angeles, CA, 90017");
-//        Helper.pause(2000);
-//        Helper.javascriptScrollIntoView(moving_detail_page.dropOffInput);
-////        Helper.navigateToElement(moving_detail_page.dropOffInput);
-//        Helper.click(moving_detail_page.dropOffInput);
-//        Helper.sendAddress2(moving_detail_page.dropOffInput, "12340 Boggy Creek Road, Orlando, FL, 32824");
+        calendarClass.getDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
 
 ///////////////
-        Helper.click(moving_detail_page.datePicker);
-        //This are the columns of the from date picker table
-//        List<WebElement> columns = moving_detail_page.datePicker.findElements(By.tagName("td"));
-//        List<WebElement> columns = moving_detail_page.datePicker.findElements(By.xpath("/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td"));
-//        calendarClass.clickGivenDay(columns, calendarClass.getCurrentDayPlus(8));
-        //Wait a bit to see that we have selected the data properly.
-//        Thread.sleep(5000);
-        WebElement tdButton = moving_detail_page.datePicker.findElement(By.xpath("//td[text()='9']"));
-        Helper.click(tdButton);
+//        Helper.click(moving_detail_page.datePicker);
+//        WebElement tdButton = moving_detail_page.datePicker.findElement(By.xpath("//td[text()='9']"));
+//        Helper.click(tdButton);
         //////////////////
         Helper.pause(2000);
         String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
@@ -93,10 +83,11 @@ public class CreateOrder extends Hooks implements SetUp {
         SetAddress.testMethod(pickUp, moving_detail_page.pickUpInput);
         SetAddress.testMethod2(dropOff, moving_detail_page.dropOffInput);
         Helper.pause(2000);
-//            Helper.javascriptScrollIntoView(moving_detail_page.checkRatesButton);
-            Helper.navigateToElement(moving_detail_page.checkRatesButton);
-            Helper.click(moving_detail_page.checkRatesButton);
-        
+        Helper.javascriptScrollDownThePage();
+//        Helper.javascriptScrollIntoView(moving_detail_page.checkRatesButton);
+        Helper.navigateToElement(moving_detail_page.checkRatesButton);
+        Helper.click(moving_detail_page.checkRatesButton);
+        Helper.pause(2000);
         moving_Result_Page();
         Helper.pause(4000);
     }
@@ -104,6 +95,15 @@ public class CreateOrder extends Hooks implements SetUp {
     @Test(dependsOnMethods = {"moving_Details_Page"})
     public void moving_Result_Page(){
         Helper.pause(3000);
+        selectRandom.clickOnRandomCheckBox(moving_result_page.packingServicesCheckboxSideBar);
+        Helper.pause(1000);
+        selectRandom.clickOnRandomCheckBox(moving_result_page.flexibilityCheckboxSideBar);
+        Helper.pause(1000);
+        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckboxSideBar);
+        Helper.pause(1000);
+        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckbox);
+        int ran =  new Random().nextInt(3);
+        DropDownHelper.selectUsingIndex(moving_result_page.flexibilityDropDown2, ran);
         for (WebElement in : moving_result_page.moverNameAndPrice) {
             System.out.println(in.getText());
         }

@@ -37,6 +37,7 @@ public class SetAddress {
             Helper.pause(1000);
             element.sendKeys(Keys.ARROW_DOWN);
             element.sendKeys(Keys.RETURN);
+            Helper.javascriptScrollDownThePage();
             Helper.pause(1000);
         }catch (Exception e){
             System.err.println("An error occurred while executing the test: " + e.getMessage());

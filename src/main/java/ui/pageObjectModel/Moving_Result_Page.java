@@ -8,8 +8,7 @@ import utilities.Driver;
 import java.util.List;
 
 public class Moving_Result_Page {
-    public Moving_Result_Page() {         PageFactory.initElements(Driver.getDriver(),this);
-    }
+    public Moving_Result_Page() { PageFactory.initElements(Driver.getDriver(),this);}
 
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement editButtonInPickUp;
@@ -22,6 +21,15 @@ public class Moving_Result_Page {
 
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  editButtonInInventory;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[4]/div/input")
+    public List<WebElement>  deliveryWindowCheckbox;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[3]/div[2]/div/button")
+    public List<WebElement>  flexibilityDropDown;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[3]/div[2]/div/select")
+    public WebElement  flexibilityDropDown2;
 
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  selectButton;
@@ -38,6 +46,9 @@ public class Moving_Result_Page {
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  packingUnpacking;
 
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[1]/div/input")
+    public List<WebElement>  packingServicesCheckboxSideBar;
+
     //pick-Up Flexibility
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  days3Flex;
@@ -46,6 +57,9 @@ public class Moving_Result_Page {
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  noFlexibility;
 
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[2]/div/input")
+    public List<WebElement>  flexibilityCheckboxSideBar;
+
     //Delivery Window
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  straight3_6Days;
@@ -53,6 +67,9 @@ public class Moving_Result_Page {
     public WebElement  expedite4_14Days;
     @FindBy(xpath = "//span[contains(text(),'Congrats!')]")
     public WebElement  standard4_21Days;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[3]/div/input")
+    public List<WebElement>  deliveryWindowCheckboxSideBar;
 }
 
 
