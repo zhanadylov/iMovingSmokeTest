@@ -77,7 +77,7 @@ public class AddItemsMethod {
     }
 
     public static void addItems(List<WebElement> imageElements, int numItems) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         String addButtonXPath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
 
 //        for (WebElement image : imageElements) {
@@ -94,10 +94,12 @@ public class AddItemsMethod {
                     Helper.click(addButton);
                 }
                 System.out.println("Added " + numItems + " items for image " + image.getAttribute("src"));
-            } catch (TimeoutException e) {
+            }
+            catch (TimeoutException e) {
                 System.out.println("Timeout while waiting for Add button in image: " + image.getAttribute("src") + ", " + e.getMessage());
-            } catch (NoSuchElementException | ElementNotInteractableException e) {
-//                System.out.println("Unable to add items in image: " + image.getAttribute("src") + ", " + e.getMessage());
+            }
+            catch (NoSuchElementException | ElementNotInteractableException e) {
+                System.out.println("Unable to add items in image: " + image.getAttribute("src") + ", " + e.getMessage());
             }
         }
     }

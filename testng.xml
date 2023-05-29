@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest">
+        <classes>
+<!--            <class name="DataBaseConnection.ConnectDataBase">-->
+<!--                <methods>-->
+<!--                    <include name="updateDate"/>-->
+<!--                    <include name="oneDayEarlier"/>-->
+<!--                    <include name="changeCaptureDate"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="apiConnection.CC_Authorization_Steps">-->
+<!--                <methods>-->
+<!--                    <include name="query_sending"/>-->
+<!--                    <include name="response_status_is"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="apiConnection.CC_Capture_Steps">-->
+<!--                <methods>-->
+<!--                    <include name="query_sended"/>-->
+<!--                    <include name="status_code_is_returned_for_response"/>-->
+<!--                    <include name="send_Email"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="apiConnection.SendEmailQuery">-->
+<!--                <methods>-->
+<!--                    <include name="query_sended"/>-->
+<!--                    <include name="status_code_is_returned_for_response"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+            <class name="tests.CreateOrder">
+                <methods>
+                    <include name="chooseMoveOption"/>
+                    <include name="moving_Confirm_Page"/>
+                    <include name="payment_Page"/>
+                </methods>
+            </class>
+<!--            <class name="tests.SignInTest">-->
+<!--                <methods>-->
+<!--                    <include name="loginWithValidData"/>-->
+<!--                    <include name="SignUp"/>-->
+<!--                    <include name="forgotPassword"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+        </classes>
+    </test>
+</suite>

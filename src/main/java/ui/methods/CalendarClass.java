@@ -14,7 +14,7 @@ import java.util.*;
 public class CalendarClass {
     WebDriver driver = Driver.getDriver();
 
-    public void getDate(WebElement datePicker, WebElement monthPicker){
+    public void getRandomDate(WebElement datePicker, WebElement monthPicker){
         Helper.click(datePicker);
         Helper.click(monthPicker);
         LocalDate date = LocalDate.now();
@@ -46,50 +46,21 @@ public class CalendarClass {
         }
     }
 
-    //Get The Current Day
-    public String getCurrentDay() {
-        //Create a Calendar Object
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        //Get Current Day as a number
-        int todayInt = calendar.get(Calendar.DAY_OF_MONTH);
-        System.out.println("Today Int: " + todayInt + "\n");
-        //Integer to String Conversion
-        String todayStr = Integer.toString(todayInt);
-        System.out.println("Today Str: " + todayStr + "\n");
-        return todayStr;
+    public void getGivenDate(WebElement datePicker){
+        LocalDate date = LocalDate.now();
+        int currentMonth = date.getMonthValue();
+        int todayDate = date.getDayOfMonth();
+        // Generate random day from present day
+        int dayInMonthRange = (int)Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
+        Helper.click(datePicker);
+        String pathDay = "//td[text()='INDEX']";
+        String pathDayFinal = pathDay.replace("INDEX", String.valueOf(dayInMonthRange));
+        WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
+        Helper.click(tdButton);
+
+        //Helper.click(moving_detail_page.datePicker);
+        //WebElement tdButton = moving_detail_page.datePicker.findElement(By.xpath("//td[text()='9']"));
+        //Helper.click(tdButton);
     }
-    //Get The Current Day plus days. You can change this method based on your needs.
-    public String getCurrentDayPlus(int days) {
-        LocalDate currentDate = LocalDate.now();
-        int dayOfWeekPlus = currentDate.getDayOfWeek().plus(days).getValue();
-        return Integer.toString(dayOfWeekPlus);
-    }
-    //Click to given day
-    public void clickGivenDay(List<WebElement> elementList, String day) {
-        //DatePicker is a table. Thus we can navigate to each cell
-        //and if a cell matches with the current date then we will click it.
-        /**Functional JAVA version of this method.*/
-//        elementList.stream()
-//                .filter(element -> element.getText().contains(day))
-//                .findFirst()
-//                .ifPresent(WebElement::click);
-        /**Non-functional JAVA version of this method.*/
-//        for (
-//            WebElement cell : elementList) {
-//            String cellText = cell.getText();
-//            if (cellText.contains(day)) {
-//                cell.click();
-//                break;
-//            }
-//        }
-//        List<WebElement> elementList = driver.findElements(datePickerLocator);
-        for (WebElement cell : elementList) {
-            String cellText = cell.getText();
-            System.out.println("cellText is "+cellText);
-            if (cellText.contains(day)) {
-                cell.click();
-                break;
-            }
-        }
-    }
+
 }

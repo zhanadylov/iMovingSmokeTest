@@ -72,8 +72,8 @@ public class TestClass{
         Helper.pause(2000);
         String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
         String dropOff = "12340 Boggy Creek Road, Orlando, FL, 32824";
-        SetAddress.testMethod(pickUp, moving_detail_page.pickUpInput);
-        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffInput);
+//        SetAddress.testMethod(pickUp, moving_detail_page.pickUpInput);
+//        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffInput);
         Helper.pause(2000);
 //        Helper.javascriptScrollIntoView(moving_detail_page.chooseMoversButton);
 //        Helper.navigateToElement(moving_detail_page.chooseMoversButton);
@@ -139,6 +139,64 @@ public class TestClass{
         element.click();
         element.sendKeys(value);
         element.sendKeys(button, button2);
+    }
+
+
+    public static class WordNumberPair {
+        private String word;
+        private String number;
+
+        public WordNumberPair(String word, String number) {
+            this.word = word;
+            this.number = number;
+        }
+
+        public String getWord() {
+            return word;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+    }
+    public static void test45(){
+        ArrayList<String> full = new ArrayList<>();
+        ArrayList<String> words = new ArrayList<>();
+        ArrayList<String> numbers = new ArrayList<>();
+        full.add("Moving Journey - 2524 Miles");
+        full.add("Addresses Restrictions $0.00");
+        full.add("Inventory - Items $479.99");
+        full.add("Inventory - Boxes $966.19");
+        full.add("Additional Services $-144.62");
+        full.add("Fees $328.83");
+        full.add("Total Price $1,630.38");
+
+
+        for (String element : full) {
+            int dollarIndex = element.lastIndexOf('$');
+            if (dollarIndex != -1) {
+                String word = element.substring(0, dollarIndex).trim();
+                String number = element.substring(dollarIndex + 1).trim();
+
+                if (!word.isEmpty() && !number.isEmpty()) {
+                    words.add(word);
+                    numbers.add("$" + number);
+                }
+            } else {
+                words.add(element);
+                numbers.add("");
+            }
+        }
+
+        System.out.println("Full list:");
+        for (int i = 0; i < words.size(); i++) {
+            System.out.println("Word: " + words.get(i) + ", Number: " + numbers.get(i));
+        }
+
+    }
+
+    public static void main(String[] args) {
+        test45();
     }
 
 }

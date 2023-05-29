@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Driver;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -205,26 +207,6 @@ public class Helper {
         element.sendKeys(value);
     }
 
-    public static void sendAddress(WebElement addressInputField, String value){
-        // Find the input field for the address and enter the address
-        addressInputField.sendKeys(value);
-
-        // Wait for the suggestion list to appear
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement suggestionList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pac-container")));
-
-        // Select the first suggestion from the list
-        WebElement firstSuggestion = suggestionList.findElement(By.cssSelector(".pac-item:first-child"));
-        firstSuggestion.click();
-    }
-
-    public static void sendAddress2(WebElement addressInputField, String value){
-        JavascriptExecutor jsClick = (JavascriptExecutor) driver;
-        jsClick.executeScript("arguments[0].value=arguments[1]", addressInputField, value);
-//            sendKeys(addressInputField, Keys.ARROW_DOWN, Keys.ENTER);
-     }
-
-
     // We can press keyboard buttons
     public static void sendKeys(WebElement element,Keys button,Keys button2){
         element.sendKeys(button,button2);
@@ -290,7 +272,6 @@ public class Helper {
     }
 
 
-
     public static Boolean compareDates(String olderDate, String soonerDate)
     {
         String[] firstDateSplitted = olderDate.split("/");
@@ -345,7 +326,16 @@ public class Helper {
     }
 
     public static String compareDate2(String date){
-        String dateAfter = date.substring(11,22);
-        return dateAfter;
+        return date.substring(11,22);
     }
+
+    public static double calculatePercent(WebElement price, double percent){
+        double price3 = Double.parseDouble(price.getText());
+        return (price3 * percent) / 100.0;
+    }
+
+    public static BigDecimal roundingsFee(double feePrice){
+        return BigDecimal.valueOf(feePrice).setScale(2, RoundingMode.HALF_UP);
+    }
+
 }
