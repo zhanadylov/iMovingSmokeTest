@@ -22,18 +22,6 @@ public class SaveOrderInfo {
         inventoryListInfo.put(key, value);
     }
 
-    public void getOrderNumber(){
-        for(Map.Entry<String, String> item : orderInfo.entrySet()){
-            System.out.printf("Key: %s, Value: %s \n", item.getKey(), item.getValue());
-        }
-    }
 
-    public String getMoveOptionName() {
-        String firstOption = null;
-        for(int i =0; i < moveOptionName.size();i++){
-            firstOption = (moveOptionName.get(0));
-        }
-            return firstOption;
-    }
 
 }

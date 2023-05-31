@@ -43,6 +43,12 @@
 <!--                    <include name="forgotPassword"/>-->
 <!--                </methods>-->
 <!--            </class>-->
+            <class name="tests.QaboOptionsTest">
+                <methods>
+                    <include name="loginToQaBO"/>
+                    <include name="checkPriceInBO"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

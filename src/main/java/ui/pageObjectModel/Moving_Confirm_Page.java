@@ -89,7 +89,11 @@ public class Moving_Confirm_Page {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/price-details/section/div/ul/li[7]/div/div/div")
     public WebElement totalPrice;
 
-    @FindBy(css = "body > div.wrap > div > div > div.shuffle-animation > div > section > button")
+    @FindBy(css = "body > div > div > div > div.shuffle-animation > div > price-details > section > div > ul")
+    public WebElement ulListOfElements;
+
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/section/button")
     public WebElement checkOutButton;
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/section/div")
     public WebElement freeCancelationText;

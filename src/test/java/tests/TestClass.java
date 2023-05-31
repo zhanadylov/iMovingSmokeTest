@@ -1,16 +1,12 @@
 package tests;
 
+import helper.BrowserHelper;
 import helper.Helper;
-import hooks.Hooks;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.methods.*;
@@ -32,6 +28,7 @@ public class TestClass{
     Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
     Moving_Result_Page moving_result_page = new Moving_Result_Page();
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
+    BrowserHelper browserHelper = new BrowserHelper(driver);
 
     @BeforeTest
     public void setUp() {
@@ -95,6 +92,10 @@ public class TestClass{
         Helper.pause(3000);
 //        List<WebElement> sugInput = driver.findElements(By.className("subjects-auto-complete__menu css-2613qy-menu"));
 //        sendKeys(input, sugInput);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.open('https://www.google.com', '_blank');");
+        browserHelper.goForward();
+
         WebElement input2 = driver.findElement(By.xpath("//*[@id=\"subjectsContainer\"]/div/div[1]"));
 
         sendKeys(input2, "d", Keys.ARROW_DOWN, Keys.ENTER);
@@ -142,23 +143,6 @@ public class TestClass{
     }
 
 
-    public static class WordNumberPair {
-        private String word;
-        private String number;
-
-        public WordNumberPair(String word, String number) {
-            this.word = word;
-            this.number = number;
-        }
-
-        public String getWord() {
-            return word;
-        }
-
-        public String getNumber() {
-            return number;
-        }
-    }
     public static void test45(){
         ArrayList<String> full = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
@@ -178,9 +162,13 @@ public class TestClass{
                 String word = element.substring(0, dollarIndex).trim();
                 String number = element.substring(dollarIndex + 1).trim();
 
-                if (!word.isEmpty() && !number.isEmpty()) {
+                // Проверка на наличие цифр и знака доллара в number
+                if (!number.isEmpty() && (number.contains("$") || number.matches(".*\\d.*"))) {
                     words.add(word);
-                    numbers.add("$" + number);
+                    numbers.add(number);
+                } else {
+                    words.add(element);
+                    numbers.add("");
                 }
             } else {
                 words.add(element);
@@ -198,5 +186,7 @@ public class TestClass{
     public static void main(String[] args) {
         test45();
     }
+
+
 
 }

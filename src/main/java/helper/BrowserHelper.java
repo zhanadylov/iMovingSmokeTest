@@ -1,7 +1,9 @@
 package helper;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 
 import java.util.LinkedList;
@@ -13,9 +15,13 @@ import static utilities.Driver.clear_Cookies_And_Storage;
 public class BrowserHelper{
 
 	private final WebDriver driver;
-
 	public BrowserHelper(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public void newWindow() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.open()");
 	}
 
 	public void goBack() {

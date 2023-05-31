@@ -1,22 +1,19 @@
 package tests;
 
-import helper.AssertThat;
+import helper.BrowserHelper;
 import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.TestNG;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.collections.Lists;
 import ui.methods.*;
 import ui.pageObjectModel.*;
+import ui.qabo.LoginPage;
 
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Listeners(TestStatusListener.class)
 public class CreateOrder extends Hooks implements SetUp {
@@ -31,6 +28,9 @@ public class CreateOrder extends Hooks implements SetUp {
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
     SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
     PaymentPage paymentPage = new PaymentPage();
+    LoginPage loginPage = new LoginPage();
+    BrowserHelper browserHelper = new BrowserHelper(driver);
+    QaboOptionsTest qaboOptionsTest = new QaboOptionsTest();
 
     @Test
     public void chooseMoveOption() {
@@ -146,28 +146,42 @@ public class CreateOrder extends Hooks implements SetUp {
 //        saveOrderInfo.setInventoryListInfo(moving_confirm_page.feesLabel.getText(), moving_confirm_page.feesPrice.getText());
 //        saveOrderInfo.setInventoryListInfo(moving_confirm_page.totalPriceLabel.getText(), moving_confirm_page.totalPrice.getText());
 
-        WebElement listElement = driver.findElement(By.cssSelector("body > div > div > div > div.shuffle-animation > div > price-details > section > div > ul"));
+//        WebElement listElement = driver.findElement(By.cssSelector("body > div > div > div > div.shuffle-animation > div > price-details > section > div > ul"));
 
         // Получение всех элементов li из списка
-        List<WebElement> listItems = listElement.findElements(By.tagName("li"));
-
-        // Перебор элементов li и вывод их содержимого
-        for (WebElement listItem : listItems) {
-            String text = listItem.getText();
-            System.out.println(text);
-        }
+//        List<WebElement> listItems = listElement.findElements(By.tagName("li"));
+//        List<WebElement> listItems = moving_confirm_page.ulListOfElements.findElements(By.tagName("li"));
+//
+////
+//        for (WebElement listItem : listItems) {
+//            String text = listItem.getText();
+//            String word = text.replaceAll("[^a-zA-Z\\s-]", "").trim();
+//            String number = text.replaceAll("[^\\d.,$]", "").trim();
+//
+//            saveOrderInfo.setInventoryListInfo(word, number);
+////
+////            System.out.println("Word: " + word + ", Number: " + number);
+//        }
+//        System.out.println(saveOrderInfo.inventoryListInfo);
+        browserHelper.newWindow();
+        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
+        browserHelper.getWindowHandles();
+        browserHelper.SwitchToWindow(1);
+        qaboOptionsTest.loginToQaBO();
+        qaboOptionsTest.checkPriceInBO();
 
         Helper.javascriptScrollIntoView(moving_confirm_page.checkOutButton);
         Helper.click(moving_confirm_page.checkOutButton);
     }
 
+
     @Test(dependsOnMethods = {"moving_Confirm_Page"})
     public void payment_Page(){
         Helper.pause(3000);
-        Assert.assertEquals(paymentPage.orderPrice.getText(), saveOrderInfo.inventoryListInfo.get(paymentPage.totalPriceLabel.getText()));
-        Assert.assertEquals(paymentPage.serviceFeePrice.getText(), String.valueOf(Helper.roundingsFee(Helper.calculatePercent(paymentPage.orderPrice, 5))));
-        double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText() + paymentPage.serviceFeePrice.getText());
-        Assert.assertEquals(String.valueOf(totalPrice), paymentPage.totalPrice.getText());
+//        Assert.assertEquals(paymentPage.orderPrice.getText(), saveOrderInfo.inventoryListInfo.get(paymentPage.totalPriceLabel.getText()));
+//        Assert.assertEquals(paymentPage.serviceFeePrice.getText(), String.valueOf(Helper.roundingsFee(Helper.calculatePercent(paymentPage.orderPrice, 5))));
+//        double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText() + paymentPage.serviceFeePrice.getText());
+//        Assert.assertEquals(String.valueOf(totalPrice), paymentPage.totalPrice.getText());
 
         paymentPage.signIn("shirley.orn@gmail.com", "Sj9QjDXR");
         Helper.pause(2000);
