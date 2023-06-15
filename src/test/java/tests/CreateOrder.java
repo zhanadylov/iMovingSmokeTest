@@ -1,19 +1,20 @@
 package tests;
 
+import helper.AssertThat;
 import helper.BrowserHelper;
 import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.methods.*;
 import ui.pageObjectModel.*;
-import ui.qabo.LoginPage;
 
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Listeners(TestStatusListener.class)
 public class CreateOrder extends Hooks implements SetUp {
@@ -28,9 +29,12 @@ public class CreateOrder extends Hooks implements SetUp {
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
     SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
     PaymentPage paymentPage = new PaymentPage();
-    LoginPage loginPage = new LoginPage();
     BrowserHelper browserHelper = new BrowserHelper(driver);
     QaboOptionsTest qaboOptionsTest = new QaboOptionsTest();
+    GetOrderInfo getOrderInfo = new GetOrderInfo();
+    PerformActionOnElements performActionOnElements = new PerformActionOnElements();
+    Success_Page success_page = new Success_Page();
+
 
     @Test
     public void chooseMoveOption() {
@@ -81,7 +85,20 @@ public class CreateOrder extends Hooks implements SetUp {
         String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
         String dropOff = "12340 Boggy Creek Road, Orlando, FL, 32824";
         SetAddress.testMethod(pickUp, moving_detail_page.pickUpFromInputField);
+        performActionOnElements.setValuesToFillFields("atp-2", "Remark auto test pickUp");
+        performActionOnElements.fillCCFieldsElementTest(moving_detail_page.aptNumInputField, moving_detail_page.anyRemarksInputField, moving_detail_page.flightOfStairsPlusButtonPickup,
+                moving_detail_page.longCarryPlusButtonPickup);
+        Helper.click(moving_detail_page.elevatorYesPickup);
+        Helper.click(moving_detail_page.NeedShuttleYesPickup);
+        Helper.click(moving_detail_page.BuildingInsuranceYesPickup);
+
         SetAddress.testMethod2(dropOff, moving_detail_page.dropOffAtInputField);
+        performActionOnElements.setValuesToFillFields("atp-3", "Remark auto test dropOff");
+        performActionOnElements.fillCCFieldsElementTest(moving_detail_page.aptNumInputFieldDropOff, moving_detail_page.anyRemarksInputFieldDropOff, moving_detail_page.flightOfStairsPlusButtonDropOff,
+                moving_detail_page.longCarryPlusButtonDropOff);
+        Helper.click(moving_detail_page.dropOffElevatorYes);
+        Helper.click(moving_detail_page.dropOffNeedShuttleYes);
+        Helper.click(moving_detail_page.dropOffBuildingInsuranceYes);
         Helper.pause(2000);
         Helper.javascriptScrollDownThePage();
         Helper.navigateToElement(moving_detail_page.checkRatesButton);
@@ -98,30 +115,120 @@ public class CreateOrder extends Hooks implements SetUp {
 
     @Test(dependsOnMethods = {"moving_Details_Page"})
     public void moving_Result_Page(){
-//        Helper.pause(3000);
-//        selectRandom.clickOnRandomCheckBox(moving_result_page.packingServicesCheckboxSideBar);
-//        Helper.pause(1000);
-//        selectRandom.clickOnRandomCheckBox(moving_result_page.flexibilityCheckboxSideBar);
-//        Helper.pause(1000);
-//        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckboxSideBar);
-        Helper.pause(1000);
-//        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckbox);
         int ran =  new Random().nextInt(3);
         System.out.println("Random number is "+ran);
         DropDownHelper.selectUsingIndex(moving_result_page.flexibilityDropDown2, ran);
         Helper.pause(3000);
 
-            saveOrderInfo.setOrderInfo(moving_result_page.labelInPickUpBox.getText(), moving_result_page.addressInPickUpBox.getText());
-            saveOrderInfo.setOrderInfo(moving_result_page.labelInDropOffBox.getText(), moving_result_page.addressInDropOffBox.getText());
-            saveOrderInfo.setOrderInfo(moving_result_page.labelInDateBox.getText(), moving_result_page.dateInDateBox.getText());
-            saveOrderInfo.setOrderInfo(moving_result_page.labelInInventoryBox.getText(), moving_result_page.itemsInInventory.getText());
-            saveOrderInfo.setOrderInfo(moving_result_page.orderNumberLabel.getText(), moving_result_page.orderNumber.getText());
-            saveOrderInfo.setOrderInfo("CarrierName", moving_result_page.carrierName.getText());
-            saveOrderInfo.setOrderInfo("OrderPrice", moving_result_page.orderPrice.getText());
-
-//        for (WebElement in : moving_result_page.moverNameAndPrice) {
-//            System.out.println(in.getText());
+        moving_result_page.myInventoryLink.isDisplayed();
+        moving_result_page.myInventoryLink.isEnabled();
+        Assert.assertEquals(moving_result_page.myInventoryLink.getAttribute("class"), "past");
+        Assert.assertEquals(moving_result_page.myInventoryIcon.getAttribute("class"), "greenImg");
+        moving_result_page.tripDetailsLink.isDisplayed();
+        moving_result_page.tripDetailsLink.isEnabled();
+        Assert.assertEquals(moving_result_page.tripDetailsLink.getAttribute("class"), "past");
+        Assert.assertEquals(moving_result_page.tripDetailsIcon.getAttribute("class"), "greenImg");
+        moving_result_page.myPricesLink.isDisplayed();
+        Assert.assertEquals(moving_result_page.myPricesLink.getAttribute("class"), "active");
+        Assert.assertEquals(moving_result_page.myPricesIcon.getAttribute("class"), "circle active");
+        moving_result_page.confirmationLink.isDisplayed();
+        Assert.assertEquals(moving_result_page.confirmationLink.getAttribute("class"), "future");
+        Assert.assertEquals(moving_result_page.confirmationIcon.getAttribute("class"), "circle");
+        moving_result_page.paymentLink.isDisplayed();
+        Assert.assertEquals(moving_result_page.paymentLink.getAttribute("class"), "future");
+        Assert.assertEquals(moving_result_page.paymentIcon.getAttribute("class"), "circle");
+//        Helper.click(moving_result_page.tripDetailsLink);
+//        Helper.pause(1000);
+//        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/full-inventory/#!/moving-details");
+//        Helper.click(moving_result_page.myInventoryLink);
+//        Helper.pause(1000);
+//        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/full-inventory/#!/");
+//        Helper.click(full_inventory.completeOrder);
+//        if(boxCalculatingPopUp.addAndContinueButton.isDisplayed()){
+//            Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
+//            Helper.click(boxCalculatingPopUp.addAndContinueButton);
 //        }
+//        if(boxCalculatingPopUp.skipButton.isDisplayed()){
+//            Helper.click(boxCalculatingPopUp.skipButton);
+//        }
+//        Helper.javascriptScrollDownThePage();
+//        Helper.navigateToElement(moving_detail_page.checkRatesButton);
+//        Helper.click(moving_detail_page.checkRatesButton);
+        moving_result_page.addressInPickUpBox.isDisplayed();
+        moving_result_page.addressInDropOffBox.isDisplayed();
+        moving_result_page.dateInDateBox.isDisplayed();
+        moving_result_page.itemsInInventory.isDisplayed();
+        moving_result_page.orderNumber.isDisplayed();
+        saveOrderInfo.setOrderInfo(moving_result_page.labelInPickUpBox.getText(), moving_result_page.addressInPickUpBox.getText());
+        saveOrderInfo.setOrderInfo(moving_result_page.labelInDropOffBox.getText(), moving_result_page.addressInDropOffBox.getText());
+        saveOrderInfo.setOrderInfo(moving_result_page.labelInDateBox.getText(), moving_result_page.dateInDateBox.getText());
+        saveOrderInfo.setOrderInfo(moving_result_page.labelInInventoryBox.getText(), moving_result_page.itemsInInventory.getText());
+        saveOrderInfo.setOrderInfo(moving_result_page.orderNumberLabel.getText(), moving_result_page.orderNumber.getText());
+        saveOrderInfo.setOrderInfo("CarrierName", moving_result_page.carrierName.getText());
+        saveOrderInfo.setOrderInfo("OrderPrice", moving_result_page.orderPrice.getText());
+        //
+        moving_result_page.movingInfoText.isDisplayed();
+        AssertThat.assertText("Price includes tax, tolls, fuel, mileage, disassembly/reassembly, loading/unloading, blankets wrapping, basic liability.\n" +
+                "You may review added services before checkout. Prices not final until purchase is completed.", moving_result_page.movingInfoText);
+        //
+        moving_result_page.needHelpTitle.isDisplayed();
+        AssertThat.assertText("Need Help?", moving_result_page.needHelpTitle);
+        moving_result_page.callNowText.isDisplayed();
+        AssertThat.assertText("Call Now", moving_result_page.callNowText);
+        moving_result_page.scheduleMeetingText.isDisplayed();
+        moving_result_page.scheduleMeetingText.isEnabled();
+        AssertThat.assertText("Schedule a Meeting", moving_result_page.scheduleMeetingText);
+        //
+        moving_result_page.whyBookWithIMovingTitle.isDisplayed();
+        AssertThat.assertText("Why Book with iMoving?", moving_result_page.whyBookWithIMovingTitle);
+        moving_result_page.bindingPriceText.isDisplayed();
+        AssertThat.assertText("Binding Price", moving_result_page.bindingPriceText);
+        moving_result_page.inventoryControlText.isDisplayed();
+        AssertThat.assertText("Inventory Control", moving_result_page.inventoryControlText);
+        moving_result_page.securePaymentText.isDisplayed();
+        AssertThat.assertText("Secure Payment", moving_result_page.securePaymentText);
+        moving_result_page.priceMatchText.isDisplayed();
+        AssertThat.assertText("Price Match", moving_result_page.priceMatchText);
+        moving_result_page.customerSupportText.isDisplayed();
+        AssertThat.assertText("Customer Support", moving_result_page.customerSupportText);
+        //
+        moving_result_page.bindingPriceTooltipIcon.isDisplayed();
+        moving_result_page.bindingPriceTooltipIcon.isEnabled();
+        Helper.navigateToElement(moving_result_page.bindingPriceTooltipIcon);
+        Helper.waitForElementVisibilityOf(moving_result_page.bindingPriceTooltipContent);
+        AssertThat.assertText( "Guaranteed price based on items and services", moving_result_page.bindingPriceTooltipContent);
+        moving_result_page.customerSupportTooltipIcon.isDisplayed();
+        moving_result_page.customerSupportTooltipIcon.isEnabled();
+        Helper.navigateToElement(moving_result_page.customerSupportTooltipIcon);
+        Helper.waitForElementVisibilityOf(moving_result_page.customerSupportTooltipContent);
+        AssertThat.assertText( "Live agents available for anything you need", moving_result_page.customerSupportTooltipContent);
+        moving_result_page.inventoryControlTooltipIcon.isDisplayed();
+        moving_result_page.inventoryControlTooltipIcon.isEnabled();
+        Helper.navigateToElement(moving_result_page.inventoryControlTooltipIcon);
+        Helper.waitForElementVisibilityOf(moving_result_page.inventoryControlTooltipContent);
+        AssertThat.assertText( "Control your price by adding / removing items and services", moving_result_page.inventoryControlTooltipContent);
+        moving_result_page.priceMatchTooltipIcon.isDisplayed();
+        moving_result_page.priceMatchTooltipIcon.isEnabled();
+        Helper.navigateToElement(moving_result_page.priceMatchTooltipIcon);
+        Helper.waitForElementVisibilityOf(moving_result_page.priceMatchTooltipContent);
+        AssertThat.assertText( "Price match guarantee", moving_result_page.priceMatchTooltipContent);
+        moving_result_page.securePaymentTooltipIcon.isDisplayed();
+        moving_result_page.securePaymentTooltipIcon.isEnabled();
+        Helper.navigateToElement(moving_result_page.securePaymentTooltipIcon);
+        Helper.waitForElementVisibilityOf(moving_result_page.securePaymentTooltipContent);
+        AssertThat.assertText( "Your personal and financial information is confidential", moving_result_page.securePaymentTooltipContent);
+        //
+
+        Helper.pause(2000);
+//        Helper.javascriptScrollIntoView(moving_result_page.packingServicesTitle);
+//        selectRandom.clickOnRandomRadioButton(moving_result_page.packingServicesCheckboxSideBar);
+//        Helper.pause(1000);
+//        selectRandom.clickOnRandomRadioButton(moving_result_page.flexibilityCheckboxSideBar);
+//        Helper.pause(1000);
+//        selectRandom.clickOnRandomRadioButton(moving_result_page.deliveryWindowCheckboxSideBar);
+        Helper.pause(1000);
+//        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckbox);
+        Helper.navigateToElement(moving_result_page.selectButton);
         Helper.click(moving_result_page.selectButton);
     }
 
@@ -146,29 +253,28 @@ public class CreateOrder extends Hooks implements SetUp {
 //        saveOrderInfo.setInventoryListInfo(moving_confirm_page.feesLabel.getText(), moving_confirm_page.feesPrice.getText());
 //        saveOrderInfo.setInventoryListInfo(moving_confirm_page.totalPriceLabel.getText(), moving_confirm_page.totalPrice.getText());
 
-//        WebElement listElement = driver.findElement(By.cssSelector("body > div > div > div > div.shuffle-animation > div > price-details > section > div > ul"));
 
         // Получение всех элементов li из списка
-//        List<WebElement> listItems = listElement.findElements(By.tagName("li"));
-//        List<WebElement> listItems = moving_confirm_page.ulListOfElements.findElements(By.tagName("li"));
-//
-////
-//        for (WebElement listItem : listItems) {
-//            String text = listItem.getText();
-//            String word = text.replaceAll("[^a-zA-Z\\s-]", "").trim();
-//            String number = text.replaceAll("[^\\d.,$]", "").trim();
-//
-//            saveOrderInfo.setInventoryListInfo(word, number);
-////
-////            System.out.println("Word: " + word + ", Number: " + number);
-//        }
-//        System.out.println(saveOrderInfo.inventoryListInfo);
+        List<WebElement> listItems = moving_confirm_page.ulListOfElements.findElements(By.tagName("li"));
+
+//        saveOrderInfo.setInventoryListInfo3(listItems);
+
+        for (WebElement item : listItems) {
+            String data = item.getText();
+            String word = SaveOrderInfo.extractLabel(data);
+            String number = SaveOrderInfo.extractValue(data);
+            saveOrderInfo.setInventoryListInfo(word,number);
+        }
+
+        System.out.println(saveOrderInfo.inventoryListInfo);
         browserHelper.newWindow();
         qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
         browserHelper.getWindowHandles();
         browserHelper.SwitchToWindow(1);
         qaboOptionsTest.loginToQaBO();
-        qaboOptionsTest.checkPriceInBO();
+        qaboOptionsTest.openPriceInBO();
+        getOrderInfo.comparePriceWebBo(saveOrderInfo.priceListBo, saveOrderInfo.inventoryListInfo);
+        browserHelper.SwitchToWindow(0);
 
         Helper.javascriptScrollIntoView(moving_confirm_page.checkOutButton);
         Helper.click(moving_confirm_page.checkOutButton);
@@ -178,27 +284,35 @@ public class CreateOrder extends Hooks implements SetUp {
     @Test(dependsOnMethods = {"moving_Confirm_Page"})
     public void payment_Page(){
         Helper.pause(3000);
-//        Assert.assertEquals(paymentPage.orderPrice.getText(), saveOrderInfo.inventoryListInfo.get(paymentPage.totalPriceLabel.getText()));
+        getOrderInfo.getOrderInfoMulti(saveOrderInfo.inventoryListInfo);
+        String price = String.valueOf(saveOrderInfo.inventoryListInfo.get("Total"));
+        Assert.assertEquals(paymentPage.orderPrice.getText(), price.substring(1, price.length()-1));
+//        String num1 = paymentPage.orderPrice.getText().replaceAll("[$,]", "");
+//        String num2 = paymentPage.serviceFeePrice.getText();
+//        System.out.println("num1 "+num1);
+//        System.out.println("num2 "+num2);
 //        Assert.assertEquals(paymentPage.serviceFeePrice.getText(), String.valueOf(Helper.roundingsFee(Helper.calculatePercent(paymentPage.orderPrice, 5))));
-//        double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText() + paymentPage.serviceFeePrice.getText());
-//        Assert.assertEquals(String.valueOf(totalPrice), paymentPage.totalPrice.getText());
+        double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText().replaceAll("[$,]","")) + Double.parseDouble(paymentPage.serviceFeePrice.getText().replaceAll("[$,]",""));
+        Assert.assertEquals(String.valueOf(totalPrice), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
 
-        paymentPage.signIn("shirley.orn@gmail.com", "Sj9QjDXR");
+        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+        performActionOnElements.fillCCFieldsElementTest(paymentPage.signInButton, paymentPage.emailFieldLogin, paymentPage.passwordFieldLogin, paymentPage.loginButton);
         Helper.pause(2000);
-        Helper.javascriptScrollIntoView(paymentPage.newPaymentCard);
-        Helper.click(paymentPage.newPaymentCard);
-        Helper.sendKeys(paymentPage.cardNameInputField, "clientFirstName");
-        Helper.javascriptScrollIntoView(paymentPage.cardNumberInputField);
-        Helper.sendKeys(paymentPage.cardNumberInputField, "5424 0000 0000 0015");
-        Helper.sendKeys(paymentPage.cvvNumberInputField, "123");
-        DropDownHelper.selectUsingVisibleText(paymentPage.expiryYearSelectField, "2027");
-        Helper.pause(3000);
-        Helper.javascriptScrollIntoView(paymentPage.billingAddressCheckBox);
-        Helper.javascriptClick(paymentPage.billingAddressCheckBox);
-        Helper.pause(3000);
+
+        performActionOnElements.setValuesToFillFields("clientFirstName","5424 0000 0000 0015","123","2027");
+        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
+                paymentPage.cvvNumberInputField, paymentPage.expiryYearSelectField, paymentPage.billingAddressCheckBox);
 
         Helper.javascriptScrollDownThePage();
         Helper.click(paymentPage.completeBookingButton);
         Helper.pause(3000);
+    }
+
+    @Test(dependsOnMethods = {"payment_Page"})
+    public void success_Page_Test(){
+        success_page.thankYouText.isDisplayed();
+        success_page.customerName.isDisplayed();
+        AssertThat.assertText("Thank You", success_page.thankYouText);
+        AssertThat.assertText(success_page.text, success_page.textInSuccessPage);
     }
 }

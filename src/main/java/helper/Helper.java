@@ -330,12 +330,11 @@ public class Helper {
     }
 
     public static double calculatePercent(WebElement price, double percent){
-        double price3 = Double.parseDouble(price.getText());
+        double price3 = Double.parseDouble(price.getText().replace("[$,]",""));
         return (price3 * percent) / 100.0;
     }
 
     public static BigDecimal roundingsFee(double feePrice){
         return BigDecimal.valueOf(feePrice).setScale(2, RoundingMode.HALF_UP);
     }
-
 }

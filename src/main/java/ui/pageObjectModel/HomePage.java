@@ -14,16 +14,16 @@ public class HomePage {
 
 
     //Login form
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/button[1]")
+    @FindBy(xpath = "//*[@id=\"bs-example-navbar-collapse-1\"]/ul/li[2]/a")
     public WebElement SignInButton;
 
-    @FindBy(xpath = "/html[1]/body[1]/div[2]/div[1]/header[1]/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/input[1]")
+    @FindBy(xpath = "//*[@id=\"loginModel_Username\"]")
     public WebElement inputEmail;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[2]/form[1]/div/div[2]/input[1]")
+    @FindBy(xpath = "//*[@id=\"loginModel_Password\"]")
     public WebElement inputPassword;
 
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[5]/button[1]")
+    @FindBy(xpath = "//*[@id=\"loginForm\"]/div/button")
     public WebElement loginButtonInSignIn;
 
     @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[3]/a[1]")
@@ -32,7 +32,7 @@ public class HomePage {
     @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/i[1]")
     public WebElement eyeOnSignIn;
 
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/ul[2]/li[1]/a[1]")
+    @FindBy(xpath = "//*[@id=\"userName\"]")
     public WebElement userNameAfterLogin;
 
     @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[2]/li/div/ul[2]/li[3]/form/fieldset/button/span")
@@ -83,11 +83,13 @@ public class HomePage {
     public WebElement backToLoginButtonInReset;
 
     //Select from dropdown and create
+    @FindBy(xpath = "//*[@id=\"index\"]/main/div[1]/section[1]/div/div/ul/li[1]/a")
+    public WebElement movingTab;
     @FindBy(xpath = "//*[@id=\"houseTypeSelectList\"]")
     public WebElement moveOptionList;
     @FindBy(xpath = "//*[@id=\"hp-nav-select-house\"]")
     public WebElement sizeOptionList;
-    @FindBy(xpath = "//button[contains(text(),'Compare Quotes')]")
+    @FindBy(xpath = "//button[contains(text(),'Continue')]")
     public WebElement compareQuotes;
 
 }

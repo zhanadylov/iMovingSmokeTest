@@ -40,6 +40,7 @@ public class CalendarClass {
             Helper.click(day);
         }else{
             String pathDay = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td[contains(text(),'DayIndex')]";
+//            String pathDay = "(/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td[contains(text(),'DayIndex')])[2]";
             String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthFull));
             WebElement day = driver.findElement(By.xpath(pathDayFinal));
             Helper.click(day);
@@ -53,7 +54,8 @@ public class CalendarClass {
         // Generate random day from present day
         int dayInMonthRange = (int)Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
         Helper.click(datePicker);
-        String pathDay = "//td[text()='INDEX']";
+//        String pathDay = "//td[text()='INDEX']";
+        String pathDay = "(//td[text()='INDEX'])[2]";
         String pathDayFinal = pathDay.replace("INDEX", String.valueOf(dayInMonthRange));
         WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
         Helper.click(tdButton);

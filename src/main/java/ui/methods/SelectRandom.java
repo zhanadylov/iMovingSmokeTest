@@ -3,16 +3,8 @@ package ui.methods;
 import helper.Helper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
-import utilities.Driver;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -23,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static helper.JavaFaker.random;
 
 public class SelectRandom {
     private static final Logger logger = (Logger) LogManager.getLogger(Helper.class);
@@ -41,7 +32,7 @@ public class SelectRandom {
         select.selectByIndex(randomOptionIndex);
         list.add(randomOptionText);
 
-        if (list.contains("What are You moving?") || list.contains("Move Size")) {
+        if (list.contains("Move From") || list.contains("Move Size")) {
             list.remove(randomOptionText); // remove the current option from the list
             selectRandomOptionFromDropDown(element); // call the method again
         }
@@ -79,13 +70,29 @@ public class SelectRandom {
     }
 
     //Random click Checkbox
-    public void clickOnRandomCheckBox(List<WebElement> element)
-    {
-        int index = random.nextInt(element.size());
-        if(!element.get(index).isSelected())
-        {
-            Helper.javascriptScrollIntoView(element.get(index));
-            element.get(index).click();
+//    public void clickOnRandomCheckBox(List<WebElement> element)
+//    {
+//        int index = random.nextInt(element.size());
+//        if(!element.get(index).isSelected())
+//        {
+//            Helper.javascriptScrollIntoView(element.get(index));
+//            element.get(index).click();
+//        }
+//    }
+
+    public void clickOnRandomRadioButton(List<WebElement> radioButtons) {
+        int index = random.nextInt(radioButtons.size());
+        WebElement radioButton = radioButtons.get(index);
+
+        if (!radioButton.isSelected()) {
+            Helper.javascriptScrollIntoView(radioButton);
+
+            if (radioButton.isDisplayed()) {
+                radioButton.click();
+            } else {
+                // Perform scrolling or other actions to make the element visible
+                // and then retry the click.
+            }
         }
     }
 

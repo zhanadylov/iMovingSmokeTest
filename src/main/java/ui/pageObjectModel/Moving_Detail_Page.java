@@ -197,7 +197,7 @@ public class Moving_Detail_Page {
     //Drop Off
     @FindBy(xpath = "(//input[@placeholder='Any remarks for this location?'])[2]")
     public WebElement anyRemarksInputFieldDropOff;
-    @FindBy(xpath = "(//input[@placeholder='Apt #'])[2]")
+    @FindBy(xpath = "(//input[@placeholder='APT #'])[2]")
     public WebElement aptNumInputFieldDropOff;
     @FindBy(xpath = "(//p[text()='Please add restriction if any to make sure your moving day will go smoothly.'])[2]")
     public WebElement restrictionTextOnDropOff;

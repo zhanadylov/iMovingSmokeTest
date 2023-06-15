@@ -1,7 +1,10 @@
 package tests;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import helper.BrowserHelper;
 import helper.Helper;
+import hooks.Hooks;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,11 +15,13 @@ import org.testng.annotations.Test;
 import ui.methods.*;
 import ui.pageObjectModel.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.*;
 
-public class TestClass{
+public class TestClass extends Hooks implements SetUp{
     static WebDriver driver;
     ArrayList<String> al;
     StorageOrder storageOrder = new StorageOrder();
@@ -29,25 +34,29 @@ public class TestClass{
     Moving_Result_Page moving_result_page = new Moving_Result_Page();
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
     BrowserHelper browserHelper = new BrowserHelper(driver);
+    PerformActionOnElements performActionOnElements = new PerformActionOnElements();
 
-    @BeforeTest
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.get("https://demoqa.com/automation-practice-form");
-        driver.get("https://qa.imoving.com/");
-    }
-
-//    @AfterSuite
-//    public void tearDown() throws InterruptedException {
-//        Thread.sleep(3000);
-//        driver.close();
-//        driver.quit();
+//    @BeforeTest
+//    public void setUp() {
+//        WebDriverManager.chromedriver().setup();
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        driver = new ChromeDriver(options);
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+////        driver.get("https://demoqa.com/automation-practice-form");
+////        driver.get("https://qa.imoving.com/");
 //    }
+
+    @Test
+    public void test67(){
+        Helper.click(homePage.SignInButton);
+        Helper.click(homePage.signUpInLoginForm);
+        Helper.pause(2000);
+        performActionOnElements.setValuesToFillFields("test1","test2","fizu@mailinator.com","QATest-2022","QATest-2022", "1234567890");
+        performActionOnElements.fillCCFieldsElementTest(homePage.newFirstName, homePage.newLastName, homePage.newEmail, homePage.newPassword,homePage.confirmPassword,homePage.phoneNumber);
+        Helper.pause(3000);
+    }
 
     @Test
     public void testClickCheckRates(){
@@ -142,7 +151,6 @@ public class TestClass{
         element.sendKeys(button, button2);
     }
 
-
     public static void test45(){
         ArrayList<String> full = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
@@ -183,10 +191,52 @@ public class TestClass{
 
     }
 
-    public static void main(String[] args) {
-        test45();
+    public static double calculatePercent(String price, double percent){
+        double price3 = Double.parseDouble(price.replaceAll("[$,]",""));
+        return (price3 * percent) / 100.0;
     }
 
+    public static BigDecimal roundingsFee(double feePrice){
+        return BigDecimal.valueOf(feePrice).setScale(2, RoundingMode.HALF_UP);
+    }
 
+    public static void main(String[] args) {
+        Multimap<String, String> inventoryListInfo = ArrayListMultimap.create();
+        List<String> priceList = new ArrayList<>();
+
+        inventoryListInfo.put("Moving","2532");
+        inventoryListInfo.put("Addresses","$0.00");
+        inventoryListInfo.put("Inventory","$298.59");
+        inventoryListInfo.put("Inventory","$16.05");
+        inventoryListInfo.put("Additional","$-47.20");
+        inventoryListInfo.put("Fees","$1,463.28");
+        inventoryListInfo.put("Total","$1,730.73");
+
+        priceList.add("$0.00");
+        priceList.add("$479.99");
+        priceList.add("341.52");
+        priceList.add("$0");
+        priceList.add("$2,463.28");
+
+//        for (String price : priceList) {
+//            if (inventoryListInfo.containsValue(price)) {
+//                System.out.println("Элемент " + price + " содержится в inventoryListInfo.");
+//            } else {
+//                System.out.println("Элемент " + price + " отсутствует в inventoryListInfo.");
+//            }
+//        }
+
+        int num = 0;
+        while(num >= 5){
+            System.out.println(num);
+        }
+    }
+
+//    @AfterSuite
+//    public void tearDown() throws InterruptedException {
+//        Thread.sleep(3000);
+//        driver.close();
+//        driver.quit();
+//    }
 
 }

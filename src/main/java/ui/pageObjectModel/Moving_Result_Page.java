@@ -12,11 +12,30 @@ public class Moving_Result_Page {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div[1]/div[1]/ol/li[1]/div[1]/img")
+    public WebElement myInventoryIcon;
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[1]/a/span")
     public WebElement myInventoryLink;
 
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[2]/div[1]/img")
+    public WebElement tripDetailsIcon;
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[2]/a/span")
     public WebElement tripDetailsLink;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[3]/div[1]")
+    public WebElement myPricesIcon;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[3]/a/span")
+    public WebElement myPricesLink;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[4]/div[1]")
+    public WebElement confirmationIcon;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[4]/a/span")
+    public WebElement confirmationLink;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[5]/div")
+    public WebElement paymentIcon;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[5]/a/span")
+    public WebElement paymentLink;
 
     @FindBy(xpath = "//small[contains(text(),'Pick Up')]")
     public WebElement labelInPickUpBox;
@@ -125,7 +144,8 @@ public class Moving_Result_Page {
     @FindBy(xpath = "//label[contains(text(),'Packing & unpacking')]")
     public WebElement packingUnpackingText;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[1]/div/input")
+//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[1]/div/input")
+    @FindBy(xpath = "//input[@type='radio'][@name='packing']")
     public List<WebElement> packingServicesCheckboxSideBar;
 
     //pick-Up Flexibility
@@ -143,6 +163,7 @@ public class Moving_Result_Page {
     public WebElement days3FlexText;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[2]/div/input")
+//    @FindBy(xpath = "//input[@type='radio'][@name='flexibilityWindowAsPartFilter1_0' or @name='flexibilityWindowAsPartFilter1_1' or @name='flexibilityWindowAsPartFilter1_2']")
     public List<WebElement>  flexibilityCheckboxSideBar;
 
     //Delivery Window
@@ -162,6 +183,10 @@ public class Moving_Result_Page {
     public WebElement straightSameDayClick;
     @FindBy(xpath = "(//label[text()='Straight, Same day'])[1]")
     public WebElement straightSameDayText;
+
+//    @FindBy(xpath = "//input[@type='radio'][@name='deliveryWindowAsPartFilter1_0' or @name='deliveryWindowAsPartFilter1_1' or @name='deliveryWindowAsPartFilter1_2']")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[3]/div/input")
+    public List<WebElement>  deliveryCheckboxSideBar;
 
     //Delivery Window Mover part
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[4]/div/input")

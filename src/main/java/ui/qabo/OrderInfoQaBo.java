@@ -13,8 +13,11 @@ public class OrderInfoQaBo {
     @FindBy(xpath = "//li[@class='active']//a[contains(text(),'Order Details')]")
     public WebElement ordersDetailsTab;
 
-    @FindBy(xpath = "//li[@class='']//a[contains(text(),'Pricing')]")
+//    @FindBy(xpath = "//li[@class='']//a[contains(text(),'Pricing')]")
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/ul/li[2]/a")
     public WebElement pricingTab;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[2]/div/div/div[1]")
+    public WebElement pricingTabOrderInventoryList;
 
     @FindBy(xpath = "//li//a[contains(text(),'Inventory to deliver')]")
     public WebElement inventoryToDeliveryTab;
