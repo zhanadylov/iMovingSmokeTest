@@ -13,8 +13,8 @@ public class FooterLinksPages {
     //Menu
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > h6")
     public WebElement menuTitle;
-    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a")
-//    @FindBy(xpath = "//*[@id=\"index\"]/footer/div/div[1]/div[1]/ul/li[1]/a")
+//    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a")
+    @FindBy(xpath = "//*[@id=\"index\"]/footer/div/div[1]/div[1]/ul/li[1]/a")
     public WebElement aboutUsLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(2) > a")
     public WebElement ourMoversLink;

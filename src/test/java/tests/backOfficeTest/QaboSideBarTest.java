@@ -1,11 +1,10 @@
-package tests;
+package tests.backOfficeTest;
 
 import helper.BrowserHelper;
 import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.methods.SaveOrderInfo;

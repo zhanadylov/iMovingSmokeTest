@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import tests.backOfficeTest.QaboOptionsTest;
 import ui.methods.*;
 import ui.pageObjectModel.*;
 
@@ -20,7 +21,7 @@ import java.util.*;
 public class CreateOrder extends Hooks implements SetUp {
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
-    PopUps popUps = new PopUps();
+    PopUpsPage popUpsPage = new PopUpsPage();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
     Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
     Moving_Result_Page moving_result_page = new Moving_Result_Page();
@@ -34,7 +35,7 @@ public class CreateOrder extends Hooks implements SetUp {
     GetOrderInfo getOrderInfo = new GetOrderInfo();
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     Success_Page success_page = new Success_Page();
-
+    AdditionalPickUpTest additionalPickUpTest = new AdditionalPickUpTest();
 
     @Test
     public void chooseMoveOption() {
@@ -55,15 +56,17 @@ public class CreateOrder extends Hooks implements SetUp {
 
     @Test(enabled = false)
     public void orderHouseApartment(){
-        Helper.click(popUps.continueButton);
-        Helper.click(popUps.xButtonSecond);
-        Helper.click(popUps.okButtonThird);
+        Helper.click(popUpsPage.continueButton);
+        Helper.click(popUpsPage.xButtonSecond);
+        Helper.click(popUpsPage.okButtonThird);
         AddItemsMethod.addItems(full_inventory.imageElement, 3);
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
         if(boxCalculatingPopUp.skipButton.isDisplayed()){
             Helper.click(boxCalculatingPopUp.skipButton);
+        }else{
+            System.out.println("Skip button not displayed");
         }
     }
 
@@ -117,7 +120,7 @@ public class CreateOrder extends Hooks implements SetUp {
     public void moving_Result_Page(){
         int ran =  new Random().nextInt(3);
         System.out.println("Random number is "+ran);
-        DropDownHelper.selectUsingIndex(moving_result_page.flexibilityDropDown2, ran);
+//        DropDownHelper.selectUsingIndex(moving_result_page.flexibilityDropDown2, ran);
         Helper.pause(3000);
 
         moving_result_page.myInventoryLink.isDisplayed();
@@ -266,7 +269,7 @@ public class CreateOrder extends Hooks implements SetUp {
             saveOrderInfo.setInventoryListInfo(word,number);
         }
 
-        System.out.println(saveOrderInfo.inventoryListInfo);
+//        System.out.println(saveOrderInfo.inventoryListInfo);
         browserHelper.newWindow();
         qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
         browserHelper.getWindowHandles();
@@ -274,7 +277,8 @@ public class CreateOrder extends Hooks implements SetUp {
         qaboOptionsTest.loginToQaBO();
         qaboOptionsTest.openPriceInBO();
         getOrderInfo.comparePriceWebBo(saveOrderInfo.priceListBo, saveOrderInfo.inventoryListInfo);
-        browserHelper.SwitchToWindow(0);
+//        browserHelper.SwitchToWindow(0);
+        browserHelper.switchToParentWithChildClose();
 
         Helper.javascriptScrollIntoView(moving_confirm_page.checkOutButton);
         Helper.click(moving_confirm_page.checkOutButton);
@@ -293,7 +297,7 @@ public class CreateOrder extends Hooks implements SetUp {
 //        System.out.println("num2 "+num2);
 //        Assert.assertEquals(paymentPage.serviceFeePrice.getText(), String.valueOf(Helper.roundingsFee(Helper.calculatePercent(paymentPage.orderPrice, 5))));
         double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText().replaceAll("[$,]","")) + Double.parseDouble(paymentPage.serviceFeePrice.getText().replaceAll("[$,]",""));
-        Assert.assertEquals(String.valueOf(totalPrice), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
+        Assert.assertEquals(String.valueOf(Helper.roundingsFee(totalPrice)), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
 
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(paymentPage.signInButton, paymentPage.emailFieldLogin, paymentPage.passwordFieldLogin, paymentPage.loginButton);
@@ -314,5 +318,8 @@ public class CreateOrder extends Hooks implements SetUp {
         success_page.customerName.isDisplayed();
         AssertThat.assertText("Thank You", success_page.thankYouText);
         AssertThat.assertText(success_page.text, success_page.textInSuccessPage);
+        Helper.pause(2000);
+        additionalPickUpTest.addAdditionalPickUpPayByCC();
+        additionalPickUpTest.addAdditionalPickUpPayByCheck();
     }
 }

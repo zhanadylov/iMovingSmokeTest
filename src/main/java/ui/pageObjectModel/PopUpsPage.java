@@ -5,15 +5,33 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class PopUps {
-    public PopUps() {PageFactory.initElements(Driver.getDriver(),this);}
+public class PopUpsPage {
+    public PopUpsPage(){
+        PageFactory.initElements(Driver.getDriver(), this);
+    }
+
+    //First popup
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body.mc-flex-1 > div > span")
+    public WebElement boxesTitle;
+
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-footer.mc-flex-0 > div > a")
+    public WebElement gotItButton;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[1]/button")
+    public WebElement xButton;
+
+    //Second
+    @FindBy(css = "body > div > div > div > div.shuffle-animation > section.tutorial.rooms > div > p.tutorial-text.hidden-xs.hidden-sm")
+    public WebElement textInPopup;
+    @FindBy(css = "#closeTutorial")
+    public WebElement okButton;
+    @FindBy(css = "#nextInventoryTutorial")
+    public WebElement nextButton;
+
 
     //First pop-up
     @FindBy(xpath = "//body/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]/span[1]")
     public WebElement recommendedRoomPopUpText;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[1]/button")
-    public WebElement xButton;
 
     @FindBy(xpath = "//span[contains(text(),'Continue')]")
     public WebElement continueButton;
@@ -70,4 +88,5 @@ public class PopUps {
     public WebElement textInFive;
     @FindBy(xpath = "//*[@id=\"closeTutorial2\"]")
     public WebElement okButtonFive;
+
 }

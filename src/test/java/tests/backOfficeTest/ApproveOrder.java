@@ -1,50 +1,39 @@
-package tests;
+package tests.backOfficeTest;
 
-import helper.BrowserHelper;
 import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
-import org.openqa.selenium.*;
-import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ui.methods.SaveOrderInfo;
+import ui.methods.GetMoverNameInBO;
+import ui.methods.SetUpBO;
 import ui.qabo.LoginPage;
 import ui.qabo.OrderInfoQaBo;
 import ui.qabo.OrdersPageInQabo;
 import ui.qabo.QaboDashBoardPage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static ui.methods.SetUp.driver;
 
-
-public class QaboOptionsTest extends Hooks{
+public class ApproveOrder extends Hooks implements SetUpBO {
     String orderNumber = "";
+    String moverName = "";
+    String moverEmail = "";
+    String moverPassword = "Star12@";
+
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
     OrdersPageInQabo ordersPageInQabo = new OrdersPageInQabo();
-    DropDownHelper dropDownHelper = new DropDownHelper();
-    SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
-    BrowserHelper browserHelper = new BrowserHelper(driver);
     OrderInfoQaBo orderInfoQaBo = new OrderInfoQaBo();
-
-//    @BeforeTest
-//    public void openQaBoWeb(){
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.open('https://qabo.imoving.com/', '_blank');");
-//    }
+    GetMoverNameInBO getMoverNameInBO = new GetMoverNameInBO();
 
     public void getOrderNumber(String number){
         this.orderNumber = number;
     }
 
-    @Test
+    @BeforeTest
     public void loginToQaBO(){
-        driver.get("https://qabo.imoving.com/Account/Login");
+//        driver.get("https://qabo.imoving.com/Account/Login");
         Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
         Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
         Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
@@ -52,9 +41,8 @@ public class QaboOptionsTest extends Hooks{
         Helper.click(loginPage.signInButtonBo);
     }
 
-
     @Test
-    public void openPriceInBO(){
+    public void approveOrderInBO(){
         Helper.navigateToElement(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.click(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.waitForElementToBeDisplayed(ordersPageInQabo.ordersTitleText);
@@ -64,16 +52,9 @@ public class QaboOptionsTest extends Hooks{
         Helper.click(ordersPageInQabo.filterButton);
         Helper.waitForElementToBeDisplayed(ordersPageInQabo.orderNumberLink);
         Helper.click(ordersPageInQabo.orderNumberLink);
-        Helper.navigateToElement(orderInfoQaBo.pricingTab);
-        Helper.click(orderInfoQaBo.pricingTab);
-
-//        List<WebElement> listItems = parentDiv.findElements(By.xpath("//div[@class='panel box box-primary']"));
-        List<WebElement> listItems = orderInfoQaBo.pricingTabOrderInventoryList.findElements(By.xpath("//div[@class='box-title'][@style='float:right;']"));
-
-        for (WebElement item : listItems) {
-            String data = item.getText().replaceAll("[Price: ]", "");
-            saveOrderInfo.priceListBo.add(data);
-        }
+        moverName = GetMoverNameInBO.substringMoverName(orderInfoQaBo.carrierName.getText());
+        moverEmail = orderInfoQaBo.carrierEmail.getText();
+        System.out.println(moverName);
+        System.out.println(moverEmail);
     }
-
 }

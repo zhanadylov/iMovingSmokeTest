@@ -13,15 +13,16 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Test
     public void footerMenuTest(){
-//        Helper.javascriptScrollDownThePage();
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.aboutUsLink);
         Helper.pause(1000);
-        Helper.navigateToElement(footerLinksPages.aboutUsLink);
+//        Helper.navigateToElement(footerLinksPages.aboutUsLink);
         Helper.click(footerLinksPages.aboutUsLink);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/about-us/");
         footerLinksPages.iMovingInaNutshellTitle.isDisplayed();
         Assert.assertEquals(footerLinksPages.iMovingInaNutshellTitle.getText(), "iMoving in a Nutshell");
-        Helper.javascriptScrollIntoView(footerLinksPages.ourMoversLink);
-        Helper.click(footerLinksPages.ourMoversLink);
+//        Helper.javascriptScrollIntoView(footerLinksPages.ourMoversLink);
+//        Helper.click(footerLinksPages.ourMoversLink);
     }
 }

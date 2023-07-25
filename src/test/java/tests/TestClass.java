@@ -28,7 +28,7 @@ public class TestClass extends Hooks implements SetUp{
     CalendarClass calendarClass = new CalendarClass();
     SelectRandom selectRandom = new SelectRandom();
     HomePage homePage = new HomePage();
-    PopUps popUps = new PopUps();
+    PopUpsPage popUpsPage = new PopUpsPage();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
     Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
     Moving_Result_Page moving_result_page = new Moving_Result_Page();
@@ -64,9 +64,9 @@ public class TestClass extends Hooks implements SetUp{
         selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
         selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
         Helper.click(homePage.compareQuotes);
-        Helper.click(popUps.continueButton);
-        Helper.click(popUps.xButtonSecond);
-        Helper.click(popUps.okButtonThird);
+        Helper.click(popUpsPage.continueButton);
+        Helper.click(popUpsPage.xButtonSecond);
+        Helper.click(popUpsPage.okButtonThird);
         AddItemsMethod.addItems(full_inventory.imageElement, 5);
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);

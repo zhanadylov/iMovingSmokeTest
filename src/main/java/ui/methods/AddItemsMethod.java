@@ -81,7 +81,7 @@ public class AddItemsMethod {
         String addButtonXPath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
 
 //        for (WebElement image : imageElements) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < numItems; i++) {
             WebElement image = imageElements.get(i);
             try {
                 Actions actions = new Actions(driver);

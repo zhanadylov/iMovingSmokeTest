@@ -25,8 +25,30 @@ public class OrderInfoQaBo {
     @FindBy(xpath = "//li//a[contains(text(),'Changes')]")
     public WebElement changesTab;
 
+    //Order Details
+    @FindBy(xpath = "//*[@id=\"tab_1\"]/div[1]/div[2]/div[2]/div[1]/div[1]")
+    public WebElement carrierName;
+
+    @FindBy(xpath = "//*[@id=\"tab_1\"]/div[1]/div[2]/div[2]/div[1]/div[3]")
+    public WebElement carrierEmail;
+
+    @FindBy(xpath = "//*[@id=\"newMoverBtn\"]")
+    public WebElement selectMoverButton;
+
+    @FindBy(xpath = "//*[@id=\"changeDateModalButton\"]")
+    public WebElement changeDateButton;
+
+    @FindBy(xpath = "//*[@id=\"changePickupAddressModalButton\"]")
+    public WebElement changePickUpAddress;
+
+    @FindBy(xpath = "//*[@id=\"changeDropOffAddressModalButton\"]")
+    public WebElement changeDropOffAddress;
+
+    //Finance
     @FindBy(xpath = "//li//a[contains(text(),'Finance')]")
-    public WebElement FinanceTab;
+    public WebElement financeTab;
+    @FindBy(xpath = "//*[@id=\"payByCheckModalBtn\"]")
+    public WebElement addPaymentButton;
 
     @FindBy(xpath = "//li//a[contains(text(),'Payments to Carrier')]")
     public WebElement paymentToCarrierTab;
@@ -48,5 +70,6 @@ public class OrderInfoQaBo {
 
     @FindBy(xpath = "//li//a[contains(text(),'Notes')]")
     public WebElement notesTab;
+
 
 }

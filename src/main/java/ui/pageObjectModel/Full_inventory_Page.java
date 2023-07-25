@@ -31,6 +31,12 @@ public class Full_inventory_Page {
     @FindBy(xpath = "//h3[contains(text(),'Complete Order')]")
     public WebElement completeOrder;
 
+    @FindBy(css = "body > div > div > div > div.shuffle-animation > div.rooms-panel.clearfix.visible-md-block.visible-lg-block > div.panel-left > div.rooms-list.orig > div.box-container.\\39 99 > a")
+    public WebElement additionalItemsRoomHeader;
+
+    @FindBy(css = "body > div > div > div > div.shuffle-animation > div.rooms-panel.clearfix.visible-md-block.visible-lg-block > div.panel-left > div.rooms-list.orig > div.box-container.additionalBoxesBlock > a")
+    public WebElement additionalBoxesRoomHeader;
+
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div[1]/div[2]/ul/li[1]/a")
     public WebElement editRoomsButton;
 
@@ -81,4 +87,26 @@ public class Full_inventory_Page {
 //    @FindBy(css = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[4]")
     @FindBy(css = "/html/body/div/div/div/div[1]/main/div/div[1]/section/div[2]/div/div[2]/div/div/figure/div[2]/div[4]/div/a[1]")
     public WebElement addToInventoryButton;
+
+    //Add/Remove Popup
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body > h2 > span:nth-child(2)")
+    public WebElement theseAreRecommendedRoomsForaText;
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body > h2 > span:nth-child(6)")
+    public WebElement pleaseAddRemoveAndConfirmText;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[1]/button")
+    public WebElement xButtonInPopup;
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body > div.rooms > ul > li.room-block.anotherRoomAdd.hidden-xs > div > a")
+    public WebElement plusButtonAddRoom;
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body > div.hidden-xs.hidden-sm > h2 > div > p")
+    public WebElement addAdditionalPickupLocationLink;
+    @FindBy(css = "#collapseExample > ul > li.room-block.pickup.pickup-storage > a")
+    public WebElement additionalStorage;
+    @FindBy(css = "#collapseExample > ul > li.room-block.pickup.pickup-boxes > a")
+    public WebElement additionalBoxes;
+    @FindBy(css = "#collapseExample > ul > li.room-block.pickup.pickup-items > a")
+    public WebElement additionalItems;
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.divider-line > div > a.btn.btn-blue.col-xs-6 > span.col-sm-9.col-xs-12")
+    public WebElement continueButtonPopup;
+    @FindBy(css = "body > div.modal.fade.in > div > div > div > div.divider-line > div > span")
+    public WebElement clearRoomsPopup;
 }

@@ -47,7 +47,7 @@ public class Moving_Confirm_Page {
     @FindBy(xpath = "(//a[contains(text(),'Edit')])[5]")
     public WebElement editButtonInInventory;
 
-    @FindBy(xpath = "(//small[contains(text(),'Order #')])[1]")
+    @FindBy(xpath = "(//small[contains(text(),'Order No')])[1]")
     public WebElement orderNumberLabel;
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div/div/div[2]/div/section/div/ul/li[6]/div/div")
     public WebElement orderNumber;

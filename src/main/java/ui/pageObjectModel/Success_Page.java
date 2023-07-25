@@ -23,4 +23,7 @@ public class Success_Page {
 
     @FindBy(css = "#index > main > section > div > div > div.col-md-6.col-sm-6.col-xs-12 > p")
     public WebElement textInSuccessPage;
+
+    @FindBy(css = "#userMenuContainer > ul.user-menu-list.list-unstyled > li:nth-child(3) > form > fieldset > button")
+    public WebElement logOutButton;
 }
