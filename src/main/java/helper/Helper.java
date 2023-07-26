@@ -1,5 +1,6 @@
 package helper;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.json.JsonException;
@@ -7,8 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Driver;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -217,61 +220,6 @@ public class Helper {
         return element.getAttribute("value");
     }
 
-
-    public static void chooseDate(String date, WebElement calendarValue,
-                                  WebElement forwardButton, WebElement backwardButton, WebElement day)
-    {
-        HashMap<String, String> monthKeeper = new HashMap<String, String>();
-        monthKeeper.put("January","01" );monthKeeper.put("February","02");monthKeeper.put("March","03");
-        monthKeeper.put("April","04");monthKeeper.put("May","05");monthKeeper.put("June","06");
-        monthKeeper.put("July","07");monthKeeper.put("August","08");monthKeeper.put("September","09");
-        monthKeeper.put("October","10");monthKeeper.put("November","11");monthKeeper.put("December","12");
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "dd MM yyyy" );
-        LocalDateTime now = LocalDateTime.now();
-        String currentTimeString = formatter.format(now);
-        boolean forward = true;
-
-        String[] currentTimeSplitted = currentTimeString.split(" "),
-                inputDateSplitted = date.split(" ");
-
-        String neededDate = inputDateSplitted[1] + " " + inputDateSplitted[2];
-
-        if(neededDate.equals(Helper.getTextValue(calendarValue)))
-        {  Helper.click(day); }
-
-        LocalDate inputDate = LocalDate.of(Integer.parseInt(inputDateSplitted[2]),
-                Integer.parseInt(monthKeeper.get(inputDateSplitted[1])) ,Integer.parseInt(inputDateSplitted[0]));
-
-        LocalDate currentDate = LocalDate.of(Integer.parseInt(currentTimeSplitted[2]),
-                Integer.parseInt(currentTimeSplitted[1]), Integer.parseInt(currentTimeSplitted[0]));
-
-
-        if(currentDate.isAfter(inputDate))
-        {forward = false;}
-
-        while(true)
-        {
-            String actualDate = Helper.getTextValue(calendarValue);
-            if(neededDate.equals(actualDate))
-            {
-                break;
-            }
-            if(forward) {Helper.click(forwardButton);}
-            else {Helper.click(backwardButton);}
-
-        }
-
-        String elementToString = day.toString();
-        String path = elementToString.substring(elementToString.indexOf('/'));
-        path= path.substring(0, path.length() - 1);
-        path = path.replace("date", inputDateSplitted[0]);
-        WebDriver driver = Driver.getDriver();
-
-        driver.findElement(By.xpath(path)).click();
-    }
-
-
     public static Boolean compareDates(String olderDate, String soonerDate)
     {
         String[] firstDateSplitted = olderDate.split("/");
@@ -329,12 +277,64 @@ public class Helper {
         return date.substring(11,22);
     }
 
+    public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception{
+
+        //Convert web driver object to TakeScreenshot
+
+        TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+
+        //Call getScreenshotAs method to create image file
+
+        File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+
+        //Move image file to new destination
+
+        File DestFile=new File(fileWithPath);
+
+        //Copy file at destination
+
+        FileUtils.copyFile(SrcFile, DestFile);
+
+        //        Helper.takeSnapShot(Driver.getDriver(),"F:\\ScreenTest//Test.png");
+
+    }
+
+    public static double divideSum(double sum) {
+        sum = sum / 4;
+        return sum;
+    }
+
+    public static String getLastN(String s, int n) {
+        if (s == null || n > s.length()) {
+            return s;
+        }
+        return s.substring(s.length() - n);
+    }
+
     public static double calculatePercent(WebElement price, double percent){
         double price3 = Double.parseDouble(price.getText().replace("[$,]",""));
         return (price3 * percent) / 100.0;
     }
 
-    public static BigDecimal roundingsFee(double feePrice){
-        return BigDecimal.valueOf(feePrice).setScale(2, RoundingMode.HALF_UP);
+    public static double roundingsFee(double feePrice){
+        BigDecimal price = BigDecimal.valueOf(feePrice).setScale(2, RoundingMode.HALF_UP);
+        return price.doubleValue();
+    }
+    public static String getGrantTotalBO(String price, String sFee){
+        return formatDouble(roundingsFee(Double.parseDouble(price.replaceAll("[$,]","")) + Double.parseDouble(sFee.replaceAll("[$,]",""))));
+    }
+    public static String formatDouble(double value) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        return "$"+decimalFormat.format(value);
+    }
+    public static void clickButtonIfDisplayed(WebElement element) {
+        try {
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10); // Wait for up to 10 seconds
+            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(element));
+            button.click();
+            System.out.println("Clicked on the 'Add and Continue' button.");
+        } catch (Exception e) {
+            System.out.println("Continue button not displayed or could not be clicked: " + e.getMessage());
+        }
     }
 }

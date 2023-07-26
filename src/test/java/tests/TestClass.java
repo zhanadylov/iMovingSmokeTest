@@ -5,20 +5,11 @@ import com.google.common.collect.Multimap;
 import helper.BrowserHelper;
 import helper.Helper;
 import hooks.Hooks;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.methods.*;
 import ui.pageObjectModel.*;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.util.*;
 
 public class TestClass extends Hooks implements SetUp{
@@ -30,8 +21,8 @@ public class TestClass extends Hooks implements SetUp{
     HomePage homePage = new HomePage();
     PopUpsPage popUpsPage = new PopUpsPage();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
-    Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
-    Moving_Result_Page moving_result_page = new Moving_Result_Page();
+    Detail_Page _detail_page = new Detail_Page();
+    Marketplace_Page marketplace_page = new Marketplace_Page();
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
     BrowserHelper browserHelper = new BrowserHelper(driver);
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
@@ -47,48 +38,6 @@ public class TestClass extends Hooks implements SetUp{
 ////        driver.get("https://demoqa.com/automation-practice-form");
 ////        driver.get("https://qa.imoving.com/");
 //    }
-
-    @Test
-    public void test67(){
-        Helper.click(homePage.SignInButton);
-        Helper.click(homePage.signUpInLoginForm);
-        Helper.pause(2000);
-        performActionOnElements.setValuesToFillFields("test1","test2","fizu@mailinator.com","QATest-2022","QATest-2022", "1234567890");
-        performActionOnElements.fillCCFieldsElementTest(homePage.newFirstName, homePage.newLastName, homePage.newEmail, homePage.newPassword,homePage.confirmPassword,homePage.phoneNumber);
-        Helper.pause(3000);
-    }
-
-    @Test
-    public void testClickCheckRates(){
-        Helper.pause(2000);
-        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
-        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
-        Helper.click(homePage.compareQuotes);
-        Helper.click(popUpsPage.continueButton);
-        Helper.click(popUpsPage.xButtonSecond);
-        Helper.click(popUpsPage.okButtonThird);
-        AddItemsMethod.addItems(full_inventory.imageElement, 5);
-        Helper.click(full_inventory.completeOrder);
-        Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
-        Helper.click(boxCalculatingPopUp.addAndContinueButton);
-        if(boxCalculatingPopUp.skipButton.isDisplayed()){
-            Helper.click(boxCalculatingPopUp.skipButton);
-        }
-        Helper.click(full_inventory.completeOrder);
-        Helper.pause(2000);
-        String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
-        String dropOff = "12340 Boggy Creek Road, Orlando, FL, 32824";
-//        SetAddress.testMethod(pickUp, moving_detail_page.pickUpInput);
-//        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffInput);
-        Helper.pause(2000);
-//        Helper.javascriptScrollIntoView(moving_detail_page.chooseMoversButton);
-//        Helper.navigateToElement(moving_detail_page.chooseMoversButton);
-//        Helper.click(moving_detail_page.chooseMoversButton);
-        Actions act = new Actions(driver);
-        act.moveByOffset(1032, 731).click().build().perform();
-        Helper.pause(4000);
-
-    }
 
     @Test
     public void test(){
@@ -108,33 +57,6 @@ public class TestClass extends Hooks implements SetUp{
         WebElement input2 = driver.findElement(By.xpath("//*[@id=\"subjectsContainer\"]/div/div[1]"));
 
         sendKeys(input2, "d", Keys.ARROW_DOWN, Keys.ENTER);
-    }
-
-    public void testNextMonth(WebElement datePicker, WebElement monthPicker){
-        Helper.click(datePicker);
-        Helper.click(monthPicker);
-        LocalDate date = LocalDate.now();
-        int currentMonth = date.getMonthValue();
-        int todayDate = date.getDayOfMonth();
-        int monthInYearRange = (int)Math.floor(Math.random() * (8 - currentMonth + 1) + currentMonth);
-        int dayInMonthRange = (int)Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
-        int dayInMonthFull = (int)Math.floor(Math.random() * (31 - 1 + 1) + 1);
-
-        String pathMonth = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[2]/table/tbody/tr/td/span[MonthIndex]";
-        String pathMonthFinal = pathMonth.replace("MonthIndex", String.valueOf(monthInYearRange));
-        WebElement month = driver.findElement(By.xpath(pathMonthFinal));
-
-        if(monthInYearRange == currentMonth){
-            String pathDay = "/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[5]/div[2]/div[2]/div[2]/div/div/div[2]/div[2]/div/div[contains(text(),'DayIndex')]";
-            String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthRange));
-            WebElement day = driver.findElement(By.xpath(pathDayFinal));
-            Helper.click(day);
-        }else{
-            String pathDay = "/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[5]/div[2]/div[2]/div[2]/div/div/div[2]/div[2]/div/div[contains(text(),'DayIndex')]";
-            String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthFull));
-            WebElement day = driver.findElement(By.xpath(pathDayFinal));
-            Helper.click(day);
-        }
     }
 
     public static void sendKeys(WebElement element, List<WebElement> suggesting){
@@ -191,16 +113,7 @@ public class TestClass extends Hooks implements SetUp{
 
     }
 
-    public static double calculatePercent(String price, double percent){
-        double price3 = Double.parseDouble(price.replaceAll("[$,]",""));
-        return (price3 * percent) / 100.0;
-    }
-
-    public static BigDecimal roundingsFee(double feePrice){
-        return BigDecimal.valueOf(feePrice).setScale(2, RoundingMode.HALF_UP);
-    }
-
-    public static void main(String[] args) {
+    public static void test6(){
         Multimap<String, String> inventoryListInfo = ArrayListMultimap.create();
         List<String> priceList = new ArrayList<>();
 
@@ -230,6 +143,10 @@ public class TestClass extends Hooks implements SetUp{
         while(num >= 5){
             System.out.println(num);
         }
+    }
+
+
+    public static void main(String[] args) {
     }
 
 //    @AfterSuite

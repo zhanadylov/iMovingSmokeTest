@@ -5,10 +5,6 @@ import helper.AssertThat;
 import helper.BrowserHelper;
 import helper.Helper;
 import hooks.Hooks;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.backOfficeTest.QaboOptionsTest;
@@ -21,8 +17,8 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
     HomePage homePage = new HomePage();
     UserZonePage userZonePage = new UserZonePage();
     Full_inventory_Page full_inventory_page = new Full_inventory_Page();
-    Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
-    Moving_Confirm_Page moving_confirm_page = new Moving_Confirm_Page();
+    Detail_Page _detail_page = new Detail_Page();
+    Summary_Page summary_page = new Summary_Page();
     PopUpsTest popUpsTest = new PopUpsTest();
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
     PaymentPage paymentPage = new PaymentPage();
@@ -69,23 +65,16 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         Helper.click(full_inventory_page.additionalItemsRoomHeader);
         AddItemsMethod.addItems(full_inventory_page.imageElement, 10);
         Helper.click(full_inventory_page.completeOrder);
-        if(boxCalculatingPopUp.addAndContinueButton.isDisplayed()){
-            Helper.click(boxCalculatingPopUp.addAndContinueButton);
-        }else{
-            System.out.println("Continue button not displayed");
-        }
-        if(boxCalculatingPopUp.skipButton.isDisplayed()){
-            Helper.click(boxCalculatingPopUp.skipButton);
-        }else{
-            System.out.println("Skip button not displayed");
-        }
+
+        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.addAndContinueButton);
+        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
         Helper.pause(2000);
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
-        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffAtInputField);
-        Helper.javascriptScrollIntoView(moving_detail_page.confirmButton);
-        Helper.click(moving_detail_page.confirmButton);
-        Helper.javascriptScrollIntoView(moving_confirm_page.checkOutButton);
-        Helper.click(moving_confirm_page.checkOutButton);
+        SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
+        Helper.javascriptScrollIntoView(_detail_page.confirmButton);
+        Helper.click(_detail_page.confirmButton);
+        Helper.javascriptScrollIntoView(summary_page.checkOutButton);
+        Helper.click(summary_page.checkOutButton);
         Helper.click(paymentPage.cCRadioButton);
         Helper.pause(2000);
         Helper.javascriptScrollIntoView(paymentPage.completeBookingButton);
@@ -136,20 +125,22 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         Helper.click(boxCalculatingPopUp.tvBoxPlusButton);
         AssertThat.assertText("1", boxCalculatingPopUp.tvBoxQuantity);
         Helper.click(full_inventory_page.completeOrder);
-        if(boxCalculatingPopUp.addAndContinueButton.isDisplayed()){
-            Helper.click(boxCalculatingPopUp.addAndContinueButton);
-        }
-        if(boxCalculatingPopUp.skipButton.isDisplayed()){
-            Helper.click(boxCalculatingPopUp.skipButton);
-        }else{
-            System.out.println("Skip button not displayed");
-        }
+        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.addAndContinueButton);
+        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
+//        if(boxCalculatingPopUp.addAndContinueButton.isDisplayed()){
+//            Helper.click(boxCalculatingPopUp.addAndContinueButton);
+//        }
+//        if(boxCalculatingPopUp.skipButton.isDisplayed()){
+//            Helper.click(boxCalculatingPopUp.skipButton);
+//        }else{
+//            System.out.println("Skip button not displayed");
+//        }
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
-        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffAtInputField);
-        Helper.javascriptScrollIntoView(moving_detail_page.confirmButton);
-        Helper.click(moving_detail_page.confirmButton);
+        SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
+        Helper.javascriptScrollIntoView(_detail_page.confirmButton);
+        Helper.click(_detail_page.confirmButton);
         browserHelper.newWindow();
-        qaboOptionsTest.getOrderNumber(moving_confirm_page.orderNumber.getText());
+        qaboOptionsTest.getOrderNumber(summary_page.orderNumber.getText());
         browserHelper.getWindowHandles();
         browserHelper.SwitchToWindow(1);
         qaboOptionsTest.loginToQaBO();

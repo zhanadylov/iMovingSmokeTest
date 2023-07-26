@@ -2,7 +2,6 @@ package tests;
 
 import helper.AssertThat;
 import helper.BrowserHelper;
-import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
 import hooks.TestStatusListener;
@@ -23,9 +22,9 @@ public class CreateOrder extends Hooks implements SetUp {
     SelectRandom selectRandom = new SelectRandom();
     PopUpsPage popUpsPage = new PopUpsPage();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
-    Moving_Detail_Page moving_detail_page = new Moving_Detail_Page();
-    Moving_Result_Page moving_result_page = new Moving_Result_Page();
-    Moving_Confirm_Page moving_confirm_page = new Moving_Confirm_Page();
+    Detail_Page _detail_page = new Detail_Page();
+    Marketplace_Page marketplace_page = new Marketplace_Page();
+    Summary_Page summary_page = new Summary_Page();
     CalendarClass calendarClass = new CalendarClass();
     BoxCalculatingPopUp boxCalculatingPopUp = new BoxCalculatingPopUp();
     SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
@@ -63,11 +62,12 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
-        if(boxCalculatingPopUp.skipButton.isDisplayed()){
-            Helper.click(boxCalculatingPopUp.skipButton);
-        }else{
-            System.out.println("Skip button not displayed");
-        }
+//        if(boxCalculatingPopUp.skipButton.isDisplayed()){
+//            Helper.click(boxCalculatingPopUp.skipButton);
+//        }else{
+//            System.out.println("Skip button not displayed");
+//        }
+        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
     }
 
     @Test(enabled = false)
@@ -81,65 +81,59 @@ public class CreateOrder extends Hooks implements SetUp {
     }
 
     @Test
-    public void moving_Details_Page() {
+    public void details_Page() {
         Helper.pause(2000);
-        calendarClass.getRandomDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
+        calendarClass.getRandomDate(_detail_page.datePicker, _detail_page.monthInDate);
         Helper.pause(2000);
-        String pickUp = "1234 Wilshire Boulevard, Los Angeles, CA, 90017";
-        String dropOff = "12340 Boggy Creek Road, Orlando, FL, 32824";
-        SetAddress.testMethod(pickUp, moving_detail_page.pickUpFromInputField);
-        performActionOnElements.setValuesToFillFields("atp-2", "Remark auto test pickUp");
-        performActionOnElements.fillCCFieldsElementTest(moving_detail_page.aptNumInputField, moving_detail_page.anyRemarksInputField, moving_detail_page.flightOfStairsPlusButtonPickup,
-                moving_detail_page.longCarryPlusButtonPickup);
-        Helper.click(moving_detail_page.elevatorYesPickup);
-        Helper.click(moving_detail_page.NeedShuttleYesPickup);
-        Helper.click(moving_detail_page.BuildingInsuranceYesPickup);
+        String pickUp = "12334 Cantura Street, Los Angeles, CA 91604";
+        String dropOff = "12340 Boggy Creek Road, Orlando, FL 32824";
+        SetAddress.testMethod(pickUp, _detail_page.pickUpFromInputField);
+        performActionOnElements.setValuesToFillFields("Remark auto test pickUp");
+        performActionOnElements.fillCCFieldsElementTest(_detail_page.anyRemarksInputField, _detail_page.flightOfStairsPlusButtonPickup,
+                _detail_page.longCarryPlusButtonPickup);
+        Helper.click(_detail_page.elevatorYesPickup);
+        Helper.click(_detail_page.NeedShuttleYesPickup);
+        Helper.click(_detail_page.BuildingInsuranceYesPickup);
 
-        SetAddress.testMethod2(dropOff, moving_detail_page.dropOffAtInputField);
-        performActionOnElements.setValuesToFillFields("atp-3", "Remark auto test dropOff");
-        performActionOnElements.fillCCFieldsElementTest(moving_detail_page.aptNumInputFieldDropOff, moving_detail_page.anyRemarksInputFieldDropOff, moving_detail_page.flightOfStairsPlusButtonDropOff,
-                moving_detail_page.longCarryPlusButtonDropOff);
-        Helper.click(moving_detail_page.dropOffElevatorYes);
-        Helper.click(moving_detail_page.dropOffNeedShuttleYes);
-        Helper.click(moving_detail_page.dropOffBuildingInsuranceYes);
+        SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
+        performActionOnElements.setValuesToFillFields("Remark auto test dropOff");
+        performActionOnElements.fillCCFieldsElementTest(_detail_page.anyRemarksInputFieldDropOff, _detail_page.flightOfStairsPlusButtonDropOff,
+                _detail_page.longCarryPlusButtonDropOff);
+        Helper.click(_detail_page.dropOffElevatorYes);
+        Helper.click(_detail_page.dropOffNeedShuttleYes);
+        Helper.click(_detail_page.dropOffBuildingInsuranceYes);
         Helper.pause(2000);
         Helper.javascriptScrollDownThePage();
-        Helper.navigateToElement(moving_detail_page.checkRatesButton);
-        Helper.click(moving_detail_page.checkRatesButton);
-        Helper.pause(2000);
-//        String borderStyle = moving_detail_page.datePicker.getCssValue("border");
-//        if(borderStyle.contains("#ff4f5d")){
-//            moving_detail_page.datePicker.clear();
-//            calendarClass.getRandomDate(moving_detail_page.datePicker, moving_detail_page.monthInDate);
-//        }
+        Helper.navigateToElement(_detail_page.checkRatesButton);
+        Helper.click(_detail_page.checkRatesButton);
 
         Helper.pause(4000);
     }
 
-    @Test(dependsOnMethods = {"moving_Details_Page"})
-    public void moving_Result_Page(){
-        int ran =  new Random().nextInt(3);
-        System.out.println("Random number is "+ran);
+    @Test(dependsOnMethods = {"details_Page"})
+    public void marketplace_Page(){
+//        int ran =  new Random().nextInt(3);
+//        System.out.println("Random number is "+ran);
 //        DropDownHelper.selectUsingIndex(moving_result_page.flexibilityDropDown2, ran);
         Helper.pause(3000);
 
-        moving_result_page.myInventoryLink.isDisplayed();
-        moving_result_page.myInventoryLink.isEnabled();
-        Assert.assertEquals(moving_result_page.myInventoryLink.getAttribute("class"), "past");
-        Assert.assertEquals(moving_result_page.myInventoryIcon.getAttribute("class"), "greenImg");
-        moving_result_page.tripDetailsLink.isDisplayed();
-        moving_result_page.tripDetailsLink.isEnabled();
-        Assert.assertEquals(moving_result_page.tripDetailsLink.getAttribute("class"), "past");
-        Assert.assertEquals(moving_result_page.tripDetailsIcon.getAttribute("class"), "greenImg");
-        moving_result_page.myPricesLink.isDisplayed();
-        Assert.assertEquals(moving_result_page.myPricesLink.getAttribute("class"), "active");
-        Assert.assertEquals(moving_result_page.myPricesIcon.getAttribute("class"), "circle active");
-        moving_result_page.confirmationLink.isDisplayed();
-        Assert.assertEquals(moving_result_page.confirmationLink.getAttribute("class"), "future");
-        Assert.assertEquals(moving_result_page.confirmationIcon.getAttribute("class"), "circle");
-        moving_result_page.paymentLink.isDisplayed();
-        Assert.assertEquals(moving_result_page.paymentLink.getAttribute("class"), "future");
-        Assert.assertEquals(moving_result_page.paymentIcon.getAttribute("class"), "circle");
+        marketplace_page.myInventoryLink.isDisplayed();
+        marketplace_page.myInventoryLink.isEnabled();
+        Assert.assertEquals(marketplace_page.myInventoryLink.getAttribute("class"), "past");
+        Assert.assertEquals(marketplace_page.myInventoryIcon.getAttribute("class"), "greenImg");
+        marketplace_page.tripDetailsLink.isDisplayed();
+        marketplace_page.tripDetailsLink.isEnabled();
+        Assert.assertEquals(marketplace_page.tripDetailsLink.getAttribute("class"), "past");
+        Assert.assertEquals(marketplace_page.tripDetailsIcon.getAttribute("class"), "greenImg");
+        marketplace_page.myPricesLink.isDisplayed();
+        Assert.assertEquals(marketplace_page.myPricesLink.getAttribute("class"), "active");
+        Assert.assertEquals(marketplace_page.myPricesIcon.getAttribute("class"), "circle active");
+        marketplace_page.confirmationLink.isDisplayed();
+        Assert.assertEquals(marketplace_page.confirmationLink.getAttribute("class"), "future");
+        Assert.assertEquals(marketplace_page.confirmationIcon.getAttribute("class"), "circle");
+        marketplace_page.paymentLink.isDisplayed();
+        Assert.assertEquals(marketplace_page.paymentLink.getAttribute("class"), "future");
+        Assert.assertEquals(marketplace_page.paymentIcon.getAttribute("class"), "circle");
 //        Helper.click(moving_result_page.tripDetailsLink);
 //        Helper.pause(1000);
 //        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/full-inventory/#!/moving-details");
@@ -157,69 +151,70 @@ public class CreateOrder extends Hooks implements SetUp {
 //        Helper.javascriptScrollDownThePage();
 //        Helper.navigateToElement(moving_detail_page.checkRatesButton);
 //        Helper.click(moving_detail_page.checkRatesButton);
-        moving_result_page.addressInPickUpBox.isDisplayed();
-        moving_result_page.addressInDropOffBox.isDisplayed();
-        moving_result_page.dateInDateBox.isDisplayed();
-        moving_result_page.itemsInInventory.isDisplayed();
-        moving_result_page.orderNumber.isDisplayed();
-        saveOrderInfo.setOrderInfo(moving_result_page.labelInPickUpBox.getText(), moving_result_page.addressInPickUpBox.getText());
-        saveOrderInfo.setOrderInfo(moving_result_page.labelInDropOffBox.getText(), moving_result_page.addressInDropOffBox.getText());
-        saveOrderInfo.setOrderInfo(moving_result_page.labelInDateBox.getText(), moving_result_page.dateInDateBox.getText());
-        saveOrderInfo.setOrderInfo(moving_result_page.labelInInventoryBox.getText(), moving_result_page.itemsInInventory.getText());
-        saveOrderInfo.setOrderInfo(moving_result_page.orderNumberLabel.getText(), moving_result_page.orderNumber.getText());
-        saveOrderInfo.setOrderInfo("CarrierName", moving_result_page.carrierName.getText());
-        saveOrderInfo.setOrderInfo("OrderPrice", moving_result_page.orderPrice.getText());
+        marketplace_page.addressInPickUpBox.isDisplayed();
+        marketplace_page.addressInDropOffBox.isDisplayed();
+        marketplace_page.dateInDateBox.isDisplayed();
+        marketplace_page.itemsInInventory.isDisplayed();
+        marketplace_page.orderNumber.isDisplayed();
+        saveOrderInfo.setOrderInfo(marketplace_page.labelInPickUpBox.getText(), marketplace_page.addressInPickUpBox.getText());
+        saveOrderInfo.setOrderInfo(marketplace_page.labelInDropOffBox.getText(), marketplace_page.addressInDropOffBox.getText());
+        saveOrderInfo.setOrderInfo(marketplace_page.labelInDateBox.getText(), marketplace_page.dateInDateBox.getText());
+        saveOrderInfo.setOrderInfo(marketplace_page.labelInInventoryBox.getText(), marketplace_page.itemsInInventory.getText());
+        saveOrderInfo.setOrderInfo(marketplace_page.orderNumberLabel.getText(), marketplace_page.orderNumber.getText());
+        saveOrderInfo.setOrderInfo("CarrierName", marketplace_page.carrierName.getText());
+        saveOrderInfo.setOrderInfo("OrderPrice", marketplace_page.orderPrice.getText());
+        System.out.println("Order number: "+saveOrderInfo.orderInfo.get(summary_page.orderNumberLabel.getText()));
         //
-        moving_result_page.movingInfoText.isDisplayed();
-        AssertThat.assertText("Price includes tax, tolls, fuel, mileage, disassembly/reassembly, loading/unloading, blankets wrapping, basic liability.\n" +
-                "You may review added services before checkout. Prices not final until purchase is completed.", moving_result_page.movingInfoText);
+        marketplace_page.movingInfoText.isDisplayed();
+        AssertThat.assertText("Price includes tax, tolls, fuel, mileage, disassembly/reassembly, loading/unloading, blanket wrapping, basic liability.\n" +
+                "You may review added services before checkout. Prices not final until purchase is completed.", marketplace_page.movingInfoText);
         //
-        moving_result_page.needHelpTitle.isDisplayed();
-        AssertThat.assertText("Need Help?", moving_result_page.needHelpTitle);
-        moving_result_page.callNowText.isDisplayed();
-        AssertThat.assertText("Call Now", moving_result_page.callNowText);
-        moving_result_page.scheduleMeetingText.isDisplayed();
-        moving_result_page.scheduleMeetingText.isEnabled();
-        AssertThat.assertText("Schedule a Meeting", moving_result_page.scheduleMeetingText);
+        marketplace_page.needHelpTitle.isDisplayed();
+        AssertThat.assertText("Need Help?", marketplace_page.needHelpTitle);
+        marketplace_page.callNowText.isDisplayed();
+        AssertThat.assertText("Call Now", marketplace_page.callNowText);
+        marketplace_page.scheduleMeetingText.isDisplayed();
+        marketplace_page.scheduleMeetingText.isEnabled();
+        AssertThat.assertText("Schedule a Meeting", marketplace_page.scheduleMeetingText);
         //
-        moving_result_page.whyBookWithIMovingTitle.isDisplayed();
-        AssertThat.assertText("Why Book with iMoving?", moving_result_page.whyBookWithIMovingTitle);
-        moving_result_page.bindingPriceText.isDisplayed();
-        AssertThat.assertText("Binding Price", moving_result_page.bindingPriceText);
-        moving_result_page.inventoryControlText.isDisplayed();
-        AssertThat.assertText("Inventory Control", moving_result_page.inventoryControlText);
-        moving_result_page.securePaymentText.isDisplayed();
-        AssertThat.assertText("Secure Payment", moving_result_page.securePaymentText);
-        moving_result_page.priceMatchText.isDisplayed();
-        AssertThat.assertText("Price Match", moving_result_page.priceMatchText);
-        moving_result_page.customerSupportText.isDisplayed();
-        AssertThat.assertText("Customer Support", moving_result_page.customerSupportText);
+        marketplace_page.whyBookWithIMovingTitle.isDisplayed();
+        AssertThat.assertText("Why Book with iMoving?", marketplace_page.whyBookWithIMovingTitle);
+        marketplace_page.bindingPriceText.isDisplayed();
+        AssertThat.assertText("Binding Price", marketplace_page.bindingPriceText);
+        marketplace_page.inventoryControlText.isDisplayed();
+        AssertThat.assertText("Inventory Control", marketplace_page.inventoryControlText);
+        marketplace_page.securePaymentText.isDisplayed();
+        AssertThat.assertText("Secure Payment", marketplace_page.securePaymentText);
+        marketplace_page.priceMatchText.isDisplayed();
+        AssertThat.assertText("Price Match", marketplace_page.priceMatchText);
+        marketplace_page.customerSupportText.isDisplayed();
+        AssertThat.assertText("Customer Support", marketplace_page.customerSupportText);
         //
-        moving_result_page.bindingPriceTooltipIcon.isDisplayed();
-        moving_result_page.bindingPriceTooltipIcon.isEnabled();
-        Helper.navigateToElement(moving_result_page.bindingPriceTooltipIcon);
-        Helper.waitForElementVisibilityOf(moving_result_page.bindingPriceTooltipContent);
-        AssertThat.assertText( "Guaranteed price based on items and services", moving_result_page.bindingPriceTooltipContent);
-        moving_result_page.customerSupportTooltipIcon.isDisplayed();
-        moving_result_page.customerSupportTooltipIcon.isEnabled();
-        Helper.navigateToElement(moving_result_page.customerSupportTooltipIcon);
-        Helper.waitForElementVisibilityOf(moving_result_page.customerSupportTooltipContent);
-        AssertThat.assertText( "Live agents available for anything you need", moving_result_page.customerSupportTooltipContent);
-        moving_result_page.inventoryControlTooltipIcon.isDisplayed();
-        moving_result_page.inventoryControlTooltipIcon.isEnabled();
-        Helper.navigateToElement(moving_result_page.inventoryControlTooltipIcon);
-        Helper.waitForElementVisibilityOf(moving_result_page.inventoryControlTooltipContent);
-        AssertThat.assertText( "Control your price by adding / removing items and services", moving_result_page.inventoryControlTooltipContent);
-        moving_result_page.priceMatchTooltipIcon.isDisplayed();
-        moving_result_page.priceMatchTooltipIcon.isEnabled();
-        Helper.navigateToElement(moving_result_page.priceMatchTooltipIcon);
-        Helper.waitForElementVisibilityOf(moving_result_page.priceMatchTooltipContent);
-        AssertThat.assertText( "Price match guarantee", moving_result_page.priceMatchTooltipContent);
-        moving_result_page.securePaymentTooltipIcon.isDisplayed();
-        moving_result_page.securePaymentTooltipIcon.isEnabled();
-        Helper.navigateToElement(moving_result_page.securePaymentTooltipIcon);
-        Helper.waitForElementVisibilityOf(moving_result_page.securePaymentTooltipContent);
-        AssertThat.assertText( "Your personal and financial information is confidential", moving_result_page.securePaymentTooltipContent);
+        marketplace_page.bindingPriceTooltipIcon.isDisplayed();
+        marketplace_page.bindingPriceTooltipIcon.isEnabled();
+        Helper.navigateToElement(marketplace_page.bindingPriceTooltipIcon);
+        Helper.waitForElementVisibilityOf(marketplace_page.bindingPriceTooltipContent);
+        AssertThat.assertText( "Guaranteed price based on items and services", marketplace_page.bindingPriceTooltipContent);
+        marketplace_page.customerSupportTooltipIcon.isDisplayed();
+        marketplace_page.customerSupportTooltipIcon.isEnabled();
+        Helper.navigateToElement(marketplace_page.customerSupportTooltipIcon);
+        Helper.waitForElementVisibilityOf(marketplace_page.customerSupportTooltipContent);
+        AssertThat.assertText( "Live agents available for anything you need", marketplace_page.customerSupportTooltipContent);
+        marketplace_page.inventoryControlTooltipIcon.isDisplayed();
+        marketplace_page.inventoryControlTooltipIcon.isEnabled();
+        Helper.navigateToElement(marketplace_page.inventoryControlTooltipIcon);
+        Helper.waitForElementVisibilityOf(marketplace_page.inventoryControlTooltipContent);
+        AssertThat.assertText( "Control your price by adding / removing items and services", marketplace_page.inventoryControlTooltipContent);
+        marketplace_page.priceMatchTooltipIcon.isDisplayed();
+        marketplace_page.priceMatchTooltipIcon.isEnabled();
+        Helper.navigateToElement(marketplace_page.priceMatchTooltipIcon);
+        Helper.waitForElementVisibilityOf(marketplace_page.priceMatchTooltipContent);
+        AssertThat.assertText( "Price match guarantee", marketplace_page.priceMatchTooltipContent);
+        marketplace_page.securePaymentTooltipIcon.isDisplayed();
+        marketplace_page.securePaymentTooltipIcon.isEnabled();
+        Helper.navigateToElement(marketplace_page.securePaymentTooltipIcon);
+        Helper.waitForElementVisibilityOf(marketplace_page.securePaymentTooltipContent);
+        AssertThat.assertText( "Your personal and financial information is confidential", marketplace_page.securePaymentTooltipContent);
         //
 
         Helper.pause(2000);
@@ -231,19 +226,19 @@ public class CreateOrder extends Hooks implements SetUp {
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.deliveryWindowCheckboxSideBar);
         Helper.pause(1000);
 //        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckbox);
-        Helper.navigateToElement(moving_result_page.selectButton);
-        Helper.click(moving_result_page.selectButton);
+        Helper.navigateToElement(marketplace_page.selectButton);
+        Helper.click(marketplace_page.selectButton);
     }
 
-    @Test(dependsOnMethods = {"moving_Result_Page"})
-    public void moving_Confirm_Page(){
+    @Test(dependsOnMethods = {"marketplace_Page"})
+    public void summary_Page(){
         Helper.pause(2000);
 
-        Assert.assertEquals(moving_confirm_page.addressInPickUpBox.getText(),saveOrderInfo.orderInfo.get(moving_confirm_page.labelInPickUpBox.getText()));
-        Assert.assertEquals(moving_confirm_page.addressInDropOffBox.getText(),saveOrderInfo.orderInfo.get(moving_confirm_page.labelInDropOffBox.getText()));
-        Assert.assertEquals(moving_confirm_page.dateInDateBox.getText().replaceAll("[.,]",""),saveOrderInfo.orderInfo.get(moving_confirm_page.labelInDateBox.getText()));
-        Assert.assertEquals(moving_confirm_page.itemsInInventory.getText(),saveOrderInfo.orderInfo.get(moving_confirm_page.labelInInventoryBox.getText()));
-        Assert.assertEquals(moving_confirm_page.orderNumber.getText(),saveOrderInfo.orderInfo.get(moving_confirm_page.orderNumberLabel.getText()));
+        Assert.assertEquals(summary_page.addressInPickUpBox.getText(),saveOrderInfo.orderInfo.get(summary_page.labelInPickUpBox.getText()));
+        Assert.assertEquals(summary_page.addressInDropOffBox.getText(),saveOrderInfo.orderInfo.get(summary_page.labelInDropOffBox.getText()));
+        Assert.assertEquals(summary_page.dateInDateBox.getText().replaceAll("[.,]",""),saveOrderInfo.orderInfo.get(summary_page.labelInDateBox.getText()));
+        Assert.assertEquals(summary_page.itemsInInventory.getText(),saveOrderInfo.orderInfo.get(summary_page.labelInInventoryBox.getText()));
+//        Assert.assertEquals(summary_page.orderNumber.getText(),saveOrderInfo.orderInfo.get(summary_page.orderNumberLabel.getText()));
         Helper.pause(2000);
 //        saveOrderInfo.setInventoryListInfo(moving_confirm_page.movingJourneyLabel.getText().substring(0,14), moving_confirm_page.movingJourneyMiles.getText().substring(17));
 //        saveOrderInfo.setInventoryListInfo(moving_confirm_page.addressesRestrictionsLabel.getText(), moving_confirm_page.addressesRestrictionsPrice.getText());
@@ -258,7 +253,7 @@ public class CreateOrder extends Hooks implements SetUp {
 
 
         // Получение всех элементов li из списка
-        List<WebElement> listItems = moving_confirm_page.ulListOfElements.findElements(By.tagName("li"));
+        List<WebElement> listItems = summary_page.ulListOfElements.findElements(By.tagName("li"));
 
 //        saveOrderInfo.setInventoryListInfo3(listItems);
 
@@ -271,7 +266,7 @@ public class CreateOrder extends Hooks implements SetUp {
 
 //        System.out.println(saveOrderInfo.inventoryListInfo);
         browserHelper.newWindow();
-        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
+        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order No"));
         browserHelper.getWindowHandles();
         browserHelper.SwitchToWindow(1);
         qaboOptionsTest.loginToQaBO();
@@ -280,12 +275,12 @@ public class CreateOrder extends Hooks implements SetUp {
 //        browserHelper.SwitchToWindow(0);
         browserHelper.switchToParentWithChildClose();
 
-        Helper.javascriptScrollIntoView(moving_confirm_page.checkOutButton);
-        Helper.click(moving_confirm_page.checkOutButton);
+        Helper.javascriptScrollIntoView(summary_page.checkOutButton);
+        Helper.click(summary_page.checkOutButton);
     }
 
 
-    @Test(dependsOnMethods = {"moving_Confirm_Page"})
+    @Test(dependsOnMethods = {"summary_Page"})
     public void payment_Page(){
         Helper.pause(3000);
         getOrderInfo.getOrderInfoMulti(saveOrderInfo.inventoryListInfo);

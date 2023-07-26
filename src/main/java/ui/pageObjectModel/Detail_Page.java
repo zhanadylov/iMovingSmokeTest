@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Moving_Detail_Page {
+public class Detail_Page {
 
-    public Moving_Detail_Page(){
+    public Detail_Page(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
@@ -99,9 +99,7 @@ public class Moving_Detail_Page {
 
 
     // Pickup Form
-    @FindBy(xpath = "(//input[@placeholder='APT #'])[1]")
-    public WebElement aptNumInputField;
-    @FindBy(xpath = "(//input[@placeholder='Any remarks for this location?'])[1]")
+    @FindBy(xpath = "(//input[@placeholder='Apartment, Suite, etc..'])[1]")
     public WebElement anyRemarksInputField;
     @FindBy(xpath = "(//p[text()='Please add restriction if any to make sure your moving day will go smoothly.'])[1]")
     public WebElement restrictionTextOnPickup;
@@ -145,9 +143,7 @@ public class Moving_Detail_Page {
     public WebElement addAdditionalPickUpLink;
 //    @FindBy(xpath = "(//input[@name='addressInput'])[2]")
 //    public WebElement addAdditionalPickUpField;
-    @FindBy(xpath = "(//input[@placeholder='APT #'])[2]")
-    public WebElement addAdditionalAptNumInputField;
-    @FindBy(xpath = "(//input[@placeholder='Any remarks for this location?'])[2]")
+    @FindBy(xpath = "(//input[@placeholder='Apartment, Suite, etc..'])[2]")
     public WebElement addAdditionalAnyRemarksInputField;
     @FindBy(xpath = "(//p[text()='Please add restriction if any to make sure your moving day will go smoothly.'])[2]")
     public WebElement addAdditionalRestrictionTextOnPickup;
@@ -195,10 +191,8 @@ public class Moving_Detail_Page {
     public WebElement deleteAdditionalPickUp;
 
     //Drop Off
-    @FindBy(xpath = "(//input[@placeholder='Any remarks for this location?'])[2]")
+    @FindBy(xpath = "(//input[@placeholder='Apartment, Suite, etc..'])[2]")
     public WebElement anyRemarksInputFieldDropOff;
-    @FindBy(xpath = "(//input[@placeholder='APT #'])[2]")
-    public WebElement aptNumInputFieldDropOff;
     @FindBy(xpath = "(//p[text()='Please add restriction if any to make sure your moving day will go smoothly.'])[2]")
     public WebElement restrictionTextOnDropOff;
     @FindBy(xpath = "(//span[@class='instruction'])[6]")
@@ -240,8 +234,6 @@ public class Moving_Detail_Page {
     //Additional drop off start
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[3]/div[2]/address-selection/div/div/div[1]/input-auto-complete-address/input")
     public WebElement additionalDropOffInputField;
-    @FindBy(xpath = "(//input[@placeholder='APT #'])[3]")
-    public WebElement addAdditionalDropOffAptNumInputField;
     @FindBy(xpath = "(//input[@placeholder='Any remarks for this location?'])[3]")
     public WebElement addAdditionalDropOffAnyRemarksInputField;
     @FindBy(xpath = "(//p[text()='Please add restriction if any to make sure your moving day will go smoothly.'])[3]")

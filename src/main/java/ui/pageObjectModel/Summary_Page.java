@@ -5,8 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class Moving_Confirm_Page {
-    public Moving_Confirm_Page() {
+public class Summary_Page {
+    public Summary_Page() {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
@@ -49,7 +49,7 @@ public class Moving_Confirm_Page {
 
     @FindBy(xpath = "(//small[contains(text(),'Order No')])[1]")
     public WebElement orderNumberLabel;
-    @FindBy(xpath = "/html/body/div/div/div/div[1]/div/div/div[2]/div/section/div/ul/li[6]/div/div")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/div")
     public WebElement orderNumber;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/price-details/section/div/ul/li[1]/a/span")

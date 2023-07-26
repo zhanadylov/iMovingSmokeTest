@@ -7,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class Moving_Result_Page {
-    public Moving_Result_Page() {
+public class Marketplace_Page {
+    public Marketplace_Page() {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
