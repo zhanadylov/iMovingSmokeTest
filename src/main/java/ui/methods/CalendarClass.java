@@ -7,94 +7,79 @@ import org.openqa.selenium.WebElement;
 import utilities.Driver;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class CalendarClass {
+    WebDriver driver = Driver.getDriver();
 
-    // Формат даты, используемый в календаре
-    private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    public void getRandomDate(WebElement datePicker, WebElement monthPicker){
+        Helper.click(datePicker);
+        Helper.click(monthPicker);
+        LocalDate date = LocalDate.now();
+        int currentMonth = date.getMonthValue();
+        int todayDate = date.getDayOfMonth();
 
-    // Метод для выбора случайной даты из календаря
-    public void selectRandomDate(WebDriver driver, WebElement datepicker, List<WebElement> dates) {
-        // Открываем календарь
-        datepicker.click();
+        // Generate random month in next months
+        int monthInYearRange = (int)Math.floor(Math.random() * (8 - currentMonth + 1) + currentMonth);
+        // Generate random day from present day
+        int dayInMonthRange;
+        do {
+            dayInMonthRange = (int) Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
+        } while (dayInMonthRange == todayDate);
+        System.out.println(" "+dayInMonthRange);
+        // Generate random day in month
+        int dayInMonthFull = (int)Math.floor(Math.random() * (31 - 1 + 1) + 1);
 
-        // Получаем список всех дат в календаре
-//        List<WebElement> dates = driver.findElements(By.xpath("//td[@class='day' or @class='today day']"));
+        String pathMonth = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[2]/table/tbody/tr/td/span[MonthIndex]";
+        String pathMonthFinal = pathMonth.replace("MonthIndex", String.valueOf(monthInYearRange));
+        WebElement month = driver.findElement(By.xpath(pathMonthFinal));
+        Helper.click(month);
 
-        // Выбираем случайную дату из списка
-        Random random = new Random();
-        WebElement randomDate = dates.get(random.nextInt(dates.size()));
-
-        // Получаем значение даты в формате "dd.MM.yyyy"
-        String date = randomDate.getText() + "." + getMonthYear(driver);
-
-        // Кликаем на случайную дату
-        randomDate.click();
-
-        // Для проверки можно вывести выбранную дату в консоль
-        System.out.println("Selected date: " + date);
-    }
-
-    // Метод для получения месяца и года, отображаемых в календаре
-    private static String getMonthYear(WebDriver driver) {
-        WebElement monthYear = driver.findElement(By.xpath("//th[@class='month']/following-sibling::th[1]"));
-        return monthYear.getText();
-    }
-
-    public static void getDateTest(){
-        Random random = new Random();
-        int ranValue = random.nextInt(31);
-        System.out.println("Ran value is " + ranValue);
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, ranValue);
-        cal.add(Calendar.DATE, ranValue);
-        cal.add(Calendar.YEAR, 0);
-
-        Date date = cal.getTime();
-        System.out.println(date);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String dateString = sdf.format(date);
-        System.out.println(dateString);
-    }
-
-    public static String[] getMonthYear(String monthYearValue){
-        return monthYearValue.split(" ");
-    }
-
-    public static void selectDate(String day, String month, String year){
-//        String monthYearValue = DetailPage.dateCalendarTitle.getText();
-//        while(!(getMonthYear(monthYearValue)[0].equals(month)
-//            &&
-//                getMonthYear(monthYearValue)[1].equals(year))){
-//            Helper.click(DetailPage.nextButton);
-//            monthYearValue = DetailPage.dateCalendarTitle.getText();
-//        }
-//        try{
-//            Helper.click(Driver.getDriver().findElement(By.xpath(DetailPage.dateNumber+day+"']")));
-//        }catch (Exception e){
-//            System.out.println("Wrong date: "+month+" : "+day);
-//        }
-    }
-
-    public void selectDate(WebDriver driver, WebElement datepicker, List<WebElement> dates, String date) {
-        // Открываем календарь
-        datepicker.click();
-
-        // Получаем список всех дат в календаре
-//        List<WebElement> dates = datepicker;
-
-        // Перебираем все даты и выбираем нужную
-        for (WebElement element : dates) {
-            if (element.getText().equals(date)) {
-                element.click();
-                break;
-            }
+        if(monthInYearRange == currentMonth){
+//            String pathDay = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td[contains(text(),'DayIndex')]";
+            String pathDay = "//td[@class='day' and text()='DayIndex']";
+            String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthRange));
+            WebElement day = driver.findElement(By.xpath(pathDayFinal));
+            Helper.click(day);
+        }else{
+//            String pathDay = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/tbody/tr/td[contains(text(),'DayIndex')]";
+            String pathDay = "//td[@class='day' and text()='DayIndex']";
+            String pathDayFinal = pathDay.replace("DayIndex", String.valueOf(dayInMonthFull));
+            WebElement day = driver.findElement(By.xpath(pathDayFinal));
+            Helper.click(day);
         }
     }
+
+    public void getGivenDate(WebElement datePicker){
+        LocalDate date = LocalDate.now();
+        int todayDate = date.getDayOfMonth();
+        // Generate random day from present day
+        int dayInMonthRange = (int)Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
+        Helper.click(datePicker);
+        String pathDay = "//td[@class='day' and text()='INDEX']";
+        String pathDayFinal = pathDay.replace("INDEX", String.valueOf(dayInMonthRange));
+        WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
+        Helper.click(tdButton);
+    }
+
+    public void getGivenDate2(WebElement datePicker){
+        LocalDate date = LocalDate.now();
+        int todayDate = date.getDayOfMonth();
+        int dayInMonthRange;
+        do {
+            dayInMonthRange = (int) Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
+        } while (dayInMonthRange == todayDate);
+
+        Helper.click(datePicker);
+        String pathDay = "//td[@class='day' and text()='INDEX']";
+        String pathDayFinal = pathDay.replace("INDEX", String.valueOf(dayInMonthRange));
+        System.out.println("Chosen day"+pathDayFinal);
+
+//        WebElement tdButton = datePicker.findElement(By.xpath("(//td[@class='active day'] | //td[text()='30'])[2]"));
+        WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
+        Helper.click(tdButton);
+    }
+
 }

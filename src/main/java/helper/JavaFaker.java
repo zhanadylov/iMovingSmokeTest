@@ -1,13 +1,6 @@
 package helper;
 
 import com.github.javafaker.Faker;
-//import com.google.maps.GeoApiContext;
-//import com.google.maps.GeocodingApi;
-//import com.google.maps.model.AddressComponent;
-//import com.google.maps.model.GeocodingResult;
-//import com.microsoft.sqlserver.jdbc.Geometry;
-//import com.mysql.cj.xdevapi.Client;
-//import jdk.internal.dynalink.support.Lookup;
 
 import java.util.Locale;
 import java.util.Random;
@@ -59,4 +52,5 @@ public class JavaFaker {
 
                 return String.format("%d %s, %s, %s %d", streetNumber, streetName, city, stateCode, zipCode);
         }
+
 }

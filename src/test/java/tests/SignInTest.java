@@ -1,18 +1,14 @@
 package tests;
 
-import helper.BrowserHelper;
 import helper.Helper;
 import helper.JavaFaker;
 import hooks.Hooks;
 import hooks.TestStatusListener;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.methods.SetUp;
-import ui.methods.SignIn;
 import ui.pageObjectModel.HomePage;
-import utilities.Driver;
 
 @Listeners (TestStatusListener.class)
 public class SignInTest extends Hooks implements SetUp{

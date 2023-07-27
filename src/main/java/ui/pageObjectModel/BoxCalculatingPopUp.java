@@ -36,4 +36,28 @@ public class BoxCalculatingPopUp {
     @FindBy(xpath = "//a[contains(text(),'Skip')]")
     public WebElement addItemsButton;
 
+    @FindBy(css = "body > div > div > div > div.shuffle-animation > main > div > div:nth-child(2) > section.room-header.clearfix > div > h1")
+    public WebElement additionalPickupBoxesTitle;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[4]/div/div/button[1]")
+    public WebElement largeBoxMinusButton;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[4]/div/div/strong")
+    public WebElement largeBoxQuantity;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[4]/div/div/button[2]")
+    public WebElement largeBoxPlusButton;
+
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[9]/div/div/button[1]")
+    public WebElement lampBoxMinusButton;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[9]/div/div/strong")
+    public WebElement lampBoxQuantity;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[9]/div/div/button[2]")
+    public WebElement lampBoxPlusButton;
+
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[8]/div/div/button[1]")
+    public WebElement tvBoxMinusButton;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[8]/div/div/strong")
+    public WebElement tvBoxQuantity;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[8]/div/div/button[2]")
+    public WebElement tvBoxPlusButton;
+
+
 }
