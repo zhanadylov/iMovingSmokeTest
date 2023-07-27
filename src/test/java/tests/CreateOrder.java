@@ -62,12 +62,12 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
-//        if(boxCalculatingPopUp.skipButton.isDisplayed()){
-//            Helper.click(boxCalculatingPopUp.skipButton);
-//        }else{
-//            System.out.println("Skip button not displayed");
-//        }
-        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
+        if(boxCalculatingPopUp.skipButton.isDisplayed()){
+            Helper.click(boxCalculatingPopUp.skipButton);
+        }else{
+            System.out.println("Skip button not displayed");
+        }
+//        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
     }
 
     @Test(enabled = false)
@@ -292,7 +292,8 @@ public class CreateOrder extends Hooks implements SetUp {
 //        System.out.println("num2 "+num2);
 //        Assert.assertEquals(paymentPage.serviceFeePrice.getText(), String.valueOf(Helper.roundingsFee(Helper.calculatePercent(paymentPage.orderPrice, 5))));
         double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText().replaceAll("[$,]","")) + Double.parseDouble(paymentPage.serviceFeePrice.getText().replaceAll("[$,]",""));
-        Assert.assertEquals(String.valueOf(Helper.roundingsFee(totalPrice)), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
+//        Assert.assertEquals(String.valueOf(Helper.roundingsFee(totalPrice)), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
+        Helper.numberComparison(Helper.roundingsFee(totalPrice), Double.parseDouble(paymentPage.totalPrice.getText().replaceAll("[$,]","")));
 
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(paymentPage.signInButton, paymentPage.emailFieldLogin, paymentPage.passwordFieldLogin, paymentPage.loginButton);

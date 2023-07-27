@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.json.JsonException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.Driver;
 
 import java.io.File;
@@ -327,14 +328,34 @@ public class Helper {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         return "$"+decimalFormat.format(value);
     }
+
+    public static void numberComparison(double expected, double actual) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String formattedExpected = decimalFormat.format(expected);
+        String formattedActual = decimalFormat.format(actual);
+
+        // Compare the formatted strings
+        Assert.assertEquals(String.valueOf(formattedExpected), formattedActual);
+    }
+//    public static void clickButtonIfDisplayed(WebElement element) {
+//        try {
+//            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10); // Wait for up to 10 seconds
+//            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(element));
+//            button.click();
+//            System.out.println("Clicked on the 'Add and Continue' button.");
+//        } catch (Exception e) {
+//            System.out.println("Continue button not displayed or could not be clicked: " + e.getMessage());
+//        }
+//    }
     public static void clickButtonIfDisplayed(WebElement element) {
         try {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10); // Wait for up to 10 seconds
             WebElement button = wait.until(ExpectedConditions.elementToBeClickable(element));
             button.click();
-            System.out.println("Clicked on the 'Add and Continue' button.");
+            System.out.println("Clicked on the 'Appeared' button.");
         } catch (Exception e) {
-            System.out.println("Continue button not displayed or could not be clicked: " + e.getMessage());
+            System.out.println("Button not displayed or could not be clicked:");
+            e.printStackTrace();
         }
     }
 }
