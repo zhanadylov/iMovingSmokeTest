@@ -6,10 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utilities.Driver;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 public class CalendarClass {
     WebDriver driver = Driver.getDriver();
@@ -28,7 +25,7 @@ public class CalendarClass {
         do {
             dayInMonthRange = (int) Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
         } while (dayInMonthRange == todayDate);
-        System.out.println(" "+dayInMonthRange);
+        System.out.println("Chosen day in month range: "+dayInMonthRange);
         // Generate random day in month
         int dayInMonthFull = (int)Math.floor(Math.random() * (31 - 1 + 1) + 1);
 

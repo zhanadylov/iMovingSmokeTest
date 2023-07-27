@@ -30,8 +30,8 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
 
     @Test
     public void addAdditionalPickUpPayByCC(){
-//        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
-//        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
+        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
         Helper.pause(2000);
 //        alertHelper.AcceptAlert();
         browserHelper.refresh();
@@ -84,8 +84,8 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
 
     @Test
     public void addAdditionalPickUpPayByCheck(){
-//        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
-//        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
+        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
         Helper.pause(2000);
         browserHelper.refresh();
         homePage.userNameAfterLogin.isDisplayed();

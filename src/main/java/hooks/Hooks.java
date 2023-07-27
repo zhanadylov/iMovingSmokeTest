@@ -27,7 +27,7 @@ public class Hooks {
         File srcFile = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
 
         try {
-            FileUtils.copyFile(srcFile, new File("F:\\ScreenTest\\"+teatMethodName+".png"));
+            FileUtils.copyFile(srcFile, new File("D:\\ScreenTest\\"+teatMethodName+".png"));
         } catch (Exception e) {
             System.out.println(Helper.ANSI_YELLOW+"The error happened while cleaning up after the test: " +
                     e.getMessage()+Helper.ANSI_RESET);

@@ -163,6 +163,7 @@ public class CreateOrder extends Hooks implements SetUp {
         saveOrderInfo.setOrderInfo(marketplace_page.orderNumberLabel.getText(), marketplace_page.orderNumber.getText());
         saveOrderInfo.setOrderInfo("CarrierName", marketplace_page.carrierName.getText());
         saveOrderInfo.setOrderInfo("OrderPrice", marketplace_page.orderPrice.getText());
+        System.out.println("Carrier name: "+marketplace_page.carrierName.getText());
         System.out.println("Order number: "+saveOrderInfo.orderInfo.get(summary_page.orderNumberLabel.getText()));
         //
         marketplace_page.movingInfoText.isDisplayed();
@@ -272,7 +273,7 @@ public class CreateOrder extends Hooks implements SetUp {
         qaboOptionsTest.loginToQaBO();
         qaboOptionsTest.openPriceInBO();
         getOrderInfo.comparePriceWebBo(saveOrderInfo.priceListBo, saveOrderInfo.inventoryListInfo);
-//        browserHelper.SwitchToWindow(0);
+
         browserHelper.switchToParentWithChildClose();
 
         Helper.javascriptScrollIntoView(summary_page.checkOutButton);
@@ -315,7 +316,5 @@ public class CreateOrder extends Hooks implements SetUp {
         AssertThat.assertText("Thank You", success_page.thankYouText);
         AssertThat.assertText(success_page.text, success_page.textInSuccessPage);
         Helper.pause(2000);
-        additionalPickUpTest.addAdditionalPickUpPayByCC();
-        additionalPickUpTest.addAdditionalPickUpPayByCheck();
     }
 }
