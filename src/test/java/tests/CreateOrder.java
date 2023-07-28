@@ -300,9 +300,9 @@ public class CreateOrder extends Hooks implements SetUp {
         performActionOnElements.fillCCFieldsElementTest(paymentPage.signInButton, paymentPage.emailFieldLogin, paymentPage.passwordFieldLogin, paymentPage.loginButton);
         Helper.pause(2000);
 
-        performActionOnElements.setValuesToFillFields("clientFirstName","5424 0000 0000 0015","123","2027");
+        performActionOnElements.setValuesToFillFields("clientFirstName","5424 0000 0000 0015","2027","123");
         performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
-                paymentPage.cvvNumberInputField, paymentPage.expiryYearSelectField, paymentPage.billingAddressCheckBox);
+                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
 
         Helper.javascriptScrollDownThePage();
         Helper.click(paymentPage.completeBookingButton);

@@ -40,6 +40,8 @@ public class Full_inventory_Page {
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div[1]/div[2]/ul/li[1]/a")
     public WebElement editRoomsButton;
 
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/div[1]/div[2]/ul/li[2]/a/h3")
+    public WebElement orderNumberLabel;
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div[1]/div[2]/ul/li[2]/a/div")
     public WebElement orderNumber;
 

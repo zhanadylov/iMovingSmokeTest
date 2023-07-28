@@ -33,8 +33,6 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
         Helper.pause(2000);
-//        alertHelper.AcceptAlert();
-        browserHelper.refresh();
         homePage.userNameAfterLogin.isDisplayed();
         Helper.click(homePage.userNameAfterLogin);
         userZonePage.myLastMovePlansTitle.isDisplayed();
@@ -65,9 +63,13 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         Helper.click(full_inventory_page.additionalItemsRoomHeader);
         AddItemsMethod.addItems(full_inventory_page.imageElement, 10);
         Helper.click(full_inventory_page.completeOrder);
+        if (Helper.isElementPresent(boxCalculatingPopUp.addAndContinueButton)) {
+            Helper.click(boxCalculatingPopUp.addAndContinueButton);
+        }
 
-        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.addAndContinueButton);
-        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
+        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
+            Helper.click(boxCalculatingPopUp.skipButton);
+        }
         Helper.pause(2000);
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
         SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
@@ -75,11 +77,13 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         Helper.click(_detail_page.confirmButton);
         Helper.javascriptScrollIntoView(summary_page.checkOutButton);
         Helper.click(summary_page.checkOutButton);
-        Helper.click(paymentPage.cCRadioButton);
         Helper.pause(2000);
-        Helper.javascriptScrollIntoView(paymentPage.completeBookingButton);
+        performActionOnElements.setValuesToFillFields("clientFirstName","5424 0000 0000 0015","2027","123");
+        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
+                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
+        Helper.javascriptScrollDownThePage();
         Helper.click(paymentPage.completeBookingButton);
-        Helper.pause(2000);
+        Helper.pause(3000);
     }
 
     @Test
@@ -87,7 +91,6 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
         Helper.pause(2000);
-        browserHelper.refresh();
         homePage.userNameAfterLogin.isDisplayed();
         Helper.click(homePage.userNameAfterLogin);
         userZonePage.myLastMovePlansTitle.isDisplayed();
@@ -125,22 +128,25 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         Helper.click(boxCalculatingPopUp.tvBoxPlusButton);
         AssertThat.assertText("1", boxCalculatingPopUp.tvBoxQuantity);
         Helper.click(full_inventory_page.completeOrder);
-        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.addAndContinueButton);
-        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
-//        if(boxCalculatingPopUp.addAndContinueButton.isDisplayed()){
-//            Helper.click(boxCalculatingPopUp.addAndContinueButton);
-//        }
-//        if(boxCalculatingPopUp.skipButton.isDisplayed()){
-//            Helper.click(boxCalculatingPopUp.skipButton);
-//        }else{
-//            System.out.println("Skip button not displayed");
-//        }
+        if (Helper.isElementPresent(boxCalculatingPopUp.addAndContinueButton)) {
+            Helper.click(boxCalculatingPopUp.addAndContinueButton);
+        }
+
+        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
+            Helper.click(boxCalculatingPopUp.skipButton);
+        }
+        Helper.pause(1000);
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
         SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
         Helper.javascriptScrollIntoView(_detail_page.confirmButton);
         Helper.click(_detail_page.confirmButton);
+        Helper.pause(2000);
+        saveOrderInfo.setOrderInfo(summary_page.orderNumberLabel.getText(), summary_page.orderNumber.getText());
+        System.out.println(summary_page.orderNumberLabel.getText());
+        System.out.println(summary_page.orderNumber.getText());
+        System.out.println(saveOrderInfo.orderInfo.get("Order #"));
         browserHelper.newWindow();
-        qaboOptionsTest.getOrderNumber(summary_page.orderNumber.getText());
+        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
         browserHelper.getWindowHandles();
         browserHelper.SwitchToWindow(1);
         qaboOptionsTest.loginToQaBO();

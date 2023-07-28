@@ -128,8 +128,8 @@ public class PaymentPage {
     @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[1]/label[2]/input")
     public WebElement visaDebitCardCheckBox;
 
-//    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[2]/label/input")
-    @FindBy(xpath = "//label[contains(@ng-click, 'vm.selectCustomerProfile(0, 1)')]")
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[2]/label/input")
+//    @FindBy(xpath = "//label[contains(@ng-click, 'vm.selectCustomerProfile(0, 1)')]")
     public WebElement newPaymentCard;
 
     //Order Summary

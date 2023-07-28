@@ -97,7 +97,7 @@ public class QaboOptionsTest extends Hooks implements SetUpBO {
         Helper.sendKeys(addPaymentPopUp.bankAuthNumber,number3);
         String word = "Paying with one check";
         Helper.sendKeys(addPaymentPopUp.detailsfield,word);
-        String imagePath =  System.getProperty("user.dir") +"\\src\\test\\resources\\picture\\Monkey.jpg";
+        String imagePath =  System.getProperty("user.dir") +"\\src\\main\\java\\picture\\Monkey.jpg";
         Helper.sendKeys(addPaymentPopUp.uploadCheck2, imagePath);
         Helper.click(addPaymentPopUp.addPaymentBtnInPopUp);
         Helper.pause(2000);

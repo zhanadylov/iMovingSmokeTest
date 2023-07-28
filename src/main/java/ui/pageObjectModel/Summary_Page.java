@@ -47,9 +47,9 @@ public class Summary_Page {
     @FindBy(xpath = "(//a[contains(text(),'Edit')])[5]")
     public WebElement editButtonInInventory;
 
-    @FindBy(xpath = "(//small[contains(text(),'Order No')])[1]")
+    @FindBy(xpath = "(//small[contains(text(),'Order #')])[1]")
     public WebElement orderNumberLabel;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/div")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/div/div[2]/div/section/div/ul/li[6]/div/div")
     public WebElement orderNumber;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/price-details/section/div/ul/li[1]/a/span")

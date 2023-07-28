@@ -358,4 +358,12 @@ public class Helper {
             e.printStackTrace();
         }
     }
+    public static boolean isElementPresent(WebElement element) {
+        try {
+//            driver.findElement(locator);
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
 }
