@@ -26,7 +26,7 @@ public class HomePage {
     @FindBy(xpath = "//*[@id=\"loginForm\"]/div/button")
     public WebElement loginButtonInSignIn;
 
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[3]/a[1]")
+    @FindBy(xpath = "//a[text()='Forgot your password?']")
     public WebElement forgotPassword;
 
     @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/i[1]")
@@ -35,38 +35,38 @@ public class HomePage {
     @FindBy(xpath = "//*[@id=\"userName\"]")
     public WebElement userNameAfterLogin;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[2]/li/div/ul[2]/li[3]/form/fieldset/button/span")
+    @FindBy(xpath = "//span[text()='Log Out']")
     public WebElement logOut;
 
     //Sign Up form
-    @FindBy(xpath = "//*[@id=\"mainNavbar\"]/div[2]/div/div/div/ul/li[2]")
+    @FindBy(xpath = "//a[text()='Sign Up']")
     public WebElement signUpInLoginForm;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[1]/form[1]/div/div[1]/input")
+    @FindBy(xpath = "//input[@class='form-control first-name-signUp' and @name='gg.Name']")
     public WebElement newFirstName;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[1]/form[1]/div/div[2]/input")
+    @FindBy(xpath = "//input[@class='form-control last-name-signUp' and @name='gg.LastName']")
     public WebElement newLastName;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[1]/form[1]/div/div[3]/input[1]")
+    @FindBy(xpath = "//input[@class='form-control email email-signUp' and @name='gg.Email']")
     public WebElement newEmail;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[1]/form[1]/div/div[4]/input")
+    @FindBy(xpath = "//input[@class='form-control password-signUp' and @name='gg.Password']")
     public WebElement newPassword;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[1]/form[1]/div/div[5]/input")
+    @FindBy(xpath = "//input[@class='form-control confirm-password-signUp' and @name='gg.ConfirmPassword']")
     public WebElement confirmPassword;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[1]/form[1]/div/div[6]/input")
+    @FindBy(xpath = "//input[@class='form-control phone phone-signUp' and @name='gg.Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[7]/input[1]")
+    @FindBy(xpath = "//input[@class='form-control phone-verifyCode-signUp' and @name='gg.PhoneVerifyCode']")
     public WebElement confirmCodeField;
 
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[9]/div[1]")
+    @FindBy(xpath = "/html/body/div[1]/header/nav/div/div[2]/ul/li[2]/div/div[1]/div[1]/form/div/div[9]/div[1]")
     public WebElement sendMeVerificationButton;
 
-    @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[9]/button[1]")
+    @FindBy(xpath = "/html/body/div[1]/header/nav/div/div[2]/ul/li[2]/div/div[1]/div[1]/form/div/div[9]/button")
     public WebElement verifyAndSignUpButton;
 
     //Forgot password

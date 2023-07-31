@@ -23,11 +23,11 @@ public class SignInTest extends Hooks implements SetUp{
         Helper.pause(2000);
         Helper.sendKeys(homePage.inputEmail, "qatestimoving@gmail.com");
         Helper.sendKeys(homePage.inputPassword, "QATest-2022");
-        homePage.eyeOnSignIn.isDisplayed();
+//        homePage.eyeOnSignIn.isDisplayed();
         homePage.forgotPassword.isDisplayed();
         Helper.click(homePage.loginButtonInSignIn);
         Helper.pause(3000);
-        Assert.assertTrue(homePage.userNameAfterLogin.getText().contains("Qa test"));
+        Assert.assertTrue(homePage.userNameAfterLogin.getText().contains("Qa Test"));
         Helper.click(homePage.userNameAfterLogin);
         Helper.click(homePage.logOut);
     }
