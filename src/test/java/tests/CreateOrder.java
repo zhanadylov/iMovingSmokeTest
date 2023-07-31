@@ -22,7 +22,7 @@ public class CreateOrder extends Hooks implements SetUp {
     SelectRandom selectRandom = new SelectRandom();
     PopUpsPage popUpsPage = new PopUpsPage();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
-    Detail_Page _detail_page = new Detail_Page();
+    Detail_Page detail_page = new Detail_Page();
     Marketplace_Page marketplace_page = new Marketplace_Page();
     Summary_Page summary_page = new Summary_Page();
     CalendarClass calendarClass = new CalendarClass();
@@ -34,7 +34,7 @@ public class CreateOrder extends Hooks implements SetUp {
     GetOrderInfo getOrderInfo = new GetOrderInfo();
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     Success_Page success_page = new Success_Page();
-    AdditionalPickUpTest additionalPickUpTest = new AdditionalPickUpTest();
+    GetDate getDate = new GetDate();
 
     @Test
     public void chooseMoveOption() {
@@ -83,29 +83,30 @@ public class CreateOrder extends Hooks implements SetUp {
     @Test
     public void details_Page() {
         Helper.pause(2000);
-        calendarClass.getRandomDate(_detail_page.datePicker, _detail_page.monthInDate);
+        calendarClass.getRandomDate(detail_page.datePicker, detail_page.monthInDate);
+//        getDate.getRandomDate(detail_page.datePicker, detail_page.monthInDate);
         Helper.pause(2000);
         String pickUp = "12334 Cantura Street, Los Angeles, CA 91604";
         String dropOff = "12340 Boggy Creek Road, Orlando, FL 32824";
-        SetAddress.testMethod(pickUp, _detail_page.pickUpFromInputField);
+        SetAddress.testMethod(pickUp, detail_page.pickUpFromInputField);
         performActionOnElements.setValuesToFillFields("Remark auto test pickUp");
-        performActionOnElements.fillCCFieldsElementTest(_detail_page.anyRemarksInputField, _detail_page.flightOfStairsPlusButtonPickup,
-                _detail_page.longCarryPlusButtonPickup);
-        Helper.click(_detail_page.elevatorYesPickup);
-        Helper.click(_detail_page.NeedShuttleYesPickup);
-        Helper.click(_detail_page.BuildingInsuranceYesPickup);
+        performActionOnElements.fillCCFieldsElementTest(detail_page.anyRemarksInputField, detail_page.flightOfStairsPlusButtonPickup,
+                detail_page.longCarryPlusButtonPickup);
+        Helper.click(detail_page.elevatorYesPickup);
+        Helper.click(detail_page.NeedShuttleYesPickup);
+        Helper.click(detail_page.BuildingInsuranceYesPickup);
 
-        SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
+        SetAddress.testMethod2(dropOff, detail_page.dropOffAtInputField);
         performActionOnElements.setValuesToFillFields("Remark auto test dropOff");
-        performActionOnElements.fillCCFieldsElementTest(_detail_page.anyRemarksInputFieldDropOff, _detail_page.flightOfStairsPlusButtonDropOff,
-                _detail_page.longCarryPlusButtonDropOff);
-        Helper.click(_detail_page.dropOffElevatorYes);
-        Helper.click(_detail_page.dropOffNeedShuttleYes);
-        Helper.click(_detail_page.dropOffBuildingInsuranceYes);
+        performActionOnElements.fillCCFieldsElementTest(detail_page.anyRemarksInputFieldDropOff, detail_page.flightOfStairsPlusButtonDropOff,
+                detail_page.longCarryPlusButtonDropOff);
+        Helper.click(detail_page.dropOffElevatorYes);
+        Helper.click(detail_page.dropOffNeedShuttleYes);
+        Helper.click(detail_page.dropOffBuildingInsuranceYes);
         Helper.pause(2000);
         Helper.javascriptScrollDownThePage();
-        Helper.navigateToElement(_detail_page.checkRatesButton);
-        Helper.click(_detail_page.checkRatesButton);
+        Helper.navigateToElement(detail_page.checkRatesButton);
+        Helper.click(detail_page.checkRatesButton);
 
         Helper.pause(4000);
     }
