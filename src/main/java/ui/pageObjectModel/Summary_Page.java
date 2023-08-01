@@ -47,9 +47,13 @@ public class Summary_Page {
     @FindBy(xpath = "(//a[contains(text(),'Edit')])[5]")
     public WebElement editButtonInInventory;
 
-    @FindBy(xpath = "(//small[contains(text(),'Order #')])[1]")
+//    @FindBy(xpath = "(//small[contains(text(),'Order #')])[1]")
+//    @FindBy(xpath = "(//div[@class='orderNumberCont'] | //small[@class='point-type' and contains(text(),'Order')])[3]")
+    @FindBy(xpath = "//small[@class='point-type' and contains(text(),'Order')]")
     public WebElement orderNumberLabel;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/div/div[2]/div/section/div/ul/li[6]/div/div")
+//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/div/div[2]/div/section/div/ul/li[6]/div/div")
+//    @FindBy(xpath = "(//div[@class='line2 number blue'] | //small[@class='point-type' and contains(text(),'Order')])[3]")
+    @FindBy(xpath = "//div[@class='line2 number blue' and contains(text(),'Order')]")
     public WebElement orderNumber;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/price-details/section/div/ul/li[1]/a/span")

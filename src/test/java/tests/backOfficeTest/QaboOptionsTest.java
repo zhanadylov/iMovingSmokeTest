@@ -1,6 +1,7 @@
 package tests.backOfficeTest;
 
 import com.github.javafaker.Faker;
+import helper.AssertThat;
 import helper.BrowserHelper;
 import helper.DropDownHelper;
 import helper.Helper;
@@ -65,8 +66,10 @@ public class QaboOptionsTest extends Hooks implements SetUpBO {
         Helper.navigateToElement(ordersPageInQabo.ordersStatusFilter);
         DropDownHelper.selectUsingVisibleText(ordersPageInQabo.ordersStatusFilter, "All");
         Helper.sendKeys(ordersPageInQabo.orderNumFilterField, orderNumber);
+        Helper.pause(1000);
         Helper.click(ordersPageInQabo.filterButton);
-        Helper.waitForElementToBeDisplayed(ordersPageInQabo.orderNumberLink);
+        Helper.waitForElementVisibilityOf(ordersPageInQabo.orderNumberLink);
+        Helper.waitForElementToBeClickable(ordersPageInQabo.orderNumberLink);
         Helper.click(ordersPageInQabo.orderNumberLink);
         Helper.navigateToElement(orderInfoQaBo.pricingTab);
         Helper.click(orderInfoQaBo.pricingTab);
@@ -101,6 +104,7 @@ public class QaboOptionsTest extends Hooks implements SetUpBO {
         Helper.sendKeys(addPaymentPopUp.uploadCheck2, imagePath);
         Helper.click(addPaymentPopUp.addPaymentBtnInPopUp);
         Helper.pause(2000);
+        AssertThat.assertText("Booked By Client", orderInfoQaBo.orderStatus);
     }
 
 }

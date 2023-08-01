@@ -135,18 +135,18 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
         if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
             Helper.click(boxCalculatingPopUp.skipButton);
         }
-        Helper.pause(1000);
+        Helper.pause(2000);
+        saveOrderInfo.setOrderInfo(_detail_page.orderNumberLabelDetail.getText(), _detail_page.orderNumberDetail.getText().replaceAll("Order No", ""));
+        System.out.println("Get order label from page "+_detail_page.orderNumberLabelDetail.getText());
+        System.out.println("Get order number from page "+_detail_page.orderNumberDetail.getText());
+        System.out.println("Get order number from list "+saveOrderInfo.orderInfo.get("Order No"));
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
         SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
         Helper.javascriptScrollIntoView(_detail_page.confirmButton);
         Helper.click(_detail_page.confirmButton);
         Helper.pause(2000);
-        saveOrderInfo.setOrderInfo(summary_page.orderNumberLabel.getText(), summary_page.orderNumber.getText());
-        System.out.println(summary_page.orderNumberLabel.getText());
-        System.out.println(summary_page.orderNumber.getText());
-        System.out.println(saveOrderInfo.orderInfo.get("Order #"));
         browserHelper.newWindow();
-        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
+        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order No"));
         browserHelper.getWindowHandles();
         browserHelper.SwitchToWindow(1);
         qaboOptionsTest.loginToQaBO();

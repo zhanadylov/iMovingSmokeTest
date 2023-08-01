@@ -62,10 +62,8 @@ public class CreateOrder extends Hooks implements SetUp {
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
-        if(boxCalculatingPopUp.skipButton.isDisplayed()){
+        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
             Helper.click(boxCalculatingPopUp.skipButton);
-        }else{
-            System.out.println("Skip button not displayed");
         }
 //        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
     }

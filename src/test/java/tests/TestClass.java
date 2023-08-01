@@ -146,37 +146,7 @@ public class TestClass extends Hooks implements SetUp{
         }
     }
 
-    public static void getRandomDate() {
-        LocalDate date = LocalDate.now();
-        int currentMonth = date.getMonthValue();
-        int todayDate = date.getDayOfMonth();
-
-        // Generate random month in next months
-        int monthInYearRange = (int) Math.floor(Math.random() * (12 - currentMonth + 1) + currentMonth);
-
-        // Generate random day from present day
-        int dayInMonthRange;
-        int dayInMonthFull;
-        if (monthInYearRange == currentMonth) {
-            dayInMonthRange = (int) Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
-            dayInMonthFull = dayInMonthRange;
-        } else {
-            dayInMonthRange = 0;
-            dayInMonthFull = (int) Math.floor(Math.random() * 31) + 1;
-        }
-
-        System.out.println("Chosen day in month range: " + dayInMonthRange);
-        System.out.println(dayInMonthFull);
-    }
-
     public static void main(String[] args) {
-        LocalDate date = LocalDate.now();
-        int currentMonth = date.getMonthValue();
-        getRandomDate();
-        int monthInYearRange = (int)Math.floor(Math.random() * (11 - currentMonth + 1) + currentMonth);
-        System.out.println("----------------");
-        System.out.println(monthInYearRange);
-
     }
 
 //    @AfterSuite

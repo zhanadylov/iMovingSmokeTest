@@ -26,6 +26,9 @@ public class OrderInfoQaBo {
     public WebElement changesTab;
 
     //Order Details
+    @FindBy(xpath = "//*[@id=\"status\"]")
+    public WebElement orderStatus;
+
     @FindBy(xpath = "//*[@id=\"tab_1\"]/div[1]/div[2]/div[2]/div[1]/div[1]")
     public WebElement carrierName;
 

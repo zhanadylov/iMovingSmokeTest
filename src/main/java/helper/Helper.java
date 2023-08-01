@@ -274,6 +274,53 @@ public class Helper {
         }
     }
 
+    public static String color(String color, boolean continueColor) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_BLACK = "\u001B[30m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_GREEN = "\u001B[32m";
+        final String ANSI_YELLOW = "\u001B[33m";
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_PURPLE = "\u001B[35m";
+        final String ANSI_CYAN = "\u001B[36m";
+        final String ANSI_WHITE = "\u001B[37m";
+
+        String colorCode;
+        switch (color) {
+            case "reset":
+                colorCode = ANSI_RESET;
+                break;
+            case "black":
+                colorCode = ANSI_BLACK;
+                break;
+            case "red":
+                colorCode = ANSI_RED;
+                break;
+            case "green":
+                colorCode = ANSI_GREEN;
+                break;
+            case "yellow":
+                colorCode = ANSI_YELLOW;
+                break;
+            case "blue":
+                colorCode = ANSI_BLUE;
+                break;
+            case "purple":
+                colorCode = ANSI_PURPLE;
+                break;
+            case "cyan":
+                colorCode = ANSI_CYAN;
+                break;
+            case "white":
+                colorCode = ANSI_WHITE;
+                break;
+            default:
+                return "No color!";
+        }
+
+        return continueColor ? colorCode : colorCode + ANSI_RESET;
+    }
+
     public static String compareDate2(String date){
         return date.substring(11,22);
     }

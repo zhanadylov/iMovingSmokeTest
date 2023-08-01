@@ -61,18 +61,6 @@ public class Detail_Page {
     @FindBy(xpath = "//a[@id='dropdownMenuTime']")
     public WebElement  pickUpTime;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/a")
-    public WebElement calendarIcon;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[1]/div[2]/div[1]/date-picker/div/p/div/ul/li/div/table/thead/tr[1]/th[3]/button")
-    public WebElement calendarNextMonthButton;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[1]/div[2]/div[1]/date-picker/div/p/div/ul/li/div/table/thead/tr[2]/th[2]/small")
-    public WebElement calendarMondayText;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div/section[2]/div[1]/div[2]/div[1]/date-picker/div/p/div/ul/li/div/table/thead/tr[1]/th[1]/button")
-    public WebElement calendarPreviousMonthButton;
-
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[2]/div[1]/address-selection/div/h3/span/span[1]")
     public WebElement requiredFieldText;
 
@@ -96,6 +84,11 @@ public class Detail_Page {
     public WebElement pickUpAtGetValue;
     @FindBy(xpath = "(//input[@name='addressInput'])[2]")
     public WebElement dropOffAtGetValue;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/div/section/div/ul/li[6]/div/div[1]/small")
+    public WebElement orderNumberLabelDetail;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/div/section/div/ul/li[6]/div/div[1]/div")
+    public WebElement orderNumberDetail;
 
 
     // Pickup Form

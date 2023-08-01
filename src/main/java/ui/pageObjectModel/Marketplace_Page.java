@@ -65,9 +65,11 @@ public class Marketplace_Page {
     @FindBy(xpath = "(//a[contains(text(),'Edit')])[5]")
     public WebElement editButtonInInventory;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/small")
+//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/small")
+    @FindBy(xpath = "(//div[@class='orderNumberCont'] | //small[@class='point-type' and contains(text(),'Order')])[3]")
     public WebElement orderNumberLabel;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/div")
+//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/div")
+    @FindBy(xpath = "(//div[contains(@class, 'orderNumberCont')]//div[@class='line2 number blue'])[2]")
     public WebElement orderNumber;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/header/h3")
