@@ -396,7 +396,7 @@ public class Helper {
 //    }
     public static void clickButtonIfDisplayed(WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10); // Wait for up to 10 seconds
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10)); // Wait for up to 10 seconds
             WebElement button = wait.until(ExpectedConditions.elementToBeClickable(element));
             button.click();
             System.out.println("Clicked on the 'Appeared' button.");

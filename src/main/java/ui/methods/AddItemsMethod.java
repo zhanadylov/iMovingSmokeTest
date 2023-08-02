@@ -77,7 +77,7 @@ public class AddItemsMethod {
     }
 
     public static void addItems(List<WebElement> imageElements, int numItems) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         String addButtonXPath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
 
 //        for (WebElement image : imageElements) {

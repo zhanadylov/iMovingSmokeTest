@@ -49,7 +49,7 @@ public class CalendarClass {
         }
     }
 
-    public void getGivenDate(WebElement datePicker){
+    public void getRandomDateInMonth(WebElement datePicker){
         LocalDate date = LocalDate.now();
         int todayDate = date.getDayOfMonth();
         int dayInMonthRange;
@@ -67,6 +67,11 @@ public class CalendarClass {
         Helper.click(tdButton);
     }
 
+    public void getGivenDate(WebElement datePicker){
+        Helper.click(datePicker);
+        WebElement tdButton = datePicker.findElement(By.xpath("//td[@class='day' and text()='30']"));
+        Helper.click(tdButton);
+    }
 
 
 }

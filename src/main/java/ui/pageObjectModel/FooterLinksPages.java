@@ -28,7 +28,7 @@ public class FooterLinksPages {
     public WebElement customerSupportLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(7) > a")
     public WebElement termsAndConditionsLink;
-    @FindBy(css = "#index > div > footer > div > div.row > div.firstFooterColumn > ul > li:nth-child(8) > a")
+    @FindBy(xpath = "//ul[@class='list-unstyled']//a[contains(text(),'MovingPedia')]")
     public WebElement movingPediaLink;
 
     //Usefull links
