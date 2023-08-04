@@ -96,6 +96,12 @@ public class SelectRandom {
         }
     }
 
+    //Method for random select from div in form
+    public void randomRadioSelectionFromForm(List<WebElement> radioButtons){
+        int randomIndex = random.nextInt(radioButtons.size());
+        radioButtons.get(randomIndex).click();
+    }
+
     //Save Image
     public void saveImage(List<WebElement> img){
 //        List<WebElement> img = driver.findElements(By.tagName("img"));

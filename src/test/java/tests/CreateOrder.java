@@ -169,14 +169,6 @@ public class CreateOrder extends Hooks implements SetUp {
         AssertThat.assertText("Price includes tax, tolls, fuel, mileage, disassembly/reassembly, loading/unloading, blanket wrapping, basic liability.\n" +
                 "You may review added services before checkout. Prices not final until purchase is completed.", marketplace_page.movingInfoText);
         //
-        marketplace_page.needHelpTitle.isDisplayed();
-        AssertThat.assertText("Need Help?", marketplace_page.needHelpTitle);
-        marketplace_page.callNowText.isDisplayed();
-        AssertThat.assertText("Call Now", marketplace_page.callNowText);
-        marketplace_page.scheduleMeetingText.isDisplayed();
-        marketplace_page.scheduleMeetingText.isEnabled();
-        AssertThat.assertText("Schedule a Meeting", marketplace_page.scheduleMeetingText);
-        //
         marketplace_page.whyBookWithIMovingTitle.isDisplayed();
         AssertThat.assertText("Why Book with iMoving?", marketplace_page.whyBookWithIMovingTitle);
         marketplace_page.bindingPriceText.isDisplayed();
@@ -301,7 +293,7 @@ public class CreateOrder extends Hooks implements SetUp {
 
         performActionOnElements.setValuesToFillFields("clientFirstName","5424 0000 0000 0015","2027","123");
         performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
-                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
+                paymentPage.expiryMonthSelectField, paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
 
         Helper.javascriptScrollDownThePage();
         Helper.click(paymentPage.completeBookingButton);

@@ -40,4 +40,20 @@ public class Cost_Calculating_Page {
     //Step 3
     @FindBy(xpath = "(//*[@id=\"step3\"]/h2)[1]")
     public WebElement chooseYourCarrierTitle;
+    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[4]/div/div/div[2]/input")
+    public WebElement chooseCarrier;
+    @FindBy(xpath = "(//*[@id=\"step3\"]/button)[1]")
+    public WebElement bookNowButton;
+    @FindBy(xpath = "//*[@id=\"step3\"]/a")
+    public WebElement leftArrowButton;
+    //Step 4 - Move Details
+    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[5]/h2")
+    public WebElement yourMoveDetailsTitle;
+    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[5]/div[3]/div[1]/label/p")
+    public WebElement textUnderdetails;
+    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[5]/div[3]/div[1]/label/i")
+    public WebElement checkboxOnText;
+    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[5]/button")
+    public WebElement confirmButton;
+
 }

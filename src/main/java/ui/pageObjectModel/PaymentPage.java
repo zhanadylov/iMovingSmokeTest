@@ -40,7 +40,7 @@ public class PaymentPage {
     @FindBy(xpath = "(//*[@id=\"login\"])[2]")
     public WebElement signInButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[1]/div[2]/div/section/div/h1")
+    @FindBy(xpath = "//h1[contains(text(),'Secure Booking')]")
     public WebElement secureBookingText;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[1]/label[2]/input")

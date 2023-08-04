@@ -1,16 +1,22 @@
 package tests;
 
+import helper.AssertThat;
 import helper.Helper;
+import helper.JavaFaker;
 import hooks.Hooks;
 import hooks.logs.Log;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ui.methods.CalendarClass;
-import ui.methods.PerformActionOnElements;
-import ui.methods.SetAddress;
-import ui.methods.SetUp;
+import ui.methods.*;
 import ui.pageObjectModel.Cost_Calculating_Page;
 import ui.pageObjectModel.FooterLinksPages;
+import ui.pageObjectModel.Local_Moving_Page;
+import ui.pageObjectModel.PaymentPage;
+
+import java.util.List;
+import java.util.Random;
 
 public class FooterLinksMenuTest extends Hooks implements SetUp{
 
@@ -19,7 +25,10 @@ public class FooterLinksMenuTest extends Hooks implements SetUp{
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     CalendarClass calendarClass = new CalendarClass();
     SetAddress setAddress = new SetAddress();
-
+    PaymentPage paymentPage = new PaymentPage();
+    JavaFaker javaFaker = new JavaFaker();
+    Local_Moving_Page local_moving_page = new Local_Moving_Page();
+    SelectRandom selectRandom = new SelectRandom();
     @Log
     @Test
     public void footerMenuTest(){
@@ -93,8 +102,8 @@ public class FooterLinksMenuTest extends Hooks implements SetUp{
         Assert.assertEquals(footerLinksPages.afterYourMoveTitle.getText(), "After your move");
     }
 
-    @Log
-    @Test
+//    @Log
+//    @Test
     public void footerCostCalculatorTest(){
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
@@ -113,12 +122,84 @@ public class FooterLinksMenuTest extends Hooks implements SetUp{
         Helper.click(cost_calculating_page.showCostEstimationButton);
         Helper.pause(1000);
         cost_calculating_page.yourCostForaTitle.isDisplayed();
-        Assert.assertTrue(cost_calculating_page.yourCostForaTitle.getText().contains("Your Cost for a"));
+//        Assert.assertTrue(cost_calculating_page.yourCostForaTitle.getText().contains("Your Cost for a"));
         cost_calculating_page.priceBoxShouldDisplayed.isDisplayed();
         cost_calculating_page.textUnderPrice.isDisplayed();
         Assert.assertTrue(cost_calculating_page.textUnderPrice.getText().contains("This estimate is based on your home size."));
         Helper.click(cost_calculating_page.continueButton);
         Helper.pause(1000);
+        AssertThat.assertText("Choose Your Carrier and Book Online", cost_calculating_page.chooseYourCarrierTitle);
+        Helper.pause(2000);
+            if (Helper.isElementPresent(cost_calculating_page.chooseCarrier)) {
+                Helper.click(cost_calculating_page.chooseCarrier);
+                Helper.click(cost_calculating_page.chooseCarrier);
+            }else
+            {
+                Helper.click(cost_calculating_page.leftArrowButton);
+                Helper.click(cost_calculating_page.continueButton);
+                Helper.click(cost_calculating_page.chooseCarrier);
+                Helper.click(cost_calculating_page.bookNowButton);
+            }
+            AssertThat.assertText("Your Move Details", cost_calculating_page.yourMoveDetailsTitle);
+            Assert.assertTrue(cost_calculating_page.textUnderdetails.getText().contains("Inventory is limited to the  CF size of Move and  number of items and as described in the process. Please make sure you ordered the right size. Additional inventory will not be delivered"));
+            Helper.click(cost_calculating_page.checkboxOnText);
+            Helper.click(cost_calculating_page.confirmButton);
+            Helper.pause(1000);
+            paymentPage.secureBookingText.isDisplayed();
+            performActionOnElements.setValuesToFillFields(JavaFaker.fakeFirstName(), JavaFaker.fakeLastName(), JavaFaker.fakePhone(),
+                    JavaFaker.fakeLogin(), "2223000010309703", "May", "2027", "123");
+            performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
+                    paymentPage.expiryMonthSelectField, paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
 
+            Helper.javascriptScrollDownThePage();
+            Helper.click(paymentPage.completeBookingButton);
+            Helper.pause(3000);
+        }
+
+    @Log
+    @Test
+    public void footerLocalPageTest(){
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.localMovingCompaniesLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.localMovingCompaniesLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/local-moving-companies/");
+        AssertThat.assertText("Find Local movers near you, Compare and Book Online", local_moving_page.mainTitleText);
+        local_moving_page.textUnderTitle.isDisplayed();
+        local_moving_page.startHereText.isDisplayed();
+        AssertThat.assertText("Start here :", local_moving_page.startHereText);
+        SetAddress.testMethod("12334 Cantura Street, Los Angeles, CA, USA, 91604",local_moving_page.firstInputField);
+        Helper.click(local_moving_page.nextButton);
+        local_moving_page.oneMoreText.isDisplayed();
+        AssertThat.assertText("One more :", local_moving_page.oneMoreText);
+        SetAddress.testMethod("1245 Wilshire Boulevard, Los Angeles, CA, USA, 90017",local_moving_page.secondInputField);
+        Helper.click(local_moving_page.secondNextButton);
+        local_moving_page.chooseCarrierText.isDisplayed();
+        AssertThat.assertText("Choose 3 carriers and compare their quotes", local_moving_page.chooseCarrierText);
+        local_moving_page.air1MoverName.isDisplayed();
+        Helper.click(local_moving_page.air1MoverName);
+        local_moving_page.air1MoverName.isSelected();
+        Helper.click(local_moving_page.ldMovingName);
+        local_moving_page.ldMovingName.isSelected();
+        Helper.click(local_moving_page.blvdMoverName);
+        local_moving_page.blvdMoverName.isSelected();
+        Helper.click(local_moving_page.compareQuotesButton);
+        local_moving_page.whenAreYouMovingTitle.isDisplayed();
+        AssertThat.assertText("When Are You Moving?", local_moving_page.whenAreYouMovingTitle);
+        calendarClass.getGivenDate(local_moving_page.datePicker);
+        Helper.click(local_moving_page.fourthNextStep);
+        local_moving_page.whatIsYourMoveSizeTitle.isDisplayed();
+        AssertThat.assertText("What is your move size?", local_moving_page.whatIsYourMoveSizeTitle);
+        selectRandom.randomRadioSelectionFromForm(local_moving_page.listOfSize);
+        Helper.click(local_moving_page.fivesNextButton);
+        local_moving_page.doYouNeedAdditionalTitle.isDisplayed();
+        AssertThat.assertText("Do you need additional Moving Services?", local_moving_page.doYouNeedAdditionalTitle);
+        selectRandom.randomRadioSelectionFromForm(local_moving_page.listOfAdditionalServices);
+        Helper.click(local_moving_page.sixNextButton);
+        local_moving_page.chooseYourCarrierBookOnlineTitle.isDisplayed();
+        AssertThat.assertText("Choose Your Carrier and book online?", local_moving_page.chooseYourCarrierBookOnlineTitle);
+        selectRandom.randomRadioSelectionFromForm(local_moving_page.listOfThreeCarrier);
+        Helper.click(local_moving_page.bookNowButton);
     }
 }

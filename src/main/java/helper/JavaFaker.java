@@ -25,6 +25,7 @@ public class JavaFaker {
         public static String fakeLogin(){
                 return faker.name().username();
         }
+        public static String fakePhone(){ return faker.number().digits(10);}
 
 
         private static final String[] STREET_NAMES = {"Main St.", "Oak St.", "Maple Ave.", "Elm St.", "Cedar Rd.",
