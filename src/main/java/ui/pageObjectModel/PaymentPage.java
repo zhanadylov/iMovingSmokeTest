@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class PaymentPage {
     public PaymentPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -105,7 +107,10 @@ public class PaymentPage {
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[1]/ul/li[2]/a")
     public WebElement splitPaymentWithASecondCardButton;
-
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[2]/label[2]/span[1]")
+    public WebElement firstCardPayment;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[8]/div[1]/label/span[1]")
+    public WebElement secondCardPayment;
     @FindBy(xpath = "//*[@id=\"ccCardNumber2\"]")
     public WebElement secondCardInputField;
 
@@ -122,12 +127,13 @@ public class PaymentPage {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[11]/div[1]/div/input")
     public WebElement secondBillingAddressCheckBox;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div/div[2]/div[1]/form[1]/div[4]/fieldset[1]/div[2]/span/input")
-    public WebElement amountOfSplitFirst;
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[8]/div[1]/span/input")
+    public WebElement amountOfSplitSecond;
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[1]/label[2]/input")
     public WebElement visaDebitCardCheckBox;
 
+//    @FindBy(xpath = "//input[@type='radio' and @value="0"]")
     @FindBy(xpath = "(//input[@type='radio' and following-sibling::span[@class='blueText' and text()='New payment card']])[1]")
     public WebElement newPaymentCard;
 

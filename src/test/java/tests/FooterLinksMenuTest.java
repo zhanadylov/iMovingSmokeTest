@@ -198,8 +198,25 @@ public class FooterLinksMenuTest extends Hooks implements SetUp{
         selectRandom.randomRadioSelectionFromForm(local_moving_page.listOfAdditionalServices);
         Helper.click(local_moving_page.sixNextButton);
         local_moving_page.chooseYourCarrierBookOnlineTitle.isDisplayed();
-        AssertThat.assertText("Choose Your Carrier and book online?", local_moving_page.chooseYourCarrierBookOnlineTitle);
+        AssertThat.assertText("Choose Your Carrier and book online", local_moving_page.chooseYourCarrierBookOnlineTitle);
         selectRandom.randomRadioSelectionFromForm(local_moving_page.listOfThreeCarrier);
         Helper.click(local_moving_page.bookNowButton);
+        performActionOnElements.setValuesToFillFields("qatestimoving@gmail.com","QATest-2022");
+        performActionOnElements.fillCCFieldsElementTest(local_moving_page.signInButton, local_moving_page.loginEmailField, local_moving_page.loginPasswordField, local_moving_page.loginButton);
+        local_moving_page.userProfile.isDisplayed();
+        Helper.click(local_moving_page.checkboxUnderDetails);
+        Helper.click(local_moving_page.confirmPayButton);
+        Helper.waitForElementVisibilityOf(paymentPage.splitPaymentWithASecondCardButton);
+        Helper.click(paymentPage.splitPaymentWithASecondCardButton);
+        Helper.javascriptScrollIntoView(paymentPage.firstCardPayment);
+        Helper.click(paymentPage.firstCardPayment);
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(paymentPage.secondCardPayment);
+        Helper.click(paymentPage.secondCardPayment);
+        double dividableSum = Double.parseDouble(paymentPage.totalPrice.getText());
+        Helper.sendKeys(paymentPage.amountOfSplitSecond, String.valueOf(Helper.divideSum(dividableSum)));
+        Helper.javascriptScrollIntoView(paymentPage.completeBookingButton);
+        Helper.click(paymentPage.completeBookingButton);
+        Helper.pause(3000);
     }
 }

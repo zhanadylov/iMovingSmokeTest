@@ -61,7 +61,8 @@ public class Local_Moving_Page {
     //Six step
     @FindBy(css = "#moving-widget-screen4 > div > div.modal-body > div > h2")
     public WebElement doYouNeedAdditionalTitle;
-    @FindBy(xpath = "//div[@class='row cp-checkbox-list']//span[@class='cp-checkbox-item-checkmark']")
+//    @FindBy(xpath = "//div[@class='row cp-checkbox-list']//span[@class='cp-checkbox-item-checkmark']")
+    @FindBy(xpath = "(//span[@class='cp-checkbox-item-checkmark'])[position()<=5]")
     public List<WebElement> listOfAdditionalServices;
     @FindBy(xpath = "//button[@id='btnScreen4']")
     public WebElement sixNextButton;
@@ -73,4 +74,26 @@ public class Local_Moving_Page {
     public List<WebElement> listOfThreeCarrier;
     @FindBy(xpath = "//button[@type='button' and contains(text(),'Book now')]")
     public WebElement bookNowButton;
+
+    //Step Eight
+    @FindBy(css = "#moving-widget-screen6 > div > div > div > h2")
+    public WebElement yourMoveDetailsTitle;
+    @FindBy(xpath = "//*[@id=\"full_packing\"]/span")
+    public WebElement addFullPackingCheckbox;
+    @FindBy(xpath = "//*[@id=\"i_agree\"]/span[1]")
+    public WebElement checkboxUnderDetails;
+    @FindBy(xpath = "//*[@id=\"moving-widget-screen6\"]/div/div/div/div/div[4]/button")
+    public WebElement confirmPayButton;
+
+    //SignIN
+    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/button")
+    public WebElement signInButton;
+    @FindBy(xpath = "(//input[@id='loginModel_Username'])[2]")
+    public WebElement loginEmailField;
+    @FindBy(xpath = "(//input[@id='loginModel_Password'])[2]")
+    public WebElement loginPasswordField;
+    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[2]/form[1]/div/div[5]/button")
+    public WebElement loginButton;
+    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[1]/li/ul/li/a")
+    public WebElement userProfile;
 }

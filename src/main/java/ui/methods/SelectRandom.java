@@ -3,6 +3,7 @@ package ui.methods;
 import helper.Helper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -14,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static ui.methods.SetUp.driver;
 
 
 public class SelectRandom {
@@ -97,9 +100,21 @@ public class SelectRandom {
     }
 
     //Method for random select from div in form
-    public void randomRadioSelectionFromForm(List<WebElement> radioButtons){
+//    public void randomRadioSelectionFromForm(List<WebElement> radioButtons){
+//        int randomIndex = random.nextInt(radioButtons.size());
+//        radioButtons.get(randomIndex).click();
+//    }
+
+    public void randomRadioSelectionFromForm(List<WebElement> radioButtons) {
+        Random random = new Random();
         int randomIndex = random.nextInt(radioButtons.size());
-        radioButtons.get(randomIndex).click();
+        WebElement elementToClick = radioButtons.get(randomIndex);
+
+        // Scroll the element into view if necessary
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elementToClick);
+
+        // Use JavaScript click
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", elementToClick);
     }
 
     //Save Image
