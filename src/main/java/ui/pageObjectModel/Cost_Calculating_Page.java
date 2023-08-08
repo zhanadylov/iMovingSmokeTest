@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class Cost_Calculating_Page {
     public Cost_Calculating_Page() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -22,6 +24,10 @@ public class Cost_Calculating_Page {
 //    @FindBy(xpath = "(//*[@id=\"collapseMoveSize\"]/div[3]/label)[1]")
     @FindBy(xpath = "//label[@for='calcDesktop-2Bedroom']/i")
     public WebElement moveSizeOption;
+    @FindBy(xpath = "(//i[@class='icon-circle'])[position()<=5]")
+    public List<WebElement> moveSizeOptions;
+    @FindBy(xpath = "(//i[@class='icon-check'])[position()<=5]")
+    public List<WebElement> additionalServicesOptions;
     @FindBy(xpath = "(//*[@id=\"step1\"]/div[3]/div[2]/label)[1]")
     public WebElement additionalServicesElevator;
     @FindBy(xpath = "(//*[@id=\"step1\"]/div[3]/div[4]/label)[1]")
@@ -40,8 +46,11 @@ public class Cost_Calculating_Page {
     //Step 3
     @FindBy(xpath = "(//*[@id=\"step3\"]/h2)[1]")
     public WebElement chooseYourCarrierTitle;
-    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[4]/div/div/div[2]/input")
+//    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[4]/div/div/div[2]/input")
+    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[4]/div/div/div[2]/label/i")
     public WebElement chooseCarrier;
+    @FindBy(xpath = "(//div[contains(@class, 'col-lg-4 col-md-4 col-sm-4 col-xs-12')]//i[@class='icon-circle'])[position()<=3]")
+    public List<WebElement> listOfCarriers;
     @FindBy(xpath = "(//*[@id=\"step3\"]/button)[1]")
     public WebElement bookNowButton;
     @FindBy(xpath = "//*[@id=\"step3\"]/a")

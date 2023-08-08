@@ -143,4 +143,75 @@ public class FooterLinksPages {
     @FindBy(css = "#input-search > div > input")
     public WebElement inputSearchField;
 
+    //Moving Checklist
+    @FindBy(css = "#index > main > div > section.sectionHero > div > div > div.col-lg-8.col-md-8.col-sm-7.col-xs-12 > h1")
+    public WebElement movingChecklistTitle;
+    @FindBy(css = "#index > main > div > section.sectionHero > div > div > div.col-lg-8.col-md-8.col-sm-7.col-xs-12 > p")
+    public WebElement textUnderTitle;
+    @FindBy(css = "#btnDownloadCL")
+    public WebElement downloadChecklistButton;
+    @FindBy(css = "#btnCreateCL")
+    public WebElement customizedChecklistButton;
+    @FindBy(css = "#index > main > div > section:nth-child(2) > div > div > div > h3")
+    public WebElement checklistOf2021;
+    @FindBy(css = "#\\36 Weeks > div:nth-child(1) > div > div > h3")
+    public WebElement checklistForSixWeek;
+    @FindBy(css = "#\\31 Day > div:nth-child(1) > div > div > h3")
+    public WebElement dayBeforeMove;
+
+    //Moving Interstate
+    @FindBy(css = "#index > div > main > div > section.header-section.discount-header > figure > div.main-title")
+    public WebElement interstateTitle;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[1]/div/button")
+    public WebElement moveOptionSelector;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[2]/div/button")
+    public WebElement moveSizeSelector;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[3]/button")
+    public WebElement compareQuotesButton;
+    @FindBy(css = "#ppElement1 > h1")
+    public WebElement bestInterstateTitle;
+    @FindBy(css = "#ppElement6 > h2")
+    public WebElement servicesOfferedByInterstateTitle;
+    @FindBy(css = "#ppElement8 > h2")
+    public WebElement faqTitle;
+
+    //Moving Cross Country
+    @FindBy(css = "#index > div > main > div > section.header-section.discount-header > figure > div.main-title")
+    public WebElement crossCountryMoving;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[1]/div/button")
+    public WebElement moveOptionSelectorCross;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[2]/div/button")
+    public WebElement moveSizeSelectorCross;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[3]/button")
+    public WebElement compareQuotesButtonCross;
+    @FindBy(css = "#ppElement1 > h1")
+    public WebElement ourCrossCountryTitle;
+    @FindBy(css = "#ppElement4 > h2")
+    public WebElement obtainMovingEstimateTitle;
+    @FindBy(css = "#ppElement7 > h2")
+    public WebElement faqTitleCross;
+
+    //Moving boxes
+    @FindBy(css = "#index > div > main > div > section.header-section.discount-header > figure > div.main-title")
+    public WebElement boxesMoving;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[1]/div/button")
+    public WebElement moveOptionSelectorBoxes;
+    @FindBy(xpath = "(//*[@id=\"roomsForm\"]/div[2]/div/button)[1]")
+    public WebElement moveSizeSelectorBoxes;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[3]/button")
+    public WebElement compareQuotesButtonBoxes;
+    @FindBy(css = "#ppElement1 > h1")
+    public WebElement boxesUpcomingTitle;
+
+    //Moving Long Distance
+    @FindBy(css = "#index > div > main > div > section.header-section.discount-header > figure > div.main-title")
+    public WebElement longDistanceTitle;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[1]/div/button")
+    public WebElement moveOptionSelectorLong;
+    @FindBy(xpath = "(//*[@id=\"roomsForm\"]/div[2]/div/button)[1]")
+    public WebElement moveSizeSelectorLong;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[3]/button")
+    public WebElement compareQuotesButtonLong;
+    @FindBy(css = "#ppElement1 > h1")
+    public WebElement bestLongDistanceTitle;
 }
