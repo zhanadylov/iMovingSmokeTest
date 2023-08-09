@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class FooterLinksPages {
     public FooterLinksPages() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -214,4 +216,114 @@ public class FooterLinksPages {
     public WebElement compareQuotesButtonLong;
     @FindBy(css = "#ppElement1 > h1")
     public WebElement bestLongDistanceTitle;
+
+    //Moving Labor Companies
+    @FindBy(css = "#index > div > main > div > section.headerSection > div.container-fluid > div > div.col-lg-7.col-xs-12 > h1")
+    public WebElement laborTitle;
+    @FindBy(css = "#index > div > main > div > section.headerSection > div.container-fluid > div > div.col-lg-7.col-xs-12 > div")
+    public WebElement textUnderTitleLabor;
+    @FindBy(xpath = "(//*[@id=\"movingFrom\"])[1]")
+    public WebElement moveAddressLabor;
+    @FindBy(xpath = "(//*[@id=\"sendPhonePhone\"])[1]")
+    public WebElement moveDatePickerLabor;
+    @FindBy(xpath = "//*[@id=\"tab_2\"]/div[4]/button")
+    public WebElement getLaborButtonLabor;
+    @FindBy(xpath = "//*[@id=\"index\"]/div/main/div/section[2]/div[2]/div/div[2]/div/div[1]/ul/li[1]/a")
+    public WebElement movingButtonOnLabor;
+    @FindBy(xpath = "//*[@id=\"tab_1\"]/div/h4")
+    public WebElement whatAreYouMovingTitle;
+    @FindBy(xpath = "//*[@id=\"roomsForm3\"]/div[1]/div[1]")
+    public WebElement moveHouseTypeLabor;
+    @FindBy(xpath = "//*[@id=\"roomsForm3\"]/div[1]/div[2]")
+    public WebElement moveApartmentTypeLabor;
+    @FindBy(xpath = "//*[@id=\"roomsForm3\"]/div[1]/div[3]")
+    public WebElement moveStorageTypeLabor;
+    @FindBy(xpath = "//*[@id=\"roomsForm3\"]/div[2]/div/button")
+    public WebElement moveOptionLaborLabor;
+    @FindBy(xpath = "//*[@id=\"roomsForm3\"]/div[3]/button")
+    public WebElement compareQuotesButtonLabor;
+
+    //California in state
+    @FindBy(css = "#index > div > main > section > figure > div")
+    public WebElement californiaTitle;
+    @FindBy(css = "#index > div > main > div.row.container-fluid.rteSection.stateMovers > div:nth-child(1) > section > div > div.branchesData.TopMovers > div > div > div.TopMoversTitle > div > div > a")
+    public WebElement topCarrierTitle;
+    @FindBy(css = "#index > div > main > div.row.container-fluid.rteSection.stateMovers > div.col-sm-12.col-lg-4.col-xs-12 > div > div.compare-offers-container > h2")
+    public WebElement compareOffersTitle;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[3]/div[2]/div/div[1]/form/ul/li[2]/a")
+    public WebElement moveHouseTypeCal;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[3]/div[2]/div/div[1]/form/ul/li[3]/a")
+    public WebElement moveApartmentTypeCal;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[3]/div[2]/div/div[1]/form/ul/li[4]/a")
+    public WebElement moveStorageTypeCal;
+    @FindBy(xpath = "//*[@id=\"roomsFormCompareOffers\"]/div/button")
+    public WebElement getPreciseButtonCal;
+    @FindBy(xpath = "//*[@id=\"index\"]/div/main/div[3]/div[3]/div[1]/table/tbody/tr[1]/td[2]/a/span")
+    public WebElement sanFranciscoLinkFromList;
+    @FindBy(css = "#index > div > main > div.cityMovers.mover-page-bg\\.jpg > section.header-section.discount-header > figure > div.main-title")
+    public WebElement sanFranciscoTitle;
+    @FindBy(css = "#index > div > main > div.cityMovers.mover-page-bg\\.jpg > div.container-fluid.row > section > div:nth-child(2) > div.total-title > h1")
+    public WebElement totalListTitleSanFrancisco;
+
+    //New York in state
+    @FindBy(css = "#index > div > main > section > figure > div")
+    public WebElement newYorkTitle;
+    @FindBy(css = "#index > div > main > div.row.container-fluid.rteSection.stateMovers > div:nth-child(1) > section > div > div.branchesData.TopMovers > div > div > div.TopMoversTitle > div > div > a")
+    public WebElement topCarrierTitleNY;
+    @FindBy(css = "#index > div > main > div.row.container-fluid.rteSection.stateMovers > div.col-sm-12.col-lg-4.col-xs-12 > div > div.compare-offers-container > h2")
+    public WebElement compareOffersTitleNY;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[3]/div[2]/div/div[1]/form/ul/li[2]/a")
+    public WebElement moveHouseTypeNY;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[3]/div[2]/div/div[1]/form/ul/li[3]/a")
+    public WebElement moveApartmentTypeNY;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[3]/div[2]/div/div[1]/form/ul/li[4]/a")
+    public WebElement moveStorageTypeNY;
+    @FindBy(xpath = "//*[@id=\"roomsFormCompareOffers\"]/div/button")
+    public WebElement getPreciseButtonNY;
+    @FindBy(xpath = "//*[@id=\"index\"]/div/main/div[3]/div[3]/div[1]/table/tbody/tr[1]/td[1]/a/span")
+    public WebElement brooklynLinkFromList;
+    @FindBy(css = "#index > div > main > div.cityMovers.mover-page-bg\\.jpg > section.header-section.discount-header > figure > div.main-title")
+    public WebElement brooklynTitle;
+    @FindBy(css = "#index > div > main > div.cityMovers.mover-page-bg\\.jpg > div.container-fluid.row > section > div:nth-child(2) > div.total-title > h1")
+    public WebElement totalListTitleBrooklyn;
+
+    //Miami city
+    @FindBy(css = "#index > div > main > div.cityMovers.mover-page-bg\\.jpg > section.header-section.discount-header > figure > div.main-title")
+    public WebElement miamiTitle;
+    @FindBy(css = "#index > div > main > div.cityMovers.mover-page-bg\\.jpg > div.container-fluid.row > section > div:nth-child(2) > div.total-title > h1")
+    public WebElement totalCarrierMiami;
+    @FindBy(xpath = "//*[@id=\"houseTypeSelectList\"]")
+    public WebElement moveOptionMiami;
+    @FindBy(xpath = "//*[@id=\"hp-nav-select-house\"]")
+    public WebElement moveSizeMiami;
+    @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[3]/button")
+    public WebElement compareQuotesButtonMiami;
+    @FindBy(xpath = "//*[@id=\"index\"]/div/main/div[2]/div[1]/section/div[2]/div[2]/div/div/div[2]/a")
+    public WebElement moreDetailsButton;
+    @FindBy(css = "#index > div > main > div > section.header-section.our-movers-header.bg > figure > div > h1")
+    public WebElement moverNameText;
+    @FindBy(xpath = "//*[@id=\"index\"]/div/main/div/section[1]/figure/div/ul")
+    public WebElement moversInfo;
+    @FindBy(css = "#imMovingTabs > li.our-moversr-tab.active > a > h4")
+    public WebElement ratingAndReview;
+    @FindBy(xpath = "//*[@id=\"imMovingTabs\"]/li[2]/a/h4")
+    public WebElement aboutUs;
+
+    //See More Movers
+    @FindBy(css = "#our-movers-title")
+    public WebElement ourCarriersTitle;
+    @FindBy(css = "#mover-brands > div.container-fluid > div.total-title > h1")
+    public WebElement totalCarrierSeeMore;
+    @FindBy(css = "div.mover-item:nth-child(-n+8) a")
+    public List<WebElement> carrierlist;
+    @FindBy(css = "#index > div > main > section.our-services-container > div > h2")
+    public WebElement ourMoversServicesTitle;
+    @FindBy(css = "#aboutUsTabs > li.about-tab.active > a")
+    public WebElement servicesTab;
+    @FindBy(css = "#aboutUsTabs > li:nth-child(2) > a")
+    public WebElement HandlingTab;
+    @FindBy(css = "#aboutUsTabs > li:nth-child(3) > a")
+    public WebElement specialServicesTab;
+    @FindBy(css = "#aboutUsTabs > li:nth-child(4) > a")
+    public WebElement storageTab;
 }

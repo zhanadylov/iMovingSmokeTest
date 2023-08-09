@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="tests">
+<!--    <test verbose="2" preserve-order="true" name="C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest">-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="DataBaseConnection.ConnectDataBase">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="updateDate"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="oneDayEarlier"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="changeCaptureDate"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="apiConnection.CC_Authorization_Steps">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="query_sending"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="response_status_is"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="apiConnection.CC_Capture_Steps">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="query_sended"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="status_code_is_returned_for_response"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="send_Email"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="apiConnection.SendEmailQuery">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="query_sended"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="status_code_is_returned_for_response"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="tests.CreateOrder">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="chooseMoveOption"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="moving_Confirm_Page"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="payment_Page"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="tests.SignInTest">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="loginWithValidData"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="SignUp"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="forgotPassword"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="tests.backOfficeTest.QaboOptionsTest">&ndash;&gt;-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="loginToQaBO"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="checkPriceInBO"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;            </class>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="tests.FooterLinksTest"/>&ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
     <test verbose="2" preserve-order="true" name="C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest">
         <classes>
-<!--            <class name="DataBaseConnection.ConnectDataBase">-->
-<!--                <methods>-->
-<!--                    <include name="updateDate"/>-->
-<!--                    <include name="oneDayEarlier"/>-->
-<!--                    <include name="changeCaptureDate"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="apiConnection.CC_Authorization_Steps">-->
-<!--                <methods>-->
-<!--                    <include name="query_sending"/>-->
-<!--                    <include name="response_status_is"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="apiConnection.CC_Capture_Steps">-->
-<!--                <methods>-->
-<!--                    <include name="query_sended"/>-->
-<!--                    <include name="status_code_is_returned_for_response"/>-->
-<!--                    <include name="send_Email"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="apiConnection.SendEmailQuery">-->
-<!--                <methods>-->
-<!--                    <include name="query_sended"/>-->
-<!--                    <include name="status_code_is_returned_for_response"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-            <class name="tests.CreateOrder">
-                <methods>
-                    <include name="chooseMoveOption"/>
-                    <include name="moving_Confirm_Page"/>
-                    <include name="payment_Page"/>
-                </methods>
-            </class>
-<!--            <class name="tests.SignInTest">-->
-<!--                <methods>-->
-<!--                    <include name="loginWithValidData"/>-->
-<!--                    <include name="SignUp"/>-->
-<!--                    <include name="forgotPassword"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-            <class name="tests.backOfficeTest.QaboOptionsTest">
-                <methods>
-                    <include name="loginToQaBO"/>
-                    <include name="checkPriceInBO"/>
-                </methods>
-            </class>
+            <class name="tests.backOfficeTest.QaboSideBarTest"/>
         </classes>
     </test>
 </suite>

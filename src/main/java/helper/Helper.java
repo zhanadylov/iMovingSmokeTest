@@ -413,4 +413,7 @@ public class Helper {
             return false;
         }
     }
+    public static String getAttribute(WebElement element, String attributeValue){
+        return element.getAttribute(attributeValue);
+    }
 }

@@ -35,7 +35,7 @@ public class SelectRandom {
         select.selectByIndex(randomOptionIndex);
         list.add(randomOptionText);
 
-        if (list.contains("Move From") || list.contains("Move Size")) {
+        if (list.contains("What are You moving?") || list.contains("Move Size")) {
             list.remove(randomOptionText); // remove the current option from the list
             selectRandomOptionFromDropDown(element); // call the method again
         }

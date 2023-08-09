@@ -43,10 +43,45 @@ public class QaboDashBoardPage {
     @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(10) > a")
     public WebElement reviewLabelInSideBar;
 
-    @FindBy(xpath = "")
-    public WebElement passwordInputFieldBo;
+    //Pricing Tools
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(11) > a")
+    public WebElement pricingToolsSideBar;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(1) > a")
+    public WebElement discountsPricingTool;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(2) > a")
+    public WebElement feesPricingTool;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(3) > a")
+    public WebElement flexibilityPricingTool;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(4) > a")
+    public WebElement deliveryPricingTool;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(5) > a")
+    public WebElement defaultPricingTool;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(6) > a")
+    public WebElement servicePricingTool;
 
-    @FindBy(css = "")
-    public WebElement signInButtonBo;
+    //Tools
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(12) > a")
+    public WebElement toolsSideBar;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(1) > a")
+    public WebElement carrierSearchTools;
 
+    //Lists
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(13) > a")
+    public WebElement listsSideBar;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li.treeview > a")
+    public WebElement merchantLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(2) > a")
+    public WebElement feeTypesLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(3) > a")
+    public WebElement truckTypesLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(4) > a")
+    public WebElement licensesTypesLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(5) > a")
+    public WebElement insuranceTypesLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(6) > a")
+    public WebElement serviceTypesLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(7) > a")
+    public WebElement orderCancellingTypesLists;
+    @FindBy(css = "body > div.wrapper > aside > section > ul > li.treeview.active > ul > li:nth-child(8) > a")
+    public WebElement specialTypesLists;
 }

@@ -5,8 +5,6 @@ import helper.Helper;
 import helper.JavaFaker;
 import hooks.Hooks;
 import hooks.logs.Log;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.methods.*;
@@ -15,10 +13,8 @@ import ui.pageObjectModel.FooterLinksPages;
 import ui.pageObjectModel.Local_Moving_Page;
 import ui.pageObjectModel.PaymentPage;
 
-import java.util.List;
-import java.util.Random;
 
-public class FooterLinksMenuTest extends Hooks implements SetUp{
+public class FooterLinksTest extends Hooks implements SetUp{
 
     FooterLinksPages footerLinksPages = new FooterLinksPages();
     Cost_Calculating_Page cost_calculating_page = new Cost_Calculating_Page();
@@ -339,4 +335,166 @@ public class FooterLinksMenuTest extends Hooks implements SetUp{
         footerLinksPages.bestLongDistanceTitle.isDisplayed();
     }
 
+    @Log
+    @Test
+    public void footerLaborPage(){
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.bestMovingLaborCompaniesLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.bestMovingLaborCompaniesLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/best-moving-labor-companies/");
+        footerLinksPages.laborTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.laborTitle.getText(), "Best Moving Labor Companies");
+        footerLinksPages.textUnderTitleLabor.isDisplayed();
+        footerLinksPages.moveAddressLabor.isDisplayed();
+        footerLinksPages.moveAddressLabor.isEnabled();
+        footerLinksPages.moveDatePickerLabor.isDisplayed();
+        footerLinksPages.moveDatePickerLabor.isEnabled();
+        footerLinksPages.getLaborButtonLabor.isDisplayed();
+        footerLinksPages.getLaborButtonLabor.isEnabled();
+        footerLinksPages.movingButtonOnLabor.isEnabled();
+        Helper.click(footerLinksPages.movingButtonOnLabor);
+        footerLinksPages.whatAreYouMovingTitle.isDisplayed();
+        footerLinksPages.moveHouseTypeLabor.isDisplayed();
+        footerLinksPages.moveHouseTypeLabor.isEnabled();
+        footerLinksPages.moveApartmentTypeLabor.isDisplayed();
+        footerLinksPages.moveApartmentTypeLabor.isEnabled();
+        footerLinksPages.moveStorageTypeLabor.isDisplayed();
+        footerLinksPages.moveStorageTypeLabor.isEnabled();
+        Helper.click(footerLinksPages.moveStorageTypeLabor);
+        footerLinksPages.moveOptionLaborLabor.isDisplayed();
+        footerLinksPages.moveOptionLaborLabor.isEnabled();
+        footerLinksPages.compareQuotesButtonLabor.isEnabled();
+        footerLinksPages.compareQuotesButtonLabor.isEnabled();
+    }
+
+    @Log
+    @Test
+    public void footerCaliforniaStatePage(){
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.moversInCaliforniaLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.moversInCaliforniaLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/california-movers/");
+        footerLinksPages.californiaTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.californiaTitle.getText(), "California carriers");
+        footerLinksPages.topCarrierTitle.isDisplayed();
+        footerLinksPages.topCarrierTitle.isEnabled();
+        footerLinksPages.compareOffersTitle.isDisplayed();
+        footerLinksPages.moveHouseTypeCal.isDisplayed();
+        footerLinksPages.moveHouseTypeCal.isEnabled();
+        footerLinksPages.moveApartmentTypeCal.isDisplayed();
+        footerLinksPages.moveApartmentTypeCal.isEnabled();
+        Helper.click(footerLinksPages.moveApartmentTypeCal);
+        footerLinksPages.moveStorageTypeCal.isDisplayed();
+        footerLinksPages.moveStorageTypeCal.isEnabled();
+        footerLinksPages.getPreciseButtonCal.isDisplayed();
+        footerLinksPages.getPreciseButtonCal.isEnabled();
+        Helper.javascriptScrollIntoView(footerLinksPages.sanFranciscoLinkFromList);
+        footerLinksPages.sanFranciscoLinkFromList.isDisplayed();
+        Helper.click(footerLinksPages.sanFranciscoLinkFromList);
+        footerLinksPages.sanFranciscoTitle.isDisplayed();
+        footerLinksPages.totalListTitleSanFrancisco.isDisplayed();
+    }
+
+    @Log
+    @Test
+    public void footerNewYorkStatePage(){
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.newYorkStateMoversLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.newYorkStateMoversLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/new-york-movers/");
+        footerLinksPages.newYorkTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.newYorkTitle.getText(), "New York carriers");
+        footerLinksPages.topCarrierTitleNY.isDisplayed();
+        footerLinksPages.topCarrierTitleNY.isEnabled();
+        footerLinksPages.compareOffersTitleNY.isDisplayed();
+        footerLinksPages.moveHouseTypeNY.isDisplayed();
+        footerLinksPages.moveHouseTypeNY.isEnabled();
+        footerLinksPages.moveApartmentTypeNY.isDisplayed();
+        footerLinksPages.moveApartmentTypeNY.isEnabled();
+        footerLinksPages.moveStorageTypeNY.isDisplayed();
+        footerLinksPages.moveStorageTypeNY.isEnabled();
+        Helper.click(footerLinksPages.moveStorageTypeNY);
+        footerLinksPages.getPreciseButtonNY.isDisplayed();
+        footerLinksPages.getPreciseButtonNY.isEnabled();
+        Helper.javascriptScrollIntoView(footerLinksPages.brooklynLinkFromList);
+        footerLinksPages.brooklynLinkFromList.isDisplayed();
+        Helper.click(footerLinksPages.brooklynLinkFromList);
+        footerLinksPages.brooklynTitle.isDisplayed();
+        footerLinksPages.totalListTitleBrooklyn.isDisplayed();
+    }
+
+    @Log
+    @Test
+    public void footerMiamiCityPage(){
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.miamiMovingCompaniesLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.miamiMovingCompaniesLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/florida-movers/miami/");
+        footerLinksPages.miamiTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.miamiTitle.getText(), "Miami movers");
+        footerLinksPages.compareQuotesButtonMiami.isDisplayed();
+        Helper.click(footerLinksPages.compareQuotesButtonMiami);
+        selectRandom.selectRandomOptionFromDropDown(footerLinksPages.moveOptionMiami);
+        selectRandom.selectRandomOptionFromDropDown(footerLinksPages.moveSizeMiami);
+        footerLinksPages.totalCarrierMiami.isDisplayed();
+        footerLinksPages.totalCarrierMiami.isEnabled();
+        Helper.javascriptScrollIntoView(footerLinksPages.moreDetailsButton);
+        Helper.click(footerLinksPages.moreDetailsButton);
+        footerLinksPages.moverNameText.isDisplayed();
+        footerLinksPages.moversInfo.isDisplayed();
+        footerLinksPages.ratingAndReview.isDisplayed();
+        footerLinksPages.ratingAndReview.isEnabled();
+        footerLinksPages.aboutUs.isDisplayed();
+        footerLinksPages.aboutUs.isEnabled();
+
+    }
+
+    @Log
+    @Test
+    public void footerSeeMoreMoversCityPage(){
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.seeMoreMoversLinkCity);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.seeMoreMoversLinkCity);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/moving-companies/");
+        footerLinksPages.ourCarriersTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.ourCarriersTitle.getText().substring(0,15), "Our Carriers at");
+        Helper.javascriptScrollIntoView(footerLinksPages.totalCarrierSeeMore);
+        footerLinksPages.totalCarrierSeeMore.isDisplayed();
+        Helper.javascriptScrollIntoView(footerLinksPages.ourMoversServicesTitle);
+        footerLinksPages.ourMoversServicesTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.ourMoversServicesTitle.getText(), "Our Movers Services and Handling");
+        footerLinksPages.servicesTab.isDisplayed();
+        footerLinksPages.servicesTab.isEnabled();
+        footerLinksPages.servicesTab.isSelected();
+        footerLinksPages.HandlingTab.isDisplayed();
+        footerLinksPages.HandlingTab.isEnabled();
+        Helper.click(footerLinksPages.HandlingTab);
+        footerLinksPages.HandlingTab.isSelected();
+        footerLinksPages.specialServicesTab.isDisplayed();
+        footerLinksPages.specialServicesTab.isEnabled();
+        Helper.click(footerLinksPages.specialServicesTab);
+        footerLinksPages.specialServicesTab.isSelected();
+        footerLinksPages.storageTab.isDisplayed();
+        footerLinksPages.storageTab.isEnabled();
+        Helper.click(footerLinksPages.storageTab);
+        footerLinksPages.storageTab.isSelected();
+        Helper.javascriptScrollIntoView(footerLinksPages.totalCarrierSeeMore);
+        selectRandom.randomRadioSelectionFromForm(footerLinksPages.carrierlist);
+        footerLinksPages.moverNameText.isDisplayed();
+        footerLinksPages.moversInfo.isDisplayed();
+        footerLinksPages.ratingAndReview.isDisplayed();
+        footerLinksPages.ratingAndReview.isEnabled();
+        footerLinksPages.aboutUs.isDisplayed();
+        footerLinksPages.aboutUs.isEnabled();
+    }
 }
