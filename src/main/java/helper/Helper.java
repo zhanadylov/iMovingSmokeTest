@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-import static ui.methods.SetUp.driver;
+//import static ui.methods.SetUp.driver;
 
 public class Helper {
     public static final String ANSI_RESET = "\u001B[0m";

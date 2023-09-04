@@ -93,11 +93,21 @@ public class Summary_Page {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/price-details/section/div/ul/li[7]/div/div/div")
     public WebElement totalPrice;
 
-    @FindBy(css = "body > div > div > div > div.shuffle-animation > div > price-details > section > div > ul")
+//    @FindBy(css = "body > div > div > div > div.shuffle-animation > div > price-details > section > div > ul")
+    @FindBy(css = "body > div > div > div > div.shuffle-animation > div > section > div > div > div.col-lg-8.col-md-8.col-xs-12.price-details-col > price-details > div.custom-card.custom-list-group")
     public WebElement ulListOfElements;
 
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/section/div/div/div[3]/div/div/div[1]/div[4]/button[1]")
+    public WebElement addPremiumPackingButton;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/section/div/div/div[3]/div/div/div[2]/div[4]/button[1]")
+    public WebElement addVipUnPackingButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/section/button")
+    @FindBy(xpath = "//button[@class='btn btn-blue' and contains(text(),'Go to checkout')]")
+    public WebElement goToCheckoutButton;
+    @FindBy(xpath = "//button[@class='btn btn-outline' and contains(text(),'Choose Packing Services')]")
+    public WebElement choosePackingServicesButton;
+
+    @FindBy(xpath = "//button[@class='btn blueBtn' and contains(text(),'Check Out')]")
     public WebElement checkOutButton;
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div/section/div")
     public WebElement freeCancelationText;

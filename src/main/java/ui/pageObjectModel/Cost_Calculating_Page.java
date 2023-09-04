@@ -49,7 +49,9 @@ public class Cost_Calculating_Page {
 //    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[4]/div/div/div[2]/input")
     @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[4]/div/div/div[2]/label/i")
     public WebElement chooseCarrier;
-    @FindBy(xpath = "(//div[contains(@class, 'col-lg-4 col-md-4 col-sm-4 col-xs-12')]//i[@class='icon-circle'])[position()<=3]")
+//    @FindBy(xpath = "(//div[contains(@class, 'col-lg-4 col-md-4 col-sm-4 col-xs-12')]//i[@class='icon-circle'])[position()<=3]")
+//    @FindBy(xpath = "(//i[@class='icon-circle'])[position()>=6 and position()<=8]")
+    @FindBy(xpath = "(//input[@class='moverId'])[position()<=3]")
     public List<WebElement> listOfCarriers;
     @FindBy(xpath = "(//*[@id=\"step3\"]/button)[1]")
     public WebElement bookNowButton;

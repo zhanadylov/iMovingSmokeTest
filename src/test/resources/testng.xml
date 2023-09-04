@@ -1,60 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests">
-<!--    <test verbose="2" preserve-order="true" name="C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest">-->
-<!--        <classes>-->
-<!--&lt;!&ndash;            <class name="DataBaseConnection.ConnectDataBase">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="updateDate"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="oneDayEarlier"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="changeCaptureDate"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="apiConnection.CC_Authorization_Steps">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="query_sending"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="response_status_is"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="apiConnection.CC_Capture_Steps">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="query_sended"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="status_code_is_returned_for_response"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="send_Email"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="apiConnection.SendEmailQuery">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="query_sended"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="status_code_is_returned_for_response"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="tests.CreateOrder">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="chooseMoveOption"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="moving_Confirm_Page"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="payment_Page"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="tests.SignInTest">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="loginWithValidData"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="SignUp"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="forgotPassword"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="tests.backOfficeTest.QaboOptionsTest">&ndash;&gt;-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="loginToQaBO"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="checkPriceInBO"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--&lt;!&ndash;            </class>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="tests.FooterLinksTest"/>&ndash;&gt;-->
-<!--        </classes>-->
-<!--    </test>-->
-    <test verbose="2" preserve-order="true" name="C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest">
+<suite name="All Test Suite" thread-count="2">
+    <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest">
         <classes>
             <class name="tests.backOfficeTest.QaboSideBarTest"/>
+            <class name="tests.FooterLinksTest">
+                <methods>
+                        <include name="footerMenuTest"/>
+                        <include name="footerCostCalculatorTest"/>
+                        <include name="footerLocalPageTest"/>
+                        <include name="footerChecklistPage"/>
+                        <include name="footerLaborPage"/>
+                        <include name="footerCaliforniaStatePage"/>
+                        <include name="footerNewYorkStatePage"/>
+                        <include name="footerMiamiCityPage"/>
+                        <include name="footerSeeMoreMoversCityPage"/>
+                        <include name="footerCrossCountryPage"/>
+                        <include name="footerInterstatePage"/>
+                        <include name="footerBoxesPage"/>
+                        <include name="footerLonDistancePage"/>
+                        <include name="footerMovingPediaTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

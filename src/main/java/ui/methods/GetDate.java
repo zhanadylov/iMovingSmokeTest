@@ -12,6 +12,10 @@ import java.util.Random;
 public class GetDate {
     WebDriver driver = Driver.getDriver();
 
+    /*
+    Need to modify this method, when current day equal to end of month day, the method doesn't work.
+    */
+
     public void getRandomDate(WebElement datePicker, WebElement monthPicker) {
         Helper.click(datePicker);
         Helper.click(monthPicker);

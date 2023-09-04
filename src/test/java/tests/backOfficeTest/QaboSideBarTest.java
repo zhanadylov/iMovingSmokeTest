@@ -13,10 +13,11 @@ import ui.qabo.*;
 
 
 public class QaboSideBarTest extends Hooks implements SetUpBO {
+//    private WebDriver driver;
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
-    OrdersPageInQabo ordersPageInQabo = new OrdersPageInQabo();
+    OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
     DropDownHelper dropDownHelper = new DropDownHelper();
     SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
     BrowserHelper browserHelper = new BrowserHelper(driver);
@@ -29,6 +30,21 @@ public class QaboSideBarTest extends Hooks implements SetUpBO {
     SupplierRequestsQabo supplierRequestsQabo = new SupplierRequestsQabo();
     CalendarQabo calendarQabo = new CalendarQabo();
     ReviewsQabo reviewsQabo = new ReviewsQabo();
+
+//    @BeforeSuite
+//    public void openChrome(){
+//        driver = getDriver();
+//        driver.get(ConfigReader.getProperty("environmentBO"));
+//    }
+//
+//    @AfterSuite
+//    public void closeChrome(){
+//        Driver.closeDriver(driver);
+//    }
+//    @Override
+//    public WebDriver getDriver() {
+//        return driver;
+//    }
 
     @BeforeTest
     public void loginToQaBO(){
@@ -79,7 +95,7 @@ public class QaboSideBarTest extends Hooks implements SetUpBO {
     @Test
     public void qaOrders(){
         Helper.click(qaboDashBoardPage.ordersLabelInSideBar);
-        ordersPageInQabo.ordersTitleText.isDisplayed();
+        ordersListPageInQabo.ordersTitleText.isDisplayed();
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/Orders/Orders/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
@@ -161,7 +177,7 @@ public class QaboSideBarTest extends Hooks implements SetUpBO {
     //Lists
     @Test
     public void qaMerchant(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+//        Helper.click(qaboDashBoardPage.listsSideBar);
         qaboDashBoardPage.merchantLists.isDisplayed();
         Helper.click(qaboDashBoardPage.merchantLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/Orders/AuthorizeList/5730743773507A72366A6C49577A31325165504561773D3D");
@@ -182,7 +198,7 @@ public class QaboSideBarTest extends Hooks implements SetUpBO {
     }
     @Test
     public void qaLicense(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+//        Helper.click(qaboDashBoardPage.listsSideBar);
         qaboDashBoardPage.licensesTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.licensesTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/LicenseType/Index/5730743773507A72366A6C49577A31325165504561773D3D");
@@ -210,7 +226,7 @@ public class QaboSideBarTest extends Hooks implements SetUpBO {
     }
     @Test
     public void qaSpecial(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+//        Helper.click(qaboDashBoardPage.listsSideBar);
         qaboDashBoardPage.specialTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.specialTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/Tariff/SpecialItemsView/5730743773507A72366A6C49577A31325165504561773D3D");

@@ -9,6 +9,9 @@ public class OrderInfoQaBo {
     public OrderInfoQaBo() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
+    /*****************************************
+     This class contains locator of inside orders
+     *****************************************/
 
     @FindBy(xpath = "//li[@class='active']//a[contains(text(),'Order Details')]")
     public WebElement ordersDetailsTab;
@@ -40,6 +43,14 @@ public class OrderInfoQaBo {
 
     @FindBy(xpath = "//*[@id=\"changeDateModalButton\"]")
     public WebElement changeDateButton;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[18]/div/div/div[2]/div[2]/input")
+    public WebElement changeDateButtonDatePicker;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[18]/div/div/div[2]/div[2]/button")
+    public WebElement changeDateButtonInPopup;
+    @FindBy(xpath = "//*[@id=\"declineChangeDateMoverBtn\"]")
+    public WebElement cancelChangeDateButtonInPopup;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[1]/div[2]/div[1]/div[1]/span/span")
+    public WebElement pickupDateValue;
 
     @FindBy(xpath = "//*[@id=\"changePickupAddressModalButton\"]")
     public WebElement changePickUpAddress;
@@ -74,5 +85,22 @@ public class OrderInfoQaBo {
     @FindBy(xpath = "//li//a[contains(text(),'Notes')]")
     public WebElement notesTab;
 
+    //Carrier side
+    @FindBy(xpath = "/html/body/div[1]/div/section[1]/div[2]/button[1]")
+    public WebElement approveOrderButton;
 
+    @FindBy(xpath = "/html/body/div[1]/div/section[1]/div[2]/button[2]")
+    public WebElement declineOrderButton;
+
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[1]/div/div/div[3]/button")
+    public WebElement approveOrderButtonInPopUp;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[7]/div/div/div[3]/button[2]")
+    public WebElement declineOrderButtonInPopUp;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[7]/div/div/div[3]/button[1]")
+    public WebElement closeOrderButtonInPopUp;
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[7]/div/div/div[1]/h4")
+    public WebElement cantAcceptOrderTitleInPopUp;
+
+    @FindBy(xpath = "//button[contains(text(),'Approve Change Date')]")
+    public WebElement approveChangeDateButton;
 }

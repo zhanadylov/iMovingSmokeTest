@@ -85,9 +85,11 @@ public class HomePage {
     //Select from dropdown and create
     @FindBy(xpath = "//*[@id=\"index\"]/main/div[1]/section[1]/div/div/ul/li[1]/a")
     public WebElement movingTab;
-    @FindBy(xpath = "//*[@id=\"houseTypeSelectList\"]")
+//    @FindBy(xpath = "//*[@id=\"houseTypeSelectList\"]")
+    @FindBy(xpath = "/html/body/div[1]/main/div[1]/section[1]/div/div/div/div[1]/div/div[1]/div/form/div/div[1]/div/select")
     public WebElement moveOptionList;
-    @FindBy(xpath = "//*[@id=\"hp-nav-select-house\"]")
+//    @FindBy(xpath = "//*[@id=\"hp-nav-select-house\"]")
+    @FindBy(xpath = "/html/body/div[1]/main/div[1]/section[1]/div/div/div/div[1]/div/div[1]/div/form/div/div[2]/div/select")
     public WebElement sizeOptionList;
     @FindBy(xpath = "//button[contains(text(),'Continue')]")
     public WebElement compareQuotes;

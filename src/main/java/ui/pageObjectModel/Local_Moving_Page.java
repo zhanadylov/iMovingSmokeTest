@@ -86,14 +86,14 @@ public class Local_Moving_Page {
     public WebElement confirmPayButton;
 
     //SignIN
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/button")
+    @FindBy(xpath = "(//*[@id=\"login\"])[2]")
     public WebElement signInButton;
     @FindBy(xpath = "(//input[@id='loginModel_Username'])[2]")
     public WebElement loginEmailField;
     @FindBy(xpath = "(//input[@id='loginModel_Password'])[2]")
     public WebElement loginPasswordField;
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[2]/form[1]/div/div[5]/button")
+    @FindBy(xpath = "(//*[@id=\"loginForm\"]/div/div[5]/button)[2]")
     public WebElement loginButton;
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[1]/li/ul/li/a")
+    @FindBy(xpath = "(//*[@id=\"userName\"])[2]")
     public WebElement userProfile;
 }

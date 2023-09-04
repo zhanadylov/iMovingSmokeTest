@@ -11,6 +11,9 @@ import java.time.LocalDate;
 public class CalendarClass {
     WebDriver driver = Driver.getDriver();
 
+    //For QABO change date
+    public String pathDayFinal;
+    public int dayInMonthRange;
     public void getRandomDate(WebElement datePicker, WebElement monthPicker){
         Helper.click(datePicker);
         Helper.click(monthPicker);
@@ -63,6 +66,23 @@ public class CalendarClass {
         System.out.println("Chosen day"+pathDayFinal);
 
 //        WebElement tdButton = datePicker.findElement(By.xpath("(//td[@class='active day'] | //td[text()='30'])[2]"));
+        WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
+        Helper.click(tdButton);
+    }
+
+    public void getRandomDateInMonthQABO(WebElement datePicker){
+        LocalDate date = LocalDate.now();
+        int todayDate = date.getDayOfMonth();
+//        int dayInMonthRange;
+        do {
+            dayInMonthRange = (int) Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
+        } while (dayInMonthRange == todayDate);
+
+        Helper.click(datePicker);
+        String pathDay = "//td[@data-handler='selectDay']/a[@class='ui-state-default' and text()='INDEX']";
+        pathDayFinal = pathDay.replace("INDEX", String.valueOf(dayInMonthRange));
+        System.out.println("Chosen day"+pathDayFinal);
+
         WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
         Helper.click(tdButton);
     }

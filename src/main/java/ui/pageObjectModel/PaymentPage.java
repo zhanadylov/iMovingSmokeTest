@@ -60,7 +60,7 @@ public class PaymentPage {
     @FindBy(xpath = "//input[@id='baSecPhone']")
     public WebElement secondaryPhoneInputField;
 
-    @FindBy(xpath = "//input[@id='email']")
+    @FindBy(xpath = "//*[@id=\"email\"]")
     public WebElement emailInputField;
 
     @FindBy(xpath = "(//input[@id='pass'])[1]")

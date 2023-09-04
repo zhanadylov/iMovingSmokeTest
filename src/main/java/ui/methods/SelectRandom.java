@@ -4,8 +4,10 @@ import helper.Helper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,6 +22,7 @@ import static ui.methods.SetUp.driver;
 
 
 public class SelectRandom {
+
     private static final Logger logger = (Logger) LogManager.getLogger(Helper.class);
     static Random random = new Random();
 
@@ -35,7 +38,7 @@ public class SelectRandom {
         select.selectByIndex(randomOptionIndex);
         list.add(randomOptionText);
 
-        if (list.contains("What are You moving?") || list.contains("Move Size")) {
+        if (list.contains("Move From") || list.contains("Move Size")) {
             list.remove(randomOptionText); // remove the current option from the list
             selectRandomOptionFromDropDown(element); // call the method again
         }
@@ -109,11 +112,8 @@ public class SelectRandom {
         Random random = new Random();
         int randomIndex = random.nextInt(radioButtons.size());
         WebElement elementToClick = radioButtons.get(randomIndex);
-
-        // Scroll the element into view if necessary
 //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elementToClick);
 
-        // Use JavaScript click
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", elementToClick);
     }
 

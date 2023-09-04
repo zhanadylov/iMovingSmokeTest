@@ -10,6 +10,8 @@ public class QaboDashBoardPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    @FindBy(css = "#logoutForm > ul > li:nth-child(2) > a")
+    public WebElement logOffButton;
     @FindBy(css = "body > div.wrapper > div > section.content-header > h1 > div > a")
     public WebElement ordersDashboardTitle;
 
@@ -28,7 +30,8 @@ public class QaboDashBoardPage {
     @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(5) > a")
     public WebElement affiliatesLabelInSideBar;
 
-    @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(6) > a")
+//    @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(6) > a")
+    @FindBy(xpath = "//a[normalize-space()='Orders']")
     public WebElement ordersLabelInSideBar;
 
     @FindBy(css = "body > div.wrapper > aside > section > ul > li:nth-child(7) > a")

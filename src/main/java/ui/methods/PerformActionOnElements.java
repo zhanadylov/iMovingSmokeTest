@@ -22,6 +22,7 @@ public class PerformActionOnElements {
         Helper.javascriptScrollIntoView(paymentPage.cardNumberInputField);
         Helper.sendKeys(paymentPage.cardNumberInputField, "5424 0000 0000 0015");
         Helper.sendKeys(paymentPage.cvvNumberInputField, "123");
+        DropDownHelper.selectUsingVisibleText(paymentPage.expiryMonthSelectField, "May");
         DropDownHelper.selectUsingVisibleText(paymentPage.expiryYearSelectField, "2027");
         Helper.pause(3000);
         Helper.javascriptScrollIntoView(paymentPage.billingAddressCheckBox);

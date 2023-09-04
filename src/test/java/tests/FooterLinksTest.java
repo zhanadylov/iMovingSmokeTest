@@ -1,17 +1,19 @@
 package tests;
 
-import helper.AssertThat;
-import helper.Helper;
-import helper.JavaFaker;
+import helper.*;
 import hooks.Hooks;
 import hooks.logs.Log;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ui.methods.*;
-import ui.pageObjectModel.Cost_Calculating_Page;
-import ui.pageObjectModel.FooterLinksPages;
-import ui.pageObjectModel.Local_Moving_Page;
-import ui.pageObjectModel.PaymentPage;
+import ui.pageObjectModel.*;
+import utilities.ConfigReader;
+import utilities.Driver;
+
+import static utilities.Driver.getDriver;
 
 
 public class FooterLinksTest extends Hooks implements SetUp{
@@ -20,14 +22,32 @@ public class FooterLinksTest extends Hooks implements SetUp{
     Cost_Calculating_Page cost_calculating_page = new Cost_Calculating_Page();
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     CalendarClass calendarClass = new CalendarClass();
-    SetAddress setAddress = new SetAddress();
     PaymentPage paymentPage = new PaymentPage();
-    JavaFaker javaFaker = new JavaFaker();
     Local_Moving_Page local_moving_page = new Local_Moving_Page();
     SelectRandom selectRandom = new SelectRandom();
+    Success_Page success_page = new Success_Page();
+//    private WebDriver driver;
+    BrowserHelper browserHelper = new BrowserHelper(driver);
+
+
+//    @BeforeSuite
+//    public void openChrome(){
+//        driver = getDriver();
+//        driver.get(ConfigReader.getProperty("environment"));
+//    }
+//
+//    @AfterSuite
+//    public void closeChrome(){
+//        Driver.closeDriver(driver);
+//    }
+//    @Override
+//    public WebDriver getDriver() {
+//        return driver;
+//    }
+
     @Log
     @Test
-    public void footerMenuTest(){
+    public void footerMenuTest() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.aboutUsLink);
@@ -46,62 +66,31 @@ public class FooterLinksTest extends Hooks implements SetUp{
         footerLinksPages.redRequiredreCaptchaMessage.isDisplayed();
         Helper.javascriptScrollIntoView(footerLinksPages.customerSupportLink);
         Helper.click(footerLinksPages.customerSupportLink);
-        footerLinksPages.letsKeepInTouchTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.letsKeepInTouchTitle.getText(), "Lets keep in touch!");
+        footerLinksPages.contactUsTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.contactUsTitle.getText(), "Contact Us");
         footerLinksPages.WeWouldLoveToHearFromYouTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.WeWouldLoveToHearFromYouTitle.getText(), "We would love to hear from you");
+        Assert.assertEquals(footerLinksPages.WeWouldLoveToHearFromYouTitle.getText(), "We would love to hear from you!");
+        Helper.javascriptScrollIntoView(footerLinksPages.sendButton);
         Helper.click(footerLinksPages.sendButton);
-        Helper.click(footerLinksPages.faqTab);
-        footerLinksPages.generalTitle.isDisplayed();
-        footerLinksPages.generalTitle.isEnabled();
-        footerLinksPages.howDoesItWorkTitle.isDisplayed();
-        footerLinksPages.howDoesItWorkTitle.isEnabled();
-        footerLinksPages.ourMoversTitle.isDisplayed();
-        footerLinksPages.ourMoversTitle.isEnabled();
-        footerLinksPages.bookingYourMoveTitle.isDisplayed();
-        footerLinksPages.bookingYourMoveTitle.isEnabled();
-        footerLinksPages.onceYourMoveIsBookedTitle.isDisplayed();
-        footerLinksPages.onceYourMoveIsBookedTitle.isEnabled();
-        footerLinksPages.postMoveTitle.isDisplayed();
-        footerLinksPages.postMoveTitle.isEnabled();
-        footerLinksPages.billingTitle.isDisplayed();
-        footerLinksPages.billingTitle.isEnabled();
+        footerLinksPages.errorCaptchaMessage.isDisplayed();
+        Assert.assertEquals(footerLinksPages.errorCaptchaMessage.getText(), "Please pass captcha");
+        footerLinksPages.faqTab.isDisplayed();
+        footerLinksPages.nameFieldContactUs.isDisplayed();
+        footerLinksPages.nameFieldContactUs.isEnabled();
+        footerLinksPages.emailFieldContactUs.isDisplayed();
+        footerLinksPages.emailFieldContactUs.isEnabled();
+        footerLinksPages.phoneNumberContactUs.isDisplayed();
+        footerLinksPages.phoneNumberContactUs.isEnabled();
+        footerLinksPages.issuesFieldContactUs.isDisplayed();
+        footerLinksPages.issuesFieldContactUs.isEnabled();
+        footerLinksPages.yourMessageContactUs.isDisplayed();
+        footerLinksPages.yourMessageContactUs.isEnabled();
     }
 
+    //Booking order with new user, one new CC
     @Log
     @Test
-    public void footerMovingPediaTest(){
-        Helper.javascriptScrollDownThePage();
-        Helper.pause(1000);
-        Helper.javascriptScrollIntoView(footerLinksPages.movingPediaLink);
-        Helper.pause(1000);
-        Helper.click(footerLinksPages.movingPediaLink);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/blog");
-        footerLinksPages.theiMovingBlogTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.theiMovingBlogTitle.getText(), "The iMoving Blog");
-        footerLinksPages.movingTipsHeader.isDisplayed();
-        Assert.assertEquals(footerLinksPages.movingTipsHeader.getText(), "Moving Tips");
-        footerLinksPages.howToHeader.isDisplayed();
-        Assert.assertEquals(footerLinksPages.howToHeader.getText(), "How To");
-        footerLinksPages.beforeYourMoveHeader.isDisplayed();
-        Assert.assertEquals(footerLinksPages.beforeYourMoveHeader.getText(), "Before Your Move");
-        footerLinksPages.afterYourMoveHeader.isDisplayed();
-        Assert.assertEquals(footerLinksPages.afterYourMoveHeader.getText(), "After Your Move");
-        footerLinksPages.checklistsHeader.isDisplayed();
-        Assert.assertEquals(footerLinksPages.checklistsHeader.getText(), "Checklists");
-        footerLinksPages.inputSearchField.isDisplayed();
-        Helper.click(footerLinksPages.movingTipsHeader);
-        footerLinksPages.movingTipsTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.movingTipsTitle.getText(), "Moving tips");
-        Helper.click(footerLinksPages.afterYourMoveHeader);
-        footerLinksPages.afterYourMoveTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.afterYourMoveTitle.getText(), "After your move");
-    }
-
-    //TODO Not choose Carrier
-    @Log
-    @Test
-    public void footerCostCalculatorTest(){
+    public void footerCostCalculatorTest() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.movingCostCalculatorLink);
@@ -126,37 +115,35 @@ public class FooterLinksTest extends Hooks implements SetUp{
         Helper.pause(1000);
         AssertThat.assertText("Choose Your Carrier and Book Online", cost_calculating_page.chooseYourCarrierTitle);
         Helper.pause(2000);
-            if (Helper.isElementPresent(cost_calculating_page.chooseCarrier)) {
-                Helper.click(cost_calculating_page.chooseCarrier);
-//                Helper.click(cost_calculating_page.chooseCarrier);
-                Helper.click(cost_calculating_page.bookNowButton);
-            }else
-            {
-                Helper.click(cost_calculating_page.leftArrowButton);
-                Helper.click(cost_calculating_page.continueButton);
-                Helper.click(cost_calculating_page.chooseCarrier);
-                Helper.click(cost_calculating_page.bookNowButton);
-            }
-            AssertThat.assertText("Your Move Details", cost_calculating_page.yourMoveDetailsTitle);
-            Assert.assertTrue(cost_calculating_page.textUnderdetails.getText().contains("Inventory is limited to the  CF size of Move and  number of items and as described in the process. Please make sure you ordered the right size. Additional inventory will not be delivered"));
-            Helper.click(cost_calculating_page.checkboxOnText);
-            Helper.click(cost_calculating_page.confirmButton);
-            Helper.pause(1000);
-            paymentPage.secureBookingText.isDisplayed();
-            performActionOnElements.setValuesToFillFields(JavaFaker.fakeFirstName(), JavaFaker.fakeLastName(), JavaFaker.fakePhone(),
-                    JavaFaker.fakeLogin(), "2223000010309703", "May", "2027", "123");
-            performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
-                    paymentPage.expiryMonthSelectField, paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
+        selectRandom.randomRadioSelectionFromForm(cost_calculating_page.listOfCarriers);
+        Helper.click(cost_calculating_page.bookNowButton);
+        AssertThat.assertText("Your Move Details", cost_calculating_page.yourMoveDetailsTitle);
+        cost_calculating_page.textUnderdetails.isDisplayed();
+        Helper.click(cost_calculating_page.checkboxOnText);
+        Helper.click(cost_calculating_page.confirmButton);
+        Helper.pause(1000);
+        paymentPage.secureBookingText.isDisplayed();
+        performActionOnElements.setValuesToFillFields(JavaFaker.fakeFirstName(), JavaFaker.fakeLastName(), JavaFaker.fakePhone(), JavaFaker.fakeFirstName(),
+                "2223 0000 1030 9703", "2027", "123");
+        performActionOnElements.fillCCFieldsElementTest(paymentPage.fistNameInputField, paymentPage.lastNameInputField, paymentPage.phoneInputField,
+                paymentPage.cardNameInputField, paymentPage.cardNumberInputField, paymentPage.cardNumberInputField,
+                paymentPage.expiryYearSelectField, paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
+        DropDownHelper.selectUsingVisibleText(paymentPage.expiryMonthSelectField, "May");
+        Helper.javascriptScrollIntoView(paymentPage.emailInputField);
+        Helper.sendKeys(paymentPage.emailInputField, JavaFaker.fakeEmail());
+        Helper.javascriptScrollDownThePage();
+        Helper.click(paymentPage.completeBookingButton);
+        Helper.pause(3000);
+        success_page.thankYouText.isDisplayed();
+        success_page.customerName.isDisplayed();
+        AssertThat.assertText("Thank You", success_page.thankYouText);
+        AssertThat.assertText(success_page.text, success_page.textInSuccessPage);
+    }
 
-            Helper.javascriptScrollDownThePage();
-            Helper.click(paymentPage.completeBookingButton);
-            Helper.pause(3000);
-        }
-
-    //TODO Not choose CC on Split payment.
+    //Booking order with exist user and paying with two exists CC
     @Log
     @Test
-    public void footerLocalPageTest(){
+    public void footerLocalPageTest() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.localMovingCompaniesLink);
@@ -167,11 +154,11 @@ public class FooterLinksTest extends Hooks implements SetUp{
         local_moving_page.textUnderTitle.isDisplayed();
         local_moving_page.startHereText.isDisplayed();
         AssertThat.assertText("Start here :", local_moving_page.startHereText);
-        SetAddress.testMethod("12334 Cantura Street, Los Angeles, CA, USA, 91604",local_moving_page.firstInputField);
+        SetAddress.testMethod("12334 Cantura Street, Los Angeles, CA, USA, 91604", local_moving_page.firstInputField);
         Helper.click(local_moving_page.nextButton);
         local_moving_page.oneMoreText.isDisplayed();
         AssertThat.assertText("One more :", local_moving_page.oneMoreText);
-        SetAddress.testMethod("1245 Wilshire Boulevard, Los Angeles, CA, USA, 90017",local_moving_page.secondInputField);
+        SetAddress.testMethod("1245 Wilshire Boulevard, Los Angeles, CA, USA, 90017", local_moving_page.secondInputField);
         Helper.click(local_moving_page.secondNextButton);
         local_moving_page.chooseCarrierText.isDisplayed();
         AssertThat.assertText("Choose 3 carriers and compare their quotes", local_moving_page.chooseCarrierText);
@@ -199,7 +186,7 @@ public class FooterLinksTest extends Hooks implements SetUp{
         AssertThat.assertText("Choose Your Carrier and book online", local_moving_page.chooseYourCarrierBookOnlineTitle);
         selectRandom.randomRadioSelectionFromForm(local_moving_page.listOfThreeCarrier);
         Helper.click(local_moving_page.bookNowButton);
-        performActionOnElements.setValuesToFillFields("qatestimoving@gmail.com","QATest-2022");
+        performActionOnElements.setValuesToFillFields("qatestimoving@gmail.com", "QATest-2022");
         performActionOnElements.fillCCFieldsElementTest(local_moving_page.signInButton, local_moving_page.loginEmailField, local_moving_page.loginPasswordField, local_moving_page.loginButton);
         local_moving_page.userProfile.isDisplayed();
         Helper.click(local_moving_page.checkboxUnderDetails);
@@ -207,23 +194,24 @@ public class FooterLinksTest extends Hooks implements SetUp{
         Helper.waitForElementVisibilityOf(paymentPage.splitPaymentWithASecondCardButton);
         Helper.click(paymentPage.splitPaymentWithASecondCardButton);
         Helper.waitForElementVisibilityOf(paymentPage.firstCardPayment);
-        Helper.navigateToElement(paymentPage.firstCardPayment);
-        Helper.javascriptScrollIntoView(paymentPage.firstCardPayment);
-        Helper.click(paymentPage.firstCardPayment);
+        Helper.multipleClick(paymentPage.firstCardPayment, 2);
         Helper.pause(1000);
-        Helper.navigateToElement(paymentPage.firstCardPayment);
         Helper.javascriptScrollIntoView(paymentPage.secondCardPayment);
-        Helper.click(paymentPage.secondCardPayment);
-        double dividableSum = Double.parseDouble(paymentPage.totalPrice.getText());
-        Helper.sendKeys(paymentPage.amountOfSplitSecond, String.valueOf(Helper.divideSum(dividableSum)));
+        Helper.multipleClick(paymentPage.secondCardPayment, 2);
+        double dividableSum = Double.parseDouble(paymentPage.totalPrice.getText().replaceAll("[$ ,]", ""));
+        Helper.sendKeys(paymentPage.amountOfSplitSecond, String.valueOf(Helper.divideSum(dividableSum)).replaceAll("[$ ,]", ""));
         Helper.javascriptScrollIntoView(paymentPage.completeBookingButton);
         Helper.click(paymentPage.completeBookingButton);
         Helper.pause(3000);
+        Helper.waitForElementVisibilityOf(success_page.thankYouText);
+        success_page.thankYouText.isDisplayed();
+        success_page.customerName.isDisplayed();
+        success_page.textInSuccessPage.isDisplayed();
     }
 
     @Log
     @Test
-    public void footerChecklistPage(){
+    public void footerChecklistPage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.movingChecklistLink);
@@ -245,32 +233,7 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Log
     @Test
-    public void footerInterstatePage(){
-        Helper.javascriptScrollDownThePage();
-        Helper.pause(1000);
-        Helper.javascriptScrollIntoView(footerLinksPages.interstateMovingCompaniesLink);
-        Helper.pause(1000);
-        Helper.click(footerLinksPages.interstateMovingCompaniesLink);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/interstate-moving-companies/");
-        footerLinksPages.interstateTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.interstateTitle.getText(), "Interstate moving companies");
-        footerLinksPages.moveOptionSelector.isDisplayed();
-        footerLinksPages.moveOptionSelector.isEnabled();
-        footerLinksPages.moveSizeSelector.isDisplayed();
-        footerLinksPages.moveSizeSelector.isEnabled();
-        footerLinksPages.compareQuotesButton.isDisplayed();
-        footerLinksPages.compareQuotesButton.isEnabled();
-        Helper.javascriptScrollIntoView(footerLinksPages.bestInterstateTitle);
-        footerLinksPages.bestInterstateTitle.isDisplayed();
-        Helper.javascriptScrollIntoView(footerLinksPages.servicesOfferedByInterstateTitle);
-        footerLinksPages.servicesOfferedByInterstateTitle.isDisplayed();
-        Helper.javascriptScrollIntoView(footerLinksPages.faqTitle);
-        footerLinksPages.faqTitle.isDisplayed();
-    }
-
-    @Log
-    @Test
-    public void footerCrossCountryPage(){
+    public void footerCrossCountryPage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.crossCountryMovingCompaniesLink);
@@ -295,49 +258,7 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Log
     @Test
-    public void footerBoxesPage(){
-        Helper.javascriptScrollDownThePage();
-        Helper.pause(1000);
-        Helper.javascriptScrollIntoView(footerLinksPages.movingBoxesLink);
-        Helper.pause(1000);
-        Helper.click(footerLinksPages.movingBoxesLink);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/moving-boxes/");
-        footerLinksPages.boxesMoving.isDisplayed();
-        Assert.assertEquals(footerLinksPages.boxesMoving.getText(), "Moving Boxes");
-        footerLinksPages.moveOptionSelectorBoxes.isDisplayed();
-        footerLinksPages.moveOptionSelectorBoxes.isEnabled();
-        footerLinksPages.moveSizeSelectorBoxes.isDisplayed();
-        footerLinksPages.moveSizeSelectorBoxes.isEnabled();
-        footerLinksPages.compareQuotesButtonBoxes.isDisplayed();
-        footerLinksPages.compareQuotesButtonBoxes.isEnabled();
-        Helper.javascriptScrollIntoView(footerLinksPages.boxesUpcomingTitle);
-        footerLinksPages.boxesUpcomingTitle.isDisplayed();
-    }
-
-    @Log
-    @Test
-    public void footerLonDistancePage(){
-        Helper.javascriptScrollDownThePage();
-        Helper.pause(1000);
-        Helper.javascriptScrollIntoView(footerLinksPages.longDistanceMovingLink);
-        Helper.pause(1000);
-        Helper.click(footerLinksPages.longDistanceMovingLink);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/long-distance-moving/");
-        footerLinksPages.longDistanceTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.longDistanceTitle.getText(), "Long Distance Movers");
-        footerLinksPages.moveOptionSelectorLong.isDisplayed();
-        footerLinksPages.moveOptionSelectorLong.isEnabled();
-        footerLinksPages.moveSizeSelectorLong.isDisplayed();
-        footerLinksPages.moveSizeSelectorLong.isEnabled();
-        footerLinksPages.compareQuotesButtonLong.isDisplayed();
-        footerLinksPages.compareQuotesButtonLong.isEnabled();
-        Helper.javascriptScrollIntoView(footerLinksPages.bestLongDistanceTitle);
-        footerLinksPages.bestLongDistanceTitle.isDisplayed();
-    }
-
-    @Log
-    @Test
-    public void footerLaborPage(){
+    public void footerLaborPage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.bestMovingLaborCompaniesLink);
@@ -371,7 +292,7 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Log
     @Test
-    public void footerCaliforniaStatePage(){
+    public void footerCaliforniaStatePage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.moversInCaliforniaLink);
@@ -401,7 +322,7 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Log
     @Test
-    public void footerNewYorkStatePage(){
+    public void footerNewYorkStatePage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.newYorkStateMoversLink);
@@ -431,21 +352,21 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Log
     @Test
-    public void footerMiamiCityPage(){
+    public void footerChicagoCityPage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
-        Helper.javascriptScrollIntoView(footerLinksPages.miamiMovingCompaniesLink);
+        Helper.javascriptScrollIntoView(footerLinksPages.chicagoMovingCompaniesLink);
         Helper.pause(1000);
-        Helper.click(footerLinksPages.miamiMovingCompaniesLink);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/florida-movers/miami/");
-        footerLinksPages.miamiTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.miamiTitle.getText(), "Miami movers");
-        footerLinksPages.compareQuotesButtonMiami.isDisplayed();
-        Helper.click(footerLinksPages.compareQuotesButtonMiami);
+        Helper.click(footerLinksPages.chicagoMovingCompaniesLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/illinois-movers/chicago/");
+        footerLinksPages.chicagoTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.chicagoTitle.getText(), "Chicago movers");
+        footerLinksPages.compareQuotesButtonChicago.isDisplayed();
+        Helper.click(footerLinksPages.compareQuotesButtonChicago);
         selectRandom.selectRandomOptionFromDropDown(footerLinksPages.moveOptionMiami);
         selectRandom.selectRandomOptionFromDropDown(footerLinksPages.moveSizeMiami);
-        footerLinksPages.totalCarrierMiami.isDisplayed();
-        footerLinksPages.totalCarrierMiami.isEnabled();
+        footerLinksPages.totalCarrierChicago.isDisplayed();
+        footerLinksPages.totalCarrierChicago.isEnabled();
         Helper.javascriptScrollIntoView(footerLinksPages.moreDetailsButton);
         Helper.click(footerLinksPages.moreDetailsButton);
         footerLinksPages.moverNameText.isDisplayed();
@@ -459,7 +380,7 @@ public class FooterLinksTest extends Hooks implements SetUp{
 
     @Log
     @Test
-    public void footerSeeMoreMoversCityPage(){
+    public void footerSeeMoreMoversCityPage() {
         Helper.javascriptScrollDownThePage();
         Helper.pause(1000);
         Helper.javascriptScrollIntoView(footerLinksPages.seeMoreMoversLinkCity);
@@ -467,34 +388,141 @@ public class FooterLinksTest extends Hooks implements SetUp{
         Helper.click(footerLinksPages.seeMoreMoversLinkCity);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/moving-companies/");
         footerLinksPages.ourCarriersTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.ourCarriersTitle.getText().substring(0,15), "Our Carriers at");
-        Helper.javascriptScrollIntoView(footerLinksPages.totalCarrierSeeMore);
-        footerLinksPages.totalCarrierSeeMore.isDisplayed();
-        Helper.javascriptScrollIntoView(footerLinksPages.ourMoversServicesTitle);
-        footerLinksPages.ourMoversServicesTitle.isDisplayed();
-        Assert.assertEquals(footerLinksPages.ourMoversServicesTitle.getText(), "Our Movers Services and Handling");
-        footerLinksPages.servicesTab.isDisplayed();
-        footerLinksPages.servicesTab.isEnabled();
-        footerLinksPages.servicesTab.isSelected();
-        footerLinksPages.HandlingTab.isDisplayed();
-        footerLinksPages.HandlingTab.isEnabled();
-        Helper.click(footerLinksPages.HandlingTab);
-        footerLinksPages.HandlingTab.isSelected();
-        footerLinksPages.specialServicesTab.isDisplayed();
-        footerLinksPages.specialServicesTab.isEnabled();
-        Helper.click(footerLinksPages.specialServicesTab);
-        footerLinksPages.specialServicesTab.isSelected();
-        footerLinksPages.storageTab.isDisplayed();
-        footerLinksPages.storageTab.isEnabled();
-        Helper.click(footerLinksPages.storageTab);
-        footerLinksPages.storageTab.isSelected();
-        Helper.javascriptScrollIntoView(footerLinksPages.totalCarrierSeeMore);
-        selectRandom.randomRadioSelectionFromForm(footerLinksPages.carrierlist);
-        footerLinksPages.moverNameText.isDisplayed();
-        footerLinksPages.moversInfo.isDisplayed();
-        footerLinksPages.ratingAndReview.isDisplayed();
-        footerLinksPages.ratingAndReview.isEnabled();
-        footerLinksPages.aboutUs.isDisplayed();
-        footerLinksPages.aboutUs.isEnabled();
+        Assert.assertEquals(footerLinksPages.ourCarriersTitle.getText(), "Our Nationwide Network of Movers");
+        Helper.javascriptScrollIntoView(footerLinksPages.moversScreenedText);
+        footerLinksPages.moversScreenedText.isDisplayed();
+        Assert.assertEquals(footerLinksPages.moversScreenedText.getText(), "Movers are Screened and Handpicked by Us");
+        footerLinksPages.communityStandardsText.isDisplayed();
+        footerLinksPages.communityStandardsText.isEnabled();
+        Helper.click(footerLinksPages.communityStandardsText);
+        Assert.assertEquals(driver.getCurrentUrl(),"https://qa.imoving.com/imoving-standards/");
+        footerLinksPages.trustAndTransparencyTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.trustAndTransparencyTitle.getText(), "Trust & Transparency");
+        browserHelper.goBack();
+        Helper.javascriptScrollIntoView(footerLinksPages.lookForOurMoversByState);
+        footerLinksPages.lookForOurMoversByState.isDisplayed();
+        Assert.assertEquals(footerLinksPages.lookForOurMoversByState.getText(), "Look for our movers by state:");
+        selectRandom.randomRadioSelectionFromForm(footerLinksPages.stateList);
+        footerLinksPages.chosenStateTitle.isDisplayed();
+        browserHelper.goBack();
+        Helper.javascriptScrollIntoView(footerLinksPages.howDoWeRateOurMovers);
+        footerLinksPages.howDoWeRateOurMovers.isDisplayed();
+        Assert.assertEquals(footerLinksPages.howDoWeRateOurMovers.getText(), "How Do We Rate Our Movers");
+        Helper.javascriptScrollIntoView(footerLinksPages.servicesAndHandling);
+        footerLinksPages.servicesAndHandling.isDisplayed();
+        Assert.assertEquals(footerLinksPages.servicesAndHandling.getText(), "Services & Handling");
+        selectRandom.randomRadioSelectionFromForm(footerLinksPages.servicesHandlingList);
+        footerLinksPages.chosenServicesTitle.isDisplayed();
+        browserHelper.goBack();
+        Helper.javascriptScrollIntoView(footerLinksPages.areYouAMoverText);
+        footerLinksPages.areYouAMoverText.isDisplayed();
+        Assert.assertEquals(footerLinksPages.areYouAMoverText.getText(), "Are you a Mover?\nJoin Our Network!");
+        footerLinksPages.joinNowButton.isDisplayed();
+        footerLinksPages.joinNowButton.isEnabled();
+        Helper.click(footerLinksPages.joinNowButton);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/register-suppliers/");
+        browserHelper.goBack();
+        Helper.javascriptScrollIntoView(footerLinksPages.movingFAQ);
+        footerLinksPages.movingFAQ.isDisplayed();
+        Assert.assertEquals(footerLinksPages.movingFAQ.getText(), "Moving FAQ");
     }
+
+    @Log
+    @Test
+    public void footerInterstatePage() {
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.interstateMovingCompaniesLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.interstateMovingCompaniesLink);
+        Helper.pause(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/interstate-moving-companies/");
+        footerLinksPages.interstateTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.interstateTitle.getText(), "Interstate moving companies");
+        footerLinksPages.moveOptionSelector.isDisplayed();
+        footerLinksPages.moveOptionSelector.isEnabled();
+        footerLinksPages.moveSizeSelector.isDisplayed();
+        footerLinksPages.moveSizeSelector.isEnabled();
+        footerLinksPages.compareQuotesButton.isDisplayed();
+        footerLinksPages.compareQuotesButton.isEnabled();
+        Helper.javascriptScrollIntoView(footerLinksPages.bestInterstateTitle);
+        footerLinksPages.bestInterstateTitle.isDisplayed();
+        Helper.javascriptScrollIntoView(footerLinksPages.servicesOfferedByInterstateTitle);
+        footerLinksPages.servicesOfferedByInterstateTitle.isDisplayed();
+        Helper.javascriptScrollIntoView(footerLinksPages.faqTitle);
+        footerLinksPages.faqTitle.isDisplayed();
+    }
+
+    @Log
+    @Test
+    public void footerBoxesPage() {
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.movingBoxesLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.movingBoxesLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/moving-boxes/");
+        footerLinksPages.boxesMoving.isDisplayed();
+        Assert.assertEquals(footerLinksPages.boxesMoving.getText(), "Moving Boxes");
+        footerLinksPages.moveOptionSelectorBoxes.isDisplayed();
+        footerLinksPages.moveOptionSelectorBoxes.isEnabled();
+        footerLinksPages.moveSizeSelectorBoxes.isDisplayed();
+        footerLinksPages.moveSizeSelectorBoxes.isEnabled();
+        footerLinksPages.compareQuotesButtonBoxes.isDisplayed();
+        footerLinksPages.compareQuotesButtonBoxes.isEnabled();
+        Helper.javascriptScrollIntoView(footerLinksPages.boxesUpcomingTitle);
+        footerLinksPages.boxesUpcomingTitle.isDisplayed();
+    }
+
+    @Log
+    @Test
+    public void footerLonDistancePage() {
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.longDistanceMovingLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.longDistanceMovingLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/long-distance-moving/");
+        footerLinksPages.longDistanceTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.longDistanceTitle.getText(), "Long Distance Movers");
+        footerLinksPages.moveOptionSelectorLong.isDisplayed();
+        footerLinksPages.moveOptionSelectorLong.isEnabled();
+        footerLinksPages.moveSizeSelectorLong.isDisplayed();
+        footerLinksPages.moveSizeSelectorLong.isEnabled();
+        footerLinksPages.compareQuotesButtonLong.isDisplayed();
+        footerLinksPages.compareQuotesButtonLong.isEnabled();
+        Helper.javascriptScrollIntoView(footerLinksPages.bestLongDistanceTitle);
+        footerLinksPages.bestLongDistanceTitle.isDisplayed();
+    }
+
+    @Log
+    @Test
+    public void footerMovingPediaTest() {
+        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(footerLinksPages.movingPediaLink);
+        Helper.pause(1000);
+        Helper.click(footerLinksPages.movingPediaLink);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/blog");
+        footerLinksPages.theiMovingBlogTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.theiMovingBlogTitle.getText(), "The iMoving Blog");
+        footerLinksPages.movingTipsHeader.isDisplayed();
+        Assert.assertEquals(footerLinksPages.movingTipsHeader.getText(), "Moving Tips");
+        footerLinksPages.howToHeader.isDisplayed();
+        Assert.assertEquals(footerLinksPages.howToHeader.getText(), "How To");
+        footerLinksPages.beforeYourMoveHeader.isDisplayed();
+        Assert.assertEquals(footerLinksPages.beforeYourMoveHeader.getText(), "Before Your Move");
+        footerLinksPages.afterYourMoveHeader.isDisplayed();
+        Assert.assertEquals(footerLinksPages.afterYourMoveHeader.getText(), "After Your Move");
+        footerLinksPages.checklistsHeader.isDisplayed();
+        Assert.assertEquals(footerLinksPages.checklistsHeader.getText(), "Checklists");
+        footerLinksPages.inputSearchField.isDisplayed();
+        Helper.click(footerLinksPages.movingTipsHeader);
+        footerLinksPages.movingTipsTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.movingTipsTitle.getText(), "Moving tips");
+        Helper.click(footerLinksPages.afterYourMoveHeader);
+        footerLinksPages.afterYourMoveTitle.isDisplayed();
+        Assert.assertEquals(footerLinksPages.afterYourMoveTitle.getText(), "After your move");
+    }
+
 }

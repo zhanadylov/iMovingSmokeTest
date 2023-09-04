@@ -15,12 +15,10 @@ import ui.methods.SetUpBO;
 import ui.qabo.LoginPage;
 import ui.qabo.ManualPayment.AddPaymentPopUp;
 import ui.qabo.OrderInfoQaBo;
-import ui.qabo.OrdersPageInQabo;
+import ui.qabo.OrdersListPageInQabo;
 import ui.qabo.QaboDashBoardPage;
 
 import java.util.List;
-
-import static ui.methods.SetUp.driver;
 
 
 public class QaboOptionsTest extends Hooks implements SetUpBO {
@@ -29,7 +27,7 @@ public class QaboOptionsTest extends Hooks implements SetUpBO {
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
-    OrdersPageInQabo ordersPageInQabo = new OrdersPageInQabo();
+    OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
     DropDownHelper dropDownHelper = new DropDownHelper();
     SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
     BrowserHelper browserHelper = new BrowserHelper(driver);
@@ -62,15 +60,15 @@ public class QaboOptionsTest extends Hooks implements SetUpBO {
     public void openPriceInBO(){
         Helper.navigateToElement(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.click(qaboDashBoardPage.ordersLabelInSideBar);
-        Helper.waitForElementToBeDisplayed(ordersPageInQabo.ordersTitleText);
-        Helper.navigateToElement(ordersPageInQabo.ordersStatusFilter);
-        DropDownHelper.selectUsingVisibleText(ordersPageInQabo.ordersStatusFilter, "All");
-        Helper.sendKeys(ordersPageInQabo.orderNumFilterField, orderNumber);
+        Helper.waitForElementToBeDisplayed(ordersListPageInQabo.ordersTitleText);
+        Helper.navigateToElement(ordersListPageInQabo.ordersStatusFilter);
+        DropDownHelper.selectUsingVisibleText(ordersListPageInQabo.ordersStatusFilter, "All");
+        Helper.sendKeys(ordersListPageInQabo.orderNumFilterField, orderNumber);
         Helper.pause(1000);
-        Helper.click(ordersPageInQabo.filterButton);
-        Helper.waitForElementVisibilityOf(ordersPageInQabo.orderNumberLink);
-        Helper.waitForElementToBeClickable(ordersPageInQabo.orderNumberLink);
-        Helper.click(ordersPageInQabo.orderNumberLink);
+        Helper.click(ordersListPageInQabo.filterButton);
+        Helper.waitForElementVisibilityOf(ordersListPageInQabo.orderNumberLink);
+        Helper.waitForElementToBeClickable(ordersListPageInQabo.orderNumberLink);
+        Helper.click(ordersListPageInQabo.orderNumberLink);
         Helper.navigateToElement(orderInfoQaBo.pricingTab);
         Helper.click(orderInfoQaBo.pricingTab);
 
