@@ -8,26 +8,27 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.methods.CalendarClass;
 import ui.methods.HelperForWeb;
+import ui.methods.SetAddress;
 import ui.methods.SetUpBO;
 import ui.qabo.LoginPage;
 import ui.qabo.OrderInfoQaBo;
 import ui.qabo.OrdersListPageInQabo;
 import ui.qabo.QaboDashBoardPage;
 
-public class ChangeDateTest extends Hooks implements SetUpBO{
+public class ChangeAddressTest extends Hooks implements SetUpBO {
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
     OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
     OrderInfoQaBo orderInfoQaBo = new OrderInfoQaBo();
     CalendarClass calendarClass = new CalendarClass();
     HelperForWeb helperForWeb = new HelperForWeb();
-
-    String newDateValue;
+    String newAddressValue;
+    String newAdddedAddressValue;
+    String moverPassword = "Star12@";
 
     String orderNumber = "";
     String moverName = "";
     String moverEmail = "";
-    String moverPassword = "Star12@";
 
     @BeforeTest
     public void loginToQaBO(){
@@ -39,7 +40,7 @@ public class ChangeDateTest extends Hooks implements SetUpBO{
     }
 
     @Test
-    public void changeDate(){
+    public void changeAddress(){
         Helper.navigateToElement(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.click(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.waitForElementToBeDisplayed(ordersListPageInQabo.ordersTitleText);
@@ -51,13 +52,13 @@ public class ChangeDateTest extends Hooks implements SetUpBO{
         moverName = ordersListPageInQabo.branchNameCarrier.getText();
         Helper.waitForElementToBeDisplayed(ordersListPageInQabo.orderNumberLink);
         Helper.click(ordersListPageInQabo.orderNumberLink);
-        Helper.click(orderInfoQaBo.changeDateButton);
-        calendarClass.getRandomDateInMonthQABO(orderInfoQaBo.changeDateButtonDatePicker);
-        newDateValue = String.valueOf(calendarClass.dayInMonthRange);
-        Helper.click(orderInfoQaBo.changeDateButtonInPopup);
-        orderInfoQaBo.cancelChangeDateButtonInPopup.isDisplayed();
-        orderInfoQaBo.cancelChangeDateButtonInPopup.isEnabled();
-        Assert.assertEquals(orderInfoQaBo.orderStatus.getText(), "In Change Move Date Process");
+        Helper.click(orderInfoQaBo.changePickUpAddressButton);
+        newAddressValue = "12333 West Olympic Boulevard, Los Angeles, CA, USA";
+        newAdddedAddressValue = "12333 W Olympic Blvd, Los Angeles, CA 90064";
+        SetAddress.testMethod(newAddressValue, orderInfoQaBo.changeAddressInputInPopup);
+        Helper.click(orderInfoQaBo.changeAddressButtonInPopup);
+        Helper.pause(2000);
+        Assert.assertTrue(orderInfoQaBo.pickUpAddress.getText().contains(newAdddedAddressValue));
 
         helperForWeb.setCarrierNewPassword(moverName, moverPassword, orderNumber);
 
@@ -71,14 +72,12 @@ public class ChangeDateTest extends Hooks implements SetUpBO{
         Helper.sendKeys(ordersListPageInQabo.orderNumFilterField, orderNumber);
         Helper.click(ordersListPageInQabo.filterButton);
         Helper.click(ordersListPageInQabo.orderNumberLink);
-
-        Helper.click(orderInfoQaBo.approveChangeDateButton);
         Helper.pause(2000);
         String actualStatus = orderInfoQaBo.orderStatus.getText();
         boolean statusMatches = actualStatus.equals("Booked By Client") || actualStatus.equals("Vendor Approved New Order");
         Assert.assertTrue(statusMatches, "Status doesn't meet expected result");
-
-        Assert.assertTrue(orderInfoQaBo.pickupDateValue.getText().contains(newDateValue));
+        String addressPickValueCarrierSide = "Los Angeles, CA";
+        Assert.assertTrue(orderInfoQaBo.pickUpAddress.getText().contains(addressPickValueCarrierSide));
         Helper.click(qaboDashBoardPage.logOffButton);
     }
 }

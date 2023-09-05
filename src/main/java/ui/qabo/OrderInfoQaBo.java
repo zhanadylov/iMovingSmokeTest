@@ -41,6 +41,17 @@ public class OrderInfoQaBo {
     @FindBy(xpath = "//*[@id=\"newMoverBtn\"]")
     public WebElement selectMoverButton;
 
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[1]/div[2]/div[2]/div[1]/div[2]")
+    public WebElement pickUpAddress;
+    @FindBy(xpath = "//button[@id='changePickupAddressModalButton']")
+    public WebElement changePickUpAddressButton;
+    @FindBy(xpath = "//button[@id='saveChgPickupAddress']")
+    public WebElement changeAddressButtonInPopup;
+    @FindBy(xpath = "//input[@id=\"autocompleteaddress_pickup\"]")
+    public WebElement changeAddressInputInPopup;
+
+    @FindBy(xpath = "//*[@id=\"changeDropOffAddressModalButton\"]")
+    public WebElement changeDropOffAddressButton;
     @FindBy(xpath = "//*[@id=\"changeDateModalButton\"]")
     public WebElement changeDateButton;
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[18]/div/div/div[2]/div[2]/input")
@@ -51,12 +62,6 @@ public class OrderInfoQaBo {
     public WebElement cancelChangeDateButtonInPopup;
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[1]/div[2]/div[1]/div[1]/span/span")
     public WebElement pickupDateValue;
-
-    @FindBy(xpath = "//*[@id=\"changePickupAddressModalButton\"]")
-    public WebElement changePickUpAddress;
-
-    @FindBy(xpath = "//*[@id=\"changeDropOffAddressModalButton\"]")
-    public WebElement changeDropOffAddress;
 
     //Finance
     @FindBy(xpath = "//li//a[contains(text(),'Finance')]")
