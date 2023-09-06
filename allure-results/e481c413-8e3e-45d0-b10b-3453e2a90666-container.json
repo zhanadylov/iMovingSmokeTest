@@ -1,0 +1,1 @@
+{"uuid":"e481c413-8e3e-45d0-b10b-3453e2a90666","name":"iMovingSmokeTDDTest","children":["d98a05f6-fc85-406d-8c4b-9c06559fe628"],"befores":[{"name":"loginToQaBO","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1694000286266,"stop":1694000291096}],"afters":[],"start":1694000286264,"stop":1694000296747}

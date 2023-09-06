@@ -5,12 +5,13 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Before;
+import org.testng.annotations.BeforeTest;
 
 public class ApiConnection {
     static RequestSpecification requestSpecification;
     static Response response;
 
-    @Before
+    @BeforeTest
     public static void setUp(){
         RestAssured.baseURI="https://qa.imoving.com/";
         requestSpecification = RestAssured.given()

@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utilities.Driver;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class CalendarClass {
     WebDriver driver = Driver.getDriver();
@@ -93,5 +95,10 @@ public class CalendarClass {
         Helper.click(tdButton);
     }
 
-
+    public static String getCurrentDate(){
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM/dd/yyyy");
+        String formattedDate = dateFormat.format(currentDate);
+        return "Сегодняшняя дата: " + formattedDate;
+    }
 }

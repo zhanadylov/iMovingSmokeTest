@@ -68,6 +68,10 @@ public class OrderInfoQaBo {
     public WebElement financeTab;
     @FindBy(xpath = "//*[@id=\"payByCheckModalBtn\"]")
     public WebElement addPaymentButton;
+    @FindBy(xpath = "(//td[contains(text(),'Captured')])[1]")
+    public WebElement capturedTextInStatusColumnTable;
+    @FindBy(xpath = "(//td[contains(text(),'Success')])[1]")
+    public WebElement successTextInStatusColumnTable;
 
     @FindBy(xpath = "//li//a[contains(text(),'Payments to Carrier')]")
     public WebElement paymentToCarrierTab;
@@ -86,9 +90,6 @@ public class OrderInfoQaBo {
 
     @FindBy(xpath = "//li//a[contains(text(),'CF Calculation')]")
     public WebElement cfCalculatingTab;
-
-    @FindBy(xpath = "//li//a[contains(text(),'Notes')]")
-    public WebElement notesTab;
 
     //Carrier side
     @FindBy(xpath = "/html/body/div[1]/div/section[1]/div[2]/button[1]")
