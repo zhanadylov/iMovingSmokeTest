@@ -1,20 +1,19 @@
 package ui.methods;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public interface SetUpBO {
     WebDriver driver = Driver.getDriver();
 
-    @BeforeSuite
+    @BeforeTest
     static void openChrome(){
         driver.get(ConfigReader.getProperty("environmentBO"));
     }
 
-    @AfterSuite
+    @AfterTest
     static void closeChrome(){
         driver.close();
         driver.quit();

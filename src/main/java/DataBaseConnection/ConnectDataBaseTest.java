@@ -1,9 +1,10 @@
 package DataBaseConnection;
 
 import helper.Helper;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import hooks.logs.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.*;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -11,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ConnectDataBaseTest {
+    private static final Logger logger = LoggerFactory.getLogger(ConnectDataBaseTest.class);
+
     private static Connection conn;
     private static Statement stmt;
     private static ResultSet resultSet;
@@ -22,45 +25,72 @@ public class ConnectDataBaseTest {
         orderNumber = num;
     }
 
-    @BeforeClass
+//    @BeforeClass
+//    public static void setUp() {
+//        final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
+////        final String JDBC_Driver = "com.microsoft.jdbc.sqlserver.SqlServerDriver";
+////        final String DB_URL = "jdbc:mysql://localhost:3306/test";
+////        final String DB_URL = "jdbc:sqlserver://imovingsqlserver.database.windows.net:1433:databaseName=iMovingQa";
+//        final String DB_URL =
+//                "jdbc:sqlserver://imovingsqlserver.database.windows.net:1433;"
+//                        + "database=iMovingQa;"
+//                        + "user=admin-imoving;"
+//                        + "password=Q!w2e3r4t5y6;"
+//                        + "encrypt=true;"
+//                        + "trustServerCertificate=false;"
+//                        + "loginTimeout=30;";
+//
+//        String user = "admin-imoving";
+//        String password = "Q!w2e3r4t5y6";
+//        conn = null;
+//        try {
+//            Class.forName(JDBC_Driver);
+//            System.out.println(Helper.color("green") + "Connecting to Database..." + Helper.color("reset"));
+//            conn = DriverManager.getConnection(DB_URL, user, password);
+//            if (conn != null) {
+//                System.out.println(Helper.color("green") + "Connected to the Database..." + Helper.color("reset"));
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(Helper.color("purple") + "Problem with connecting!!!" + Helper.color("reset"));
+//            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//            System.out.println(Helper.color("black") + "Problem with connecting!!!" + Helper.color("reset"));
+//            ex.printStackTrace();
+//        }
+//    }
+
+    @BeforeMethod
     public static void setUp() {
         final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
-//        final String JDBC_Driver = "com.microsoft.jdbc.sqlserver.SqlServerDriver";
-//        final String DB_URL = "jdbc:mysql://localhost:3306/test";
-//        final String DB_URL = "jdbc:sqlserver://imovingsqlserver.database.windows.net:1433:databaseName=iMovingQa";
-        final String DB_URL =
-                "jdbc:sqlserver://imovingsqlserver.database.windows.net:1433;"
-                        + "database=iMovingQa;"
-                        + "user=admin-imoving;"
-                        + "password=Q!w2e3r4t5y6;"
-                        + "encrypt=true;"
-                        + "trustServerCertificate=false;"
-                        + "loginTimeout=30;";
+        final String DB_URL = "jdbc:sqlserver://imovingsqlserver.database.windows.net:1433;"
+                + "database=iMovingQa;"
+                + "user=admin-imoving;"
+                + "password=Q!w2e3r4t5y6;"
+                + "encrypt=true;"
+                + "trustServerCertificate=false;"
+                + "loginTimeout=30;";
 
         String user = "admin-imoving";
         String password = "Q!w2e3r4t5y6";
-        conn = null;
+
         try {
             Class.forName(JDBC_Driver);
-            System.out.println(Helper.color("green") + "Connecting to Database..." + Helper.color("reset"));
+            logger.info("Connecting to Database...");
             conn = DriverManager.getConnection(DB_URL, user, password);
+            stmt = conn.createStatement();
             if (conn != null) {
-                System.out.println(Helper.color("green") + "Connected to the Database..." + Helper.color("reset"));
+                logger.info("Connected to the Database.");
             }
-        } catch (SQLException ex) {
-            System.out.println(Helper.color("purple") + "Problem with connecting!!!" + Helper.color("reset"));
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            System.out.println(Helper.color("black") + "Problem with connecting!!!" + Helper.color("reset"));
-            ex.printStackTrace();
+        } catch (SQLException | ClassNotFoundException ex) {
+            logger.error("Problem with connecting!!!", ex);
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public static void updateDate() {
         try {
 //            String query = "select * from ImovingOrder";
-            stmt = conn.createStatement();
+//            stmt = conn.createStatement();
 //            resultSet = stmt.executeQuery(query);
 
             updateDateQuery = "update ImovingOrder\n" +
@@ -83,33 +113,70 @@ public class ConnectDataBaseTest {
         }
     }
 
+//    @Test
+//    public static void updateOneDayEarlier() {
+//        try {
+//            stmt = conn.createStatement();
+//            updateDateQuery = "update ImovingOrder\n" +
+//                    "set MoveDate = dateadd(day, -1, GETDATE())\n" +
+//                    "where Id = ".concat(orderNumber);
+//            stmt.executeUpdate(updateDateQuery);
+//            System.out.println(Helper.color("cyan") + "Date changed to one day earlier" + Helper.color("reset"));
+//        } catch (SQLException ex) {
+//            System.out.println(Helper.color("black") + "Problem with updating date to one day earlier!!!" + Helper.color("reset"));
+//            ex.printStackTrace();
+//        }
+//    }
+
     @Test
     public static void updateOneDayEarlier() {
         try {
-            stmt = conn.createStatement();
-            updateDateQuery = "update ImovingOrder\n" +
+            if (conn == null || stmt == null) {
+                logger.error("Connection or Statement is not initialized.");
+                return;
+            }
+
+            String updateDateQuery = "update ImovingOrder\n" +
                     "set MoveDate = dateadd(day, -1, GETDATE())\n" +
-                    "where Id = ".concat(orderNumber);
+                    "where Id = " + orderNumber;
+            System.out.println("Order update is " + orderNumber);
             stmt.executeUpdate(updateDateQuery);
-            System.out.println(Helper.color("cyan") + "Date changed to one day earlier" + Helper.color("reset"));
+            logger.info("Date changed to one day earlier");
         } catch (SQLException ex) {
-            System.out.println(Helper.color("black") + "Problem with updating date to one day earlier!!!" + Helper.color("reset"));
-            ex.printStackTrace();
+            logger.error("Problem with updating date to one day earlier!!!", ex);
         }
     }
+//    @Test
+//    public static void changeCaptureDate() {
+//        try {
+//            stmt = conn.createStatement();
+//            updateCaptureDate = "update ScheduledTaskLogItem \n" +
+//                    "set StartDate = dateadd(day, 0, GETDATE())\n" +
+//                    "where OrderId = ".concat(orderNumber) + " and TaskName ='Capture'";
+//            stmt.executeUpdate(updateCaptureDate);
+//            System.out.println(Helper.color("cyan") + "Capture date updated" + Helper.color("reset"));
+//        } catch (NullPointerException | SQLException ex) {
+//            System.out.println(Helper.color("black") + "Problem with updating Capture field!!!" + Helper.color("reset"));
+//            ex.printStackTrace();
+//        }
+//    }
 
     @Test
     public static void changeCaptureDate() {
         try {
-            stmt = conn.createStatement();
-            updateCaptureDate = "update ScheduledTaskLogItem \n" +
+            if (conn == null || stmt == null) {
+                logger.error("Connection or Statement is not initialized.");
+                return; // Прерываем выполнение метода, чтобы избежать NullPointerException
+            }
+
+            String updateCaptureDate = "update ScheduledTaskLogItem \n" +
                     "set StartDate = dateadd(day, 0, GETDATE())\n" +
-                    "where OrderId = ".concat(orderNumber) + " and TaskName ='Capture'";
+                    "where OrderId = " + orderNumber + " and TaskName ='Capture'";
+            System.out.println("Order capture is " + orderNumber);
             stmt.executeUpdate(updateCaptureDate);
-            System.out.println(Helper.color("cyan") + "Capture date updated" + Helper.color("reset"));
-        } catch (NullPointerException | SQLException ex) {
-            System.out.println(Helper.color("black") + "Problem with updating Capture field!!!" + Helper.color("reset"));
-            ex.printStackTrace();
+            logger.info("Capture date updated");
+        } catch (SQLException ex) {
+            logger.error("Problem with updating Capture field!!!", ex);
         }
     }
     public static String getDate(int days){
@@ -134,16 +201,30 @@ public class ConnectDataBaseTest {
     }
 
 
+//    @AfterClass
+//    public static void tearDown() {
+//        if (conn != null) {
+//            try {
+//                System.out.println(Helper.color("green")+"Closing Database Connection..."+Helper.color("reset"));
+//                stmt.close();
+//                conn.close();
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
+
     @AfterClass
     public static void tearDown() {
-        if (conn != null) {
-            try {
-                System.out.println(Helper.color("green")+"Closing Database Connection..."+Helper.color("reset"));
+        try {
+            if (conn != null) {
+                logger.info("Closing Database Connection...");
                 stmt.close();
                 conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                logger.info("Database Connection closed.");
             }
+        } catch (SQLException ex) {
+            logger.error("Error closing Database Connection.", ex);
         }
     }
 }

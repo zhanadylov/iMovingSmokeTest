@@ -1,7 +1,21 @@
 package hooks.logs;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
+
+//public class Log4jDemo {
+//
+//    private static Logger logger = LogManager.getLogger(Log4jDemo.class);
+//
+//    public static void main(String[] args) {
+//        logger.info("Info message!");
+//        logger.debug("Debug message");
+//        logger.trace("Trace message");
+//        logger.warn("Warn message");
+//        logger.error("Error message");
+//        logger.fatal("Fatal message");
+//    }
+//}
 
 public class Log4jDemo {
 
@@ -9,7 +23,7 @@ public class Log4jDemo {
 
     static {
         System.setProperty("log4j.configurationFile", "log4j2.xml");
-        logger = (Logger) LogManager.getLogger(Log4jDemo.class);
+        logger = LogManager.getLogger(Log4jDemo.class);
     }
 
     public static void main(String[] args) {

@@ -104,12 +104,12 @@
                     <div class="method-list-content failed suite-All_Test_Suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-All_Test_Suite" title="tests.CreateOrder" hash-for-method="moving_Confirm_Page">moving_Confirm_Page</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-All_Test_Suite" title="tests.CreateOrderTest" hash-for-method="moving_Confirm_Page">moving_Confirm_Page</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-All_Test_Suite" title="tests.CreateOrder" hash-for-method="payment_Page">payment_Page</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-All_Test_Suite" title="tests.CreateOrderTest" hash-for-method="payment_Page">payment_Page</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-All_Test_Suite -->
@@ -123,7 +123,7 @@
                     <div class="method-list-content passed suite-All_Test_Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-All_Test_Suite" title="tests.CreateOrder" hash-for-method="chooseMoveOption">chooseMoveOption</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-All_Test_Suite" title="tests.CreateOrderTest" hash-for-method="chooseMoveOption">chooseMoveOption</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-All_Test_Suite -->
@@ -141,7 +141,7 @@
           <div class="suite-All_Test_Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">tests.CreateOrder</span>
+              <span class="class-name">tests.CreateOrderTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -176,7 +176,7 @@ Session ID: dfb5306c3a507430961b9d7f124d9e49
 	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
 	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
 	at com.sun.proxy.$Proxy17.getText(Unknown Source)
-	at tests.CreateOrder.moving_Confirm_Page(CreateOrder.java:131)
+	at tests.CreateOrderTest.moving_Confirm_Page(CreateOrder.java:131)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -239,7 +239,7 @@ Session ID: dfb5306c3a507430961b9d7f124d9e49
 	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
 	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
 	at com.sun.proxy.$Proxy17.getText(Unknown Source)
-	at tests.CreateOrder.payment_Page(CreateOrder.java:154)
+	at tests.CreateOrderTest.payment_Page(CreateOrder.java:154)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -275,7 +275,7 @@ Session ID: dfb5306c3a507430961b9d7f124d9e49
           <div class="suite-All_Test_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.CreateOrder</span>
+              <span class="class-name">tests.CreateOrderTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -299,13 +299,13 @@ Session ID: dfb5306c3a507430961b9d7f124d9e49
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;All Test Suite&quot;&gt;
   &lt;test thread-count=&quot;5&quot; verbose=&quot;2&quot; name=&quot;C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.CreateOrder&quot;&gt;
+      &lt;class name=&quot;tests.CreateOrderTest&quot;&gt;
         &lt;methods&gt;
           &lt;include name=&quot;chooseMoveOption&quot;/&gt;
           &lt;include name=&quot;moving_Confirm_Page&quot;/&gt;
           &lt;include name=&quot;payment_Page&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- tests.CreateOrder --&gt;
+      &lt;/class&gt; &lt;!-- tests.CreateOrderTest --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest --&gt;
 &lt;/suite&gt; &lt;!-- All Test Suite --&gt;
@@ -348,15 +348,15 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(3);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'chooseMoveOption')
-data.setCell(0, 2, 'tests.CreateOrder')
+data.setCell(0, 2, 'tests.CreateOrderTest')
 data.setCell(0, 3, 72852);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'moving_Confirm_Page')
-data.setCell(1, 2, 'tests.CreateOrder')
+data.setCell(1, 2, 'tests.CreateOrderTest')
 data.setCell(1, 3, 10052);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'payment_Page')
-data.setCell(2, 2, 'tests.CreateOrder')
+data.setCell(2, 2, 'tests.CreateOrderTest')
 data.setCell(2, 3, 8022);
 window.suiteTableData['All_Test_Suite']= { tableData: data, tableDiv: 'times-div-All_Test_Suite'}
 return data;
@@ -381,7 +381,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">tests.CreateOrder</span>
+              <span class="ignored-class-name">tests.CreateOrderTest</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">moving_Result_Page</span>
                 <br/>
@@ -397,7 +397,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.CreateOrder</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.CreateOrderTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">openChrome</span>
                 <span class="method-start">0 ms</span>

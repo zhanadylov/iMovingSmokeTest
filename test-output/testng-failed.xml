@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [All Test Suite]">
   <test thread-count="5" name="C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest(failed)">
     <classes>
-      <class name="tests.CreateOrder">
+      <class name="tests.CreateOrderTest">
         <methods>
           <include name="payment_Page"/>
           <include name="closeChrome"/>
           <include name="openChrome"/>
           <include name="moving_Confirm_Page"/>
         </methods>
-      </class> <!-- tests.CreateOrder -->
+      </class> <!-- tests.CreateOrderTest -->
     </classes>
   </test> <!-- C:/Users/user2022/Documents/TestingDataBase/iMovingSmokeTDDTest(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->

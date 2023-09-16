@@ -33,11 +33,11 @@ public class Local_Moving_Page {
     //Third step
     @FindBy(css = "#step3 > div > div.row > h2")
     public WebElement chooseCarrierText;
-    @FindBy(xpath = "//*[@id=\"step3\"]/div/div[1]/div[4]/div/label/span")
-    public WebElement air1MoverName;
-    @FindBy(xpath = "//*[@id=\"step3\"]/div/div[1]/div[2]/div/label/span")
+    @FindBy(xpath = "//*[@id=\"step3\"]/div/div[1]/div[1]/div/label/span")
     public WebElement blvdMoverName;
-    @FindBy(xpath = "//*[@id=\"step3\"]/div/div[1]/div[5]/div/label/span")
+    @FindBy(xpath = "//*[@id=\"step3\"]/div/div[1]/div[2]/div/label/span")
+    public WebElement air1MoverName;
+    @FindBy(xpath = "//*[@id=\"step3\"]/div/div[1]/div[3]/div/label/span")
     public WebElement ldMovingName;
     @FindBy(xpath = "//*[@id=\"step3\"]/div/div[2]/button")
     public WebElement compareQuotesButton;
@@ -72,12 +72,19 @@ public class Local_Moving_Page {
     public WebElement chooseYourCarrierBookOnlineTitle;
     @FindBy(xpath = "//span[@class='checkmark-radio select-mover']")
     public List<WebElement> listOfThreeCarrier;
+    @FindBy(xpath = "(//span[@class='checkmark-radio select-mover'])[1] | (//span[@class='checkmark-radio select-mover'])[2]")
+    public List<WebElement> listOfLDAndBlvdCarriers;
     @FindBy(xpath = "//button[@type='button' and contains(text(),'Book now')]")
     public WebElement bookNowButton;
 
     //Step Eight
     @FindBy(css = "#moving-widget-screen6 > div > div > div > h2")
     public WebElement yourMoveDetailsTitle;
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[1]/section[2]/div[2]/div/div/div[8]/div/div/div/div/div[1]/div[5]/div[1]/img")
+    public WebElement editCarrierButton;
+
+    @FindBy(xpath = "/html/body/div[2]/div/main/div[1]/section[2]/div[2]/div/div/div[8]/a")
+    public WebElement backArrowButton;
     @FindBy(xpath = "//*[@id=\"full_packing\"]/span")
     public WebElement addFullPackingCheckbox;
     @FindBy(xpath = "//*[@id=\"i_agree\"]/span[1]")

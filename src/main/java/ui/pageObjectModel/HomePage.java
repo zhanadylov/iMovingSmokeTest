@@ -70,16 +70,16 @@ public class HomePage {
     public WebElement verifyAndSignUpButton;
 
     //Forgot password
-    @FindBy(xpath = "//*[@id=\"mainNavbar\"]/ul[1]/li/div/div/div/div[3]/div")
+    @FindBy(xpath = "//p[contains(text(),'Reset your password')]")
     public WebElement forgotPasswordText;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/div[2]/div/div/div/div[3]/form/div/div[1]/input")
+    @FindBy(xpath = "/html/body/div[1]/header/nav/div/div[2]/ul/li[2]/div/div[2]/form/div/input")
     public WebElement emailResetPassword;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[1]/li/div/div/div/div[3]/form/div/div[3]/button")
+    @FindBy(xpath = "//button[contains(text(),'Send')]")
     public WebElement sendButtonInReset;
 
-    @FindBy(xpath = "/html/body/div[2]/div/header/nav/div/div[2]/ul[1]/li/div/div/div/div[3]/form/div/div[4]/a")
+    @FindBy(xpath = "//a[contains(text(),'Back to login')]")
     public WebElement backToLoginButtonInReset;
 
     //Select from dropdown and create

@@ -14,39 +14,39 @@ import static utilities.Driver.clear_Cookies_And_Storage;
 
 public class BrowserHelper{
 
-	private final WebDriver driver;
-	public BrowserHelper(WebDriver driver) {
-		this.driver = driver;
-	}
+//	private final WebDriver driver;
+//	public BrowserHelper(WebDriver driver) {
+//		this.driver = driver;
+//	}
 
-	public void newWindow() {
+	public void newWindow(WebDriver driver) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.open()");
 	}
 
-	public void goBack() {
+	public void goBack(WebDriver driver) {
 		driver.navigate().back();
 
 	}
 
-	public void goForward() {
+	public void goForward(WebDriver driver) {
 		driver.navigate().forward();
 
 	}
 
-	public void refresh() {
+	public void refresh(WebDriver driver) {
 		driver.navigate().refresh();
 	}
 
-	public Set<String> getWindowHandles() {
+	public Set<String> getWindowHandles(WebDriver driver) {
 
 		return driver.getWindowHandles();
 	}
 
-	public void SwitchToWindow(int index) {
+	public void SwitchToWindow(int index, WebDriver driver) {
 
 		LinkedList<String> windowsId = new LinkedList<String>(
-				getWindowHandles());
+				getWindowHandles(driver));
 
 		if (index < 0 || index > windowsId.size())
 			throw new IllegalArgumentException("Invalid Index : " + index);
@@ -55,32 +55,32 @@ public class BrowserHelper{
 
 	}
 
-	public void switchToParentWindow() {
+	public void switchToParentWindow(WebDriver driver) {
 		LinkedList<String> windowsId = new LinkedList<String>(
-				getWindowHandles());
+				getWindowHandles(driver));
 		driver.switchTo().window(windowsId.get(0));
 
 	}
 
-	public void switchToParentWithChildClose() {
-		switchToParentWindow();
+	public void switchToParentWithChildClose(WebDriver driver) {
+		switchToParentWindow(driver);
 
 		LinkedList<String> windowsId = new LinkedList<String>(
-				getWindowHandles());
+				getWindowHandles(driver));
 
 		for (int i = 1; i < windowsId.size(); i++) {
 			driver.switchTo().window(windowsId.get(i));
 			driver.close();
 		}
-		switchToParentWindow();
+		switchToParentWindow(driver);
 	}
 
-	public void switchToFrame(String nameOrId) {
+	public void switchToFrame(String nameOrId, WebDriver driver) {
 		driver.switchTo().frame(nameOrId);
 	}
 
 	@AfterTest
-	public void clearCookiesAndLocalStorage(){
+	public void clearCookiesAndLocalStorage(WebDriver driver){
 		if(clear_Cookies_And_Storage){
 			JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 			driver.manage().deleteAllCookies();

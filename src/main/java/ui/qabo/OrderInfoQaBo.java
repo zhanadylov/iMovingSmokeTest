@@ -28,6 +28,9 @@ public class OrderInfoQaBo {
     @FindBy(xpath = "//li//a[contains(text(),'Changes')]")
     public WebElement changesTab;
 
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[2]/div[2]/div/table/tbody/tr[2]/td[10]")
+    public WebElement grandTotalValue;
+
     //Order Details
     @FindBy(xpath = "//*[@id=\"status\"]")
     public WebElement orderStatus;
@@ -37,10 +40,22 @@ public class OrderInfoQaBo {
 
     @FindBy(xpath = "//*[@id=\"tab_1\"]/div[1]/div[2]/div[2]/div[1]/div[3]")
     public WebElement carrierEmail;
+    @FindBy(xpath = "/html/body/div[1]/div/section[1]/h1/div/a[2]")
+    public WebElement orderNumberInBO;
 
     @FindBy(xpath = "//*[@id=\"newMoverBtn\"]")
     public WebElement selectMoverButton;
-
+    //Select mover popup
+    @FindBy(xpath = "//h4[contains(text(),'Select another carrier')]")
+    public WebElement selectAnotherCarrierTitle;
+    @FindBy(xpath = "//*[@id=\"notAvailableMover\"]")
+    public WebElement notAvailableDropdownButton;
+    @FindBy(xpath = "//button[contains(text(),\"Select this carrier\")]")
+    public WebElement selectThisCarrierButton;
+    @FindBy(xpath = "//input[contains(@id, 'cb') and following-sibling::label[contains(text(),'Air 1 Moving & Storage - *4.0 - Los Angeles')]]")
+    public WebElement availableCarrierAirOneButton;
+    @FindBy(xpath = "//button[contains(text(),\"Start Change Carrier\")]")
+    public WebElement startChangeCarrierButton;
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[1]/div[2]/div[2]/div[1]/div[2]")
     public WebElement pickUpAddress;
     @FindBy(xpath = "//button[@id='changePickupAddressModalButton']")
@@ -62,6 +77,15 @@ public class OrderInfoQaBo {
     public WebElement cancelChangeDateButtonInPopup;
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[1]/div[2]/div[1]/div[1]/span/span")
     public WebElement pickupDateValue;
+
+    @FindBy(xpath = "//button[@id='pickupDateModalBtn']")
+    public WebElement pickupButton;
+
+    //Pricing
+    @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[6]/div[1]/h4/a")
+    public WebElement fees;
+    @FindBy(xpath = "//td[contains(text(),'End of Month fee')]")
+    public WebElement endOfMonthFeeInFee;
 
     //Finance
     @FindBy(xpath = "//li//a[contains(text(),'Finance')]")

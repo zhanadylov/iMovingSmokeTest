@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" thread-count="2">
-    <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest">
+    <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest" >
         <classes>
-            <class name="tests.backOfficeTest.QaboSideBarTest"/>
-            <class name="tests.FooterLinksTest">
+            <class name="tests.ui.CreateOrderTest">
+            </class>
+            <class name="tests.ui.backOfficeTest.QaboSideBarTest">
+            </class>
+            <class name="tests.ui.FooterLinksTest">
                 <methods>
                         <include name="footerMenuTest"/>
-                        <include name="footerCostCalculatorTest"/>
                         <include name="footerLocalPageTest"/>
+                        <include name="footerCostCalculatorTest"/>
                         <include name="footerChecklistPage"/>
                         <include name="footerLaborPage"/>
                         <include name="footerCaliforniaStatePage"/>
@@ -21,6 +24,10 @@
                         <include name="footerLonDistancePage"/>
                         <include name="footerMovingPediaTest"/>
                 </methods>
+            </class>
+            <class name="tests.ui.backOfficeTest.ChangeDateTest">
+            </class>
+            <class name="tests.ui.backOfficeTest.DeliveryProcessTest">
             </class>
         </classes>
     </test>
