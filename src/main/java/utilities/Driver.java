@@ -37,7 +37,7 @@ public class Driver {
         try {
             if (Driver.driver != null) {
                 driver.close();
-//                driver.quit();
+                driver.quit();
                 Driver.driver = null;
             }
         } catch (Exception e) {

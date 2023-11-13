@@ -4,7 +4,6 @@ import helper.AssertThat;
 import helper.BrowserHelper;
 import helper.Helper;
 import hooks.Hooks;
-import hooks.TestStatusListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;

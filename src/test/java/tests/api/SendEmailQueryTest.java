@@ -1,15 +1,16 @@
 package tests.api;
 
 import apiConnection.ApiConnection;
+import hooks.logs.Log;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-public class SendEmailQueryTest extends ApiConnection {
-    private static final Logger logger = LoggerFactory.getLogger(SendEmailQueryTest.class);
+import static hooks.logs.Log4jDemo.logger;
 
+public class SendEmailQueryTest extends ApiConnection {
+//    private static final Logger logger = LoggerFactory.getLogger(SendEmailQueryTest.class);
+@Log
     @Test
     public void query_send()  {
         if (requestSpecification == null || response == null) {

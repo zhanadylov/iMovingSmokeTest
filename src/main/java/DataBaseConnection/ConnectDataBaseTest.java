@@ -2,8 +2,6 @@ package DataBaseConnection;
 
 import helper.Helper;
 import hooks.logs.Log;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 import java.sql.*;
@@ -11,8 +9,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static hooks.logs.Log4jDemo.logger;
+
 public class ConnectDataBaseTest {
-    private static final Logger logger = LoggerFactory.getLogger(ConnectDataBaseTest.class);
+//    private static final Logger logger = LoggerFactory.getLogger(ConnectDataBaseTest.class);
 
     private static Connection conn;
     private static Statement stmt;
@@ -58,7 +58,7 @@ public class ConnectDataBaseTest {
 //            ex.printStackTrace();
 //        }
 //    }
-
+@Log
     @BeforeMethod
     public static void setUp() {
         final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";

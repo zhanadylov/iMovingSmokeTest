@@ -21,10 +21,10 @@ public class Hooks extends Driver{
     private static final Logger logger = LogManager.getLogger(Hooks.class);
     static WebDriver driver = Driver.getDriver();
 
-    @BeforeSuite
+    @BeforeTest
     public static void setUpClass() {
         driver = Driver.getDriver();
-        logger.info("Before suit hook started "+driver.getCurrentUrl()+"-"+driver.getTitle());
+        logger.info("Before test hook started "+driver.getCurrentUrl()+"-"+driver.getTitle());
     }
     @BeforeMethod
     public static void setUpMethod() {
@@ -39,11 +39,11 @@ public class Hooks extends Driver{
         }
     }
 
-    @AfterSuite
+    @AfterTest
     public void tearDownClass() {
 //        driver.close();
 //        driver.quit();
-        logger.info("After suit hook started "+driver.getCurrentUrl()+driver.getTitle());
+        logger.info("After test hook started "+driver.getCurrentUrl()+driver.getTitle());
         Driver.closeDriver();
     }
     public static void FailedScreenshot(String testName) {

@@ -5,14 +5,19 @@ import helper.AssertThat;
 import helper.BrowserHelper;
 import helper.Helper;
 import hooks.Hooks;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.ui.backOfficeTest.QaboOptionsTest;
+import tests.ui.backOfficeTest.QaboSideBarTest;
 import ui.methods.*;
 import ui.pageObjectModel.*;
 
-public class AdditionalPickUpTest extends Hooks implements SetUp {
-
+public class AdditionalPickUpTest extends Hooks{
+    private WebDriver driver;
+    private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.class);
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     HomePage homePage = new HomePage();
     UserZonePage userZonePage = new UserZonePage();
@@ -26,7 +31,7 @@ public class AdditionalPickUpTest extends Hooks implements SetUp {
     BrowserHelper browserHelper = new BrowserHelper();
     QaboOptionsTest qaboOptionsTest = new QaboOptionsTest();
     GetOrderInfo getOrderInfo = new GetOrderInfo();
-    AlertHelper alertHelper = new AlertHelper(driver);
+//    AlertHelper alertHelper = new AlertHelper(driver);
 
     @Test
     public void addAdditionalPickUpPayByCC(){
