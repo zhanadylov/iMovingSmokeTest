@@ -12,7 +12,8 @@ public class FullInventoryPage {
     public FullInventoryPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
+    @FindBy(xpath = "//div[contains(@ng-class,'scrollToMe')]//div[@class='flex-center']//img[contains(@title,'')]")
+    public List<WebElement> imgItemLocators;
     @FindBy(xpath = "//h1[contains(normalize-space(text()),'Add Items on Each Room')]")
     public WebElement inventoryTitleText;
     @FindBy(xpath = "//div[contains(normalize-space(@class),'room-box')]//h3[contains(normalize-space(text()),'Living Room')]")
@@ -23,10 +24,13 @@ public class FullInventoryPage {
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div[3]/div[1]/div[2]/div/div[1]/div[1]/a")
     public WebElement addItemButton;
 
-    @FindBy(xpath = "//div[contains(@class, 'rooms-popup-buttons') and//a[contains(@class, 'btn-blue') and normalize-space(text())='Done']]")
-    public WebElement doneButton;
+    @FindBy(xpath = "//div[contains(@class, 'modal-body')]//a[contains(@class, 'custom-btn') and normalize-space(text())='Next Room']")
+    public static WebElement nextRoomButton;
 
-    @FindBy(xpath = "//div[contains(@class, 'modal-buttons row')]//div[contains(@class, 'col-xs-6')]//a[contains(@class,'grey-btn')]")
+    @FindBy(xpath = "//a[contains(normalize-space(.), 'Next Room')]")
+    public WebElement nextRoomButtonPopup;
+
+    @FindBy(xpath = "//div[contains(@class, 'modal-buttons row')]//div[contains(@class, 'col-xs-12')]//a[contains(@class,'grey-btn')]")
     public WebElement dontHaveCabinetButton;
 
     @FindBy(xpath = "//div[contains(@class, 'modal-buttons row')]//div[contains(@class, 'col-xs-6')]//a[contains(@class,'blue-btn')]")
@@ -53,9 +57,6 @@ public class FullInventoryPage {
     @FindBy(xpath = "/html/body/div/header/nav/div/div[2]/ul[2]/li/div/ul[2]/li[3]/form/fieldset/button")
     public WebElement logOutButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[2]/div/a[2]")
-    public WebElement continueButton;
-
     @FindBy(xpath = "/html/body/div[1]/div/div/div/div[2]/div/a")
     public WebElement BoxesPopUpGotItButton;
 
@@ -67,10 +68,18 @@ public class FullInventoryPage {
 
     @FindBy(xpath = "//h1[normalize-space(text())='Add Items on Each Room']")
     public WebElement addItemsOnEachRoomTitle;
+    @FindBy(xpath = "//ul[@class='full-trip-list list-inline']//li[@class='trip-point storage']//div[@class='line2 dateDetails' and contains(normalize-space(text()),'')]")
+    public WebElement storageSizeInHeader;
+    @FindBy(xpath = "//td//select[@ng-model='sliderOption.Volume']")
+    public WebElement storageDropdownOption;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[1]/h2/span[2]")
-    public WebElement oneBedroomText;
+    @FindBy(xpath = "//td//a[@id='dLabelStorageSizeAddPickup']")
+    public WebElement storageDropdownOpenButton;
 
+    @FindBy(xpath = "//td//ul[@class='dropdown-menu show']//li")
+    public List<WebElement> storageDropdownList;
+    @FindBy(xpath = "//div[@class='row items-row']//span[@ng-show='room.Amount>0']/following::figcaption[1]")
+    public WebElement selectedStorageSizeInPop;
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div[3]/div[1]/button")
     public WebElement saveAndGoToNextRoom;
 
@@ -82,7 +91,9 @@ public class FullInventoryPage {
     public WebElement removeAllButton;
     @FindBy(xpath = "//div[@class='room-box']//*[contains(normalize-space(@class),'icon-pen')]")
     public WebElement pencilButton;
-//    @FindBy(xpath = "//h3[@class='room-name' and contains(normalize-space(text()),'7 Items or less')]//following::div[@class='room-box']")
+    @FindBy(xpath = "//div[@class='room-box']//*[contains(normalize-space(@class),'icon-pen')]")
+    public WebElement removeIconButton;
+    //    @FindBy(xpath = "//h3[@class='room-name' and contains(normalize-space(text()),'7 Items or less')]//following::div[@class='room-box']")
     @FindBy(xpath = "//div[@class='room-box']//*[contains(normalize-space(@class),'room-name')]")
     public WebElement sevenItemsOrLessText;
     @FindBy(xpath = "(//div[@class='block-height-auto']//div[normalize-space(@class)='line2 dateDetails'])[position()=1]")
@@ -117,23 +128,24 @@ public class FullInventoryPage {
     @FindBy(id = "closeTutorial2")
     public WebElement OKbuttonPressThisButtonToSaveChoosedItems;
 
-    @FindBy(xpath = "//a[@class='btn-add addItemBlock' and contains(text(),'Manage Rooms')]")
+    @FindBy(xpath = "//a[@class='custom-btn-outline icon-plus' and contains(text(),'Manage')]")
     public WebElement manageRoomsLinkButton;
-
+    @FindBy(xpath = "//a[@class='custom-btn col-xs-6' and contains(text(),'Confirm')]")
+    public WebElement confirmButtonInManageRoomsPop;
     @FindBy(xpath = "(//h2[@class='modal-title' and contains(text(),'')])[position()=1]")
     public WebElement titleTextInManageAndPickUpPopup;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div/div[1]/p[1]")
     public WebElement manageRoomsPopupSubHeadingText;
 
-    @FindBy(xpath = "//a[@class='btn-add addItemBlock' and contains(text(),'Pickup')]")
+    @FindBy(xpath = "//a[@class='custom-btn-outline icon-plus' and contains(text(),'Pickup')]")
     public WebElement addAdditionalPickupLocationLink;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[1]/div[1]/div[1]/div[5]")
-    public WebElement AdditionalPickupLocationPage;
 
     @FindBy(xpath = "//a[contains(normalize-space(.), 'Complete')]")
     public WebElement completeButton;
+
+    @FindBy(xpath = "//div[@class='text-center']//a[contains(normalize-space(.), 'Continue')]")
+    public WebElement continueButton;
 
     // These are recommended storages for a
     @FindBy(xpath = "//a[contains(normalize-space(@ng-click),'storage')]")
@@ -147,6 +159,9 @@ public class FullInventoryPage {
 
 
     // room name ex: Additional Items
+    @FindBy(xpath = "//ul[@class='full-trip-list list-inline']//li[@class='trip-point']//*[contains(normalize-space(text()),'Additional Pickup')]")
+    public WebElement additionalPickUpTitleInHeader;
+
     @FindBy(xpath = "(//h3[@class='room-name'][normalize-space()='Additional Items'])[1]")
     public WebElement additionalItems;
 
@@ -164,7 +179,7 @@ public class FullInventoryPage {
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[1]/section/div[2]/div/div[1]/div/div/figure/img")
     public WebElement sofa;
 
-    @FindBy(xpath = "//span[normalize-space(text())='Additional Pickup Storage']")
+    @FindBy(xpath = "//span[normalize-space(text())='Additional Pickup']")
     public WebElement additionalPickUpTitle;
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div[1]/div[1]/div[1]/div[5]/a")
@@ -187,9 +202,6 @@ public class FullInventoryPage {
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[2]/section[2]/ul/li[6]/div/div/button[2]")
     public WebElement additionalPickupBoxesKitchenBoxesPlusButton;
-
-    @FindBy(xpath = "/html/body/div/div/div/div[1]/div[1]/div[2]/ul/li[1]/a")
-    public WebElement editRoomsButton;
 
     //Create item
     @FindBy(xpath = "//div[@class='dropdown']//a[contains(normalize-space(@class),'select-chevron-down')]")

@@ -20,6 +20,83 @@ public class PaymentPage {
         Helper.click(loginButton);
     }
 
+
+    @FindBy(xpath = "//div/h1[contains(text(),'Secure Booking')]")
+    public WebElement secureBookingText;
+
+    @FindBy(xpath = "//div/p[contains(text(),'Who’s Moving?')]")
+    public WebElement whosMovingText;
+
+    @FindBy(xpath = "//input[@id='email']")
+    public WebElement emailInputField;
+
+    @FindBy(xpath = "(//input[@id='pass'])[1]")
+    public WebElement createPasswordField;
+
+    @FindBy(xpath = "(//input[@id='confPassword'])[1]")
+    public WebElement confirmPasswordField;
+
+    @FindBy(xpath = "//*[@id=\"ccCardName2\"]")
+    public WebElement secondCardNameInputField;
+
+    @FindBy(xpath = "//input[@id='ccCardNumber']")
+    public WebElement cardNumberInputField;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div/div[2]/div[1]/form[1]/div[3]/div[2]/label")
+    public WebElement newCardnumber;
+
+
+    @FindBy(xpath = "//input[@id='ccCardVerificationNumber']")
+    public WebElement cvvNumberInputField;
+
+    //    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[3]/div[1]/form/div[2]/div[7]/div[1]/div/input")
+    @FindBy(xpath = "//div[@class='checkbox-updaddr']//input[@ng-model='vm.confirmBillingAddress']")
+    public WebElement billingAddressCheckBox;
+
+    @FindBy(xpath = "//div//div[@class='payButtonContainer']//a[contains(normalize-space(.),'Complete Booking')]")
+    public WebElement completeBookingButton;
+
+    @FindBy(xpath = "//div[contains(@class,'hidden-xs')]//div[@class='payp-table-row' and contains(normalize-space(.),'Order price')]//div[contains(@class,'bold')][not(normalize-space(.)='')]")
+    public WebElement orderPriceValue;
+
+    @FindBy(xpath = "//div[contains(@class,'hidden-xs')]//div[@class='payp-table-row' and contains(normalize-space(.),'Service Fee')]//div[contains(@class,'bold')][not(normalize-space(.)='')]")
+    public WebElement serviceFeeValue;
+
+    @FindBy(xpath = "//div[@class='payp-tp test']//strong[contains(@class,'total-price')][not(normalize-space(.)='')]")
+    public WebElement totalPriceValue;
+
+    @FindBy(xpath = "//ul[contains(@class,'nav-tabs')]//a[contains(normalize-space(text()),'Split Payment')]")
+    public WebElement splitPaymentWithASecondCardButton;
+
+    @FindBy(xpath = "//*[@id=\"ccCardNumber2\"]")
+    public WebElement secondCardInputField;
+
+    //    @FindBy(xpath = "//*[@id=\"ccSplitAmount2\"]")
+    @FindBy(xpath = "//form[contains(@ng-show,'vm.isSplit')]//input[@name='ccSplitAmount2']")
+    public WebElement secondAmountOfSplitInputField;
+
+    @FindBy(xpath = "//*[@id=\"ccExpirationMonth2\"]")
+    public WebElement ccExpirationMonth2Select;
+
+    @FindBy(id = "ccExpirationYear2")
+    public WebElement ccExpirationYear2Select;
+
+    @FindBy(xpath = "//*[@id=\"ccCardVerificationNumber2\"]")
+    public WebElement CVVSecond;
+
+    @FindBy(xpath = "//div[@class='checkbox-updaddr']//input[contains(@ng-model,'confirmBillingAddress2')]")
+    public WebElement secondBillingAddressCheckBox;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div/div[2]/div[1]/form[1]/div[4]/fieldset[1]/div[2]/span/input")
+    public WebElement amountOfSplitFirst;
+
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[1]/label[2]/input")
+    public WebElement visaDebitCardCheckBox;
+
+    //    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[2]/label/input")
+    @FindBy(xpath = "//input[@type='radio' and @value=\"0\"]")
+    public WebElement newPaymentCard;
+
     @FindBy(xpath = "//span[contains(text(),'My inventory')]")
     public WebElement myInventoryLink;
     @FindBy(xpath = "//span[contains(text(),'Trip details')]")
@@ -42,9 +119,6 @@ public class PaymentPage {
     @FindBy(xpath = "(//*[@id=\"login\"])[2]")
     public WebElement signInButton;
 
-    @FindBy(xpath = "//h1[contains(text(),'Secure Booking')]")
-    public WebElement secureBookingText;
-
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[1]/label[2]/input")
     public WebElement cCRadioButton;
 
@@ -60,26 +134,8 @@ public class PaymentPage {
     @FindBy(xpath = "//input[@id='baSecPhone']")
     public WebElement secondaryPhoneInputField;
 
-    @FindBy(xpath = "//*[@id=\"email\"]")
-    public WebElement emailInputField;
-
-    @FindBy(xpath = "(//input[@id='pass'])[1]")
-    public WebElement createPasswordField;
-
-    @FindBy(xpath = "(//input[@id='confPassword'])[1]")
-    public WebElement confirmPasswordField;
-
     @FindBy(xpath = "//input[@id='ccCardName']")
     public WebElement cardNameInputField;
-
-    @FindBy(xpath = "//*[@id=\"ccCardName2\"]")
-    public WebElement secondCardNameInputField;
-
-    @FindBy(xpath = "//input[@id='ccCardNumber']")
-    public WebElement cardNumberInputField;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div/div[2]/div[1]/form[1]/div[3]/div[2]/label")
-    public WebElement newCardnumber;
 
     @FindBy(xpath = "//select[@id='ccExpirationMonth']")
     public WebElement expiryMonthSelectField;
@@ -87,55 +143,15 @@ public class PaymentPage {
     @FindBy(xpath = "//select[@id='ccExpirationYear']")
     public WebElement expiryYearSelectField;
 
-    @FindBy(xpath = "//input[@id='ccCardVerificationNumber']")
-    public WebElement cvvNumberInputField;
-
-    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[7]/div[1]/div/input")
-    public WebElement billingAddressCheckBox;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/div[3]/div[2]/div[1]/a")
-    public WebElement completeBookingButton;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]")
-    public WebElement orderPriceValue;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]")
-    public WebElement serviceFeeValue;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[2]/div/div[2]/div[2]/strong")
-    public WebElement totalPriceValue;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[1]/ul/li[2]/a")
-    public WebElement splitPaymentWithASecondCardButton;
     @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[2]/label[2]/span[1]")
     public WebElement firstCardPayment;
     @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[8]/div[1]/label/span[1]")
     public WebElement secondCardPayment;
-    @FindBy(xpath = "//*[@id=\"ccCardNumber2\"]")
-    public WebElement secondCardInputField;
 
-//    @FindBy(xpath = "//*[@id=\"ccSplitAmount2\"]")
-    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[9]/form/fieldset[1]/div[2]/div[2]/span/input")
-    public WebElement secondAmountOfSplitInputField;
-
-    @FindBy(id = "ccExpirationYear2")
-    public WebElement ccExpirationYear2Select;
-
-    @FindBy(xpath = "//*[@id=\"ccCardVerificationNumber2\"]")
-    public WebElement CVVSecond;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[11]/div[1]/div/input")
-    public WebElement secondBillingAddressCheckBox;
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[8]/div[1]/span/input")
     public WebElement amountOfSplitSecond;
 
-    @FindBy(xpath = "/html/body/div/div/div/div[1]/section/div[2]/div[2]/div[1]/form/div[2]/div[4]/div[1]/label[2]/input")
-    public WebElement visaDebitCardCheckBox;
-
-//    @FindBy(xpath = "//input[@type='radio' and @value="0"]")
-    @FindBy(xpath = "(//input[@type='radio' and following-sibling::span[@class='blueText' and text()='New payment card']])[1]")
-    public WebElement newPaymentCard;
 
     //Order Summary
     @FindBy(xpath = "(//div[contains(text(),'Order price')])[2]")
@@ -150,4 +166,5 @@ public class PaymentPage {
     public WebElement totalPriceLabel;
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/section/div[2]/div[2]/div[2]/div/div[2]/div[2]/strong")
     public WebElement totalPrice;
+
 }

@@ -14,13 +14,9 @@ public class Marketplace_Page {
 
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div[1]/div[1]/ol/li[1]/div[1]/img")
     public WebElement myInventoryIcon;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[1]/a/span")
-    public WebElement myInventoryLink;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[2]/div[1]/img")
     public WebElement tripDetailsIcon;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[2]/a/span")
-    public WebElement tripDetailsLink;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[1]/ol/li[3]/div[1]")
     public WebElement myPricesIcon;
@@ -39,41 +35,15 @@ public class Marketplace_Page {
 
     @FindBy(xpath = "//small[contains(text(),'Pick Up')]")
     public WebElement labelInPickUpBox;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[2]/div[1]/div")
-    public WebElement addressInPickUpBox;
-    @FindBy(xpath = "(//a[contains(text(),'Edit')])[1]")
-    public WebElement editButtonInPickUp;
 
     @FindBy(xpath = "(//small[contains(text(),'Drop off')])[1]")
     public WebElement labelInDropOffBox;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[3]/div[1]/div")
-    public WebElement addressInDropOffBox;
-    @FindBy(xpath = "(//a[contains(text(),'Edit')])[2]")
-    public WebElement editButtonInDropOff;
 
     @FindBy(xpath = "(//small[contains(text(),'Date')])[1]")
     public WebElement labelInDateBox;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[4]/div/div")
-    public WebElement dateInDateBox;
-    @FindBy(xpath = "(//a[contains(text(),'Edit')])[3]")
-    public WebElement editButtonInDate;
 
     @FindBy(xpath = "(//small[contains(text(),'Inventory')])[1]")
     public WebElement labelInInventoryBox;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[5]/div[2]/span")
-    public WebElement itemsInInventory;
-    @FindBy(xpath = "(//a[contains(text(),'Edit')])[5]")
-    public WebElement editButtonInInventory;
-
-//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/small")
-    @FindBy(xpath = "(//div[@class='orderNumberCont'] | //small[@class='point-type' and contains(text(),'Order')])[3]")
-    public WebElement orderNumberLabel;
-//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[6]/div/div")
-    @FindBy(xpath = "(//div[contains(@class, 'orderNumberCont')]//div[@class='line2 number blue'])[2]")
-    public WebElement orderNumber;
-
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/header/h3")
-    public WebElement movingInfoText;
 
     @FindBy(xpath = "//p[contains(text(),'Need Help?')]")
     public WebElement needHelpTitle;
@@ -83,15 +53,6 @@ public class Marketplace_Page {
     public WebElement scheduleMeetingText;
 
     //Book with iMoving
-    @FindBy(xpath = "//p[contains(text(),'Why Book with iMoving?')]")
-    public WebElement whyBookWithIMovingTitle;
-
-    @FindBy(xpath = "//span[contains(text(),'Binding Price')]")
-    public WebElement bindingPriceText;
-    @FindBy(xpath = "(//div[@class='infoIcon'])[1]")
-    public WebElement bindingPriceTooltipIcon;
-    @FindBy(xpath = "(//div[@class='tooltip-content'])[1]")
-    public WebElement bindingPriceTooltipContent;
 
     @FindBy(xpath = "//span[contains(text(),'Inventory Control')]")
     public WebElement inventoryControlText;
@@ -104,26 +65,8 @@ public class Marketplace_Page {
     public WebElement securePaymentText;
     @FindBy(xpath = "(//div[@class='infoIcon'])[3]")
     public WebElement securePaymentTooltipIcon;
-    @FindBy(xpath = "(//div[@class='tooltip-content'])[3]")
-    public WebElement securePaymentTooltipContent;
-
-    @FindBy(xpath = "//span[contains(text(),'Price Match')]")
-    public WebElement priceMatchText;
-    @FindBy(xpath = "(//div[@class='infoIcon'])[4]")
-    public WebElement priceMatchTooltipIcon;
-    @FindBy(xpath = "(//div[@class='tooltip-content'])[4]")
-    public WebElement priceMatchTooltipContent;
-
-    @FindBy(xpath = "//span[contains(text(),'Customer Support')]")
-    public WebElement customerSupportText;
-    @FindBy(xpath = "(//div[@class='infoIcon'])[5]")
-    public WebElement customerSupportTooltipIcon;
-    @FindBy(xpath = "(//div[@class='tooltip-content'])[5]")
-    public WebElement customerSupportTooltipContent;
 
     //Filter titles
-    @FindBy(xpath = "//p[contains(text(),'Filters')]")
-    public WebElement filterTitle;
     @FindBy(xpath = "//p[contains(text(),'Packing Services')]")
     public WebElement packingServicesTitle;
     @FindBy(xpath = "//p[contains(text(),'Pick-Up Flexibility')]")
@@ -151,40 +94,16 @@ public class Marketplace_Page {
     public List<WebElement> packingServicesCheckboxSideBar;
 
     //pick-Up Flexibility
-    @FindBy(xpath = "(//input[@type='radio'])[4]")
-    public WebElement noFlexibilityClick;
     @FindBy(xpath = "(//label[text()='No Flexibility '])[1]")
     public WebElement noFlexibilityText;
-    @FindBy(xpath = "(//input[@type='radio'])[5]")
-    public WebElement days2FlexClick;
-    @FindBy(xpath = "(//label[text()='2 Days Flexibility '])[1]")
-    public WebElement days2FlexText;
-    @FindBy(xpath = "(//input[@type='radio'])[6]")
-    public WebElement days3FlexClick;
-    @FindBy(xpath = "(//label[text()='3 Days Flexibility '])[1]")
-    public WebElement days3FlexText;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[2]/div/input")
 //    @FindBy(xpath = "//input[@type='radio'][@name='flexibilityWindowAsPartFilter1_0' or @name='flexibilityWindowAsPartFilter1_1' or @name='flexibilityWindowAsPartFilter1_2']")
     public List<WebElement>  flexibilityCheckboxSideBar;
 
     //Delivery Window
-    @FindBy(xpath = "(//input[@type='radio'])[7]")
-    public WebElement standard4_21DaysClick;
-    @FindBy(xpath = "(//label[text()='Standard, 4-21'])[1]")
-    public WebElement standard4_21DaysText;
-    @FindBy(xpath = "(//input[@type='radio'])[8]")
-    public WebElement expedite4_14DaysClick;
-    @FindBy(xpath = "(//label[text()='Expedite, 4-14'])[1]")
-    public WebElement expedite4_14DaysText;
-    @FindBy(xpath = "(//input[@type='radio'])[9]")
-    public WebElement straight3_6DaysClick;
-    @FindBy(xpath = "(//label[text()='Straight, 3-6'])[1]")
-    public WebElement straight3_6DaysText;
     @FindBy(xpath = "//*[@id=\"flexibleWindowAsPart1_33462\"]")
     public WebElement straightSameDayClick;
-    @FindBy(xpath = "(//label[text()='Straight, Same day'])[1]")
-    public WebElement straightSameDayText;
 
 //    @FindBy(xpath = "//input[@type='radio'][@name='deliveryWindowAsPartFilter1_0' or @name='deliveryWindowAsPartFilter1_1' or @name='deliveryWindowAsPartFilter1_2']")
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[3]/div/input")
@@ -195,27 +114,13 @@ public class Marketplace_Page {
     public List<WebElement>  deliveryWindowCheckbox;
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/aside/div/section[3]/div[2]/div[3]/div/input")
     public List<WebElement>  deliveryWindowCheckboxSideBar;
-    @FindBy(xpath = "//*[@id=\"deliveryWindowAsPart1_135031\"]")
-    public WebElement  deliveryWindowExpedite;
-    @FindBy(xpath = "//*[@id=\"deliveryWindowAsPart1_135032\"]")
-    public WebElement  deliveryWindowStraight;
 
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[3]/div[2]/div/button")
     public List<WebElement>  flexibilityDropDown;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[3]/div[2]/div/select")
-    public WebElement flexibilityDropDown2;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[5]/button")
-    public WebElement selectButton;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[5]/div[1]")
-    public WebElement bindingPriceTitle;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[5]/span")
-    public WebElement orderPrice;
-
-    @FindBy(xpath = "//ul[@class='movers-list']//li//div/*[@class='moverName'] | //ul[@class='movers-list']//li//div/*[@class='newPrice']")
-//    @FindBy(xpath = "//ul[@class='movers-list']/li/div[@class='flexibility-block hidden-xs hidden-sm']/div/div[@class='moverName']|//ul[@class='movers-list']/li/div[@class='checkout-block']/span[@class='newPrice']")
-    public List<WebElement> moverNameAndPrice;
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'sticky-mover-info text-center active')]//button[@class='btn btn-blue checkout'][normalize-space()='Select']")
+    public WebElement selectButtonInPopup;
 
     @FindBy(xpath = "//ul[@class='movers-list']//li//div/*[@class='moverName']")
     public WebElement carrierNames;
@@ -253,5 +158,188 @@ public class Marketplace_Page {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[5]/button")
     public WebElement firstCompanyBookButton;
 
+//from regress
+@FindBy(xpath = "//a[@ui-sref='fullInventory'and @itemprop='item']")
+public WebElement myInventoryLink;
 
+    @FindBy(xpath = "//a[@ui-sref='moving-details' and span[contains(normalize-space(text()),'Details')]]")
+    public WebElement tripDetailsLink;
+
+    @FindBy(xpath = "(//div[@class='searchContainer']//li[contains(normalize-space(@ng-class),'AdditionalPickup')]//span[contains(normalize-space(.),'')])[position()=1]")
+    public WebElement addressInPickUpBox;
+    @FindBy(xpath = "(//a[contains(text(),'Edit')])[1]")
+    public WebElement editButtonInPickUp;
+
+    @FindBy(xpath = "(//div[@class='searchContainer']//li[contains(normalize-space(@ng-class),'AdditionalDropoff')]//span[contains(normalize-space(.),'')])[position()=1]")
+    public WebElement addressInDropOffBox;
+    @FindBy(xpath = "(//a[contains(text(),'Edit')])[2]")
+    public WebElement editButtonInDropOff;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/section/div/ul/li[4]/div/div")
+    public WebElement dateInDateBox;
+    @FindBy(xpath = "(//a[contains(text(),'Edit')])[3]")
+    public WebElement editButtonInDate;
+
+    @FindBy(xpath = "(//div[@class='searchContainer']//li[contains(normalize-space(@ng-class),'OrderType')]//span[contains(normalize-space(.),'')])[position()=1]")
+    public WebElement itemsInInventory;
+    @FindBy(xpath = "(//div[@class='searchContainer']//li[contains(normalize-space(@ng-class),'OrderType')]//a[contains(normalize-space(text()),'Edit')])[position()=1]")
+    public WebElement editButtonInInventory;
+
+    @FindBy(xpath = "//div[@class='searchContainer']//li[contains(normalize-space(@class),'trip-point')]//small[contains(normalize-space(text()),'Order')]")
+    public WebElement orderNumberLabel;
+    @FindBy(xpath = "//div[@class='searchContainer']//div[contains(normalize-space(@class),'orderNumberCont')]//div[contains(normalize-space(@class),'line2')]")
+    public WebElement orderNumber;
+
+    @FindBy(xpath = "//div[contains(@class,'moving-results-header')]//h3[contains(normalize-space(text()),'')]")
+    public WebElement movingInfoText;
+
+    //Book with iMoving
+    @FindBy(xpath = "//p[contains(text(),'Why Book with iMoving?')]")
+    public WebElement whyBookWithIMovingTitle;
+
+    @FindBy(xpath = "//span[contains(text(),'Binding Price')]")
+    public WebElement bindingPriceText;
+    @FindBy(xpath = "(//div[@class='infoIcon'])[1]")
+    public WebElement bindingPriceTooltipIcon;
+    @FindBy(xpath = "(//div[@class='tooltip-content'])[1]")
+    public WebElement bindingPriceTooltipContent;
+
+    @FindBy(xpath = "(//div[@class='tooltip-content'])[3]")
+    public WebElement securePaymentTooltipContent;
+
+    @FindBy(xpath = "//span[contains(text(),'Price Match')]")
+    public WebElement priceMatchText;
+    @FindBy(xpath = "(//div[@class='infoIcon'])[4]")
+    public WebElement priceMatchTooltipIcon;
+    @FindBy(xpath = "(//div[@class='tooltip-content'])[4]")
+    public WebElement priceMatchTooltipContent;
+
+    @FindBy(xpath = "//span[contains(text(),'Customer Support')]")
+    public WebElement customerSupportText;
+    @FindBy(xpath = "(//div[@class='infoIcon'])[5]")
+    public WebElement customerSupportTooltipIcon;
+    @FindBy(xpath = "(//div[@class='tooltip-content'])[5]")
+    public WebElement customerSupportTooltipContent;
+
+    //Filter titles
+    @FindBy(xpath = "//p[contains(text(),'Filters')]")
+    public WebElement filterTitle;
+
+
+    //pick-Up Flexibility
+    @FindBy(xpath = "(//input[@type='radio'])[4]")
+    public WebElement noFlexibilityClick;
+    @FindBy(xpath = "//label[contains(text(),'Exact Date')]")
+    public WebElement exactDateFlexibilityText;
+    @FindBy(xpath = "(//input[@type='radio'])[5]")
+    public WebElement days2FlexClick;
+    //    @FindBy(xpath = "(//label[text()='2 Days Flexibility '])[1]")
+    @FindBy(xpath = "//label[contains(text(),'2 Days Flexibility')]")
+    public WebElement days2FlexText;
+    @FindBy(xpath = "(//input[@type='radio'])[6]")
+    public WebElement days3FlexClick;
+    //    @FindBy(xpath = "(//label[text()='3 Days Flexibility '])[1]")
+    @FindBy(xpath = "//label[contains(text(),'3 Days Flexibility')]")
+    public WebElement days3FlexText;
+
+
+    //Delivery Window
+    @FindBy(xpath = "(//input[@type='radio'])[7]")
+    public WebElement standard4_21DaysClick;
+    //    @FindBy(xpath = "(//label[text()='Standard, 4-21'])[1]")
+    @FindBy(xpath = "//label[contains(text(),'Standard, 4-21')]")
+    public WebElement standard4_21DaysText;
+    @FindBy(xpath = "(//input[@type='radio'])[8]")
+    public WebElement expedite4_14DaysClick;
+    //    @FindBy(xpath = "(//label[text()='Expedite, 4-14'])[1]")
+    @FindBy(xpath = "//label[contains(text(),'Expedite, 4-14')]")
+    public WebElement expedite4_14DaysText;
+    @FindBy(xpath = "(//input[@type='radio'])[9]")
+    public WebElement straight3_6DaysClick;
+    //    @FindBy(xpath = "(//label[text()='Straight, 3-6'])[1]")
+    @FindBy(xpath = "//label[contains(text(),'Straight, 3-6')]")
+    public WebElement straight3_6DaysText;
+    @FindBy(xpath = "(//label[text()='Straight, Same day'])[1]")
+    public WebElement straightSameDayText;
+
+    //Delivery Window Mover part
+    @FindBy(xpath = "//*[@id=\"deliveryWindowAsPart1_135031\"]")
+    public WebElement  deliveryWindowExpedite;
+    @FindBy(xpath = "//*[@id=\"deliveryWindowAsPart1_135032\"]")
+    public WebElement  deliveryWindowStraight;
+
+    @FindBy(xpath = "//*[@id=\"deliveryWindowAsPartFilter1_0\"]")
+    public WebElement straightSameDayInputLocalSideBar;
+    @FindBy(xpath = "(//label[contains(text(),'Straight, Same day')])[1]")
+    public WebElement straightSameDayTextLocalSideBar;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[1]/div[4]/div[2]/label")
+    public WebElement straightSameDayTextLocalCarrierPart;
+    @FindBy(xpath = "//div[@class='custom-card']//div[@class='col-lg-2 col-xs-2 text-center']//p[contains(normalize-space(text()),'miles')]")
+    public WebElement distanceInLocal;
+
+    @FindBy(xpath = "body > div.wrap > div > div > div.shuffle-animation > main > div.container > section > div.movers-block > div > div > div.custom-card.card-selected > div.sticky-mover-info.text-center.active > div > div.custom-checkbox.disable-select > div > button")
+    public WebElement flexibilityButton;
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'sticky-mover-info text-center active')]//div[@class='checkout-block']//select[contains(normalize-space(@ng-model),'result.FlexibilityType')]")
+    public WebElement flexibilityDropDown2;
+
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'sticky-mover-info text-center active')]//div[@class='checkout-block']//select[contains(normalize-space(@ng-model),'result.DeliveryType')]")
+    public WebElement deliveryWindowDropDown;
+
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'sticky-mover-info text-center active')]//div[@class='checkout-block']//span[contains(normalize-space(text()),'Binding Price')]")
+    public WebElement bindingPriceTitle;
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'sticky-mover-info text-center active')]//div[@class='checkout-block']//p[contains(normalize-space(@class),'text-price')]")
+    public WebElement orderPrice;
+
+    @FindBy(xpath = "//ul[@class='movers-list']//li//div/*[@class='moverName'] | //ul[@class='movers-list']//li//div/*[@class='newPrice']")
+//    @FindBy(xpath = "//ul[@class='movers-list']/li/div[@class='flexibility-block hidden-xs hidden-sm']/div/div[@class='moverName']|//ul[@class='movers-list']/li/div[@class='checkout-block']/span[@class='newPrice']")
+    public List<WebElement> moverNameAndPrice;
+
+    @FindBy(xpath = "//div[@class='custom-card']//div/*[@class='moverName']")
+    public List<WebElement> carrierNamesList;
+
+
+/////////////
+
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'moving-results-header h-flex')]//h3[contains(normalize-space(text()),'')]")
+    public WebElement textInMarketplace;
+    @FindBy(xpath = "//p[contains(@class, 'moverName') and contains(normalize-space(text()),'Glass City Movers')]")
+    public WebElement glassCityMoversBookNow;
+    @FindBy(xpath = "//p[contains(@class, 'moverName') and contains(normalize-space(text()),'In & Out Moving')]")
+    public WebElement inAndOutMovingBookNow;
+
+    @FindBy(xpath = "(//p[contains(@class, 'moverName') and contains(normalize-space(text()),'')])[position()<=1]")
+    public WebElement firstCarrierButton;
+
+    @FindBy(xpath = "//div[@class='sticky-mover-info text-center']//p[contains(normalize-space(text()),'Air 1 Moving & Storage')]")
+    public WebElement carrierNameInPopup;
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/section/div/div/ul/li[11]/div[5]/button")
+    public WebElement proMoversBookNow;
+
+    //    @FindBy(xpath = "(//button[@class='btn btn-blue checkout'][normalize-space()='Select'])[2]")
+    @FindBy(xpath = "//p[contains(@class, 'moverName') and contains(normalize-space(text()),'City Moving')]")
+    public WebElement cityMovingBookNowButton;
+
+    @FindBy(xpath = "//li[contains(., 'Best Quality Movers')]/div[@class='checkout-block']/button")
+    public WebElement bestQualityMoversBookNowButton;
+
+    @FindBy(xpath = "//li[contains(., 'Blue Bell Relocation')]/div[@class='checkout-block']/button")
+    public WebElement blueBellRelocationBookNowButton;
+
+    @FindBy(xpath = "/html/body/div[1]/header/nav/div/div[2]/div/div/button")
+    public WebElement signInButton;
+
+    @FindBy(xpath= "/html/body/div[1]/header/nav/div/div[2]/div/div/div/div/div[2]/form[1]/div/div[1]/input")
+    public WebElement emailField;
+
+    @FindBy(xpath = "/html/body/div[1]/header/nav/div/div[2]/div/div/div/div/div[2]/form[1]/div/div[2]/input[1]")
+    public WebElement passwordField;
+
+    @FindBy(xpath = "/html/body/div[1]/header/nav/div/div[2]/div/div/div/div/div[2]/form[1]/div/div[5]/button")
+    public WebElement loginButton;
+
+    @FindBy(xpath = "(//*[@id=\"userName\"])[2]")
+    public WebElement userNameButton;
+
+    @FindBy(xpath = "/html/body/div/header/nav/div/div[2]/ul[2]/li/div/ul[2]/li[3]/form/fieldset/button")
+    public WebElement logOutButton;
 }

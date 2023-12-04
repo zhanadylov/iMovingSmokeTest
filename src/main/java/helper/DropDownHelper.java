@@ -1,5 +1,7 @@
 package helper;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -12,7 +14,7 @@ public class DropDownHelper {
     Random random = new Random();
 
 
-    public List<String> list = new ArrayList<>();
+    public static List<String> list = new ArrayList<>();
     public static void selectUsingVisibleText(WebElement element,String visibleValue) {
         Select select = new Select(element);
         select.selectByVisibleText(visibleValue);
@@ -40,7 +42,7 @@ public class DropDownHelper {
         Select select = new Select(element);
         select.selectByIndex(index);
     }
-    public static List<String> getAllDropDownValues(WebElement locator) {
+    public static List<String> getAllDropDownValues(WebElement locator) {//TODO
         Select select = new Select(locator);
         List<WebElement> elementList = select.getOptions();
         List<String> valueList = new LinkedList<String>();
@@ -50,12 +52,64 @@ public class DropDownHelper {
         return valueList;
     }
 
-    public void selectRandomOptionFromDropDown(List<WebElement> allOptions) {
-//        allOptions.removeIf(option -> option.getText().equals("Select Type"));
+    public static void chooseMoveFrom(WebDriver driver, String idName, int indexToSelect) {
+        //"expireYear";
+        String expirationDateDropDownList = "(//div[contains(@class,'expireMonth')]//ul[@class='dropdown-menu show']//following::li//label[contains(normalize-space(text()),'')])[position()>1 and position()<=13]";
+        //addInventory - quickQuote
+        String moveFromOption = "(//div[@id='"+idName+"']//ul[@class='dropdown-menu']//following::li//label[contains(normalize-space(text()),'')])[position()<=3]";
 
+        if(idName.equals("addInventory")){
+            WebElement itemizedQuoteOpenDropdown = driver.findElement(By.xpath("//a[@id='dLabel2' and contains(text(),'Move From')]"));
+            Helper.click(itemizedQuoteOpenDropdown);
+//            WebElement radioButton = driver.findElements(By.xpath(moveFromOption)).get(indexToSelect);
+            List<WebElement> radioButton = driver.findElements(By.xpath(moveFromOption));
+            selectRandomOptionFromDropDown(radioButton);
+//            Helper.click(radioButton);
+        }else if(idName.equals("quickQuote")){
+            WebElement quickQuoteOpenDropdown = driver.findElement(By.xpath("//a[@id='dLabel' and contains(text(),'Move From')]"));
+            Helper.click(quickQuoteOpenDropdown);
+//            WebElement radioButton = driver.findElements(By.xpath(moveFromOption)).get(indexToSelect);
+            List<WebElement> radioButton = driver.findElements(By.xpath(moveFromOption));
+            selectRandomOptionFromDropDown(radioButton);
+//            Helper.click(radioButton);
+        }else if(idName.equals("yy")){
+            WebElement expirationDateDropDownButtonLn = driver.findElement(By.xpath("//a[@id='dLabelYear1' and contains(text(),'')]"));
+            Helper.click(expirationDateDropDownButtonLn);
+            WebElement expirationDateDropDownListLn = driver.findElements(By.xpath(expirationDateDropDownList.replace("expireMonth","expireYear"))).get(indexToSelect);
+            Helper.javascriptScrollIntoView(expirationDateDropDownListLn);
+            Helper.click(expirationDateDropDownListLn);
+        }else{
+            WebElement expirationDateDropDownButtonLn = driver.findElement(By.xpath("//a[@id='dLabelMonth1' and contains(text(),'')]"));
+            Helper.click(expirationDateDropDownButtonLn);
+            WebElement expirationDateDropDownListLn = driver.findElements(By.xpath(expirationDateDropDownList)).get(indexToSelect);
+            Helper.javascriptScrollIntoView(expirationDateDropDownListLn);
+            Helper.click(expirationDateDropDownListLn);
+        }
+    }
+
+    public static void chooseMoveSize(WebDriver driver, String addInventory, int indexToSelect) {
+        WebElement quickQuoteSizeOpenDropdown = driver.findElement(By.xpath("//a[@id='dLabel1' and contains(text(),'Move Size')]"));
+        WebElement itemizedQuoteSizeOpenDropdown = driver.findElement(By.xpath("(//div[@class='col-md-5 col-xs-12']//a[@id='dLabel3' and contains(text(),'Move Size') or contains(text(),'')])[position()=4]"));
+
+        String moveSizeOption = "(//div[@id='"+addInventory+"']//ul[@class='dropdown-menu']//following::li//label[contains(normalize-space(text()),'')])[position()>3]";
+
+        if(addInventory.equals("addInventory")){
+            Helper.click(itemizedQuoteSizeOpenDropdown);
+        }else{
+            Helper.click(quickQuoteSizeOpenDropdown);
+        }
+//        WebElement radioButton = driver.findElements(By.xpath(moveSizeOption)).get(indexToSelect);
+        List<WebElement> radioButton = driver.findElements(By.xpath(moveSizeOption));
+        selectRandomOptionFromDropDown(radioButton);
+//        Helper.click(radioButton);
+    }
+
+    public static void selectRandomOptionFromDropDown(List<WebElement> allOptions) {
         int optionsCount = allOptions.size();
         int randomOptionIndex = (int) (Math.random() * optionsCount);
         WebElement randomOption = allOptions.get(randomOptionIndex);
+        String randomOptionText = allOptions.get(randomOptionIndex).getText();
+        list.add(randomOptionText);
 
         Helper.click(randomOption);
 //        String randomOptionText = allOptions.get(randomOptionIndex).getText();
@@ -73,11 +127,6 @@ public class DropDownHelper {
         Helper.click(randomOption);
     }
 
-    public String getRandomItemName(List<WebElement> elements){
-        int randomIndex = random.nextInt(elements.size());
-        WebElement randomOption = elements.get(randomIndex);
-        return randomOption.getAttribute("title");
-    }
 
     public String splitItemName(String fullText){
         String[] words = fullText.split(" ");

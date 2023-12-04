@@ -2,6 +2,7 @@ package tests.ui;
 
 import helper.AssertThat;
 import helper.BrowserHelper;
+import helper.DropDownHelper;
 import helper.Helper;
 import hooks.Hooks;
 import org.apache.logging.log4j.LogManager;
@@ -25,8 +26,8 @@ public class CreateOrderTest extends Hooks{
 
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
-    PopUpsPage popUpsPage = new PopUpsPage();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
+    FullInventoryPage fullInventoryPage = new FullInventoryPage();
     Detail_Page detail_page = new Detail_Page();
     Marketplace_Page marketplace_page = new Marketplace_Page();
     Summary_Page summary_page = new Summary_Page();
@@ -62,11 +63,14 @@ public class CreateOrderTest extends Hooks{
     }
     @Test
     public void chooseMoveOption() {
-        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
-        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
+        Helper.click(homePage.itemizedQuoteButtonHomePage);
+        DropDownHelper.chooseMoveFrom(driver, "addInventory", 2);
+        DropDownHelper.chooseMoveSize(driver, "addInventory", 2);
+//        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
+//        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
         Helper.pause(1000);
         System.out.println("Order is "+selectRandom.list);
-        Helper.click(homePage.compareQuotes);
+        Helper.click(homePage.addItemsButton);
         boolean condition = selectRandom.list.contains("My Storage");
         if(condition){
             orderStorage();
@@ -79,10 +83,8 @@ public class CreateOrderTest extends Hooks{
 
     @Test(enabled = false)
     public void orderHouseApartment(){
-        Helper.click(popUpsPage.continueButton);
-        Helper.click(popUpsPage.xButtonSecond);
-        Helper.click(popUpsPage.okButtonThird);
-        AddItemsMethod.addItems(full_inventory.imageElement, 3);
+//        AddItemsMethod.addItems(full_inventory.imageElement, 3);
+        AddItemsMethod.addRandomItemsMethod(fullInventoryPage.imgItemLocators,3);
         Helper.click(full_inventory.completeOrder);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
@@ -95,10 +97,6 @@ public class CreateOrderTest extends Hooks{
     @Test(enabled = false)
     public void orderStorage(){
         Helper.pause(2000);
-        // Both slider clicker works
-//        storageOrder.selectRandomValueFromSlider(storage_full_inventory_page.sliderLine2, 10, 100);
-//        storageOrder.selectRandomValueFromSlider(storage_full_inventory_page.sliderLine, 0, 100);
-//        Helper.pause(2000);
         Helper.click(full_inventory.completeOrder);
     }
 
@@ -242,8 +240,8 @@ public class CreateOrderTest extends Hooks{
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.deliveryWindowCheckboxSideBar);
         Helper.pause(1000);
 //        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckbox);
-        Helper.navigateToElement(marketplace_page.selectButton);
-        Helper.click(marketplace_page.selectButton);
+        Helper.navigateToElement(marketplace_page.selectButtonInPopup);
+        Helper.click(marketplace_page.selectButtonInPopup);
     }
 
     @Test(dependsOnMethods = {"marketplace_Page"})

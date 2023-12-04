@@ -1,19 +1,23 @@
-//package tests;
+package tests.ui;
 //
-//import com.google.common.collect.ArrayListMultimap;
-//import com.google.common.collect.Multimap;
-//import helper.BrowserHelper;
-//import helper.Helper;
-//import hooks.Hooks;
-//import org.openqa.selenium.*;
-//import org.testng.annotations.Test;
-//import ui.methods.*;
-//import ui.pageObjectModel.*;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import helper.BrowserHelper;
+import helper.Helper;
+import hooks.Hooks;
+import org.openqa.selenium.*;
+import org.testng.annotations.Test;
+import ui.methods.*;
+import ui.pageObjectModel.*;
+
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.*;
 //
-//import java.time.LocalDate;
-//import java.util.*;
-//
-//public class TestClass extends Hooks implements SetUp{
+public class TestClass {
+    public static void main(String[] args) {
+    }
+
 //    static WebDriver driver;
 //    ArrayList<String> al;
 //    StorageOrder storageOrder = new StorageOrder();
@@ -156,4 +160,4 @@
 ////        driver.quit();
 ////    }
 //
-//}
+}

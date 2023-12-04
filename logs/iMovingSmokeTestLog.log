@@ -22,3 +22,51 @@
 13:41:58.991 [main] INFO  - Date changed to one day earlier
 13:41:58.996 [main] INFO  - Closing Database Connection...
 13:41:58.997 [main] INFO  - Database Connection closed.
+15:54:19.211 [main] INFO  - Before test hook started data:,-
+15:54:19.223 [main] INFO  - Trying to open browser and url
+15:54:25.072 [main] INFO  - browser and url opened https://qa.imoving.com/
+15:54:25.080 [main] INFO  - Before method hook started 
+15:54:40.524 [main] INFO  - After method hook started and take screenshot if test failed
+15:54:40.662 [main] INFO  - Screenshot saved to: C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest\build\reports\tests\chooseMoveOption_2023.12.04.15.54.40.png
+15:54:40.670 [main] INFO  - Closing driver after method CreateOrderTest started https://qa.imoving.com/iMoving - Compare Moving Companies Prices and Book Online
+15:54:40.873 [main] INFO  - Closing Driver
+15:56:32.448 [main] INFO  - Before test hook started data:,-
+15:56:32.457 [main] INFO  - Trying to open browser and url
+15:56:39.282 [main] INFO  - browser and url opened https://qa.imoving.com/
+15:56:39.288 [main] INFO  - Before method hook started 
+15:57:13.664 [main] INFO  - After method hook started and take screenshot if test failed
+15:57:13.796 [main] INFO  - Screenshot saved to: C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest\build\reports\tests\chooseMoveOption_2023.12.04.15.57.13.png
+15:57:13.804 [main] INFO  - Closing driver after method CreateOrderTest started https://qa.imoving.com/full-inventory/#!/Moving Wizard - plan your move
+15:57:14.008 [main] INFO  - Closing Driver
+17:47:21.396 [main] INFO  - Before test hook started data:,-
+17:47:21.404 [main] INFO  - Trying to open browser and url
+17:47:26.190 [main] INFO  - browser and url opened https://qa.imoving.com/
+17:47:26.198 [main] INFO  - Before method hook started 
+17:47:58.448 [main] INFO  - Before test hook started data:,-
+17:47:58.455 [main] INFO  - Trying to open browser and url
+17:48:04.368 [main] INFO  - browser and url opened https://qa.imoving.com/
+17:48:04.378 [main] INFO  - Before method hook started 
+17:48:13.169 [main] INFO  - After method hook started and take screenshot if test failed
+17:48:13.369 [main] INFO  - Screenshot saved to: C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest\build\reports\tests\chooseMoveOption_2023.12.04.17.48.13.png
+17:48:13.377 [main] INFO  - Closing driver after method CreateOrderTest started https://qa.imoving.com/full-inventory/#!/Moving Wizard - plan your move
+17:48:13.583 [main] INFO  - Closing Driver
+17:59:11.501 [main] INFO  - Before test hook started data:,-
+17:59:11.509 [main] INFO  - Trying to open browser and url
+17:59:15.183 [main] INFO  - browser and url opened https://qa.imoving.com/
+17:59:15.189 [main] INFO  - Before method hook started 
+17:59:36.877 [main] INFO  - Before test hook started data:,-
+17:59:36.886 [main] INFO  - Trying to open browser and url
+17:59:40.818 [main] INFO  - browser and url opened https://qa.imoving.com/
+17:59:40.824 [main] INFO  - Before method hook started 
+17:59:53.763 [main] INFO  - After method hook started and take screenshot if test failed
+17:59:53.878 [main] INFO  - Screenshot saved to: C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest\build\reports\tests\chooseMoveOption_2023.12.04.17.59.53.png
+17:59:53.886 [main] INFO  - Closing driver after method CreateOrderTest started https://qa.imoving.com/full-inventory/#!/Moving Wizard - plan your move
+17:59:54.082 [main] INFO  - Closing Driver
+18:01:09.721 [main] INFO  - Before test hook started data:,-
+18:01:09.729 [main] INFO  - Trying to open browser and url
+18:01:13.749 [main] INFO  - browser and url opened https://qa.imoving.com/
+18:01:13.755 [main] INFO  - Before method hook started 
+18:01:43.487 [main] INFO  - After method hook started and take screenshot if test failed
+18:01:43.614 [main] INFO  - Screenshot saved to: C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest\build\reports\tests\chooseMoveOption_2023.12.04.18.01.43.png
+18:01:43.621 [main] INFO  - Closing driver after method CreateOrderTest started https://qa.imoving.com/full-inventory/#!/Moving Wizard - plan your move
+18:01:43.821 [main] INFO  - Closing Driver

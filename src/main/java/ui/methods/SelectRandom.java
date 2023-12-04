@@ -75,17 +75,6 @@ public class SelectRandom {
         select.selectByIndex(index);
     }
 
-    //Random click Checkbox
-//    public void clickOnRandomCheckBox(List<WebElement> element)
-//    {
-//        int index = random.nextInt(element.size());
-//        if(!element.get(index).isSelected())
-//        {
-//            Helper.javascriptScrollIntoView(element.get(index));
-//            element.get(index).click();
-//        }
-//    }
-
     public void clickOnRandomRadioButton(List<WebElement> radioButtons) {
         int index = random.nextInt(radioButtons.size());
         WebElement radioButton = radioButtons.get(index);
@@ -102,11 +91,6 @@ public class SelectRandom {
         }
     }
 
-    //Method for random select from div in form
-//    public void randomRadioSelectionFromForm(List<WebElement> radioButtons){
-//        int randomIndex = random.nextInt(radioButtons.size());
-//        radioButtons.get(randomIndex).click();
-//    }
 
     public void randomRadioSelectionFromForm(List<WebElement> radioButtons) {
         Random random = new Random();

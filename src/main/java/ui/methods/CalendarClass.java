@@ -76,8 +76,8 @@ public class CalendarClass {
         WebElement month = driver.findElement(By.xpath(pathMonthFinal));
         Helper.click(month);
 
-        // String pathDay = "//td[@class='day' and text()='DayIndex']";
-        String pathDay = "//td[@class='day' and text()='" + dayInMonthRange + "']";
+//        String pathDay = "//td[@class='day' and text()='" + dayInMonthRange + "']";
+        String pathDay = "//td[@class='day' and text()='" + dayInMonthRange + "'] | //td[@class='today day' and text()='" + dayInMonthRange + "'] | //td[@class='new day' and text()='" + dayInMonthRange + "']";
         WebElement day = driver.findElement(By.xpath(pathDay));
         Helper.click(day);
     }
@@ -118,8 +118,14 @@ public class CalendarClass {
     }
 
     public void getGivenDate(WebElement datePicker){
+        LocalDate date = LocalDate.now();
+        int todayDate = date.getDayOfMonth();
+        // Generate random day from present day
+        int dayInMonthRange = (int)Math.floor(Math.random() * (31 - todayDate + 1) + todayDate);
         Helper.click(datePicker);
-        WebElement tdButton = datePicker.findElement(By.xpath("//td[@class='day' and text()='30']"));
+        String pathDay = "//td[@class='day' and text()='INDEX'] | //td[@data-handler='selectDay']//following::a[contains(text(),'INDEX')]";
+        String pathDayFinal = pathDay.replace("INDEX", String.valueOf(dayInMonthRange));
+        WebElement tdButton = datePicker.findElement(By.xpath(pathDayFinal));
         Helper.click(tdButton);
     }
 

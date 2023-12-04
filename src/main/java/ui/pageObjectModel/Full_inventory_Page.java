@@ -12,6 +12,9 @@ public class Full_inventory_Page {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    @FindBy(xpath = "//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]")
+    public WebElement addItemButton;
+
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div/div[1]/section/section/div/div[1]/div[1]/span[1]")
     public WebElement roomNameText;
 
@@ -75,20 +78,13 @@ public class Full_inventory_Page {
     @FindBy(xpath = "/html/body/div[1]/div/div/div/div/div[1]/button")
     public WebElement xButtonOnPrint;
 
-    //Element
-//    @FindBy(xpath = "figure img[class = 'hidden-xs']")
-//    @FindBy(css = "figure img[class = \"hidden-xs\"]")
-    @FindBy(css = "figure img.hidden-xs")
+    @FindBy(xpath = "//div[contains(@ng-class,'scrollToMe')]//div[@class='flex-center']//img[contains(@title,'')]")
     public List<WebElement> imageElement;
 
     @FindBy(css = "itemTypeSelector")
     public List<WebElement> typeInElement;
 
 
-//    @FindBy(css = "div a[class = 'btn btn-blue']")
-//    @FindBy(css = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[4]")
-    @FindBy(css = "/html/body/div/div/div/div[1]/main/div/div[1]/section/div[2]/div/div[2]/div/div/figure/div[2]/div[4]/div/a[1]")
-    public WebElement addToInventoryButton;
 
     //Add/Remove Popup
     @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body > h2 > span:nth-child(2)")

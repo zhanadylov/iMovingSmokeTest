@@ -1,5 +1,7 @@
 package ui.methods;
 
+import helper.AddItem;
+import helper.GetInventoryValues;
 import helper.Helper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import ui.pageObjectModel.FullInventoryPage;
+import ui.pageObjectModel.Full_inventory_Page;
 import utilities.Driver;
 
 import javax.imageio.ImageIO;
@@ -22,62 +26,15 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 
 public class AddItemsMethod {
     static WebDriver driver = Driver.getDriver();
     private static Logger logger = (Logger) LogManager.getLogger(Helper.class);
-
-
-    public static void addRandomItemsToAllImages5(List<WebElement> imageElements) {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-        String xpath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[";
-        for (WebElement image : imageElements) {
-            try {
-                Actions actions = new Actions(driver);
-                actions.moveToElement(image).perform();
-                int clickCount = random.nextInt(1, 6);
-                final String s = xpath + clickCount + "]";
-                System.out.println(clickCount);
-                System.out.println(s);
-                WebElement addButton = image.findElement(By.xpath(s));
-                System.out.println("Clicking add button " + clickCount + " times for image " + image.getAttribute("src"));
-                for (int i = 0; i < clickCount; i++) {
-                    addButton.click();
-                }
-            } catch (NoSuchElementException | ElementNotInteractableException e) {
-                System.out.println("Unable to add item to image: " + image.getAttribute("src") + ", " + e.getMessage());
-            }
-        }
-    }
-
-    public static void addRandomItemsToAllImages6(List<WebElement> imageElements) {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Random random = new Random();
-        String xpath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
-        for (int i = 0; i <= 5; i++) {
-            WebElement image = imageElements.get(i);
-            try {
-                Actions actions = new Actions(driver);
-                actions.moveToElement(image).perform();
-//                int index = random.nextInt(imageElements.size()) + 1;
-
-                String xpathWithIndex = xpath.replace("INDEX", String.valueOf(i));
-                WebElement addButton = image.findElement(By.xpath(xpathWithIndex));
-                    addButton.click();
-                System.out.println("Added " + i + " items for image " + image.getAttribute("src")+xpathWithIndex);
-            } catch (NoSuchElementException | ElementNotInteractableException e) {
-                System.out.println("Unable to add items to image: " + image.getAttribute("src") + ", " + e.getMessage());
-            }
-        }
-    }
+    static FullInventoryPage fullinventory = new FullInventoryPage();
 
     public static void addItems(List<WebElement> imageElements, int numItems) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement a2ddItemButton = (WebElement) driver.findElements(By.xpath("//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]"));
         String addButtonXPath = "(//a[@class='btn btn-blue'][normalize-space()='Add to Inventory'])[INDEX]";
 
 //        for (WebElement image : imageElements) {
@@ -104,6 +61,17 @@ public class AddItemsMethod {
         }
     }
 
+    public static void addRandomItemsMethod(List<WebElement> imageElements, int numItems) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        List<WebElement> addItemButtons = driver.findElements(By.xpath("//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]"));
+        for (WebElement addItemButton : addItemButtons) {
+            addItemButton.click();
+            Helper.pause(3000);
+            AddItem.hoverOverAndSelectRandomItem(GetInventoryValues.getRandomItemName(imageElements));
+            WebElement nextRoomButton = FullInventoryPage.nextRoomButton;
+            Helper.click(nextRoomButton);
+        }
+    }
     public static void saveImage(WebElement img){
 //        List<WebElement> img = driver.findElements(By.tagName("img"));
         int count = 0;
