@@ -26,7 +26,7 @@ public class AddItem {
     public static void addItemMethod(WebElement elementImg, WebElement elementDropClick, List<WebElement> elementList,WebElement elementClick){
         Helper.navigateToElement(elementImg);
         Helper.click(elementDropClick);
-        dropDownHelper.selectRandomOptionFromDropDown(elementList);
+        DropDownHelper.selectRandomOptionFromDropDown(elementList);
         Helper.navigateToElement(elementImg);
         Helper.click(elementClick);
     }
@@ -52,9 +52,9 @@ public class AddItem {
             itemWithItemType.click();
 
 //            List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='search-results-list']"));
-            List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='dropdown-menu show']//div[contains(@ng-repeat,'typeAttr.Guid')]"));
+            List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='dropdown-menu show']//div[contains(@ng-repeat,'typeAttr.ItemAttributes')]"));
             Helper.pause(1000);
-            dropDownHelper.selectRandomOptionFromDropDown(dropdownItems);
+            DropDownHelper.selectRandomOptionFromDropDown(dropdownItems);
 
 //            driver.findElement(By.xpath(combinedLocatorPlus)).click();
         } else if (hasItemPlusButton) {

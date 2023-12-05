@@ -62,13 +62,14 @@ public class AddItemsMethod {
     }
 
     public static void addRandomItemsMethod(List<WebElement> imageElements, int numItems) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         List<WebElement> addItemButtons = driver.findElements(By.xpath("//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]"));
         for (WebElement addItemButton : addItemButtons) {
             addItemButton.click();
-            Helper.pause(3000);
             AddItem.hoverOverAndSelectRandomItem(GetInventoryValues.getRandomItemName(imageElements));
             WebElement nextRoomButton = FullInventoryPage.nextRoomButton;
+            if(fullinventory.dontHaveCabinetButton.isDisplayed()){
+                Helper.click(fullinventory.dontHaveCabinetButton);
+            }
             Helper.click(nextRoomButton);
         }
     }

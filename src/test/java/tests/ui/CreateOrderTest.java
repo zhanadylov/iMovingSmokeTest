@@ -26,6 +26,7 @@ public class CreateOrderTest extends Hooks{
 
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
+    DropDownHelper dropDownHelper = new DropDownHelper();
     Full_inventory_Page full_inventory = new Full_inventory_Page();
     FullInventoryPage fullInventoryPage = new FullInventoryPage();
     Detail_Page detail_page = new Detail_Page();
@@ -69,9 +70,9 @@ public class CreateOrderTest extends Hooks{
 //        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
         Helper.pause(1000);
-        System.out.println("Order is "+selectRandom.list);
+        System.out.println("Order is "+ DropDownHelper.list);
         Helper.click(homePage.addItemsButton);
-        boolean condition = selectRandom.list.contains("My Storage");
+        boolean condition = DropDownHelper.list.contains("My Storage");
         if(condition){
             orderStorage();
         }
@@ -83,9 +84,10 @@ public class CreateOrderTest extends Hooks{
 
     @Test(enabled = false)
     public void orderHouseApartment(){
+        System.out.println("Regular order chosen");
 //        AddItemsMethod.addItems(full_inventory.imageElement, 3);
         AddItemsMethod.addRandomItemsMethod(fullInventoryPage.imgItemLocators,3);
-        Helper.click(full_inventory.completeOrder);
+        Helper.click(fullInventoryPage.completeButton);
         Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
         Helper.click(boxCalculatingPopUp.addAndContinueButton);
         if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
@@ -97,7 +99,8 @@ public class CreateOrderTest extends Hooks{
     @Test(enabled = false)
     public void orderStorage(){
         Helper.pause(2000);
-        Helper.click(full_inventory.completeOrder);
+        System.out.println("Storage order chosen");
+        Helper.click(fullInventoryPage.continueButton);
     }
 
     @Test
