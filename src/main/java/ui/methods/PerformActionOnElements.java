@@ -38,6 +38,9 @@ public class PerformActionOnElements {
         for (WebElement element : elements) {
             String elementType = element.getTagName();
             String inputType = element.getAttribute("type");
+            System.out.println("inputType is "+inputType);
+            String clickType = element.getAttribute("ng-class");
+            System.out.println("clickType is "+clickType);
             Helper.pause(1000);
 
             if (elementType.equalsIgnoreCase("input") && !inputType.equals("radio") && !inputType.equals("checkbox")) {
@@ -52,7 +55,7 @@ public class PerformActionOnElements {
                     }
                     valueIndex++; // Увеличение индекса для следующего значения
                 }
-            } else if (elementType.equalsIgnoreCase("button") || (elementType.equalsIgnoreCase("input") && inputType.equals("checkbox") || inputType.equals("radio")) || elementType.equalsIgnoreCase("a")) {
+            } else if (elementType.equalsIgnoreCase("button") || (elementType.equalsIgnoreCase("input") && inputType.equals("checkbox") || inputType.equals("radio")) || elementType.equalsIgnoreCase("a")|| elementType.equalsIgnoreCase("h3")&& clickType.contains("myaddress.showRestr")) {
                 Helper.pause(1000);
                 Helper.javascriptScrollIntoView(element);
 //                Helper.javascriptClick(element);

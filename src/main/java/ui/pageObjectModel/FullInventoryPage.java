@@ -24,6 +24,12 @@ public class FullInventoryPage {
     @FindBy(xpath = "/html/body/div/div/div/div[1]/main/div[3]/div[1]/div[2]/div/div[1]/div[1]/a")
     public WebElement addItemButton;
 
+    @FindBy(xpath = "//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]")
+    public List<WebElement> addItemButtonList;
+
+    @FindBy(xpath = "//div[contains(normalize-space(@class),'room-box')]//h3[contains(normalize-space(text()),'')]")
+    public List<WebElement> roomNameList;
+
     @FindBy(xpath = "//div[contains(@class, 'modal-body')]//a[contains(@class, 'custom-btn') and normalize-space(text())='Next Room']")
     public static WebElement nextRoomButton;
 

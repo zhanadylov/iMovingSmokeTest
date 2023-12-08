@@ -43,7 +43,6 @@ public class CreateOrderTest extends Hooks{
     Success_Page success_page = new Success_Page();
     GetDate getDate = new GetDate();
     private WebDriver driver;
-
     @BeforeClass
     public void openChrome(){
         try {
@@ -57,15 +56,10 @@ public class CreateOrderTest extends Hooks{
         }
         logger.info("browser and url opened "+driver.getCurrentUrl());
     }
-    @AfterClass
-    public void tearDownClass() {
-        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
-        Driver.closeDriver();
-    }
     @Test
     public void chooseMoveOption() {
         Helper.click(homePage.itemizedQuoteButtonHomePage);
-        DropDownHelper.chooseMoveFrom(driver, "addInventory", 2);
+        DropDownHelper.chooseMoveFrom(driver, "addInventory", 0);
         DropDownHelper.chooseMoveSize(driver, "addInventory", 2);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
@@ -85,25 +79,36 @@ public class CreateOrderTest extends Hooks{
     @Test(enabled = false)
     public void orderHouseApartment(){
         System.out.println("Regular order chosen");
+        System.out.println("Order number " + fullInventoryPage.currentOrderNumber.getText());
 //        AddItemsMethod.addItems(full_inventory.imageElement, 3);
         AddItemsMethod.addRandomItemsMethod(fullInventoryPage.imgItemLocators,3);
+        Helper.javascriptScrollIntoView(fullInventoryPage.completeButton);
         Helper.click(fullInventoryPage.completeButton);
-        Helper.navigateToElement(boxCalculatingPopUp.addAndContinueButton);
-        Helper.click(boxCalculatingPopUp.addAndContinueButton);
-        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
-            Helper.click(boxCalculatingPopUp.skipButton);
-        }
-//        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
+        boxCalculatingPage();
     }
 
     @Test(enabled = false)
     public void orderStorage(){
         Helper.pause(2000);
         System.out.println("Storage order chosen");
+        System.out.println("Order number " + fullInventoryPage.currentOrderNumber.getText());
         Helper.click(fullInventoryPage.continueButton);
+        boxCalculatingPage();
     }
 
-    @Test
+    @Test(priority = 2)
+    public void boxCalculatingPage(){
+        Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
+        Helper.navigateToElement(boxCalculatingPopUp.continueButton);
+        Helper.click(boxCalculatingPopUp.continueButton);
+        //        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
+//            Helper.navigateToElement(boxCalculatingPopUp.skipButton);
+//            Helper.click(boxCalculatingPopUp.skipButton);
+//        }
+//        Helper.clickButtonIfDisplayed(boxCalculatingPopUp.skipButton);
+    }
+
+    @Test(dependsOnMethods = {"boxCalculatingPage"})
     public void details_Page() {
         Helper.pause(2000);
         calendarClass.getRandomDate(detail_page.datePicker, detail_page.monthInDate);
@@ -112,8 +117,9 @@ public class CreateOrderTest extends Hooks{
         String pickUp = "12334 Cantura Street, Los Angeles, CA 91604";
         String dropOff = "12340 Boggy Creek Road, Orlando, FL 32824";
         SetAddress.testMethod(pickUp, detail_page.pickUpFromInputField);
+
         performActionOnElements.setValuesToFillFields("Remark auto test pickUp");
-        performActionOnElements.fillCCFieldsElementTest(detail_page.anyRemarksInputField, detail_page.flightOfStairsPlusButtonPickup,
+        performActionOnElements.fillCCFieldsElementTest(detail_page.anyRemarksInputField, detail_page.anyRestrictionTextButtonPickUp,detail_page.flightOfStairsPlusButtonPickup,
                 detail_page.longCarryPlusButtonPickup);
         Helper.click(detail_page.elevatorYesPickup);
         Helper.click(detail_page.NeedShuttleYesPickup);
@@ -334,5 +340,11 @@ public class CreateOrderTest extends Hooks{
         AssertThat.assertText("Thank You", success_page.thankYouText);
         AssertThat.assertText(success_page.text, success_page.textInSuccessPage);
         Helper.pause(2000);
+    }
+
+    @AfterClass
+    public void tearDownClass() {
+        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
+        Driver.closeDriver();
     }
 }

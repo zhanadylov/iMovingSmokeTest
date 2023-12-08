@@ -61,10 +61,10 @@ public class DropDownHelper {
         if(idName.equals("addInventory")){
             WebElement itemizedQuoteOpenDropdown = driver.findElement(By.xpath("//a[@id='dLabel2' and contains(text(),'Move From')]"));
             Helper.click(itemizedQuoteOpenDropdown);
-//            WebElement radioButton = driver.findElements(By.xpath(moveFromOption)).get(indexToSelect);
-            List<WebElement> radioButton = driver.findElements(By.xpath(moveFromOption));
-            selectRandomOptionFromDropDown(radioButton);
-//            Helper.click(radioButton);
+            WebElement radioButton = driver.findElements(By.xpath(moveFromOption)).get(indexToSelect);
+//            List<WebElement> radioButton = driver.findElements(By.xpath(moveFromOption));
+//            selectRandomOptionFromDropDown(radioButton);
+            Helper.click(radioButton);
         }else if(idName.equals("quickQuote")){
             WebElement quickQuoteOpenDropdown = driver.findElement(By.xpath("//a[@id='dLabel' and contains(text(),'Move From')]"));
             Helper.click(quickQuoteOpenDropdown);
@@ -91,7 +91,7 @@ public class DropDownHelper {
         WebElement quickQuoteSizeOpenDropdown = driver.findElement(By.xpath("//a[@id='dLabel1' and contains(text(),'Move Size')]"));
         WebElement itemizedQuoteSizeOpenDropdown = driver.findElement(By.xpath("(//div[@class='col-md-5 col-xs-12']//a[@id='dLabel3' and contains(text(),'Move Size') or contains(text(),'')])[position()=4]"));
 
-        String moveSizeOption = "(//div[@id='"+addInventory+"']//ul[@class='dropdown-menu']//following::li//label[contains(normalize-space(text()),'')])[position()>3]";
+        String moveSizeOption = "//div[@id='"+addInventory+"']//ul[@class='dropdown-menu']//following::li//label[normalize-space(text()) and //input[@name='move_size']]";
 
         if(addInventory.equals("addInventory")){
             Helper.click(itemizedQuoteSizeOpenDropdown);
@@ -110,7 +110,7 @@ public class DropDownHelper {
         WebElement randomOption = allOptions.get(randomOptionIndex);
         String randomOptionText = allOptions.get(randomOptionIndex).getText();
         list.add(randomOptionText);
-
+        System.out.println("Option value "+randomOption.getText());
         Helper.click(randomOption);
 //        String randomOptionText = allOptions.get(randomOptionIndex).getText();
 //        list.add(randomOptionText);

@@ -62,17 +62,93 @@ public class AddItemsMethod {
     }
 
     public static void addRandomItemsMethod(List<WebElement> imageElements, int numItems) {
-        List<WebElement> addItemButtons = driver.findElements(By.xpath("//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]"));
-        for (WebElement addItemButton : addItemButtons) {
-            addItemButton.click();
-            AddItem.hoverOverAndSelectRandomItem(GetInventoryValues.getRandomItemName(imageElements));
-            WebElement nextRoomButton = FullInventoryPage.nextRoomButton;
-            if(fullinventory.dontHaveCabinetButton.isDisplayed()){
-                Helper.click(fullinventory.dontHaveCabinetButton);
-            }
-            Helper.click(nextRoomButton);
+        List<WebElement> roomNameList = driver.findElements(By.xpath("//div[contains(normalize-space(@class),'room-box')]//h3[contains(normalize-space(text()),'')]"));
+
+        for (WebElement roomName : roomNameList) {
+            String roomNameText = roomName.getText();
+            System.out.println("Room name "+roomName.getText());
+            AddItem.clickOnAddItemButton(roomNameText);
+            addItemElements(imageElements, numItems);
+            closeAddItemsWindow();
         }
     }
+    public static void addItemElements(List<WebElement> imageElements, int numItems) {
+        for (int i = 0; i < numItems; i++) {
+            String itemImg = GetInventoryValues.getRandomItemName(imageElements);
+            System.out.println("Adding item: " + itemImg);
+            AddItem.hoverOverAndSelectRandomItem(itemImg);
+        }
+    }
+    public static void closeAddItemsWindow() {
+        Helper.javascriptScrollIntoView(fullinventory.nextRoomButtonPopup);
+        Helper.navigateToElement(fullinventory.nextRoomButtonPopup);
+        Helper.click(fullinventory.nextRoomButtonPopup);
+        Helper.pause(1000);
+        try {
+            if (fullinventory.dontHaveCabinetButton.isDisplayed()) {
+                Helper.navigateToElement(fullinventory.dontHaveCabinetButton);
+                Helper.click(fullinventory.dontHaveCabinetButton);
+            } else {
+                System.out.println("Did you forget something popup not displayed");
+            }
+        }catch (Exception e) {
+            System.out.println("Error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+//    public static void addRandomItemsMethod(List<WebElement> imageElements, int numItems) {
+////        List<WebElement> addItemButtons = driver.findElements(By.xpath("//div[contains(@class, 'custom-card room-card')]//a[contains(@class, 'icon-plus')]"));
+//        List<WebElement> roomNameList = driver.findElements(By.xpath("//div[contains(normalize-space(@class),'room-box')]//h3[contains(normalize-space(text()),'')]"));
+////        for (WebElement addItemButton : addItemButtons) {
+////            addItemButton.click();
+////            AddItem.hoverOverAndSelectRandomItem(GetInventoryValues.getRandomItemName(imageElements));
+////            WebElement nextRoomButton = FullInventoryPage.nextRoomButton;
+////            Helper.click(nextRoomButton);
+////            if(Helper.isElementPresent(fullinventory.dontHaveCabinetButton)){
+////                Helper.click(fullinventory.dontHaveCabinetButton);
+////            }
+////        }
+//        while (numItems > 0) {
+//            boolean foundNextRoomButton = false;
+//            loop1:
+//            for (WebElement addItemButton : addItemButtons) {
+//                if (numItems <= 0) {
+//                    break loop1;
+//                }
+//
+//                addItemButton.click();
+//                loop2:
+//                for (int j = 0; j < 3 && numItems > 0; j++) {
+//                    String itemImg = GetInventoryValues.getRandomItemName(imageElements);
+//                    System.out.println("Adding item: " + itemImg);
+//                    Helper.pause(1000);
+//                    AddItem.hoverOverAndSelectRandomItem(itemImg);
+//                    System.out.println("Item added");
+//                    numItems--;
+//                }
+//
+//                WebElement nextRoomButton = FullInventoryPage.nextRoomButton;
+//                Helper.click(nextRoomButton);
+//                foundNextRoomButton = true;
+//
+//                try {
+//                    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='modal-title' and contains(normalize-space(text()),'Did you forget something?')]")));
+//
+//                    Helper.click(fullinventory.dontHaveCabinetButton);
+//                    foundNextRoomButton = false;
+//                    break;
+//                } catch (TimeoutException e) {
+//                    continue;
+//                }
+//            }
+//
+//            if (!foundNextRoomButton) {
+//                break;
+//            }
+//        }
+//    }
     public static void saveImage(WebElement img){
 //        List<WebElement> img = driver.findElements(By.tagName("img"));
         int count = 0;

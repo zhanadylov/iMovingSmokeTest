@@ -37,7 +37,6 @@ public class AddItem {
 //        String itemTypeLocator = "//following::div[@class='showItemTypes'])[position()=1]";
         String itemTypeLocator = "//following::div[contains(@class,'dropdown')])[position()=1]";
         String itemPlusButton = "//following::button[contains(text(),'+')])[position()<=1]";
-
         WebElement hoverElement = driver.findElement(By.xpath(itemImgLocatorString));
         Helper.navigateToElement(hoverElement);
 
@@ -47,21 +46,24 @@ public class AddItem {
 //        boolean hasItemTypeLocator = driver.findElements(By.xpath(itemTypeLocator)).size() > 0;
         boolean hasItemTypeLocator = driver.findElement(By.xpath(combinedLocatorDropdown)).isDisplayed();
         boolean hasItemPlusButton = driver.findElement(By.xpath(combinedLocatorPlus)).isDisplayed();
-        if (hasItemTypeLocator) {
-            WebElement itemWithItemType = driver.findElement(By.xpath(combinedLocatorDropdown));
-            itemWithItemType.click();
+        try{
+            if (hasItemTypeLocator) {
+                WebElement itemWithItemType = driver.findElement(By.xpath(combinedLocatorDropdown));
+                itemWithItemType.click();
 
 //            List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='search-results-list']"));
-            List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='dropdown-menu show']//div[contains(@ng-repeat,'typeAttr.ItemAttributes')]"));
-            Helper.pause(1000);
-            DropDownHelper.selectRandomOptionFromDropDown(dropdownItems);
+                List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='dropdown-menu show']//div[contains(@ng-repeat,'typeAttr.ItemAttributes')]"));
+                Helper.pause(1000);
+                DropDownHelper.selectRandomOptionFromDropDown(dropdownItems);
 
 //            driver.findElement(By.xpath(combinedLocatorPlus)).click();
-        } else if (hasItemPlusButton) {
-            driver.findElement(By.xpath(combinedLocatorPlus)).click();
+            } else if (hasItemPlusButton) {
+                driver.findElement(By.xpath(combinedLocatorPlus)).click();
+            }
+        }catch (Exception e){
+            System.out.println("Couldn't add item "+e.getMessage());
         }
     }
-
 
     public static void hoverOverAndSelectRandomItem(String getItemName, String givenDropdown) {//Method to choose given item
         String itemImgLocatorString = "//div[@class='flex-center']//img[contains(@title,'" + getItemName + "')]";

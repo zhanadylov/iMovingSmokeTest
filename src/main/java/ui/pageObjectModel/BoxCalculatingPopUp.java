@@ -19,8 +19,8 @@ public class BoxCalculatingPopUp {
     @FindBy(xpath = "(//a[contains(text(),'Recalculate boxes')])[1]")
     public WebElement recalculatingBoxesButton;
 
-    @FindBy(xpath = "(//a[contains(text(),'Add and Continue')])[1]")
-    public WebElement addAndContinueButton;
+    @FindBy(xpath = "//a[@class='custom-btn']")
+    public WebElement continueButton;
 
     @FindBy(xpath = "(//a[contains(text(),'How did we calculate it?')])[1]")
     public WebElement howDidWeCalculatingIt;

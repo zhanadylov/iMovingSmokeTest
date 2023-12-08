@@ -4,31 +4,40 @@
     <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest" >
         <classes>
             <class name="tests.ui.CreateOrderTest">
-            </class>
-            <class name="tests.ui.backOfficeTest.QaboSideBarTest">
-            </class>
-            <class name="tests.ui.FooterLinksTest">
                 <methods>
-                        <include name="footerMenuTest"/>
-                        <include name="footerLocalPageTest"/>
-                        <include name="footerCostCalculatorTest"/>
-                        <include name="footerChecklistPage"/>
-                        <include name="footerLaborPage"/>
-                        <include name="footerCaliforniaStatePage"/>
-                        <include name="footerNewYorkStatePage"/>
-                        <include name="footerMiamiCityPage"/>
-                        <include name="footerSeeMoreMoversCityPage"/>
-                        <include name="footerCrossCountryPage"/>
-                        <include name="footerInterstatePage"/>
-                        <include name="footerBoxesPage"/>
-                        <include name="footerLonDistancePage"/>
-                        <include name="footerMovingPediaTest"/>
+                    <include name="chooseMoveOption"/>
+                    <include name="boxCalculatingPage"/>
+                    <include name="details_Page"/>
+                    <include name="marketplace_Page"/>
+                    <include name="summary_Page"/>
+                    <include name="payment_Page"/>
+                    <include name="success_Page_Test"/>
                 </methods>
             </class>
-            <class name="tests.ui.backOfficeTest.ChangeDateTest">
-            </class>
-            <class name="tests.ui.backOfficeTest.DeliveryProcessTest">
-            </class>
+<!--            <class name="tests.ui.backOfficeTest.QaboSideBarTest">-->
+<!--            </class>-->
+<!--            <class name="tests.ui.FooterLinksTest">-->
+<!--                <methods>-->
+<!--                        <include name="footerMenuTest"/>-->
+<!--                        <include name="footerLocalPageTest"/>-->
+<!--                        <include name="footerCostCalculatorTest"/>-->
+<!--                        <include name="footerChecklistPage"/>-->
+<!--                        <include name="footerLaborPage"/>-->
+<!--                        <include name="footerCaliforniaStatePage"/>-->
+<!--                        <include name="footerNewYorkStatePage"/>-->
+<!--                        <include name="footerMiamiCityPage"/>-->
+<!--                        <include name="footerSeeMoreMoversCityPage"/>-->
+<!--                        <include name="footerCrossCountryPage"/>-->
+<!--                        <include name="footerInterstatePage"/>-->
+<!--                        <include name="footerBoxesPage"/>-->
+<!--                        <include name="footerLonDistancePage"/>-->
+<!--                        <include name="footerMovingPediaTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="tests.ui.backOfficeTest.ChangeDateTest">-->
+<!--            </class>-->
+<!--            <class name="tests.ui.backOfficeTest.DeliveryProcessTest">-->
+<!--            </class>-->
         </classes>
     </test>
 </suite>

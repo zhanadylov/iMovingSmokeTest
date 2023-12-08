@@ -68,8 +68,8 @@ public class AdditionalPickUpTest extends Hooks{
         Helper.click(full_inventory_page.additionalItemsRoomHeader);
         AddItemsMethod.addItems(full_inventory_page.imageElement, 10);
         Helper.click(full_inventory_page.completeOrder);
-        if (Helper.isElementPresent(boxCalculatingPopUp.addAndContinueButton)) {
-            Helper.click(boxCalculatingPopUp.addAndContinueButton);
+        if (Helper.isElementPresent(boxCalculatingPopUp.continueButton)) {
+            Helper.click(boxCalculatingPopUp.continueButton);
         }
 
         if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
@@ -133,8 +133,8 @@ public class AdditionalPickUpTest extends Hooks{
         Helper.click(boxCalculatingPopUp.tvBoxPlusButton);
         AssertThat.assertText("1", boxCalculatingPopUp.tvBoxQuantity);
         Helper.click(full_inventory_page.completeOrder);
-        if (Helper.isElementPresent(boxCalculatingPopUp.addAndContinueButton)) {
-            Helper.click(boxCalculatingPopUp.addAndContinueButton);
+        if (Helper.isElementPresent(boxCalculatingPopUp.continueButton)) {
+            Helper.click(boxCalculatingPopUp.continueButton);
         }
 
         if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
