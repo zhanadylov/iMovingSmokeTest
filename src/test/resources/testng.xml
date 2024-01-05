@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" thread-count="2">
-    <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest" >
+    <listeners>
+        <listener class-name="org.example.hooks.TestListener"></listener>
+    </listeners>
+    <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest" preserve-order="true">
         <classes>
             <class name="tests.ui.CreateOrderTest">
                 <methods>
@@ -14,8 +17,24 @@
                     <include name="success_Page_Test"/>
                 </methods>
             </class>
-<!--            <class name="tests.ui.backOfficeTest.QaboSideBarTest">-->
-<!--            </class>-->
+            <class name="tests.ui.SignInTest">
+                <methods>
+                    <include name="loginWithValidData"/>
+                    <include name="SignUp"/>
+<!--                    <include name="forgotPassword"/>-->
+                </methods>
+            </class>
+            <class name="tests.ui.backOfficeTest.QaboSideBarTest">
+                <methods>
+                    <include name="qaDashBoard"/>
+                    <include name="qaUsers"/>
+                    <include name="qaCompanies"/>
+                    <include name="qaBranches"/>
+                    <include name="qaAffiliates"/>
+                    <include name="qaOrders"/>
+                </methods>
+            </class>
+            <class name="org.example.utilities.Driver"/>
 <!--            <class name="tests.ui.FooterLinksTest">-->
 <!--                <methods>-->
 <!--                        <include name="footerMenuTest"/>-->

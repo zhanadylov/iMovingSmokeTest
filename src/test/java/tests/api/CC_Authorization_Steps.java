@@ -1,10 +1,6 @@
 package tests.api;
 
-import apiConnection.ApiConnection;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+import org.example.apiConnection.ApiConnection;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;

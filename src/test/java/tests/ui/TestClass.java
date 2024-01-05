@@ -1,18 +1,6 @@
 package tests.ui;
 //
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import helper.BrowserHelper;
-import helper.Helper;
-import hooks.Hooks;
-import org.openqa.selenium.*;
-import org.testng.annotations.Test;
-import ui.methods.*;
-import ui.pageObjectModel.*;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.*;
 //
 public class TestClass {
     public static void main(String[] args) {

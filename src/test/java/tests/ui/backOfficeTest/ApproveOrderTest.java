@@ -1,14 +1,14 @@
 package tests.ui.backOfficeTest;
 
-import helper.DropDownHelper;
-import helper.Helper;
-import hooks.Hooks;
+import org.example.helper.DropDownHelper;
+import org.example.helper.Helper;
+import org.example.hooks.Hooks;
+import org.example.ui.qabo.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ui.methods.HelperForWeb;
-import ui.methods.SetUpBO;
-import ui.qabo.*;
+import org.example.ui.methods.HelperForWeb;
+import org.example.ui.methods.SetUpBO;
 
 public class ApproveOrderTest extends Hooks implements SetUpBO {
     String orderNumber = "";

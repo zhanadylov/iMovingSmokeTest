@@ -1,18 +1,22 @@
 package tests.ui;
 
-import helper.*;
-import hooks.Hooks;
+import org.example.helper.*;
+import org.example.helper.*;
+import org.example.hooks.Hooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.ui.methods.CalendarClass;
+import org.example.ui.methods.PerformActionOnElements;
+import org.example.ui.methods.SelectRandom;
+import org.example.ui.methods.SetAddress;
+import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
-import ui.methods.*;
-import ui.pageObjectModel.*;
-import utilities.ConfigReader;
-import utilities.Driver;
+import org.example.utilities.ConfigReader;
+import org.example.utilities.Driver;
 
 
 

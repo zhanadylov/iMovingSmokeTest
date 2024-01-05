@@ -1,15 +1,14 @@
 package tests.api;
 
-import apiConnection.ApiConnection;
-import hooks.logs.Log;
-import static hooks.logs.Log4jDemo.logger;
-import io.restassured.response.Response;
+import org.example.apiConnection.ApiConnection;
+import org.example.hooks.logs.Log;
+import static org.example.hooks.logs.Log4jDemo.logger;
+
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.when;
 
 public class CcCaptureStepsTest extends ApiConnection {
 //    private static final Logger logger = LoggerFactory.getLogger(CcCaptureStepsTest.class);

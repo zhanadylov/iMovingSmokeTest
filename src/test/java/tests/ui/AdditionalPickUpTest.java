@@ -1,19 +1,17 @@
 package tests.ui;
 
-import helper.AlertHelper;
-import helper.AssertThat;
-import helper.BrowserHelper;
-import helper.Helper;
-import hooks.Hooks;
+import org.example.helper.AssertThat;
+import org.example.helper.BrowserHelper;
+import org.example.helper.Helper;
+import org.example.hooks.Hooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.ui.methods.*;
+import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.ui.backOfficeTest.QaboOptionsTest;
-import tests.ui.backOfficeTest.QaboSideBarTest;
-import ui.methods.*;
-import ui.pageObjectModel.*;
 
 public class AdditionalPickUpTest extends Hooks{
     private WebDriver driver;

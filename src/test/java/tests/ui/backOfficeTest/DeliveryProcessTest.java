@@ -1,25 +1,25 @@
 package tests.ui.backOfficeTest;
 
-import DataBaseConnection.ConnectDataBaseTest;
-import apiConnection.ApiConnection;
+import org.example.DataBaseConnection.ConnectDataBaseTest;
+import org.example.apiConnection.ApiConnection;
 import tests.api.CcCaptureStepsTest;
 import tests.api.SendEmailQueryTest;
-import helper.DropDownHelper;
-import helper.Helper;
-import hooks.Hooks;
+import org.example.helper.DropDownHelper;
+import org.example.helper.Helper;
+import org.example.hooks.Hooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ui.methods.CalendarClass;
-import ui.methods.HelperForWeb;
-import ui.qabo.LoginPage;
-import ui.qabo.OrderInfoQaBo;
-import ui.qabo.OrdersListPageInQabo;
-import ui.qabo.QaboDashBoardPage;
-import utilities.ConfigReader;
-import utilities.Driver;
+import org.example.ui.methods.CalendarClass;
+import org.example.ui.methods.HelperForWeb;
+import org.example.ui.qabo.LoginPage;
+import org.example.ui.qabo.OrderInfoQaBo;
+import org.example.ui.qabo.OrdersListPageInQabo;
+import org.example.ui.qabo.QaboDashBoardPage;
+import org.example.utilities.ConfigReader;
+import org.example.utilities.Driver;
 
 import java.sql.SQLException;
 

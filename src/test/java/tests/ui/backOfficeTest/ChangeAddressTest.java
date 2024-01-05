@@ -1,19 +1,19 @@
 package tests.ui.backOfficeTest;
 
-import helper.DropDownHelper;
-import helper.Helper;
-import hooks.Hooks;
+import org.example.helper.DropDownHelper;
+import org.example.helper.Helper;
+import org.example.hooks.Hooks;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ui.methods.CalendarClass;
-import ui.methods.HelperForWeb;
-import ui.methods.SetAddress;
-import ui.methods.SetUpBO;
-import ui.qabo.LoginPage;
-import ui.qabo.OrderInfoQaBo;
-import ui.qabo.OrdersListPageInQabo;
-import ui.qabo.QaboDashBoardPage;
+import org.example.ui.methods.CalendarClass;
+import org.example.ui.methods.HelperForWeb;
+import org.example.ui.methods.SetAddress;
+import org.example.ui.methods.SetUpBO;
+import org.example.ui.qabo.LoginPage;
+import org.example.ui.qabo.OrderInfoQaBo;
+import org.example.ui.qabo.OrdersListPageInQabo;
+import org.example.ui.qabo.QaboDashBoardPage;
 
 public class ChangeAddressTest extends Hooks implements SetUpBO {
     LoginPage loginPage = new LoginPage();

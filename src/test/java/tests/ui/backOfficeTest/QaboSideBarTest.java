@@ -1,22 +1,22 @@
 package tests.ui.backOfficeTest;
 
-import helper.BrowserHelper;
-import helper.DropDownHelper;
-import helper.Helper;
-import hooks.Hooks;
+import org.example.helper.BrowserHelper;
+import org.example.helper.DropDownHelper;
+import org.example.helper.Helper;
+import org.example.hooks.Hooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.hooks.TestListener;
+import org.example.ui.qabo.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import ui.methods.SaveOrderInfo;
-import ui.qabo.*;
-import utilities.ConfigReader;
-import utilities.Driver;
+import org.example.ui.methods.SaveOrderInfo;
+import org.example.utilities.ConfigReader;
+import org.example.utilities.Driver;
 
-
-public class QaboSideBarTest extends Hooks {
-    private WebDriver driver;
+public class QaboSideBarTest extends Driver{
+//    private WebDriver driver;
     private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class);
 
     LoginPage loginPage = new LoginPage();
@@ -36,24 +36,31 @@ public class QaboSideBarTest extends Hooks {
     ReviewsQabo reviewsQabo = new ReviewsQabo();
 
 
-    @BeforeClass
+    @BeforeTest
     public void loginToQaBO(){
         try {
             if (driver == null) {
-                logger.info("Trying to open browser and url");
+                logger.info("Trying to open browser and url in loginToQaBO");
                 driver = Driver.getDriver();
                 driver.get(ConfigReader.getProperty("environmentBO"));
-                Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-                Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-                Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-                Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-                Helper.click(loginPage.signInButtonBo);
+            }else{
+                driver.get(ConfigReader.getProperty("environmentBO"));
             }
+            Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+            Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+            Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+            Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+            Helper.click(loginPage.signInButtonBo);
         } catch (Exception e) {
             logger.error("Error occurred while opening browser and url: " + e.getMessage());
         }
         logger.info("browser and url opened "+driver.getCurrentUrl());
     }
+//    @AfterClass
+//    public void tearDownCreateORder() {
+//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
+//        Driver.closeDriver();
+//    }
     @Test
     public void qaDashBoard(){
         Helper.click(qaboDashBoardPage.dashboardLabelInSideBar);

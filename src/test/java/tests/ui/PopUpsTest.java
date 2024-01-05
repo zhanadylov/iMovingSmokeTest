@@ -1,8 +1,8 @@
 package tests.ui;
 
-import helper.Helper;
+import org.example.helper.Helper;
 import org.testng.annotations.Test;
-import ui.pageObjectModel.PopUpsPage;
+import org.example.ui.pageObjectModel.PopUpsPage;
 
 public class PopUpsTest {
     PopUpsPage popUpsPage = new PopUpsPage();

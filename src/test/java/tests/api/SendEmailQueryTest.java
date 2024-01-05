@@ -1,12 +1,12 @@
 package tests.api;
 
-import apiConnection.ApiConnection;
-import hooks.logs.Log;
+import org.example.apiConnection.ApiConnection;
+import org.example.hooks.logs.Log;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
-import static hooks.logs.Log4jDemo.logger;
+import static org.example.hooks.logs.Log4jDemo.logger;
 
 public class SendEmailQueryTest extends ApiConnection {
 //    private static final Logger logger = LoggerFactory.getLogger(SendEmailQueryTest.class);

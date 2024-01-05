@@ -1,42 +1,44 @@
 package tests.ui;
 
-import email.EmailForResetPasswordTest;
-import helper.Helper;
-import helper.JavaFaker;
-import hooks.Hooks;
-import hooks.TestStatusListener;
+import io.cucumber.java.Before;
+import org.example.email.EmailForResetPasswordTest;
+import org.example.helper.Helper;
+import org.example.helper.JavaFaker;
+import org.example.hooks.TestListener;
+import org.example.utilities.ConfigReader;
+import org.example.utilities.Driver;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
-import ui.methods.SetUp;
-import ui.pageObjectModel.HomePage;
-import utilities.ConfigReader;
-import utilities.Driver;
+import org.testng.annotations.*;
+import org.example.ui.pageObjectModel.HomePage;
 
 import java.io.IOException;
 
-import static utilities.Driver.getDriver;
-
-@Listeners (TestStatusListener.class)
-public class SignInTest extends Hooks implements SetUp{
-//    private WebDriver driver;
+public class SignInTest extends Driver{
+    private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
+    private WebDriver driver;
 
     HomePage homePage = new HomePage();
 
-//    public SignInTest() {
+//    @BeforeClass
+//    public void openChromeSingIN(){
+//        try {
+////            if (driver == null) {
+//                logger.info("Trying to open browser and url in openChromeSingIN");
+//                driver = Driver.getDriver();
+//                driver.get(ConfigReader.getProperty("environment"));
+////            }
+//        } catch (Exception e) {
+//            logger.error("Error occurred while opening browser and url: " + e.getMessage());
+//        }
+//        logger.info("browser and url opened "+driver.getCurrentUrl());
 //    }
-//    @BeforeSuite
-//    public void openChrome(){
-//        driver = getDriver();
-//        driver.get(ConfigReader.getProperty("environmentBO"));
-//    }
-//
-//    @AfterSuite
-//    public void closeChrome(){
-//        Driver.closeDriver(driver);
+//    @AfterClass
+//    public void tearDownCreateORder() {
+//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
+//        Driver.closeDriver();
 //    }
     @Test(priority = 1)
     public void loginWithValidData(){
@@ -68,14 +70,14 @@ public class SignInTest extends Hooks implements SetUp{
         Helper.sendKeys(homePage.phoneNumber, "8003600037");
         Helper.click(homePage.sendMeVerificationButton);
         Helper.sendKeys(homePage.confirmCodeField, "331661584");
-        Helper.click(homePage.verifyAndSignUpButton);
+        Helper.multipleClick(homePage.verifyAndSignUpButton,2);
         Helper.pause(3000);
         Assert.assertTrue(homePage.userNameAfterLogin.getText().contains(firstName+" "+lastName));
         Helper.click(homePage.userNameAfterLogin);
         Helper.click(homePage.logOut);
     }
 
-    @Test(alwaysRun = false)
+//    @Test(priority = 2)
     public void forgotPassword() throws IOException {
         Helper.click(homePage.SignInButton);
         Helper.click(homePage.forgotPassword);
