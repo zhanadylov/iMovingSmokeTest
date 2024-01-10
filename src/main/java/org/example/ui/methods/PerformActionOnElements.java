@@ -8,8 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.example.ui.pageObjectModel.PaymentPage;
 import org.example.utilities.Driver;
 
+import java.util.List;
+import java.util.Random;
+
 public class PerformActionOnElements {
     PaymentPage paymentPage = new PaymentPage();
+    Random random = new Random();
+
     private String[] valuesToFillFields;
 
     WebDriver driver = Driver.getDriver();
@@ -81,9 +86,14 @@ public class PerformActionOnElements {
         valuesToFillFields = values;
     }
 
-    public void getValuesToFillFields2() {
-        for (String value : valuesToFillFields) {
-            System.out.println(value);
+    public void clickRandomCreditCard(List<WebElement> elements) {
+        if (!elements.isEmpty()) {
+            int randomIndex = random.nextInt(elements.size());
+            WebElement randomElement = elements.get(randomIndex);
+            Helper.javascriptScrollIntoView(randomElement);
+            Helper.click(randomElement);
+        } else {
+            fillCCFieldsInPayment();
         }
     }
 }

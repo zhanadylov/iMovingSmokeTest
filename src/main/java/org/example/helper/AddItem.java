@@ -129,4 +129,5 @@ public class AddItem {
         Helper.javascriptScrollIntoView(clickPlusMinusInBox);
         Helper.click(clickPlusMinusInBox);
     }
+
 }

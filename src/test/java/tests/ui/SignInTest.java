@@ -15,31 +15,30 @@ import org.testng.annotations.*;
 import org.example.ui.pageObjectModel.HomePage;
 
 import java.io.IOException;
-
-public class SignInTest extends Driver{
-    private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
-    private WebDriver driver;
+@Listeners(TestListener.class)
+public class SignInTest{
+    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
+    private static WebDriver driver = Driver.getDriver();
 
     HomePage homePage = new HomePage();
 
-//    @BeforeClass
-//    public void openChromeSingIN(){
-//        try {
-////            if (driver == null) {
-//                logger.info("Trying to open browser and url in openChromeSingIN");
-//                driver = Driver.getDriver();
-//                driver.get(ConfigReader.getProperty("environment"));
-////            }
-//        } catch (Exception e) {
-//            logger.error("Error occurred while opening browser and url: " + e.getMessage());
-//        }
-//        logger.info("browser and url opened "+driver.getCurrentUrl());
-//    }
+    @BeforeClass
+    public void setUp(){
+            if (driver == null) {
+                logger.info("Trying to open browser and url in openChromeSingIN");
+                driver = Driver.getDriver();
+                driver.get(ConfigReader.getProperty("environment"));
+            }else{
+                driver.get(ConfigReader.getProperty("environment"));
+            }
+    }
+
 //    @AfterClass
-//    public void tearDownCreateORder() {
+//    public void tearDown() {
 //        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
 //        Driver.closeDriver();
 //    }
+
     @Test(priority = 1)
     public void loginWithValidData(){
         Helper.click(homePage.SignInButton);

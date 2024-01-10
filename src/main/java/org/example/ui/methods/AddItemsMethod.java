@@ -3,14 +3,14 @@ package org.example.ui.methods;
 import org.example.helper.AddItem;
 import org.example.helper.GetInventoryValues;
 import org.example.helper.Helper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.example.ui.pageObjectModel.FullInventoryPage;
 import org.example.utilities.Driver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,8 @@ import java.util.List;
 
 public class AddItemsMethod {
     static WebDriver driver = Driver.getDriver();
-    private static Logger logger = (Logger) LogManager.getLogger(Helper.class);
+//    private static Logger logger = (Logger) LogManager.getLogger(Helper.class);
+    private static final Logger logger = LoggerFactory.getLogger(AddItemsMethod.class);
     static FullInventoryPage fullinventory = new FullInventoryPage();
 
     public static void addItems(List<WebElement> imageElements, int numItems) {

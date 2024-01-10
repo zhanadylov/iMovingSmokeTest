@@ -11,72 +11,74 @@ public class Driver {
     private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
     public static final Boolean clear_Cookies_And_Storage = true;
     ///////
-    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
-
-//    private static final ThreadLocal<WebDriver> driverThreadLocal = ThreadLocal.withInitial(() -> {
-//        switch (ConfigReader.getProperty("browser").toLowerCase()) {
-//            case "chrome":
-//                return ChromeWebDriver.loadChromeDriver();
-//            case "firefox":
-//                return FirefoxWebDriver.loadFirefoxDriver();
-//            // Другие варианты браузеров...
-//            default:
-//                throw new IllegalArgumentException("Unsupported browser");
-//        }
-//    });
-//
-//    @BeforeClass
-//    public static WebDriver getDriver() {
-//        return driverThreadLocal.get();
-//    }
-//
-//    @AfterTest
-//    public static void closeDriver() {
-//        try {
-//            WebDriver driver = driverThreadLocal.get();
-//            if (driver != null) {
-//                driver.quit();
-//                driverThreadLocal.remove();
-//            }
-//        } catch (Exception e) {
-//            logger.error("Error occurred while closing the driver: " + e.getMessage());
-//        }
-//        logger.info("Closing Driver");
-//    }
-    /////////
-
-    public static WebDriver getDriver() {
-        if (driver == null) {
-            synchronized (Driver.class) {
-                if (driver == null) {
-                    switch (ConfigReader.getProperty("browser").toLowerCase()) {
-                        case "chrome":
-                            driver = ChromeWebDriver.loadChromeDriver();
-                            break;
-                        case "firefox":
-                            driver = FirefoxWebDriver.loadFirefoxDriver();
-                            break;
-                        // Другие варианты браузеров...
-                        default:
-                            throw new IllegalArgumentException("Unsupported browser");
-                    }
-                }
-            }
-        }
-        return driver;
+//    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    private Driver() {
     }
-    @AfterClass
+
+    private static final ThreadLocal<WebDriver> driverThreadLocal = ThreadLocal.withInitial(() -> {
+        switch (ConfigReader.getProperty("browser").toLowerCase()) {
+            case "chrome":
+                return ChromeWebDriver.loadChromeDriver();
+            case "firefox":
+                return FirefoxWebDriver.loadFirefoxDriver();
+            // Другие варианты браузеров...
+            default:
+                throw new IllegalArgumentException("Unsupported browser");
+        }
+    });
+
+//    @BeforeClass
+    public static WebDriver getDriver() {
+        return driverThreadLocal.get();
+    }
+
+    @AfterSuite(alwaysRun = true)
     public static void closeDriver() {
         try {
+            WebDriver driver = driverThreadLocal.get();
             if (driver != null) {
                 driver.quit();
-                driver = null;
+                driverThreadLocal.remove();
             }
         } catch (Exception e) {
             logger.error("Error occurred while closing the driver: " + e.getMessage());
         }
         logger.info("Closing Driver");
     }
+    /////////
+
+//    @BeforeClass(alwaysRun = true)
+//    public static WebDriver getDriver() {
+//        if (driver == null) {
+//            synchronized (Driver.class) {
+//                if (driver == null) {
+//                    switch (ConfigReader.getProperty("browser").toLowerCase()) {
+//                        case "chrome":
+//                            driver = ChromeWebDriver.loadChromeDriver();
+//                            break;
+//                        case "firefox":
+//                            driver = FirefoxWebDriver.loadFirefoxDriver();
+//                            break;
+//                        // Другие варианты браузеров...
+//                        default:
+//                            throw new IllegalArgumentException("Unsupported browser");
+//                    }
+//                }
+//            }
+//        }
+//        return driver;
+//    }
+////    @AfterSuite(alwaysRun = true)
+//    public static void closeDriver() {
+//        try {
+//            if (driver != null) {
+//                driver.quit();
+//            }
+//        } catch (Exception e) {
+//            logger.error("Error occurred while closing the driver: " + e.getMessage());
+//        }
+//        logger.info("Closing Driver");
+//    }
 }
 
 //abstract public class Driver {

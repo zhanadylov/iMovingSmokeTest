@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import static org.example.hooks.logs.Log4jDemo.logger;
+import static org.example.hooks.logs.Slf4jDemo.logger;
 
 public class ConnectDataBaseTest {
 //    private static final Logger logger = LoggerFactory.getLogger(ConnectDataBaseTest.class);

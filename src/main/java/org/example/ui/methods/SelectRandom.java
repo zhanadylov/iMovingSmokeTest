@@ -1,11 +1,11 @@
 package org.example.ui.methods;
 
 import org.example.helper.Helper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -19,7 +19,9 @@ import java.util.Random;
 
 public class SelectRandom {
 
-    private static final Logger logger = (Logger) LogManager.getLogger(Helper.class);
+//    private static final Logger logger = (Logger) LogManager.getLogger(Helper.class);
+    private static final Logger logger = LoggerFactory.getLogger(SelectRandom.class);
+
     static Random random = new Random();
 
     public List<String> list = new ArrayList<>();

@@ -1,21 +1,24 @@
 package tests.ui;
 
-import org.example.helper.AssertThat;
-import org.example.helper.BrowserHelper;
-import org.example.helper.Helper;
-import org.example.hooks.Hooks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.example.helper.*;
+import org.example.hooks.TestListener;
 import org.example.ui.methods.*;
 import org.example.ui.pageObjectModel.*;
+import org.example.utilities.ConfigReader;
+import org.example.utilities.Driver;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import tests.ui.backOfficeTest.QaboOptionsTest;
 
-public class AdditionalPickUpTest extends Hooks{
-    private WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.class);
+@Listeners(TestListener.class)
+public class AdditionalPickUpTest{
+    private static final Logger logger = LoggerFactory.getLogger(AdditionalPickUpTest.class);
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     HomePage homePage = new HomePage();
     UserZonePage userZonePage = new UserZonePage();
@@ -29,10 +32,30 @@ public class AdditionalPickUpTest extends Hooks{
     BrowserHelper browserHelper = new BrowserHelper();
     QaboOptionsTest qaboOptionsTest = new QaboOptionsTest();
     GetOrderInfo getOrderInfo = new GetOrderInfo();
-//    AlertHelper alertHelper = new AlertHelper(driver);
+    GetInventoryValues getInventoryValues = new GetInventoryValues();
+
+    private static WebDriver driver = Driver.getDriver();
+
+    @BeforeClass
+    public void setUp(){
+//        if (driver == null) {
+            logger.info("Trying to open browser and url in openChromeCreateOrder");
+//            driver = Driver.getDriver();
+            driver.get(ConfigReader.getProperty("environment"));
+            driver.manage().deleteAllCookies();
+//        }else{
+//            driver.get(ConfigReader.getProperty("environment"));
+//        }
+    }
+//    @AfterClass
+//    public void tearDown() {
+//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
+//        Driver.closeDriver();
+//    }
 
     @Test
     public void addAdditionalPickUpPayByCC(){
+        popUpsTest.continueOrderPopUp();
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
         Helper.pause(2000);
@@ -50,30 +73,38 @@ public class AdditionalPickUpTest extends Hooks{
         Helper.click(userZonePage.editButtonPopup);
         Helper.pause(2000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/full-inventory/#!/");
-        full_inventory_page.roomNameText.isDisplayed();
-        Helper.click(full_inventory_page.editRoomsButton);
-        full_inventory_page.theseAreRecommendedRoomsForaText.isDisplayed();
-        full_inventory_page.pleaseAddRemoveAndConfirmText.isDisplayed();
+        full_inventory_page.fullInventoryTitle.isDisplayed();
+        Helper.javascriptScrollIntoView(full_inventory_page.manageRoomsButton);
         full_inventory_page.addAdditionalPickupLocationLink.isDisplayed();
+        Helper.click(full_inventory_page.manageRoomsButton);
+        full_inventory_page.theseAreRecommendedRoomsForaText.isDisplayed();
+        full_inventory_page.addOrRemoveAsYouNeedText.isDisplayed();
+        Helper.click(full_inventory_page.confirmButtonInManageRoomPopup);
+        Helper.javascriptScrollIntoView(full_inventory_page.confirmButtonInManageRoomPopup);
         Helper.click(full_inventory_page.addAdditionalPickupLocationLink);
         full_inventory_page.additionalStorage.isDisplayed();
         full_inventory_page.additionalBoxes.isDisplayed();
         full_inventory_page.additionalItems.isDisplayed();
         Helper.click(full_inventory_page.additionalItems);
-        Helper.click(full_inventory_page.continueButtonPopup);
-        popUpsTest.passPopInSlashOne();
         full_inventory_page.additionalItemsRoomHeader.isDisplayed();
-        Helper.click(full_inventory_page.additionalItemsRoomHeader);
-        AddItemsMethod.addItems(full_inventory_page.imageElement, 10);
+        AddItemsMethod.addItemElements(full_inventory_page.imageElement, 10);
+        Helper.click(full_inventory_page.nextRoomButtonPopup);
+        Helper.javascriptScrollIntoView(full_inventory_page.addAdditionalPickupLocationLink);
         Helper.click(full_inventory_page.completeOrder);
-        if (Helper.isElementPresent(boxCalculatingPopUp.continueButton)) {
+//        Helper.javascriptScrollDownThePage();
+//        if (Helper.isElementPresent(boxCalculatingPopUp.continueButton)) {
+        Helper.pause(1000);
+            Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
             Helper.click(boxCalculatingPopUp.continueButton);
+//        }
+        Helper.pause(1000);
+        try {
+            if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
+                Helper.click(boxCalculatingPopUp.skipButton);
+            }
+        } catch (NoSuchElementException e) {
+            logger.info("Skip button not appeared");
         }
-
-        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
-            Helper.click(boxCalculatingPopUp.skipButton);
-        }
-        Helper.pause(2000);
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
         SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
         Helper.javascriptScrollIntoView(_detail_page.confirmButton);
@@ -81,9 +112,10 @@ public class AdditionalPickUpTest extends Hooks{
         Helper.javascriptScrollIntoView(summary_page.checkOutButton);
         Helper.click(summary_page.checkOutButton);
         Helper.pause(2000);
-        performActionOnElements.setValuesToFillFields("clientFirstName","5424 0000 0000 0015","2027","123");
-        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
-                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
+        performActionOnElements.setValuesToFillFields("clientFirstName","05","5424 0000 0000 0015","27","123");
+//        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
+//                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
+        performActionOnElements.clickRandomCreditCard(paymentPage.visaDebitCardCheckBoxList);
         Helper.javascriptScrollDownThePage();
         Helper.click(paymentPage.completeBookingButton);
         Helper.pause(3000);
@@ -110,46 +142,54 @@ public class AdditionalPickUpTest extends Hooks{
         Helper.click(userZonePage.editButtonPopup);
         Helper.pause(2000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.imoving.com/full-inventory/#!/");
-        full_inventory_page.roomNameText.isDisplayed();
-        Helper.click(full_inventory_page.editRoomsButton);
-        full_inventory_page.theseAreRecommendedRoomsForaText.isDisplayed();
-        full_inventory_page.pleaseAddRemoveAndConfirmText.isDisplayed();
-        full_inventory_page.addAdditionalPickupLocationLink.isDisplayed();
+        full_inventory_page.fullInventoryTitle.isDisplayed();
+        Helper.javascriptScrollIntoView(full_inventory_page.addAdditionalPickupLocationLink);
+        Helper.click(full_inventory_page.addAdditionalPickupLocationLink);
+//        full_inventory_page.theseAreRecommendedRoomsForaText.isDisplayed();
         full_inventory_page.additionalStorage.isDisplayed();
         full_inventory_page.additionalBoxes.isDisplayed();
         full_inventory_page.additionalItems.isDisplayed();
         Helper.click(full_inventory_page.additionalBoxes);
-        Helper.click(full_inventory_page.continueButtonPopup);
-        popUpsTest.passPopInSlashOne();
+//        Helper.click(full_inventory_page.nextRoomButtonPopup);
+//        popUpsTest.passPopInSlashOne();
         full_inventory_page.additionalBoxesRoomHeader.isDisplayed();
-        Helper.click(full_inventory_page.additionalBoxesRoomHeader);
-        boxCalculatingPopUp.additionalPickupBoxesTitle.isDisplayed();
-        Helper.click(boxCalculatingPopUp.largeBoxPlusButton);
-        AssertThat.assertText("1", boxCalculatingPopUp.largeBoxQuantity);
-        Helper.multipleClick(boxCalculatingPopUp.lampBoxPlusButton, 5);
-        AssertThat.assertText("5", boxCalculatingPopUp.lampBoxQuantity);
-        Helper.click(boxCalculatingPopUp.tvBoxPlusButton);
-        AssertThat.assertText("1", boxCalculatingPopUp.tvBoxQuantity);
+//        Helper.click(full_inventory_page.additionalBoxesRoomHeader);
+//        boxCalculatingPopUp.additionalPickupBoxesTitle.isDisplayed();
+
+        AddItem.hoverOverAndClickMinusPlusManageRooms("Medium Box", "+", 1);
+        Assert.assertEquals(GetInventoryValues.getBoxesQuantity("Medium Box"), "1");
+        AddItem.hoverOverAndClickMinusPlusManageRooms("Lamp Box", "+", 5);
+        Assert.assertEquals(GetInventoryValues.getBoxesQuantity("Lamp Box"), "5");
+        AddItem.hoverOverAndClickMinusPlusManageRooms("Wardrobe Box", "+", 3);
+        Assert.assertEquals(GetInventoryValues.getBoxesQuantity("Wardrobe Box"),"3");
+        Helper.click(full_inventory_page.nextRoomButtonPopup);
+        Helper.javascriptScrollIntoView(full_inventory_page.completeOrder);
         Helper.click(full_inventory_page.completeOrder);
+        Helper.pause(1000);
         if (Helper.isElementPresent(boxCalculatingPopUp.continueButton)) {
+            Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
             Helper.click(boxCalculatingPopUp.continueButton);
         }
 
-        if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
-            Helper.click(boxCalculatingPopUp.skipButton);
+        try {
+            if (Helper.isElementPresent(boxCalculatingPopUp.skipButton)) {
+                Helper.click(boxCalculatingPopUp.skipButton);
+            }
+        } catch (NoSuchElementException e) {
+            logger.info("Skip button not appeared");
         }
         Helper.pause(2000);
-        saveOrderInfo.setOrderInfo(_detail_page.orderNumberLabelDetail.getText(), _detail_page.orderNumberDetail.getText().replaceAll("Order No", ""));
-        System.out.println("Get order label from page "+_detail_page.orderNumberLabelDetail.getText());
-        System.out.println("Get order number from page "+_detail_page.orderNumberDetail.getText());
-        System.out.println("Get order number from list "+saveOrderInfo.orderInfo.get("Order No"));
+        saveOrderInfo.setOrderInfo(_detail_page.orderNumberLabel.getText(), _detail_page.orderNumber.getText().replaceAll("Order #", ""));
+        System.out.println("Get order label from page "+_detail_page.orderNumberLabel.getText());
+        System.out.println("Get order number from page "+_detail_page.orderNumber.getText());
+        System.out.println("Get order number from list "+saveOrderInfo.orderInfo.get("Order #"));
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
         SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
         Helper.javascriptScrollIntoView(_detail_page.confirmButton);
         Helper.click(_detail_page.confirmButton);
         Helper.pause(2000);
         browserHelper.newWindow(driver);
-        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order No"));
+        qaboOptionsTest.getOrderNumber(saveOrderInfo.orderInfo.get("Order #"));
         browserHelper.getWindowHandles(driver);
         browserHelper.SwitchToWindow(1,driver);
         qaboOptionsTest.loginToQaBO();

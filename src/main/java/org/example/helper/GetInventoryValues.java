@@ -41,11 +41,12 @@ public class GetInventoryValues {
     }
     public static String getBoxesQuantity(String getItemName) {//Method to get box quantity in boxes page
         Helper.pause(1000);
-        String boxImgLocatorPlusButton = "(//div[@class='flex-center']//img[contains(@title,'" + getItemName + "')]//following::input[contains(@class,'counter') or contains(@class, 'ng-invalid')])[position()<=1]";
+        String boxImgLocatorPlusButton = "(//div[@class='flex-center']//img[contains(@title,'" + getItemName + "')]//following::input[contains(@class,'ng-not-empty') or contains(@class, 'ng-invalid')])[position()<=1]";
 
         WebElement counterOfBoxes = driver.findElement(By.xpath(boxImgLocatorPlusButton));
         return Helper.getAttributeByValue(counterOfBoxes);
     }
+
     public static String getRandomItemName(List<WebElement> elements){//Method to get item name by title
         int randomIndex = random.nextInt(elements.size());
         WebElement randomOption = elements.get(randomIndex);

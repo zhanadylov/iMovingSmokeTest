@@ -3,8 +3,6 @@ package tests.ui;
 import org.example.helper.*;
 import org.example.helper.*;
 import org.example.hooks.Hooks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.ui.methods.CalendarClass;
 import org.example.ui.methods.PerformActionOnElements;
 import org.example.ui.methods.SelectRandom;
@@ -12,6 +10,8 @@ import org.example.ui.methods.SetAddress;
 import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
@@ -20,9 +20,9 @@ import org.example.utilities.Driver;
 
 
 
-public class FooterLinksTest extends Hooks{
-    private WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(FooterLinksTest.class);
+public class FooterLinksTest{
+    private static WebDriver driver = Driver.getDriver();
+    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
 
     FooterLinksPages footerLinksPages = new FooterLinksPages();
     Cost_Calculating_Page cost_calculating_page = new Cost_Calculating_Page();
@@ -38,17 +38,14 @@ public class FooterLinksTest extends Hooks{
 
 
     @BeforeClass
-    public void openChrome(){
-        try {
+    public void setUp(){
             if (driver == null) {
-                logger.info("Trying to open browser and url");
+                logger.info("Trying to open browser and url in footer class");
                 driver = Driver.getDriver();
                 driver.get(ConfigReader.getProperty("environment"));
+            }else{
+                driver.get(ConfigReader.getProperty("environment"));
             }
-        } catch (Exception e) {
-            logger.error("Error occurred while opening browser and url: " + e.getMessage());
-        }
-        logger.info("browser and url opened "+driver.getCurrentUrl());
     }
 
     @Test

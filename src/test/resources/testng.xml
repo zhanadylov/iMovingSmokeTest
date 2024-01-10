@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="2">
+<suite name="iMovingSmokeTDDTest" thread-count="5" verbose="2" preserve-order="true">
     <listeners>
         <listener class-name="org.example.hooks.TestListener"></listener>
     </listeners>
-    <test verbose="2" name="C:\Users\user2022\Documents\TestingDataBase\iMovingSmokeTDDTest" preserve-order="true">
+    <test name="SignInTest">
+        <classes>
+            <class name="tests.ui.SignInTest">
+                <methods>
+                    <include name="loginWithValidData"/>
+<!--                    <include name="SignUp"/>-->
+                    <!--                    <include name="forgotPassword"/>-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="CreateOrderTest">
         <classes>
             <class name="tests.ui.CreateOrderTest">
                 <methods>
@@ -17,13 +28,10 @@
                     <include name="success_Page_Test"/>
                 </methods>
             </class>
-            <class name="tests.ui.SignInTest">
-                <methods>
-                    <include name="loginWithValidData"/>
-                    <include name="SignUp"/>
-<!--                    <include name="forgotPassword"/>-->
-                </methods>
-            </class>
+        </classes>
+    </test>
+    <test name="QaboSideBarTest">
+        <classes>
             <class name="tests.ui.backOfficeTest.QaboSideBarTest">
                 <methods>
                     <include name="qaDashBoard"/>
@@ -34,29 +42,21 @@
                     <include name="qaOrders"/>
                 </methods>
             </class>
-            <class name="org.example.utilities.Driver"/>
-<!--            <class name="tests.ui.FooterLinksTest">-->
-<!--                <methods>-->
-<!--                        <include name="footerMenuTest"/>-->
-<!--                        <include name="footerLocalPageTest"/>-->
-<!--                        <include name="footerCostCalculatorTest"/>-->
-<!--                        <include name="footerChecklistPage"/>-->
-<!--                        <include name="footerLaborPage"/>-->
-<!--                        <include name="footerCaliforniaStatePage"/>-->
-<!--                        <include name="footerNewYorkStatePage"/>-->
-<!--                        <include name="footerMiamiCityPage"/>-->
-<!--                        <include name="footerSeeMoreMoversCityPage"/>-->
-<!--                        <include name="footerCrossCountryPage"/>-->
-<!--                        <include name="footerInterstatePage"/>-->
-<!--                        <include name="footerBoxesPage"/>-->
-<!--                        <include name="footerLonDistancePage"/>-->
-<!--                        <include name="footerMovingPediaTest"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="tests.ui.backOfficeTest.ChangeDateTest">-->
-<!--            </class>-->
-<!--            <class name="tests.ui.backOfficeTest.DeliveryProcessTest">-->
-<!--            </class>-->
+        </classes>
+    </test>
+    <test name="AdditionalPickUpTest">
+        <classes>
+            <class name="tests.ui.AdditionalPickUpTest">
+                <methods>
+                    <include name="addAdditionalPickUpPayByCC"/>
+                    <include name="addAdditionalPickUpPayByCheck"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Driver">
+        <classes>
+             <class name="org.example.utilities.Driver"/>
         </classes>
     </test>
 </suite>

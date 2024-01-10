@@ -2,13 +2,13 @@ package tests.ui.backOfficeTest;
 
 import org.example.DataBaseConnection.ConnectDataBaseTest;
 import org.example.apiConnection.ApiConnection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tests.api.CcCaptureStepsTest;
 import tests.api.SendEmailQueryTest;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,7 +25,7 @@ import java.sql.SQLException;
 
 public class DeliveryProcessTest extends Hooks{
     private WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(DeliveryProcessTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(DeliveryProcessTest.class);
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();

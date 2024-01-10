@@ -2,7 +2,7 @@ package tests.api;
 
 import org.example.apiConnection.ApiConnection;
 import org.example.hooks.logs.Log;
-import static org.example.hooks.logs.Log4jDemo.logger;
+import static org.example.hooks.logs.Slf4jDemo.logger;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;

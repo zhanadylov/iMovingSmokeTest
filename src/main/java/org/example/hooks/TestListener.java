@@ -1,8 +1,6 @@
 package org.example.hooks;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
 import org.example.utilities.Driver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,7 +21,20 @@ import java.util.Objects;
 
 public class TestListener implements ITestListener {
     private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
-    WebDriver driver = Driver.getDriver();
+    private static WebDriver driver;
+    private static String getTestMethodName(ITestResult result){
+        return result.getMethod().getConstructorOrMethod().getName();
+    }
+    @Override
+    public void onTestStart(ITestResult iTestResult) {
+        driver = Driver.getDriver();
+//        ITestListener.super.onTestStart(iTestResult);
+    }
+    @Override
+    public void onStart(ITestContext iTestContext) {
+//        driver = Driver.getDriver();
+//        ITestListener.super.onStart(iTestContext);
+    }
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -33,30 +44,19 @@ public class TestListener implements ITestListener {
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
     }
 
-
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         logger.warn("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
     }
-
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
+        ITestListener.super.onTestFailedButWithinSuccessPercentage(iTestResult);
 
     }
-
-    @Override
-    public void onStart(ITestContext iTestContext) {
-
-    }
-
     @Override
     public void onFinish(ITestContext iTestContext) {
-
-    }
-
-    @Override
-    public void onTestStart(ITestResult iTestResult) {
-
+//        ITestListener.super.onFinish(iTestContext);
+//        Driver.closeDriver();
     }
 
 //    @Override
@@ -68,11 +68,8 @@ public class TestListener implements ITestListener {
 //    }
 
     //////////////////////////////
-
 //
-    private static String getTestMethodName(ITestResult result){
-        return result.getMethod().getConstructorOrMethod().getName();
-    }
+
 //
 //    @Override
 //    public void onStart(ITestContext context) {

@@ -10,6 +10,13 @@ public class PopUpsPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    //Continue Order PopUp
+    @FindBy(xpath = "//button[@type='button' and @class='icon-close']")
+    public WebElement xButton;
+
+    @FindBy(xpath = "//h4[contains(text(),'Our System Found ')]")
+    public WebElement TitleTextOuSystemFound;
+
     //First popup
     @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body.mc-flex-1 > div > span")
     public WebElement boxesTitle;
@@ -17,8 +24,6 @@ public class PopUpsPage {
     @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-footer.mc-flex-0 > div > a")
     public WebElement gotItButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[1]/button")
-    public WebElement xButton;
 
     //Second
     @FindBy(css = "body > div > div > div > div.shuffle-animation > section.tutorial.rooms > div > p.tutorial-text.hidden-xs.hidden-sm")

@@ -3,9 +3,9 @@ package tests.ui.backOfficeTest;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,9 +17,11 @@ import org.example.ui.qabo.OrdersListPageInQabo;
 import org.example.ui.qabo.QaboDashBoardPage;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
+import tests.ui.AdditionalPickUpTest;
 
 public class ChangeDateTest extends Hooks{
-    private static final Logger logger = LogManager.getLogger(ChangeDateTest.class);
+//    private static final Logger logger = LogManager.getLogger(ChangeDateTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChangeDateTest.class);
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();

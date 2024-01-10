@@ -4,28 +4,24 @@ import org.example.helper.BrowserHelper;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.hooks.TestListener;
 import org.example.ui.qabo.*;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.example.ui.methods.SaveOrderInfo;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 
-public class QaboSideBarTest extends Driver{
-//    private WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class);
+//@Listeners(TestListener.class)
+public class QaboSideBarTest{
+    private static final Logger logger = LoggerFactory.getLogger(QaboSideBarTest.class);
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
     OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
-    DropDownHelper dropDownHelper = new DropDownHelper();
-    SaveOrderInfo saveOrderInfo = new SaveOrderInfo();
-    BrowserHelper browserHelper = new BrowserHelper();
-    OrderInfoQaBo orderInfoQaBo = new OrderInfoQaBo();
     UsersQabo usersQabo = new UsersQabo();
     CompaniesQabo companiesQabo = new CompaniesQabo();
     BranchesQabo branchesQabo = new BranchesQabo();
@@ -35,10 +31,10 @@ public class QaboSideBarTest extends Driver{
     CalendarQabo calendarQabo = new CalendarQabo();
     ReviewsQabo reviewsQabo = new ReviewsQabo();
 
+    private static WebDriver driver = Driver.getDriver();
 
-    @BeforeTest
-    public void loginToQaBO(){
-        try {
+    @BeforeClass
+    public void setUp(){
             if (driver == null) {
                 logger.info("Trying to open browser and url in loginToQaBO");
                 driver = Driver.getDriver();
@@ -51,16 +47,13 @@ public class QaboSideBarTest extends Driver{
             Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
             Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
             Helper.click(loginPage.signInButtonBo);
-        } catch (Exception e) {
-            logger.error("Error occurred while opening browser and url: " + e.getMessage());
-        }
-        logger.info("browser and url opened "+driver.getCurrentUrl());
     }
 //    @AfterClass
-//    public void tearDownCreateORder() {
+//    public void tearDown() {
 //        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
 //        Driver.closeDriver();
 //    }
+
     @Test
     public void qaDashBoard(){
         Helper.click(qaboDashBoardPage.dashboardLabelInSideBar);

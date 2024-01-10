@@ -45,7 +45,7 @@ public class Detail_Page {
     @FindBy(xpath = "(//button[normalize-space()='Check Rates'])[1]")
     public WebElement checkRatesButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/button")
+    @FindBy(xpath = "//button[contains(text(),'Confirm')]")
     public WebElement confirmButton;
 
     @FindBy(xpath = "//*[@id=\"header\"]/nav/div/div[1]/a/img")
@@ -85,10 +85,10 @@ public class Detail_Page {
     @FindBy(xpath = "(//input[@name='addressInput'])[2]")
     public WebElement dropOffAtGetValue;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/div/section/div/ul/li[6]/div/div[1]/small")
-    public WebElement orderNumberLabelDetail;
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[1]/div[2]/div/div/section/div/ul/li[6]/div/div[1]/div")
-    public WebElement orderNumberDetail;
+    @FindBy(xpath = "//div[@class='searchContainer']//li[contains(normalize-space(@class),'trip-point')]//small[contains(normalize-space(text()),'Order')]")
+    public WebElement orderNumberLabel;
+    @FindBy(xpath = "//div[@class='searchContainer']//div[contains(normalize-space(@class),'orderNumberCont')]//div[contains(normalize-space(@class),'line2')]")
+    public WebElement orderNumber;
 
 
     // Pickup Form

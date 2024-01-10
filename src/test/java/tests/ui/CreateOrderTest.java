@@ -19,9 +19,9 @@ import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 
 import java.util.*;
-
-public class CreateOrderTest extends Driver{
-    private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
+@Listeners(TestListener.class)
+public class CreateOrderTest {
+    private static final Logger logger = LoggerFactory.getLogger(CreateOrderTest.class);
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
     DropDownHelper dropDownHelper = new DropDownHelper();
@@ -40,26 +40,20 @@ public class CreateOrderTest extends Driver{
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     Success_Page success_page = new Success_Page();
     GetDate getDate = new GetDate();
-    private static final WebDriver driver;
+    private static WebDriver driver = Driver.getDriver();
 
-    static {
-        driver = Driver.getDriver();
+    @BeforeClass
+    public void setUp(){
+            if (driver == null) {
+                logger.info("Trying to open browser and url in openChromeCreateOrder");
+                driver = Driver.getDriver();
+                driver.get(ConfigReader.getProperty("environment"));
+            }else{
+                driver.get(ConfigReader.getProperty("environment"));
+            }
     }
-//    @BeforeClass
-//    public void openChromeCreateORder(){
-//        try {
-////            if (driver == null) {
-//                logger.info("Trying to open browser and url in openChromeCreateORder");
-//                driver = Driver.getDriver();
-//                driver.get(ConfigReader.getProperty("environment"));
-////            }
-//        } catch (Exception e) {
-//            logger.error("Error occurred while opening browser and url: " + e.getMessage());
-//        }
-//        logger.info("browser and url opened "+driver.getCurrentUrl());
-//    }
 //    @AfterClass
-//    public void tearDownCreateORder() {
+//    public void tearDown() {
 //        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
 //        Driver.closeDriver();
 //    }
@@ -85,7 +79,7 @@ public class CreateOrderTest extends Driver{
         Helper.pause(3000);
     }
 
-    @Test(enabled = false)
+    @Test
     public void orderHouseApartment(){
         System.out.println("Regular order chosen");
         System.out.println("Order number " + fullInventoryPage.currentOrderNumber.getText());
@@ -95,7 +89,7 @@ public class CreateOrderTest extends Driver{
         Helper.click(fullInventoryPage.completeButton);
     }
 
-    @Test(enabled = false)
+    @Test
     public void orderStorage(){
         Helper.pause(2000);
         System.out.println("Storage order chosen");
@@ -309,5 +303,4 @@ public class CreateOrderTest extends Driver{
         AssertThat.assertText(success_page.text, success_page.textInSuccessPage);
         Helper.pause(2000);
     }
-
 }

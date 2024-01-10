@@ -1,17 +1,17 @@
 package org.example.hooks.logs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class Log4jDemo {
+public class Slf4jDemo {
 
 //    private static Logger logger = LogManager.getLogger(Log4jDemo.class);
 
     public static Logger logger;
 
     static {
-        System.setProperty("log4j.configurationFile", "log4j2.xml");
-        logger = LogManager.getLogger(Log4jDemo.class);
+        System.setProperty("logback.configurationFile", "logback.xml");
+        logger = LoggerFactory.getLogger(Slf4jDemo.class);
     }
 
     public static void main(String[] args) {
@@ -20,6 +20,5 @@ public class Log4jDemo {
         logger.trace("Trace message");
         logger.warn("Warn message");
         logger.error("Error message");
-        logger.fatal("Fatal message");
     }
 }
