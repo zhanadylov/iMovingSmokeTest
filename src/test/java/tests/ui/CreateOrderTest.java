@@ -1,17 +1,20 @@
 package tests.ui;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.AssertThat;
 import org.example.helper.BrowserHelper;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.TestListener;
+import org.example.hooks.logs.Log;
 import org.example.ui.methods.*;
 import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
@@ -19,9 +22,11 @@ import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 
 import java.util.*;
+
 @Listeners(TestListener.class)
+@Feature("Checking that create order process works properly")
 public class CreateOrderTest {
-    private static final Logger logger = LoggerFactory.getLogger(CreateOrderTest.class);
+    private static final Logger logger = LogManager.getLogger(CreateOrderTest.class);
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
     DropDownHelper dropDownHelper = new DropDownHelper();
@@ -43,16 +48,17 @@ public class CreateOrderTest {
     private static WebDriver driver = Driver.getDriver();
 
     @BeforeClass
+    @Description("Setup in CreateOrderTest")
     public void setUp(){
-            if (driver == null) {
-                logger.info("Trying to open browser and url in openChromeCreateOrder");
-                driver = Driver.getDriver();
-                driver.get(ConfigReader.getProperty("environment"));
-            }else{
-                driver.get(ConfigReader.getProperty("environment"));
-            }
+        if (driver == null) {
+            logger.info("Trying to open browser and url in openChromeCreateOrder");
+            driver = Driver.getDriver();
+            driver.get(ConfigReader.getProperty("environment"));
+        }else{
+            driver.get(ConfigReader.getProperty("environment"));
+        }
     }
-//    @AfterClass
+    //    @AfterClass
 //    public void tearDown() {
 //        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
 //        Driver.closeDriver();
@@ -99,10 +105,10 @@ public class CreateOrderTest {
 
     @Test(dependsOnMethods = "chooseMoveOption")
     public void boxCalculatingPage(){
-            Helper.pause(1000);
-            Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
 //            Helper.navigateToElement(boxCalculatingPopUp.continueButton);
-            Helper.click(boxCalculatingPopUp.continueButton);
+        Helper.click(boxCalculatingPopUp.continueButton);
     }
 
     @Test(dependsOnMethods = {"boxCalculatingPage", "chooseMoveOption"})

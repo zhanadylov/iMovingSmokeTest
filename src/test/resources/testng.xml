@@ -30,6 +30,16 @@
             </class>
         </classes>
     </test>
+    <test name="AdditionalPickUpTest">
+        <classes>
+            <class name="tests.ui.AdditionalPickUpTest">
+                <methods>
+                    <include name="addAdditionalPickUpPayByCC"/>
+                    <include name="addAdditionalPickUpPayByCheck"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
     <test name="QaboSideBarTest">
         <classes>
             <class name="tests.ui.backOfficeTest.QaboSideBarTest">
@@ -40,16 +50,6 @@
                     <include name="qaBranches"/>
                     <include name="qaAffiliates"/>
                     <include name="qaOrders"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="AdditionalPickUpTest">
-        <classes>
-            <class name="tests.ui.AdditionalPickUpTest">
-                <methods>
-                    <include name="addAdditionalPickUpPayByCC"/>
-                    <include name="addAdditionalPickUpPayByCheck"/>
                 </methods>
             </class>
         </classes>

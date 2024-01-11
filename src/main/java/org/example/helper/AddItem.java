@@ -1,6 +1,8 @@
 package org.example.helper;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.example.utilities.Driver;
 
@@ -9,6 +11,8 @@ import java.util.List;
 public class AddItem {
     static WebDriver driver = Driver.getDriver();
     static DropDownHelper dropDownHelper = new DropDownHelper();
+    private static final Logger logger = LogManager.getLogger(AddItem.class);
+
 
     public static void clickOnAddItemButton(String roomName){
         String addItemLocator = "//div[contains(@class, 'custom-card room-card') and .//h3[contains(@class, 'room-name') and text()='"+roomName+"']]//a[contains(@class, 'icon-plus')]";
@@ -43,8 +47,8 @@ public class AddItem {
         try{
             if (hasItemTypeLocator) {
                 WebElement itemWithItemType = driver.findElement(By.xpath(combinedLocatorDropdown));
-                itemWithItemType.click();
-
+//                itemWithItemType.click();
+                Helper.click(itemWithItemType);
 //            List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='search-results-list']"));
                 List<WebElement> dropdownItems = itemWithItemType.findElements(By.xpath("//div[@class='dropdown-menu show']//div[contains(@ng-repeat,'typeAttr.ItemAttributes')]"));
                 Helper.pause(1000);
@@ -55,7 +59,7 @@ public class AddItem {
                 driver.findElement(By.xpath(combinedLocatorPlus)).click();
             }
         }catch (Exception e){
-            System.out.println("Couldn't add item "+e.getMessage());
+            logger.warn("Couldn't add item "+e.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package org.example.helper;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 //import static ui.methods.SetUp.driver;
 
 public class Helper {
-
+    @Step("Clicking on locator {0}")
     public static void click(WebElement element){
         Allure.step("Clicking on " + element.getText());
         try {
@@ -46,7 +47,7 @@ public class Helper {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
     }
-
+    @Step("Clicking multiple time on element {0}")
     public static void multipleClick(WebElement element,int howManyTimes)
     {
         int counter = howManyTimes;
@@ -55,12 +56,14 @@ public class Helper {
         try {
 
             while (counter > 0) {
+                highLighterMethod(element);
                 element.click();
                 counter--;
-                Helper.pause(3000);
+                Helper.pause(2000);
             }
         }
         catch (ElementClickInterceptedException e){
+            highLighterMethod(element);
             javascriptClick(element);
         }
     }
@@ -165,7 +168,7 @@ public class Helper {
         element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         element.sendKeys(Keys.chord(Keys.DELETE));
     }
-
+    @Step("Navigate to element {0}")
     public static void navigateToElement( WebElement element){
         Actions actions = new Actions(Driver.getDriver());
         try {
@@ -175,7 +178,7 @@ public class Helper {
         }
 
     }
-
+    @Step("Scrolling to element {0}")
     public static void javascriptScrollIntoView(WebElement element){
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",element );
     }
@@ -394,6 +397,7 @@ public class Helper {
             e.printStackTrace();
         }
     }
+    @Step("Checking that element presents {0}")
     public static boolean isElementPresent(WebElement element) {
         try {
 //            driver.findElement(locator);

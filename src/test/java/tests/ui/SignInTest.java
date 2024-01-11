@@ -1,6 +1,10 @@
 package tests.ui;
 
 import io.cucumber.java.Before;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.email.EmailForResetPasswordTest;
 import org.example.helper.Helper;
 import org.example.helper.JavaFaker;
@@ -8,21 +12,23 @@ import org.example.hooks.TestListener;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.example.ui.pageObjectModel.HomePage;
 
 import java.io.IOException;
 @Listeners(TestListener.class)
+@Feature("Sign in/up to web")
 public class SignInTest{
-    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
+//    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
+    private static final Logger logger = LogManager.getLogger(SignInTest.class);
+
     private static WebDriver driver = Driver.getDriver();
 
     HomePage homePage = new HomePage();
 
     @BeforeClass
+    @Description("Setup in SignInTest")
     public void setUp(){
             if (driver == null) {
                 logger.info("Trying to open browser and url in openChromeSingIN");
@@ -40,6 +46,7 @@ public class SignInTest{
 //    }
 
     @Test(priority = 1)
+    @Description("Sign in with valid data")
     public void loginWithValidData(){
         Helper.click(homePage.SignInButton);
         Helper.pause(2000);
@@ -55,6 +62,7 @@ public class SignInTest{
     }
 
     @Test(priority = 2)
+    @Description("Sign up to web")
     public void SignUp(){
         Helper.click(homePage.SignInButton);
         Helper.click(homePage.signUpInLoginForm);
@@ -76,7 +84,8 @@ public class SignInTest{
         Helper.click(homePage.logOut);
     }
 
-//    @Test(priority = 2)
+    @Test(priority = 2)
+    @Description("Check forgot password function")
     public void forgotPassword() throws IOException {
         Helper.click(homePage.SignInButton);
         Helper.click(homePage.forgotPassword);

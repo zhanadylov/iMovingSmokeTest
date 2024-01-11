@@ -1,5 +1,7 @@
 package tests.ui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.*;
 import org.example.helper.*;
 import org.example.hooks.Hooks;
@@ -10,7 +12,6 @@ import org.example.ui.methods.SetAddress;
 import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -18,11 +19,9 @@ import tests.ui.backOfficeTest.QaboOptionsTest;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 
-
-
 public class FooterLinksTest{
     private static WebDriver driver = Driver.getDriver();
-    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
+    private static final Logger logger = LogManager.getLogger(FooterLinksTest.class);
 
     FooterLinksPages footerLinksPages = new FooterLinksPages();
     Cost_Calculating_Page cost_calculating_page = new Cost_Calculating_Page();

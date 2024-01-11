@@ -2,6 +2,7 @@ package org.example.helper;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.sonatype.inject.Description;
 import org.testng.annotations.AfterTest;
 
 import java.util.LinkedList;
@@ -77,7 +78,7 @@ public class BrowserHelper{
 		driver.switchTo().frame(nameOrId);
 	}
 
-	@AfterTest
+	@AfterTest(description = "Clearing cookie")
 	public void clearCookiesAndLocalStorage(WebDriver driver){
 		if(clear_Cookies_And_Storage){
 			JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;

@@ -32,7 +32,7 @@ public class Driver {
         return driverThreadLocal.get();
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterSuite(alwaysRun = true, description = "Closing driver")
     public static void closeDriver() {
         try {
             WebDriver driver = driverThreadLocal.get();

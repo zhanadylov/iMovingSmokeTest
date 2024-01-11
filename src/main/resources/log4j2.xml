@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level - %msg%n"/>
         </Console>
-        <File name="File" fileName="logs\iMovingSmokeTestLog.log" append="true">
+        <File name="File" fileName="logs\iMovingTestLog.log" append="true">
             <PatternLayout>
 <!--                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n</Pattern>-->
                 <Pattern>%d{dd.MM HH:mm:ss.SSS} [%t] %-5level - %msg%n</Pattern>
@@ -12,10 +12,10 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.sdetadda" level="info" additivity="true">
+        <Logger name="com.sdetadda" level="debug" additivity="true">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="File"/>
         </Root>
 <!--            <Root level="debug">-->

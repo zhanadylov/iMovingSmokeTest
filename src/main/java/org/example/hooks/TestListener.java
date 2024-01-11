@@ -13,6 +13,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.ByteArrayInputStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -28,12 +29,20 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult iTestResult) {
         driver = Driver.getDriver();
+        Method method = iTestResult.getMethod().getConstructorOrMethod().getMethod();
+        // Получаем аннотации этого метода
+        Annotation[] annotations = method.getDeclaredAnnotations();
+        // Логируем информацию об аннотациях
+        logger.info("Annotations for test method {}: {}", method.getName(), Arrays.toString(annotations));
+        // Продолжаем выполнение стандартной логики
+        ITestListener.super.onTestStart(iTestResult);
 //        ITestListener.super.onTestStart(iTestResult);
     }
     @Override
     public void onStart(ITestContext iTestContext) {
 //        driver = Driver.getDriver();
-//        ITestListener.super.onStart(iTestContext);
+        logger.info("Test started "+ iTestContext.getName());
+        ITestListener.super.onStart(iTestContext);
     }
 
     @Override
@@ -55,7 +64,9 @@ public class TestListener implements ITestListener {
     }
     @Override
     public void onFinish(ITestContext iTestContext) {
-//        ITestListener.super.onFinish(iTestContext);
+        logger.info("Test finished "+iTestContext.getName());
+        driver.manage().deleteAllCookies();
+        ITestListener.super.onFinish(iTestContext);
 //        Driver.closeDriver();
     }
 

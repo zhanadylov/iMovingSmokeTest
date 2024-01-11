@@ -1,5 +1,9 @@
 package tests.ui.backOfficeTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.BrowserHelper;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
@@ -7,17 +11,18 @@ import org.example.hooks.Hooks;
 import org.example.hooks.TestListener;
 import org.example.ui.qabo.*;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.example.ui.methods.SaveOrderInfo;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
+import tests.ui.AdditionalPickUpTest;
 
-//@Listeners(TestListener.class)
+@Listeners(TestListener.class)
+@Feature("Checking that side bar in qabo opens")
 public class QaboSideBarTest{
-    private static final Logger logger = LoggerFactory.getLogger(QaboSideBarTest.class);
+//    private static final Logger logger = LoggerFactory.getLogger(QaboSideBarTest.class);
+private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class);
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
@@ -34,6 +39,7 @@ public class QaboSideBarTest{
     private static WebDriver driver = Driver.getDriver();
 
     @BeforeClass
+    @Description("Setup in QaboSideBarTest")
     public void setUp(){
             if (driver == null) {
                 logger.info("Trying to open browser and url in loginToQaBO");

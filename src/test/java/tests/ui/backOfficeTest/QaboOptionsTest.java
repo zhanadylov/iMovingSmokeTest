@@ -112,6 +112,8 @@ public class QaboOptionsTest extends Hooks{
         Helper.sendKeys(addPaymentPopUp.uploadCheck2, imagePath);
         Helper.click(addPaymentPopUp.addPaymentBtnInPopUp);
         Helper.pause(2000);
+        browserHelper.refresh(driver);
+        orderInfoQaBo.orderStatus.isDisplayed();
         AssertThat.assertText("Booked By Client", orderInfoQaBo.orderStatus);
     }
 

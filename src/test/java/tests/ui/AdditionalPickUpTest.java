@@ -1,24 +1,27 @@
 package tests.ui;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.*;
 import org.example.hooks.TestListener;
+import org.example.hooks.logs.Log4jDemo;
 import org.example.ui.methods.*;
 import org.example.ui.pageObjectModel.*;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
 
 @Listeners(TestListener.class)
+@Feature("Additional pickup process and by CC and check")
 public class AdditionalPickUpTest{
-    private static final Logger logger = LoggerFactory.getLogger(AdditionalPickUpTest.class);
+//    private static final Logger logger = LoggerFactory.getLogger(AdditionalPickUpTest.class);
+private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.class);
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     HomePage homePage = new HomePage();
     UserZonePage userZonePage = new UserZonePage();
@@ -36,13 +39,14 @@ public class AdditionalPickUpTest{
 
     private static WebDriver driver = Driver.getDriver();
 
-    @BeforeClass
+    @BeforeMethod
+    @Description("Setup in AdditionalPickUpTest")
     public void setUp(){
 //        if (driver == null) {
-            logger.info("Trying to open browser and url in openChromeCreateOrder");
+        logger.info("Trying to open browser and url in AdditionalPickUpTest");
 //            driver = Driver.getDriver();
-            driver.get(ConfigReader.getProperty("environment"));
-            driver.manage().deleteAllCookies();
+        driver.manage().deleteAllCookies();
+        driver.get(ConfigReader.getProperty("environment"));
 //        }else{
 //            driver.get(ConfigReader.getProperty("environment"));
 //        }
@@ -53,7 +57,8 @@ public class AdditionalPickUpTest{
 //        Driver.closeDriver();
 //    }
 
-    @Test
+    @Test(testName = "Add'll pickup paying by CC")
+    @Description("Additional pickup paying with CC")
     public void addAdditionalPickUpPayByCC(){
         popUpsTest.continueOrderPopUp();
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
@@ -116,12 +121,14 @@ public class AdditionalPickUpTest{
 //        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
 //                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
         performActionOnElements.clickRandomCreditCard(paymentPage.visaDebitCardCheckBoxList);
-        Helper.javascriptScrollDownThePage();
+        Helper.pause(1000);
+        Helper.javascriptScrollIntoView(paymentPage.completeBookingButton);
         Helper.click(paymentPage.completeBookingButton);
         Helper.pause(3000);
     }
 
-    @Test
+    @Test(testName = "Add'll pickup paying by check")
+    @Description("Additional pickup paying with check")
     public void addAdditionalPickUpPayByCheck(){
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);

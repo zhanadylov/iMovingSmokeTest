@@ -1,5 +1,7 @@
 package org.example.helper;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,7 @@ import java.util.Random;
 
 public class DropDownHelper {
     Random random = new Random();
+    private static final Logger logger = LogManager.getLogger(DropDownHelper.class);
 
 
     public static List<String> list = new ArrayList<>();
@@ -28,7 +31,8 @@ public class DropDownHelper {
                     Helper.click(element);
                 }
             }catch (Exception e){
-                e.printStackTrace();
+//                e.printStackTrace();
+                logger.warn("Couldn't select visible text");
             }
         }
     }
@@ -111,6 +115,7 @@ public class DropDownHelper {
         String randomOptionText = allOptions.get(randomOptionIndex).getText();
         list.add(randomOptionText);
         System.out.println("Option value "+randomOption.getText());
+        logger.info("Option value "+randomOption.getText());
         Helper.click(randomOption);
 //        String randomOptionText = allOptions.get(randomOptionIndex).getText();
 //        list.add(randomOptionText);
