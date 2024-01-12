@@ -17,9 +17,9 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
 
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 @Feature("Additional pickup process and by CC and check")
-public class AdditionalPickUpTest{
+public class AdditionalPickUpTest implements SetUp{
 //    private static final Logger logger = LoggerFactory.getLogger(AdditionalPickUpTest.class);
 private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.class);
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
@@ -37,35 +37,43 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
     GetOrderInfo getOrderInfo = new GetOrderInfo();
     GetInventoryValues getInventoryValues = new GetInventoryValues();
 
-    private static WebDriver driver = Driver.getDriver();
+//    private static WebDriver driver = Driver.getDriver();
 
-    @BeforeMethod
-    @Description("Setup in AdditionalPickUpTest")
-    public void setUp(){
-//        if (driver == null) {
-        logger.info("Trying to open browser and url in AdditionalPickUpTest");
-//            driver = Driver.getDriver();
-        driver.manage().deleteAllCookies();
-        driver.get(ConfigReader.getProperty("environment"));
-//        }else{
-//            driver.get(ConfigReader.getProperty("environment"));
-//        }
-    }
+//    @BeforeTest
+//    @Description("Setup in AdditionalPickUpTest")
+//    public static void setUp(){
+////        if (driver == null) {
+//        logger.info("Trying to open browser and url in AdditionalPickUpTest");
+////            driver = Driver.getDriver();
+//        driver.manage().deleteAllCookies();
+//        driver.get(ConfigReader.getProperty("environment"));
+////        }else{
+////            driver.get(ConfigReader.getProperty("environment"));
+////        }
+//    }
 //    @AfterClass
 //    public void tearDown() {
-//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        Driver.closeDriver();
+//        logger.info("Closing driver after method AdditionalPickUpTest started "+driver.getCurrentUrl()+driver.getTitle());
+//        driver.close();
 //    }
 
-    @Test(testName = "Add'll pickup paying by CC")
+    @Test
     @Description("Additional pickup paying with CC")
     public void addAdditionalPickUpPayByCC(){
         popUpsTest.continueOrderPopUp();
+        Helper.pause(2000);
+        try {
+            if(Helper.isElementPresent(homePage.userNameAfterLogin)){
+                Helper.click(homePage.userNameAfterLogin);
+            }else{
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
-        Helper.pause(2000);
-        homePage.userNameAfterLogin.isDisplayed();
-        Helper.click(homePage.userNameAfterLogin);
+                Helper.click(homePage.userNameAfterLogin);
+            }
+        }catch (NoSuchElementException e){
+            logger.warn("error"+e.getMessage());
+        }
+//        homePage.userNameAfterLogin.isDisplayed();
         userZonePage.myLastMovePlansTitle.isDisplayed();
         Helper.click(userZonePage.firstOrderLink);
         userZonePage.movingJourneyTitle.isDisplayed();
@@ -117,7 +125,7 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
         Helper.javascriptScrollIntoView(summary_page.checkOutButton);
         Helper.click(summary_page.checkOutButton);
         Helper.pause(2000);
-        performActionOnElements.setValuesToFillFields("clientFirstName","05","5424 0000 0000 0015","27","123");
+//        performActionOnElements.setValuesToFillFields("clientFirstName","05","5424 0000 0000 0015","27","123");
 //        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
 //                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
         performActionOnElements.clickRandomCreditCard(paymentPage.visaDebitCardCheckBoxList);
@@ -127,14 +135,25 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
         Helper.pause(3000);
     }
 
-    @Test(testName = "Add'll pickup paying by check")
+    @Test
     @Description("Additional pickup paying with check")
     public void addAdditionalPickUpPayByCheck(){
-        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
-        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
+//        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+//        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
         Helper.pause(2000);
-        homePage.userNameAfterLogin.isDisplayed();
-        Helper.click(homePage.userNameAfterLogin);
+//        homePage.userNameAfterLogin.isDisplayed();
+//        Helper.click(homePage.userNameAfterLogin);
+        try {
+            if(Helper.isElementPresent(homePage.userNameAfterLogin)){
+                Helper.click(homePage.userNameAfterLogin);
+            }else{
+                performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+                performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
+                Helper.click(homePage.userNameAfterLogin);
+            }
+        }catch (NoSuchElementException e){
+            logger.warn("error"+e.getMessage());
+        }
         userZonePage.myLastMovePlansTitle.isDisplayed();
 //        String xpath = userZonePage.orderLinkByNumber.toString().replace("INDEX", saveOrderInfo.orderInfo.get("Order #")).replaceAll("Proxy element for: DefaultElementLocator 'By.xpath: (.+)'", "$1");
 //        WebElement orderLink = driver.findElement(By.xpath(xpath));

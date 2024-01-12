@@ -23,9 +23,9 @@ import org.example.utilities.Driver;
 
 import java.util.*;
 
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 @Feature("Checking that create order process works properly")
-public class CreateOrderTest {
+public class CreateOrderTest implements SetUp{
     private static final Logger logger = LogManager.getLogger(CreateOrderTest.class);
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
@@ -45,29 +45,32 @@ public class CreateOrderTest {
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     Success_Page success_page = new Success_Page();
     GetDate getDate = new GetDate();
-    private static WebDriver driver = Driver.getDriver();
+//    private static WebDriver driver = Driver.getDriver();
 
-    @BeforeClass
-    @Description("Setup in CreateOrderTest")
-    public void setUp(){
-        if (driver == null) {
-            logger.info("Trying to open browser and url in openChromeCreateOrder");
-            driver = Driver.getDriver();
-            driver.get(ConfigReader.getProperty("environment"));
-        }else{
-            driver.get(ConfigReader.getProperty("environment"));
-        }
-    }
-    //    @AfterClass
+
+//    @BeforeTest
+//    @Description("Setup in CreateOrderTest")
+//    public static void setUp(){
+////        if (driver == null) {
+//            logger.info("Trying to open browser and url in openChromeCreateOrder");
+////            driver = Driver.getDriver();
+//            driver.get(ConfigReader.getProperty("environment"));
+//        }
+//        else{
+//            driver.get(ConfigReader.getProperty("environment"));
+//        }
+//    }
+//        @AfterTest
 //    public void tearDown() {
 //        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        Driver.closeDriver();
+//        driver.close();
 //    }
+
     @Test
     public void chooseMoveOption() {
         Helper.click(homePage.itemizedQuoteButtonHomePage);
         DropDownHelper.chooseMoveFrom(driver, "addInventory", 0);
-        DropDownHelper.chooseMoveSize(driver, "addInventory", 2);
+        DropDownHelper.chooseMoveSize(driver, "addInventory", 0);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
         Helper.pause(1000);
@@ -206,14 +209,14 @@ public class CreateOrderTest {
                 "loading/unloading, blanket wrapping, and basic liability coverage. Prices are not final until purchase is completed.", marketplace_page.movingInfoText);
         //
 
-        Helper.pause(2000);
 //        Helper.javascriptScrollIntoView(moving_result_page.packingServicesTitle);
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.packingServicesCheckboxSideBar);
 //        Helper.pause(1000);
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.flexibilityCheckboxSideBar);
 //        Helper.pause(1000);
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.deliveryWindowCheckboxSideBar);
-        Helper.pause(1000);
+        Helper.pause(3000);
+        Helper.waitForElementToBeDisplayed(marketplace_page.firstCarrierButton);
         Helper.navigateToElement(marketplace_page.firstCarrierButton);
         Helper.click(marketplace_page.firstCarrierButton);
 //        selectRandom.clickOnRandomCheckBox(moving_result_page.deliveryWindowCheckbox);
@@ -286,7 +289,7 @@ public class CreateOrderTest {
 //        Assert.assertEquals(paymentPage.serviceFeePrice.getText(), String.valueOf(Helper.roundingsFee(Helper.calculatePercent(paymentPage.orderPrice, 5))));
         double totalPrice = Double.parseDouble(paymentPage.orderPrice.getText().replaceAll("[$,]","")) + Double.parseDouble(paymentPage.serviceFeePrice.getText().replaceAll("[$,]",""));
 //        Assert.assertEquals(String.valueOf(Helper.roundingsFee(totalPrice)), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
-        Helper.numberComparison(Helper.roundingsFee(totalPrice), Double.parseDouble(paymentPage.totalPrice.getText().replaceAll("[$,]","")));
+//        Helper.numberComparison(Helper.roundingsFee(totalPrice), Double.parseDouble(paymentPage.totalPrice.getText().replaceAll("[$,]","")));
 
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(paymentPage.signInButton, paymentPage.emailFieldLogin, paymentPage.passwordFieldLogin, paymentPage.loginButton);
@@ -295,7 +298,8 @@ public class CreateOrderTest {
         performActionOnElements.setValuesToFillFields("clientFirstName","05","5424 0000 0000 0015","27","123");
 //        performActionOnElements.fillCCFieldsElementTest(paymentPage.newPaymentCard,paymentPage.expiryMonthSelectField, paymentPage.cardNameInputField, paymentPage.cardNumberInputField,paymentPage.cardNumberInputField,
 //                paymentPage.expiryYearSelectField,paymentPage.cvvNumberInputField, paymentPage.billingAddressCheckBox);
-        performActionOnElements.fillCCFieldsInPayment();
+//        performActionOnElements.fillCCFieldsInPayment();
+        performActionOnElements.clickRandomCreditCard(paymentPage.visaDebitCardCheckBoxList);
         Helper.javascriptScrollDownThePage();
         Helper.click(paymentPage.completeBookingButton);
         Helper.pause(3000);

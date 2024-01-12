@@ -90,9 +90,12 @@ public class PerformActionOnElements {
         if (!elements.isEmpty()) {
             int randomIndex = random.nextInt(elements.size());
             WebElement randomElement = elements.get(randomIndex);
+            Helper.javascriptScrollDownThePage();
+            Helper.pause(2000);
             Helper.javascriptScrollIntoView(randomElement);
             Helper.click(randomElement);
         } else {
+            Helper.pause(2000);
             fillCCFieldsInPayment();
         }
     }

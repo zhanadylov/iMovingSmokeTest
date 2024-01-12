@@ -25,11 +25,14 @@ public class PopUpsTest {
     @Test
     public void continueOrderPopUp(){
         try{
-            if(popUpsPage.TitleTextOuSystemFound.isDisplayed()){
-                Helper.click(popUpsPage.xButton);
+            if(Helper.isElementPresent(popUpsPage.TitleTextOuSystemFound)){
+                logger.info("Continue order popup appeared and going to click...");
+                Helper.navigateToElement(popUpsPage.noButton);
+                Helper.click(popUpsPage.noButton);
+                logger.info("Continue order popup clicked");
             }
         }catch (NoSuchElementException e){
-            logger.info("Popup not appeared!");
+            logger.info("Continue order popup not appeared!");
         }
     }
 }

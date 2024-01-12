@@ -16,6 +16,10 @@ public class PopUpsPage {
 
     @FindBy(xpath = "//h4[contains(text(),'Our System Found ')]")
     public WebElement TitleTextOuSystemFound;
+    @FindBy(xpath = "//button[@type='button' and @id='notGoToInventory']")
+    public WebElement noButton;
+    @FindBy(xpath = "//button[@type='button' and @id='goToInventory']")
+    public WebElement yesButton;
 
     //First popup
     @FindBy(css = "body > div.modal.fade.in > div > div > div > div.modal-body.mc-flex-1 > div > span")

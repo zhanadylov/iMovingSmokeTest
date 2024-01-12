@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="iMovingSmokeTDDTest" thread-count="5" verbose="2" preserve-order="true">
+<suite name="iMovingSmokeTDDTest" thread-count="2" verbose="2" preserve-order="true">
     <listeners>
-        <listener class-name="org.example.hooks.TestListener"></listener>
+        <listener class-name="org.example.hooks.TestListener">
+        </listener>
     </listeners>
-    <test name="SignInTest">
+    <test name="iMovingSmokeTDDTest">
         <classes>
             <class name="tests.ui.SignInTest">
                 <methods>
@@ -13,10 +14,8 @@
                     <!--                    <include name="forgotPassword"/>-->
                 </methods>
             </class>
-        </classes>
-    </test>
-    <test name="CreateOrderTest">
-        <classes>
+<!--        </classes>-->
+<!--        <classes>-->
             <class name="tests.ui.CreateOrderTest">
                 <methods>
                     <include name="chooseMoveOption"/>
@@ -28,20 +27,14 @@
                     <include name="success_Page_Test"/>
                 </methods>
             </class>
-        </classes>
-    </test>
-    <test name="AdditionalPickUpTest">
-        <classes>
+<!--        </classes>-->
+<!--        <classes>-->
             <class name="tests.ui.AdditionalPickUpTest">
                 <methods>
                     <include name="addAdditionalPickUpPayByCC"/>
                     <include name="addAdditionalPickUpPayByCheck"/>
                 </methods>
             </class>
-        </classes>
-    </test>
-    <test name="QaboSideBarTest">
-        <classes>
             <class name="tests.ui.backOfficeTest.QaboSideBarTest">
                 <methods>
                     <include name="qaDashBoard"/>
@@ -54,6 +47,45 @@
             </class>
         </classes>
     </test>
+<!--    <test name="CreateOrderTest">-->
+<!--        <classes>-->
+<!--            <class name="tests.ui.CreateOrderTest">-->
+<!--                <methods>-->
+<!--                    <include name="chooseMoveOption"/>-->
+<!--                    <include name="boxCalculatingPage"/>-->
+<!--                    <include name="details_Page"/>-->
+<!--                    <include name="marketplace_Page"/>-->
+<!--                    <include name="summary_Page"/>-->
+<!--                    <include name="payment_Page"/>-->
+<!--                    <include name="success_Page_Test"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="AdditionalPickUpTest">-->
+<!--        <classes>-->
+<!--            <class name="tests.ui.AdditionalPickUpTest">-->
+<!--                <methods>-->
+<!--                    <include name="addAdditionalPickUpPayByCC"/>-->
+<!--                    <include name="addAdditionalPickUpPayByCheck"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="QaboSideBarTest">-->
+<!--        <classes>-->
+<!--            <class name="tests.ui.backOfficeTest.QaboSideBarTest">-->
+<!--                <methods>-->
+<!--                    <include name="qaDashBoard"/>-->
+<!--                    <include name="qaUsers"/>-->
+<!--                    <include name="qaCompanies"/>-->
+<!--                    <include name="qaBranches"/>-->
+<!--                    <include name="qaAffiliates"/>-->
+<!--                    <include name="qaOrders"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
     <test name="Driver">
         <classes>
              <class name="org.example.utilities.Driver"/>

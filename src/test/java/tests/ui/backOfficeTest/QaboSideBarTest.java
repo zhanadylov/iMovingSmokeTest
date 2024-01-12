@@ -9,6 +9,7 @@ import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
 import org.example.hooks.TestListener;
+import org.example.ui.methods.SetUpBO;
 import org.example.ui.qabo.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -18,13 +19,13 @@ import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 import tests.ui.AdditionalPickUpTest;
 
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 @Feature("Checking that side bar in qabo opens")
-public class QaboSideBarTest{
+public class QaboSideBarTest implements SetUpBO {
 //    private static final Logger logger = LoggerFactory.getLogger(QaboSideBarTest.class);
 private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class);
 
-    LoginPage loginPage = new LoginPage();
+    static LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
     OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
     UsersQabo usersQabo = new UsersQabo();
@@ -38,26 +39,26 @@ private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class)
 
     private static WebDriver driver = Driver.getDriver();
 
-    @BeforeClass
-    @Description("Setup in QaboSideBarTest")
-    public void setUp(){
-            if (driver == null) {
-                logger.info("Trying to open browser and url in loginToQaBO");
-                driver = Driver.getDriver();
-                driver.get(ConfigReader.getProperty("environmentBO"));
-            }else{
-                driver.get(ConfigReader.getProperty("environmentBO"));
-            }
-            Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-            Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-            Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-            Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-            Helper.click(loginPage.signInButtonBo);
-    }
+//    @BeforeTest
+//    @Description("Setup in QaboSideBarTest")
+//    public static void setUp(){
+//            if (driver == null) {
+//                logger.info("Trying to open browser and url in loginToQaBO");
+//                driver = Driver.getDriver();
+//                driver.get(ConfigReader.getProperty("environmentBO"));
+//            }else{
+//                driver.get(ConfigReader.getProperty("environmentBO"));
+//            }
+//            Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+//            Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+//            Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+//            Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+//            Helper.click(loginPage.signInButtonBo);
+//    }
 //    @AfterClass
 //    public void tearDown() {
-//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        Driver.closeDriver();
+//        logger.info("Closing driver after method QaboSideBarTest started "+driver.getCurrentUrl()+driver.getTitle());
+//        driver.close();
 //    }
 
     @Test

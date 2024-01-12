@@ -1,14 +1,15 @@
 package org.example.utilities;
 
 import com.google.common.base.Preconditions;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 public class Driver {
     private static WebDriver driver;
-    private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
+    private static final Logger logger = LogManager.getLogger(Driver.class);
     public static final Boolean clear_Cookies_And_Storage = true;
     ///////
 //    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
@@ -27,7 +28,7 @@ public class Driver {
         }
     });
 
-//    @BeforeClass
+    @BeforeSuite
     public static WebDriver getDriver() {
         return driverThreadLocal.get();
     }

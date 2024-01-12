@@ -1,11 +1,13 @@
 package tests.ui.backOfficeTest;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Description;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.AssertThat;
 import org.example.helper.BrowserHelper;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
-import org.example.hooks.Hooks;
 //import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.testng.annotations.BeforeTest;
@@ -22,7 +24,8 @@ import org.example.utilities.Driver;
 import java.util.List;
 
 
-public class QaboOptionsTest extends Hooks{
+public class QaboOptionsTest{
+    private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class);
     private WebDriver driver;
 
     String orderNumber = "";
@@ -54,6 +57,7 @@ public class QaboOptionsTest extends Hooks{
     }
 
     @BeforeTest
+    @Description("Login to QaBo")
     public void loginToQaBO(){
         driver = Driver.getDriver();
         driver.get(ConfigReader.getProperty("environmentBO"));

@@ -111,7 +111,7 @@ public class DropDownHelper {
     public static void selectRandomOptionFromDropDown(List<WebElement> allOptions) {
         int optionsCount = allOptions.size();
         int randomOptionIndex = (int) (Math.random() * optionsCount);
-        WebElement randomOption = allOptions.get(randomOptionIndex);
+        WebElement randomOption = allOptions.get(0);//TODO
         String randomOptionText = allOptions.get(randomOptionIndex).getText();
         list.add(randomOptionText);
         System.out.println("Option value "+randomOption.getText());

@@ -190,7 +190,7 @@ public class FooterLinksTest{
         local_moving_page.userProfile.isDisplayed();
         driver.switchTo().newWindow(WindowType.TAB);
         Helper.pause(2000);
-        qaboOptionsTest.loginToQaBO();
+//        qaboOptionsTest.loginToQaBO();
         if (qaboOptionsTest.endOfMonthFee()) {
             browserHelper.switchToParentWindow(driver);
             Helper.navigateToElement(local_moving_page.backArrowButton);

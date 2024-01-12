@@ -60,8 +60,10 @@ public class AddItemsMethod {
 
         for (int i = 0; i < roomNameList.size(); i++) {
             WebElement roomName = roomNameList.get(i);
+            Helper.pause(1000);
             String roomNameText = roomName.getText();
-            System.out.println("Room name " + roomName.getText());
+            System.out.println("Room name " + roomNameText);
+            logger.info("Room name "+roomNameText);
             AddItem.clickOnAddItemButton(roomNameText);
             addItemElements(imageElements, numItems);
             closeAddItemsWindow();

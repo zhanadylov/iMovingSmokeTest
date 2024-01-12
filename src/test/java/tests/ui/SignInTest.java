@@ -9,6 +9,7 @@ import org.example.email.EmailForResetPasswordTest;
 import org.example.helper.Helper;
 import org.example.helper.JavaFaker;
 import org.example.hooks.TestListener;
+import org.example.ui.methods.SetUp;
 import org.example.utilities.ConfigReader;
 import org.example.utilities.Driver;
 import org.openqa.selenium.WebDriver;
@@ -17,9 +18,9 @@ import org.testng.annotations.*;
 import org.example.ui.pageObjectModel.HomePage;
 
 import java.io.IOException;
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 @Feature("Sign in/up to web")
-public class SignInTest{
+public class SignInTest implements SetUp {
 //    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
     private static final Logger logger = LogManager.getLogger(SignInTest.class);
 
@@ -27,22 +28,22 @@ public class SignInTest{
 
     HomePage homePage = new HomePage();
 
-    @BeforeClass
-    @Description("Setup in SignInTest")
-    public void setUp(){
-            if (driver == null) {
-                logger.info("Trying to open browser and url in openChromeSingIN");
-                driver = Driver.getDriver();
-                driver.get(ConfigReader.getProperty("environment"));
-            }else{
-                driver.get(ConfigReader.getProperty("environment"));
-            }
-    }
+//    @BeforeTest
+//    @Description("Setup in SignInTest")
+//    public static void setUp(){
+////            if (driver == null) {
+//                logger.info("Trying to open browser and url in openChromeSingIN");
+////                driver = Driver.getDriver();
+//                driver.get(ConfigReader.getProperty("environment"));
+////            }else{
+////                driver.get(ConfigReader.getProperty("environment"));
+////            }
+//    }
 
-//    @AfterClass
+//    @AfterTest
 //    public void tearDown() {
-//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        Driver.closeDriver();
+//        logger.info("Closing driver after method SignInTest started "+driver.getCurrentUrl()+driver.getTitle());
+//        driver.close();
 //    }
 
     @Test(priority = 1)
