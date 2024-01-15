@@ -1,6 +1,5 @@
 package tests.ui;
 
-import io.cucumber.java.Before;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import org.apache.logging.log4j.LogManager;
@@ -8,9 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.example.email.EmailForResetPasswordTest;
 import org.example.helper.Helper;
 import org.example.helper.JavaFaker;
-import org.example.hooks.TestListener;
-import org.example.ui.methods.SetUp;
-import org.example.utilities.ConfigReader;
+import org.example.ui.methods.BaseTest;
 import org.example.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -20,7 +17,7 @@ import org.example.ui.pageObjectModel.HomePage;
 import java.io.IOException;
 //@Listeners(TestListener.class)
 @Feature("Sign in/up to web")
-public class SignInTest implements SetUp {
+public class SignInTest extends BaseTest {
 //    private static final Logger logger = LoggerFactory.getLogger(SignInTest.class);
     private static final Logger logger = LogManager.getLogger(SignInTest.class);
 
@@ -45,7 +42,9 @@ public class SignInTest implements SetUp {
 //        logger.info("Closing driver after method SignInTest started "+driver.getCurrentUrl()+driver.getTitle());
 //        driver.close();
 //    }
-
+    public SignInTest(){
+        super("environment");
+    }
     @Test(priority = 1)
     @Description("Sign in with valid data")
     public void loginWithValidData(){

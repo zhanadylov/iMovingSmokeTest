@@ -54,7 +54,8 @@ public class Detail_Page {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/a")
     public WebElement  datePicker;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/thead/tr[2]/th[1]")
+//    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/main/div[2]/div[1]/div/div[1]/div/div/div/div[1]/table/thead/tr[2]/th[1]")
+    @FindBy(xpath = "//div[contains(@class,'datepicker-days')]//th[contains(@class,'datepicker-switch')]")
     public WebElement  monthInDate;
 
 

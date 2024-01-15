@@ -96,7 +96,7 @@ public class SelectRandom {
         WebElement elementToClick = radioButtons.get(randomIndex);
 //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elementToClick);
 
-        ((JavascriptExecutor) SetUp.driver).executeScript("arguments[0].click();", elementToClick);
+        ((JavascriptExecutor) BaseTest.driver).executeScript("arguments[0].click();", elementToClick);
     }
 
     //Save Image

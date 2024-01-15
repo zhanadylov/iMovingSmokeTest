@@ -3,19 +3,19 @@ package tests.ui.backOfficeTest;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
+import org.example.ui.methods.BaseTest;
 import org.example.ui.qabo.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.example.ui.methods.HelperForWeb;
-import org.example.ui.methods.SetUpBO;
+import org.example.ui.methods.BaseTestQaBO;
 
-public class ApproveOrderTest extends Hooks implements SetUpBO {
+public class ApproveOrderTest extends BaseTest {
     String orderNumber = "";
     String moverName = "";
     String moverEmail = "";
     String moverPassword = "Star12@";
-
 
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
@@ -27,6 +27,9 @@ public class ApproveOrderTest extends Hooks implements SetUpBO {
         this.orderNumber = number;
     }
 
+    public ApproveOrderTest(){
+        super("environmentBO");
+    }
     @BeforeTest
     public void loginToQaBO(){
 //        driver.get("https://qabo.imoving.com/Account/Login");

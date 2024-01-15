@@ -4,7 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.utilities.Driver;
+import org.example.ui.methods.BaseTest;
+//import org.example.utilities.Driver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -22,61 +23,73 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
-public class TestListener implements ITestListener {
+
+public class TestListener extends BaseTest implements ITestListener {
     private static final Logger logger = LogManager.getLogger(WebDriver.class);
-    private static WebDriver driver;
+//    static WebDriver driver = Driver.getDriver();
+
     private static String getTestMethodName(ITestResult result){
         return result.getMethod().getConstructorOrMethod().getName();
     }
+    private void captureScreenshotAndLogs(ITestResult result) {
+        Allure.getLifecycle().addAttachment("Screenshot on test step", "image/png", "png",
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+        Allure.addAttachment("Logs: ",
+                String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
+    }
+
     @Override
     public void onStart(ITestContext iTestContext) {
-        driver = Driver.getDriver();
-        logger.info("Test started "+ iTestContext.getName());
-        driver.manage().deleteAllCookies();
+        logger.info("Test suit started "+ iTestContext.getName());
         ITestListener.super.onStart(iTestContext);
     }
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        driver = Driver.getDriver();
         Method method = iTestResult.getMethod().getConstructorOrMethod().getMethod();
-        // Получаем аннотации этого метода
+        logger.info("Test started "+ iTestResult.getMethod());
+        driver.manage().deleteAllCookies();
         Annotation[] annotations = method.getAnnotations();
-        // Логируем информацию об аннотациях
         logger.info("Annotations for test method {}:", method.getName());
-        // Продолжаем выполнение стандартной логики
         ITestListener.super.onTestStart(iTestResult);
-//        ITestListener.super.onTestStart(iTestResult);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
+        logger.debug("Test failed: "+result.getName());
+        driver.manage().deleteAllCookies();
         Allure.getLifecycle().addAttachment("Screenshot on failed step", "image/png", "png",
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Logs: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-        logger.info("closing driver after failure on "+getTestMethodName(result));
-//        WebDriverManager.chromedriver().quit();
 //        driver.close();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        logger.warn("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
-//        driver.close();
+        logger.warn("Test Skipped: " + getTestMethodName(iTestResult));
+        driver.manage().deleteAllCookies();
+        Allure.getLifecycle().addAttachment("Screenshot on skipped step", "image/png", "png",
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+        Allure.addAttachment("Logs: ",
+                String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
     }
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
+        logger.warn("Test failed but withing success percentage: "+iTestResult.getTestName());
+        driver.manage().deleteAllCookies();
+        Allure.getLifecycle().addAttachment("Screenshot on FailedButWithinSuccessPercentage step", "image/png", "png",
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+        Allure.addAttachment("Logs: ",
+                String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
         ITestListener.super.onTestFailedButWithinSuccessPercentage(iTestResult);
-
+        driver.close();
     }
     @Override
     public void onFinish(ITestContext iTestContext) {
-        logger.info("Test finished "+iTestContext.getName());
-//        driver.manage().deleteAllCookies();
+        logger.info("Test suit finished "+iTestContext.getName());
         ITestListener.super.onFinish(iTestContext);
-//        logger.info("closing driver after finish on "+iTestContext.getName());
-//        Driver.closeDriver();
+        driver.close();
     }
 
 //    @Override

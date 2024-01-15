@@ -6,20 +6,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.helper.*;
 import org.example.hooks.TestListener;
-import org.example.hooks.logs.Log4jDemo;
 import org.example.ui.methods.*;
 import org.example.ui.pageObjectModel.*;
-import org.example.utilities.ConfigReader;
-import org.example.utilities.Driver;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
 
 //@Listeners(TestListener.class)
 @Feature("Additional pickup process and by CC and check")
-public class AdditionalPickUpTest implements SetUp{
+public class AdditionalPickUpTest extends BaseTest {
 //    private static final Logger logger = LoggerFactory.getLogger(AdditionalPickUpTest.class);
 private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.class);
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
@@ -36,7 +32,9 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
     QaboOptionsTest qaboOptionsTest = new QaboOptionsTest();
     GetOrderInfo getOrderInfo = new GetOrderInfo();
     GetInventoryValues getInventoryValues = new GetInventoryValues();
-
+    public AdditionalPickUpTest(){
+        super("environment");
+    }
 //    private static WebDriver driver = Driver.getDriver();
 
 //    @BeforeTest
@@ -59,21 +57,19 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
 
     @Test
     @Description("Additional pickup paying with CC")
-    public void addAdditionalPickUpPayByCC(){
-        popUpsTest.continueOrderPopUp();
-        Helper.pause(2000);
-        try {
+    public void addAdditionalPickUpPayByCC() throws InterruptedException {
+//        popUpsTest.continueOrderPopUp();
+        browserHelper.refresh(driver);
+        Thread.sleep(3000);
             if(Helper.isElementPresent(homePage.userNameAfterLogin)){
+                logger.info("user name exists");
                 Helper.click(homePage.userNameAfterLogin);
             }else{
+                logger.info("User name not exists going to login");
         performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
                 Helper.click(homePage.userNameAfterLogin);
             }
-        }catch (NoSuchElementException e){
-            logger.warn("error"+e.getMessage());
-        }
-//        homePage.userNameAfterLogin.isDisplayed();
         userZonePage.myLastMovePlansTitle.isDisplayed();
         Helper.click(userZonePage.firstOrderLink);
         userZonePage.movingJourneyTitle.isDisplayed();
@@ -137,23 +133,19 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
 
     @Test
     @Description("Additional pickup paying with check")
-    public void addAdditionalPickUpPayByCheck(){
-//        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
-//        performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
+    public void addAdditionalPickUpPayByCheck() throws InterruptedException {
+        browserHelper.refresh(driver);
         Helper.pause(2000);
-//        homePage.userNameAfterLogin.isDisplayed();
-//        Helper.click(homePage.userNameAfterLogin);
-        try {
             if(Helper.isElementPresent(homePage.userNameAfterLogin)){
+                logger.info("Going to click user name");
                 Helper.click(homePage.userNameAfterLogin);
             }else{
+                logger.info("Going to signin");
                 performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
                 performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
                 Helper.click(homePage.userNameAfterLogin);
             }
-        }catch (NoSuchElementException e){
-            logger.warn("error"+e.getMessage());
-        }
+
         userZonePage.myLastMovePlansTitle.isDisplayed();
 //        String xpath = userZonePage.orderLinkByNumber.toString().replace("INDEX", saveOrderInfo.orderInfo.get("Order #")).replaceAll("Proxy element for: DefaultElementLocator 'By.xpath: (.+)'", "$1");
 //        WebElement orderLink = driver.findElement(By.xpath(xpath));
@@ -206,9 +198,8 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
         }
         Helper.pause(2000);
         saveOrderInfo.setOrderInfo(_detail_page.orderNumberLabel.getText(), _detail_page.orderNumber.getText().replaceAll("Order #", ""));
-        System.out.println("Get order label from page "+_detail_page.orderNumberLabel.getText());
-        System.out.println("Get order number from page "+_detail_page.orderNumber.getText());
-        System.out.println("Get order number from list "+saveOrderInfo.orderInfo.get("Order #"));
+        logger.info("Get order number from page "+_detail_page.orderNumber.getText());
+        logger.info("Get order number from list "+saveOrderInfo.orderInfo.get("Order #"));
         String dropOff = "1245 Wilshire Boulevard, Los Angeles, CA, 90017";
         SetAddress.testMethod2(dropOff, _detail_page.dropOffAtInputField);
         Helper.javascriptScrollIntoView(_detail_page.confirmButton);

@@ -4,7 +4,6 @@ import org.example.helper.Helper;
 import org.example.ui.qabo.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.example.ui.qabo.*;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class HelperForWeb {
         if (elements.size() > 0) {
             // Вывести текст первого элемента
             email =  elements.get(0).getText();
-            WebElement editButton = SetUp.driver.findElement(By.xpath("//td[text()='" + email + "']/following-sibling::td/a[text()='Edit']"));
+            WebElement editButton = BaseTest.driver.findElement(By.xpath("//td[text()='" + email + "']/following-sibling::td/a[text()='Edit']"));
             if (editButton != null) {
                 editButton.click();
                 System.out.println("button 'Edit' clicked.");

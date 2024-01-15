@@ -30,7 +30,7 @@ public class HomePage {
     @FindBy(xpath = "//header/nav[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/i[1]")
     public WebElement eyeOnSignIn;
 
-    @FindBy(xpath = "//*[@id=\"userName\"]")
+    @FindBy(xpath = "//a[@id=\"userName\"]")
     public WebElement userNameAfterLogin;
 
     @FindBy(xpath = "//span[text()='Log Out']")

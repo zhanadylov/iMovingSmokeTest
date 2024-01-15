@@ -1,6 +1,5 @@
 package tests.ui;
 
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,24 +7,19 @@ import org.example.helper.AssertThat;
 import org.example.helper.BrowserHelper;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
-import org.example.hooks.TestListener;
-import org.example.hooks.logs.Log;
 import org.example.ui.methods.*;
 import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import tests.ui.backOfficeTest.QaboOptionsTest;
-import org.example.utilities.ConfigReader;
-import org.example.utilities.Driver;
 
 import java.util.*;
 
 //@Listeners(TestListener.class)
 @Feature("Checking that create order process works properly")
-public class CreateOrderTest implements SetUp{
+public class CreateOrderTest extends BaseTest {
     private static final Logger logger = LogManager.getLogger(CreateOrderTest.class);
     HomePage homePage = new HomePage();
     SelectRandom selectRandom = new SelectRandom();
@@ -65,7 +59,9 @@ public class CreateOrderTest implements SetUp{
 //        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
 //        driver.close();
 //    }
-
+    public CreateOrderTest(){
+        super("environment");
+    }
     @Test
     public void chooseMoveOption() {
         Helper.click(homePage.itemizedQuoteButtonHomePage);
@@ -215,7 +211,7 @@ public class CreateOrderTest implements SetUp{
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.flexibilityCheckboxSideBar);
 //        Helper.pause(1000);
 //        selectRandom.clickOnRandomRadioButton(moving_result_page.deliveryWindowCheckboxSideBar);
-        Helper.pause(3000);
+        Helper.waitForElementVisibilityOf(marketplace_page.firstCarrierButton);
         Helper.waitForElementToBeDisplayed(marketplace_page.firstCarrierButton);
         Helper.navigateToElement(marketplace_page.firstCarrierButton);
         Helper.click(marketplace_page.firstCarrierButton);

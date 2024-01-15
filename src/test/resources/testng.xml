@@ -86,9 +86,9 @@
 <!--            </class>-->
 <!--        </classes>-->
 <!--    </test>-->
-    <test name="Driver">
-        <classes>
-             <class name="org.example.utilities.Driver"/>
-        </classes>
-    </test>
+<!--    <test name="Driver">-->
+<!--        <classes>-->
+<!--             <class name="org.example.utilities.Driver"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

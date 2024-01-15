@@ -3,19 +3,16 @@ package tests.ui.backOfficeTest;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
+import org.example.ui.methods.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.example.ui.methods.CalendarClass;
-import org.example.ui.methods.HelperForWeb;
-import org.example.ui.methods.SetAddress;
-import org.example.ui.methods.SetUpBO;
 import org.example.ui.qabo.LoginPage;
 import org.example.ui.qabo.OrderInfoQaBo;
 import org.example.ui.qabo.OrdersListPageInQabo;
 import org.example.ui.qabo.QaboDashBoardPage;
 
-public class ChangeAddressTest extends Hooks implements SetUpBO {
+public class ChangeAddressTest extends BaseTest {
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
     OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
@@ -29,7 +26,9 @@ public class ChangeAddressTest extends Hooks implements SetUpBO {
     String orderNumber = "";
     String moverName = "";
     String moverEmail = "";
-
+    public ChangeAddressTest(){
+        super("environmentBO");
+    }
     @BeforeTest
     public void loginToQaBO(){
         Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);

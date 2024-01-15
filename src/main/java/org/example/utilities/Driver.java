@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 public class Driver {
@@ -19,32 +18,28 @@ public class Driver {
     private static final ThreadLocal<WebDriver> driverThreadLocal = ThreadLocal.withInitial(() -> {
         switch (ConfigReader.getProperty("browser").toLowerCase()) {
             case "chrome":
+                logger.info("Loading chrome driver...");
                 return ChromeWebDriver.loadChromeDriver();
             case "firefox":
+                logger.info("Loading firefox driver...");
                 return FirefoxWebDriver.loadFirefoxDriver();
             // Другие варианты браузеров...
             default:
+                logger.warn("Loading browser failed...");
                 throw new IllegalArgumentException("Unsupported browser");
         }
     });
 
-    @BeforeSuite
     public static WebDriver getDriver() {
         return driverThreadLocal.get();
     }
 
-    @AfterSuite(alwaysRun = true, description = "Closing driver")
     public static void closeDriver() {
-        try {
             WebDriver driver = driverThreadLocal.get();
             if (driver != null) {
                 driver.quit();
                 driverThreadLocal.remove();
             }
-        } catch (Exception e) {
-            logger.error("Error occurred while closing the driver: " + e.getMessage());
-        }
-        logger.info("Closing Driver");
     }
     /////////
 
@@ -90,7 +85,6 @@ public class Driver {
 //    private static final Logger logger = LoggerFactory.getLogger(WebDriver.class);
 //
 //    public static WebDriver driver;
-////    private static EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
 //
 //    public static WebDriver getDriver() {
 //        if (driver == null) {
@@ -111,8 +105,6 @@ public class Driver {
 //                default:
 //                    throw new IllegalArgumentException("Unsupported browser");
 //            }
-////            eventDriver = new EventFiringWebDriver(driver);
-//            registerEventListener();
 //        }
 //        return driver;
 //    }
@@ -128,10 +120,5 @@ public class Driver {
 //            logger.error("Error occurred while closing the driver: " + e.getMessage());
 //        }
 //        logger.info("Closing Driver");
-//    }
-//    private static void registerEventListener() {
-//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
-//        eventDriver.register(new Hooks());
-//        driver = eventDriver;
 //    }
 //}

@@ -79,6 +79,7 @@ public class QaboOptionsTest{
         Helper.sendKeys(ordersListPageInQabo.orderNumFilterField, orderNumber);
         Helper.pause(1000);
         Helper.click(ordersListPageInQabo.filterButton);
+        Helper.pause(1000);
         Helper.waitForElementVisibilityOf(ordersListPageInQabo.orderNumberLink);
         Helper.waitForElementToBeClickable(ordersListPageInQabo.orderNumberLink);
         Helper.click(ordersListPageInQabo.orderNumberLink);
@@ -94,7 +95,7 @@ public class QaboOptionsTest{
         }
     }
     @Test
-    public void financeTabPayByCheck(){
+    public void financeTabPayByCheck() throws InterruptedException {
         Helper.click(orderInfoQaBo.financeTab);
         Helper.click(orderInfoQaBo.addPaymentButton);
         Helper.pause(2000);
@@ -116,6 +117,7 @@ public class QaboOptionsTest{
         Helper.sendKeys(addPaymentPopUp.uploadCheck2, imagePath);
         Helper.click(addPaymentPopUp.addPaymentBtnInPopUp);
         Helper.pause(2000);
+        Thread.sleep(5000);
         browserHelper.refresh(driver);
         orderInfoQaBo.orderStatus.isDisplayed();
         AssertThat.assertText("Booked By Client", orderInfoQaBo.orderStatus);
