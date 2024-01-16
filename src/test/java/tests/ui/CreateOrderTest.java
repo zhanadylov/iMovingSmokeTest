@@ -7,6 +7,7 @@ import org.example.helper.AssertThat;
 import org.example.helper.BrowserHelper;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
+import org.example.hooks.TestListener;
 import org.example.ui.methods.*;
 import org.example.ui.pageObjectModel.*;
 import org.openqa.selenium.By;
@@ -17,7 +18,7 @@ import tests.ui.backOfficeTest.QaboOptionsTest;
 
 import java.util.*;
 
-//@Listeners(TestListener.class)
+@Listeners(TestListener.class)
 @Feature("Checking that create order process works properly")
 public class CreateOrderTest extends BaseTest {
     private static final Logger logger = LogManager.getLogger(CreateOrderTest.class);

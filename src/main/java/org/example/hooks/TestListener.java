@@ -6,14 +6,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.ui.methods.BaseTest;
 //import org.example.utilities.Driver;
+import org.example.utilities.Driver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogType;
 import org.slf4j.LoggerFactory;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import org.testng.*;
 
 import java.io.ByteArrayInputStream;
 import java.lang.annotation.Annotation;
@@ -24,10 +24,11 @@ import java.util.Date;
 import java.util.Objects;
 
 
-public class TestListener extends BaseTest implements ITestListener {
+public class TestListener extends BaseTest implements ITestListener, IRetryAnalyzer {
     private static final Logger logger = LogManager.getLogger(WebDriver.class);
 //    static WebDriver driver = Driver.getDriver();
-
+    private int count = 0;
+    private int maxCount = 2;
     private static String getTestMethodName(ITestResult result){
         return result.getMethod().getConstructorOrMethod().getName();
     }
@@ -39,19 +40,38 @@ public class TestListener extends BaseTest implements ITestListener {
     }
 
     @Override
+    public boolean retry(ITestResult iTestResult) {
+        if(!iTestResult.isSuccess()){
+            if(count<maxCount) {
+                count++;
+//                driver.navigate().refresh();
+                driver.manage().deleteAllCookies();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void onStart(ITestContext iTestContext) {
         logger.info("Test suit started "+ iTestContext.getName());
         ITestListener.super.onStart(iTestContext);
+            for (ITestNGMethod method : iTestContext.getAllTestMethods()) {
+                method.setRetryAnalyzerClass(TestListener.class);
+            }
     }
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
+        ITestListener.super.onTestStart(iTestResult);
         Method method = iTestResult.getMethod().getConstructorOrMethod().getMethod();
         logger.info("Test started "+ iTestResult.getMethod());
         driver.manage().deleteAllCookies();
+        logger.info("Clearing storage");
+        clearStorage("localStorage");
+        clearStorage("sessionStorage");
         Annotation[] annotations = method.getAnnotations();
         logger.info("Annotations for test method {}:", method.getName());
-        ITestListener.super.onTestStart(iTestResult);
     }
 
     @Override
@@ -76,22 +96,30 @@ public class TestListener extends BaseTest implements ITestListener {
     }
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
+        ITestListener.super.onTestFailedButWithinSuccessPercentage(iTestResult);
         logger.warn("Test failed but withing success percentage: "+iTestResult.getTestName());
         driver.manage().deleteAllCookies();
         Allure.getLifecycle().addAttachment("Screenshot on FailedButWithinSuccessPercentage step", "image/png", "png",
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Logs: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-        ITestListener.super.onTestFailedButWithinSuccessPercentage(iTestResult);
         driver.close();
     }
     @Override
     public void onFinish(ITestContext iTestContext) {
-        logger.info("Test suit finished "+iTestContext.getName());
         ITestListener.super.onFinish(iTestContext);
+        logger.info("Test suit finished "+iTestContext.getName());
+
         driver.close();
     }
-
+    @Override
+    public void onTestFailedWithTimeout(ITestResult result) {
+        this.onTestFailure(result);
+    }
+    public static void clearStorage(String storageType) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+        jsExecutor.executeScript(String.format("window.%s.clear();", storageType));
+    }
 //    @Override
 //    public void onTestSuccess(ITestResult result) {
 //        Allure.getLifecycle().addAttachment("Скриншот после успешного прохождения теста", "image/png", "png",

@@ -5,9 +5,13 @@ import org.apache.logging.log4j.Logger;
 import org.example.helper.Helper;
 import org.example.ui.qabo.LoginPage;
 import org.example.utilities.ConfigReader;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.html5.LocalStorage;
 import org.testng.annotations.*;
 import org.example.utilities.Driver;
+
+import java.util.Set;
 
 public abstract class BaseTest {
     public static WebDriver driver = Driver.getDriver();
@@ -20,11 +24,14 @@ public abstract class BaseTest {
     }
     public BaseTest(){
     }
+    public static final Boolean clear_Cookies_And_Storage = true;
+
 
     @BeforeSuite
     static void setup(){
         logger.info("Creating driver...");
         Driver.getDriver();
+
     }
     @BeforeClass
     public void openEnvironment() throws InterruptedException {
@@ -55,18 +62,6 @@ public abstract class BaseTest {
         Driver.closeDriver();
     }
 
-//    @BeforeClass
-//    static void openChrome(){
-//        logger.info("Opening environment ");
-//        driver.get(ConfigReader.getProperty("environment"));
-//        driver.manage().deleteAllCookies();
-//    }
-//
-//    @AfterClass
-//    static void closeChrome(){
-//        logger.info("Closing environment");
-//                WebDriverManager.chromedriver().quit();
-//    }
 
     public void open(String url){
         driver.get(url);

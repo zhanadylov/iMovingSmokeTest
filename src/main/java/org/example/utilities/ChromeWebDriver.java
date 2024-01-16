@@ -13,7 +13,7 @@ public class ChromeWebDriver {
 
     public static WebDriver loadChromeDriver(){
         WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user2022\\Downloads\\Programs\\chromedriver-win64-120.0.6099.71\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user2022\\Downloads\\Programs\\chromedriver-win64-120.0.6099.109\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-extensions");
         options.addArguments("--window-size=1920,1020");
