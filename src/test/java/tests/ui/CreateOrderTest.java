@@ -18,7 +18,7 @@ import tests.ui.backOfficeTest.QaboOptionsTest;
 
 import java.util.*;
 
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 @Feature("Checking that create order process works properly")
 public class CreateOrderTest extends BaseTest {
     private static final Logger logger = LogManager.getLogger(CreateOrderTest.class);

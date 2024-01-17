@@ -2,17 +2,13 @@ package tests.ui.backOfficeTest;
 
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
-import org.example.hooks.Hooks;
 import org.example.hooks.TestListener;
 import org.example.ui.methods.BaseTest;
 import org.example.ui.qabo.*;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.example.ui.methods.HelperForWeb;
-import org.example.ui.methods.BaseTestQaBO;
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 public class ApproveOrderTest extends BaseTest {
     String orderNumber = "";
     String moverName = "";
@@ -31,15 +27,6 @@ public class ApproveOrderTest extends BaseTest {
     public ApproveOrderTest(){
         super("environmentBO");
     }
-//    @BeforeTest
-//    public void loginToQaBO(){
-////        driver.get("https://qabo.imoving.com/Account/Login");
-//        Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-//        Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-//        Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-//        Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-//        Helper.click(loginPage.signInButtonBo);
-//    }
 
     @Test
     public void approveOrderInBO(){

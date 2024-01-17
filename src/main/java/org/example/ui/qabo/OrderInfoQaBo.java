@@ -119,12 +119,12 @@ public class OrderInfoQaBo {
     @FindBy(xpath = "/html/body/div[1]/div/section[1]/div[2]/button[1]")
     public WebElement approveOrderButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/section[1]/div[2]/button[2]")
+    @FindBy(css = "[data-target=\"#cancleModal\"]#cancelbtn")
     public WebElement declineOrderButton;
 
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[1]/div/div/div[3]/button")
     public WebElement approveOrderButtonInPopUp;
-    @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[7]/div/div/div[3]/button[2]")
+    @FindBy(css = "[type=\"button\"]#cancleModalBtn")
     public WebElement declineOrderButtonInPopUp;
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/div[7]/div/div/div[3]/button[1]")
     public WebElement closeOrderButtonInPopUp;

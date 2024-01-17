@@ -2,6 +2,9 @@ package org.example.utilities;
 
 import com.google.common.collect.ImmutableList;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,6 +13,7 @@ import java.time.Duration;
 
 public class ChromeWebDriver {
 
+    private static final Logger logger = LogManager.getLogger(Driver.class);
 
     public static WebDriver loadChromeDriver(){
         WebDriverManager.chromedriver().setup();
@@ -33,5 +37,10 @@ public class ChromeWebDriver {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         return driver;
+    }
+
+    public static void clearStorage(String storageType) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+        jsExecutor.executeScript(String.format("window.%s.clear();", storageType));
     }
 }

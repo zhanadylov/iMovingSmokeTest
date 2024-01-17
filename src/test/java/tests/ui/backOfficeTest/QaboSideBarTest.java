@@ -1,17 +1,14 @@
 package tests.ui.backOfficeTest;
 
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.helper.Helper;
+import org.example.hooks.TestListener;
 import org.example.ui.methods.BaseTest;
-import org.example.ui.methods.BaseTestQaBO;
 import org.example.ui.qabo.*;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.example.utilities.Driver;
 
 //@Listeners(TestListener.class)
 @Feature("Checking that side bar in qabo opens")
@@ -36,14 +33,15 @@ public class QaboSideBarTest extends BaseTest {
     public QaboSideBarTest(){
         super("environmentBO");
     }
-//    @BeforeClass
-//    @Description("Setup in QaboSideBarTest")
-//    public static void setUp(){
-//        Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-//        Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-//        Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-//        Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-//        Helper.click(loginPage.signInButtonBo);
+//    @BeforeMethod
+//    public static void loginToBo(){
+//        if(Helper.isElementPresent(loginPage.iMovingManagementText)) {
+//            Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+//            Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+//            Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+//            Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+//            Helper.click(loginPage.signInButtonBo);
+//        }
 //    }
 
     @Test

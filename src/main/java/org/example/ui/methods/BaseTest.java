@@ -31,17 +31,16 @@ public abstract class BaseTest {
     static void setup(){
         logger.info("Creating driver...");
         Driver.getDriver();
-
     }
     @BeforeClass
     public void openEnvironment() throws InterruptedException {
         logger.info("Opening environment " + environment);
         if(environment.equals("environment")){
             driver.get(ConfigReader.getProperty("environment"));
-            driver.manage().deleteAllCookies();
+//            driver.manage().deleteAllCookies();
         }else{
             driver.get(ConfigReader.getProperty("environmentBO"));
-            driver.manage().deleteAllCookies();
+//            driver.manage().deleteAllCookies();
             Thread.sleep(2000);
             Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
             Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
@@ -62,14 +61,14 @@ public abstract class BaseTest {
         Driver.closeDriver();
     }
 
-
-    public void open(String url){
-        driver.get(url);
-    }
-
-    public void refresh() {
-        driver.navigate().refresh();
-    }
+//
+//    public void open(String url){
+//        driver.get(url);
+//    }
+//
+//    public void refresh() {
+//        driver.navigate().refresh();
+//    }
 
     //    @BeforeTest
     //    @Description("Setup in AdditionalPickUpTest")

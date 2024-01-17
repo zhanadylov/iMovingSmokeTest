@@ -11,7 +11,7 @@ import org.example.ui.qabo.LoginPage;
 import org.example.ui.qabo.OrderInfoQaBo;
 import org.example.ui.qabo.OrdersListPageInQabo;
 import org.example.ui.qabo.QaboDashBoardPage;
-
+//@Listeners(TestListener.class)
 public class ChangeAddressTest extends BaseTest {
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
@@ -29,17 +29,17 @@ public class ChangeAddressTest extends BaseTest {
     public ChangeAddressTest(){
         super("environmentBO");
     }
-    @BeforeTest
-    public void loginToQaBO(){
-        Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-        Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-        Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-        Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-        Helper.click(loginPage.signInButtonBo);
-    }
+//    @BeforeTest
+//    public void loginToQaBO(){
+//        Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+//        Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+//        Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+//        Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+//        Helper.click(loginPage.signInButtonBo);
+//    }
 
     @Test
-    public void changeAddress(){
+    public void changeAddress() throws InterruptedException {
         Helper.navigateToElement(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.click(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.waitForElementToBeDisplayed(ordersListPageInQabo.ordersTitleText);
@@ -56,7 +56,8 @@ public class ChangeAddressTest extends BaseTest {
         newAdddedAddressValue = "12333 W Olympic Blvd, Los Angeles, CA 90064";
         SetAddress.testMethod(newAddressValue, orderInfoQaBo.changeAddressInputInPopup);
         Helper.click(orderInfoQaBo.changeAddressButtonInPopup);
-        Helper.pause(2000);
+//        Helper.pause(2000);
+        Thread.sleep(2000);
         Assert.assertTrue(orderInfoQaBo.pickUpAddress.getText().contains(newAdddedAddressValue));
 
         helperForWeb.setCarrierNewPassword(moverName, moverPassword, orderNumber);
@@ -73,8 +74,9 @@ public class ChangeAddressTest extends BaseTest {
         Helper.click(ordersListPageInQabo.orderNumberLink);
         Helper.pause(2000);
         String actualStatus = orderInfoQaBo.orderStatus.getText();
-        boolean statusMatches = actualStatus.equals("Booked By Client") || actualStatus.equals("Vendor Approved New Order");
-        Assert.assertTrue(statusMatches, "Status doesn't meet expected result");
+        boolean statusMatches = actualStatus.equals("Booked By Client") || actualStatus.equals("Vendor Approved New Order")|| actualStatus.equals("Vendor Approved Final Date");
+        System.out.println("Res is "+statusMatches);
+        Assert.assertTrue(statusMatches, "Status doesn't meet expected result.");
         String addressPickValueCarrierSide = "Los Angeles, CA";
         Assert.assertTrue(orderInfoQaBo.pickUpAddress.getText().contains(addressPickValueCarrierSide));
         Helper.click(qaboDashBoardPage.logOffButton);

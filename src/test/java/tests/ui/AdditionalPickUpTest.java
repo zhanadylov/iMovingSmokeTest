@@ -35,25 +35,6 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
     public AdditionalPickUpTest(){
         super("environment");
     }
-//    private static WebDriver driver = Driver.getDriver();
-
-//    @BeforeTest
-//    @Description("Setup in AdditionalPickUpTest")
-//    public static void setUp(){
-////        if (driver == null) {
-//        logger.info("Trying to open browser and url in AdditionalPickUpTest");
-////            driver = Driver.getDriver();
-//        driver.manage().deleteAllCookies();
-//        driver.get(ConfigReader.getProperty("environment"));
-////        }else{
-////            driver.get(ConfigReader.getProperty("environment"));
-////        }
-//    }
-//    @AfterClass
-//    public void tearDown() {
-//        logger.info("Closing driver after method AdditionalPickUpTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        driver.close();
-//    }
 
     @Test
     @Description("Additional pickup paying with CC")
@@ -213,6 +194,7 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
         qaboOptionsTest.openPriceInBO();
         getOrderInfo.comparePriceWebBo(saveOrderInfo.priceListBo, saveOrderInfo.inventoryListInfo);
         qaboOptionsTest.financeTabPayByCheck();
+        browserHelper.switchToParentWithChildClose(driver);
     }
 
 }

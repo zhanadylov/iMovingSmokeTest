@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="iMovingSmokeTDDTest" thread-count="2" verbose="2" preserve-order="true">
+<suite name="iMovingSmokeTDDTest" parallel="none" thread-count="2" verbose="2" preserve-order="true">
     <listeners>
         <listener class-name="org.example.hooks.TestListener">
         </listener>
     </listeners>
-    <test name="iMovingSmokeTDDTest">
+    <test name="iMovingSmokeTDDTest" preserve-order="true">
         <classes>
             <class name="tests.ui.SignInTest">
                 <methods>
                     <include name="loginWithValidData"/>
-<!--                    <include name="SignUp"/>-->
+                    <include name="SignUp"/>
                     <!--                    <include name="forgotPassword"/>-->
                 </methods>
             </class>
@@ -35,15 +35,40 @@
                     <include name="addAdditionalPickUpPayByCheck"/>
                 </methods>
             </class>
-            <class name="tests.ui.backOfficeTest.QaboSideBarTest">
+            <class name="tests.ui.backOfficeTest.ApproveOrderTest">
                 <methods>
-                    <include name="qaDashBoard"/>
-                    <include name="qaUsers"/>
-                    <include name="qaCompanies"/>
-                    <include name="qaBranches"/>
-                    <include name="qaAffiliates"/>
-                    <include name="qaOrders"/>
+                    <include name="approveOrderInBO"/>
+                    <include name="cancelOrderInBo"/>
                 </methods>
+            </class>
+            <class name="tests.ui.backOfficeTest.QaboSideBarTest">
+<!--                <methods>-->
+<!--                    <include name="qaDashBoard"/>-->
+<!--                    <include name="qaUsers"/>-->
+<!--                    <include name="qaCompanies"/>-->
+<!--                    <include name="qaBranches"/>-->
+<!--                    <include name="qaAffiliates"/>-->
+<!--                    <include name="qaOrders"/>-->
+<!--                    <include name="qaFinancial"/>-->
+<!--                    <include name="qaSupplierRequests"/>-->
+<!--                    <include name="qaCalendar"/>-->
+<!--                    <include name="qaReview"/>-->
+<!--                    <include name="qaDiscounts"/>-->
+<!--                    <include name="qaFees"/>-->
+<!--                    <include name="qaFlexibility"/>-->
+<!--                    <include name="qaDelivery"/>-->
+<!--                    <include name="qaDefault"/>-->
+<!--                    <include name="qaService"/>-->
+<!--                    <include name="qaCarriers"/>-->
+<!--                    <include name="qaMerchant"/>-->
+<!--                    <include name="qaFee"/>-->
+<!--                    <include name="qaTruck"/>-->
+<!--                    <include name="qaLicense"/>-->
+<!--                    <include name="qaInsurance"/>-->
+<!--                    <include name="qaServiceLists"/>-->
+<!--                    <include name="qaOrdersCancelling"/>-->
+<!--                    <include name="qaSpecial"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>
@@ -72,7 +97,7 @@
 <!--            </class>-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--    <test name="QaboSideBarTest">-->
+<!--    <test name="QaboSideBarTest" preserve-order="true">-->
 <!--        <classes>-->
 <!--            <class name="tests.ui.backOfficeTest.QaboSideBarTest">-->
 <!--                <methods>-->

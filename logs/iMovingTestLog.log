@@ -1,8 +1,2 @@
-16.01 18:25:38.606 [main] INFO  - Loading chrome driver...
-16.01 18:25:40.651 [main] INFO  - Test suit started iMovingSmokeTDDTest
-16.01 18:25:40.684 [main] INFO  - Opening environment environmentBO
-16.01 18:25:48.739 [main] INFO  - Test started ApproveOrderTest.approveOrderInBO()[pri:0, instance:tests.ui.backOfficeTest.ApproveOrderTest@3369e2ce]
-16.01 18:25:48.744 [main] INFO  - Clearing storage
-16.01 18:25:48.759 [main] INFO  - Annotations for test method approveOrderInBO:
-16.01 18:25:52.540 [main] DEBUG - Test failed: approveOrderInBO
-16.01 18:25:52.542 [main] INFO  - Test suit finished iMovingSmokeTDDTest
+17.01 18:52:02.633 [main] INFO  - Loading chrome driver...
+17.01 18:52:04.818 [main] INFO  - Opening environment environmentBO

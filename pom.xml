@@ -26,6 +26,7 @@
         <webdrivermanager.version>5.6.2</webdrivermanager.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <allure.results.directory>target/allure-results</allure.results.directory>
+<!--        <parameter name="testng.test.failure.ignore" value="true"/>-->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -120,7 +121,7 @@
                     <version>2.0.5</version>
                 </dependency>
 
-        <!--Используеться для авто логирования-->
+        <!--Используется для авто логирования-->
         <!-- https://mvnrepository.com/artifact/aspectj/aspectjrt -->
         <dependency>
             <groupId>aspectj</groupId>
@@ -128,7 +129,7 @@
             <version>1.5.4</version>
         </dependency>
 
-        <!--Используеться для авто логирования-->
+        <!--Используется для авто логирования-->
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -137,7 +138,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--Используеться для авто логирования-->
+        <!--Используется для авто логирования-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -311,9 +312,8 @@
 <!--                <version>${maven-surefire.version}</version>-->
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
