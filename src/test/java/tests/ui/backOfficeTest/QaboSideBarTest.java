@@ -7,13 +7,16 @@ import org.example.helper.Helper;
 import org.example.hooks.TestListener;
 import org.example.ui.methods.BaseTest;
 import org.example.ui.qabo.*;
+import org.example.utilities.ChromeWebDriver;
+import org.example.utilities.ConfigReader;
+import org.example.utilities.Driver;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 //@Listeners(TestListener.class)
 @Feature("Checking that side bar in qabo opens")
-public class QaboSideBarTest extends BaseTest {
-//    private static final Logger logger = LoggerFactory.getLogger(QaboSideBarTest.class);
+public class QaboSideBarTest extends BaseTest{
     private static final Logger logger = LogManager.getLogger(QaboSideBarTest.class);
 
     static LoginPage loginPage = new LoginPage();
@@ -28,21 +31,25 @@ public class QaboSideBarTest extends BaseTest {
     CalendarQabo calendarQabo = new CalendarQabo();
     ReviewsQabo reviewsQabo = new ReviewsQabo();
 
-//    private static WebDriver driver = Driver.getDriver();
+//    private static WebDriver driver = ChromeWebDriver.loadChromeDriver();
 
     public QaboSideBarTest(){
         super("environmentBO");
     }
-//    @BeforeMethod
-//    public static void loginToBo(){
-//        if(Helper.isElementPresent(loginPage.iMovingManagementText)) {
-//            Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-//            Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-//            Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-//            Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-//            Helper.click(loginPage.signInButtonBo);
-//        }
-//    }
+    @BeforeClass
+    public static void loginToBo(){
+        try{
+            if(Helper.isElementPresent(loginPage.iMovingManagementText)) {
+                Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+                Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+                Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+                Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+                Helper.click(loginPage.signInButtonBo);
+            }
+        }catch (Exception e){
+            logger.warn("BO in dashboard");
+        }
+    }
 
     @Test
     public void qaDashBoard(){
@@ -165,56 +172,72 @@ public class QaboSideBarTest extends BaseTest {
     //Lists
     @Test
     public void qaMerchant(){
-//        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.merchantLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.merchantLists.isDisplayed();
         Helper.click(qaboDashBoardPage.merchantLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/Orders/AuthorizeList/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
     public void qaFee(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.feeTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.feeTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.feeTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/FeeType/Index/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
     public void qaTruck(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.truckTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.truckTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.truckTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/TruckType/Index/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
     public void qaLicense(){
-//        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.licensesTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.licensesTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.licensesTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/LicenseType/Index/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
     public void qaInsurance(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.insuranceTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.insuranceTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.insuranceTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/InsuranceType/Index/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
     public void qaServiceLists(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.serviceTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.serviceTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.serviceTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/BranchServiceType");
     }
     @Test
     public void qaOrdersCancelling(){
-        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.orderCancellingTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.orderCancellingTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.orderCancellingTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/OrderCancellingReason/Index/5730743773507A72366A6C49577A31325165504561773D3D");
     }
     @Test
     public void qaSpecial(){
-//        Helper.click(qaboDashBoardPage.listsSideBar);
+        if(!Helper.isElementPresent(qaboDashBoardPage.specialTypesLists)){
+            Helper.click(qaboDashBoardPage.listsSideBar);
+        }
         qaboDashBoardPage.specialTypesLists.isDisplayed();
         Helper.click(qaboDashBoardPage.specialTypesLists);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qabo.imoving.com/Tariff/SpecialItemsView/5730743773507A72366A6C49577A31325165504561773D3D");

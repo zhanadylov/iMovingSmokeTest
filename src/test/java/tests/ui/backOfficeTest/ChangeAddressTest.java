@@ -1,10 +1,13 @@
 package tests.ui.backOfficeTest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.hooks.Hooks;
 import org.example.ui.methods.*;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.example.ui.qabo.LoginPage;
@@ -13,6 +16,8 @@ import org.example.ui.qabo.OrdersListPageInQabo;
 import org.example.ui.qabo.QaboDashBoardPage;
 //@Listeners(TestListener.class)
 public class ChangeAddressTest extends BaseTest {
+    private static final Logger logger = LogManager.getLogger(ChangeAddressTest.class);
+
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
     OrdersListPageInQabo ordersListPageInQabo = new OrdersListPageInQabo();
@@ -29,14 +34,20 @@ public class ChangeAddressTest extends BaseTest {
     public ChangeAddressTest(){
         super("environmentBO");
     }
-//    @BeforeTest
-//    public void loginToQaBO(){
-//        Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-//        Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-//        Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-//        Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-//        Helper.click(loginPage.signInButtonBo);
-//    }
+    @BeforeClass
+    public void loginToBo(){
+        try{
+            if(Helper.isElementPresent(loginPage.iMovingManagementText)) {
+                Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+                Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+                Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+                Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+                Helper.click(loginPage.signInButtonBo);
+            }
+        }catch (Exception e){
+            logger.warn("BO in dashboard");
+        }
+    }
 
     @Test
     public void changeAddress() throws InterruptedException {
@@ -57,7 +68,7 @@ public class ChangeAddressTest extends BaseTest {
         SetAddress.testMethod(newAddressValue, orderInfoQaBo.changeAddressInputInPopup);
         Helper.click(orderInfoQaBo.changeAddressButtonInPopup);
 //        Helper.pause(2000);
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         Assert.assertTrue(orderInfoQaBo.pickUpAddress.getText().contains(newAdddedAddressValue));
 
         helperForWeb.setCarrierNewPassword(moverName, moverPassword, orderNumber);
@@ -72,7 +83,7 @@ public class ChangeAddressTest extends BaseTest {
         Helper.sendKeys(ordersListPageInQabo.orderNumFilterField, orderNumber);
         Helper.click(ordersListPageInQabo.filterButton);
         Helper.click(ordersListPageInQabo.orderNumberLink);
-        Helper.pause(2000);
+        Helper.pause(4000);
         String actualStatus = orderInfoQaBo.orderStatus.getText();
         boolean statusMatches = actualStatus.equals("Booked By Client") || actualStatus.equals("Vendor Approved New Order")|| actualStatus.equals("Vendor Approved Final Date");
         System.out.println("Res is "+statusMatches);

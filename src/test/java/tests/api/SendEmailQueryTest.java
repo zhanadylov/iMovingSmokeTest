@@ -1,33 +1,25 @@
 package tests.api;
 
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.apiConnection.ApiConnection;
-import org.example.hooks.logs.Log;
+import org.example.hooks.TestListener;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import static org.example.hooks.logs.Log4jDemo.logger;
-
+import static io.restassured.RestAssured.baseURI;
+@Listeners(TestListener.class)
 public class SendEmailQueryTest extends ApiConnection {
-//    private static final Logger logger = LoggerFactory.getLogger(SendEmailQueryTest.class);
-@Log
-    @Test
-    public void query_send()  {
-        if (requestSpecification == null || response == null) {
-            logger.error("RequestSpecification or Response is not initialized.");
-            return;
-        }
-        response = requestSpecification.get("umbraco/Api/Tasks/SendEmails");
-        response.prettyPrint();
-        logger.info("Request sent");
-    }
+    private static final Logger logger = LogManager.getLogger(SendEmailQueryTest.class);
+
+//    RequestSpecification requestSpecification = requestSpecificationThreadLocal.get();
 
     @Test
-    public void status_code_is_returned_for_response() {
-        if (requestSpecification == null || response == null) {
-            logger.error("RequestSpecification or Response is not initialized.");
-            return;
-        }
-        MatcherAssert.assertThat(response.statusCode(), Matchers.is(200));
+    public void sendQueryForSendsEmails()  {
+        sendQueryEndPoints("umbraco/Api/Tasks/SendEmails");
     }
 }

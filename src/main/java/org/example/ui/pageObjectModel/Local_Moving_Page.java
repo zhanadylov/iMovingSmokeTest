@@ -11,9 +11,9 @@ public class Local_Moving_Page {
     public Local_Moving_Page() {PageFactory.initElements(Driver.getDriver(), this);}
 
     //first step
-    @FindBy(css = "#step1 > div > div > h1")
+    @FindBy(css = "#quickQuoteBlock > div > h1")
     public WebElement mainTitleText;
-    @FindBy(css = "#step1 > div > div > h3")
+    @FindBy(css = "#quickQuoteBlock > div > p")
     public WebElement textUnderTitle;
     @FindBy(css = "#step1 > div > div > div > span")
     public WebElement startHereText;
@@ -43,20 +43,41 @@ public class Local_Moving_Page {
     public WebElement compareQuotesButton;
 
     //Fourt step
-    @FindBy(css = "#moving-widget-screen2 > div > div.modal-body > div > h2")
-    public WebElement whenAreYouMovingTitle;
+    @FindBy(css = "#index > main > section.section-connecting > div > h2")
+    public WebElement connectWithTopLocalMoversTitle;
     @FindBy(xpath = "//button[@id='btnScreen2']")
     public WebElement fourthNextStep;
     @FindBy(xpath = "//*[@id=\"moving-widget-screen2\"]/div/div[1]/div/div/div[1]/div")
     public WebElement datePicker;
 
     //Fives step
-    @FindBy(css = "#moving-widget-screen3 > div > div.modal-body > div > h2")
-    public WebElement whatIsYourMoveSizeTitle;
+    @FindBy(css = "#index > main > section.section-help > div > h2")
+    public WebElement easilyBookLocalMoveTitle;
     @FindBy(xpath = "//span[@class='checkmark-radio isChecked']")
     public List<WebElement> listOfSize;
-    @FindBy(xpath = "//button[@id='btnScreen3']")
-    public WebElement fivesNextButton;
+    @FindBy(css = "#index > main > section.section-faq > div > h2")
+    public WebElement faqTitle;
+
+    @FindBy(css = "#heading1 > h3 > a")
+    public WebElement howMuchLMCost;
+    @FindBy(css = "#heading1 > h3 > a")
+    public WebElement howMuchLMCostDataText;
+    @FindBy(css = "#heading2 > h3 > a")
+    public WebElement whatDifferentLMandLD;
+    @FindBy(css = "#collapse2 > div > p")
+    public WebElement whatDifferentLMandLDdataText;
+    @FindBy(css = "#heading3 > h3 > a")
+    public WebElement myMoversTransport;
+    @FindBy(css = "#collapse3 > div > p")
+    public WebElement myMoversTransportDataText;
+    @FindBy(css = "#heading4 > h3 > a")
+    public WebElement cheapestWayToMove;
+    @FindBy(css = "#collapse4 > div > p")
+    public WebElement cheapestWayToMoveDataText;
+    @FindBy(css = "#heading5 > h3 > a")
+    public WebElement whenShouldBookLM;
+    @FindBy(css = "#collapse5 > div > p")
+    public WebElement whenShouldBookLMDataText;
 
     //Six step
     @FindBy(css = "#moving-widget-screen4 > div > div.modal-body > div > h2")

@@ -42,11 +42,13 @@ public abstract class BaseTest {
             driver.get(ConfigReader.getProperty("environmentBO"));
 //            driver.manage().deleteAllCookies();
             Thread.sleep(2000);
-            Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
-            Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
-            Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
-            Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
-            Helper.click(loginPage.signInButtonBo);
+            if(!Helper.isElementPresent(loginPage.iMovingManagementText)) {
+                Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);
+                Helper.waitForElementVisibilityOf(loginPage.emailInputFieldBo);
+                Helper.sendKeys(loginPage.emailInputFieldBo, "qa.imoving@gmail.com");
+                Helper.sendKeys(loginPage.passwordInputFieldBo, "QATest-2022");
+                Helper.click(loginPage.signInButtonBo);
+            }
         }
     }
     @AfterClass

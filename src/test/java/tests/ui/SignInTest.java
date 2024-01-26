@@ -4,7 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.email.EmailForResetPasswordTest;
+import org.example.email.EmailsData;
 import org.example.helper.Helper;
 import org.example.helper.JavaFaker;
 import org.example.ui.methods.BaseTest;
@@ -25,23 +25,6 @@ public class SignInTest extends BaseTest {
 
     HomePage homePage = new HomePage();
 
-//    @BeforeTest
-//    @Description("Setup in SignInTest")
-//    public static void setUp(){
-////            if (driver == null) {
-//                logger.info("Trying to open browser and url in openChromeSingIN");
-////                driver = Driver.getDriver();
-//                driver.get(ConfigReader.getProperty("environment"));
-////            }else{
-////                driver.get(ConfigReader.getProperty("environment"));
-////            }
-//    }
-
-//    @AfterTest
-//    public void tearDown() {
-//        logger.info("Closing driver after method SignInTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        driver.close();
-//    }
     public SignInTest(){
         super("environment");
     }
@@ -95,7 +78,7 @@ public class SignInTest extends BaseTest {
         Helper.sendKeys(homePage.emailResetPassword, "qatestimoving@gmail.com");
         Helper.click(homePage.sendButtonInReset);
         Helper.pause(3000);
-        EmailForResetPasswordTest.check_email_for_reset_password();
+        EmailsData.check_email_for_reset_password();
 //        SetUp.refresh();
     }
 }

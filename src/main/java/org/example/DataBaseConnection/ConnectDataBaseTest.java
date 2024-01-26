@@ -1,7 +1,8 @@
 package org.example.DataBaseConnection;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.helper.Helper;
-import org.example.hooks.logs.Log;
 import org.testng.annotations.*;
 
 import java.sql.*;
@@ -12,7 +13,7 @@ import java.util.Calendar;
 import static org.example.hooks.logs.Log4jDemo.logger;
 
 public class ConnectDataBaseTest {
-//    private static final Logger logger = LoggerFactory.getLogger(ConnectDataBaseTest.class);
+    private static final Logger logger = LogManager.getLogger(ConnectDataBaseTest.class);
 
     private static Connection conn;
     private static Statement stmt;
@@ -58,7 +59,7 @@ public class ConnectDataBaseTest {
 //            ex.printStackTrace();
 //        }
 //    }
-@Log
+
     @BeforeMethod
     public static void setUp() {
         final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
@@ -92,13 +93,17 @@ public class ConnectDataBaseTest {
 //            String query = "select * from ImovingOrder";
 //            stmt = conn.createStatement();
 //            resultSet = stmt.executeQuery(query);
+            if(orderNumber.contains("/")){
 
-            updateDateQuery = "update ImovingOrder\n" +
-                    "set MoveDate = dateadd(day, -6, GETDATE())\n" +
+            }else{
+                updateDateQuery = "update ImovingOrder\n" +
+                        "set MoveDate = dateadd(day, -6, GETDATE())\n" +
 //                    "where date(MoveDate)=`"+moveDate+"`";
-                    "where Id = ".concat(orderNumber);
+//                        "where Id = ".concat(orderNumber);
+                        "where Id = CAST('"+orderNumber+"' AS NVARCHAR(MAX));";
+            }
             stmt.executeUpdate(updateDateQuery);
-            System.out.println(Helper.color("cyan") + "Move date Changed!" + Helper.color("reset"));
+            logger.info(Helper.color("cyan") + "Move date Changed!" + Helper.color("reset"));
 //            while(resultSet.next()){
 //                int EmpId= resultSet.getInt("EmpId");
 //                String EmpName= resultSet.getString("EmpName");
@@ -108,8 +113,7 @@ public class ConnectDataBaseTest {
 //                System.out.println(EmpId+"\t"+EmpName+"\t"+EmpAddress+"\t"+EmpSal+"\t"+EmpDept);
 //            }
         } catch (SQLException ex) {
-            System.out.println(Helper.color("black") + "Problem with updating move date!!!" + Helper.color("reset"));
-            ex.printStackTrace();
+            logger.info(Helper.color("black") + "Problem with updating move date!!!" + Helper.color("reset"));
         }
     }
 
@@ -199,20 +203,6 @@ public class ConnectDataBaseTest {
         }
         return fullDate;
     }
-
-
-//    @AfterClass
-//    public static void tearDown() {
-//        if (conn != null) {
-//            try {
-//                System.out.println(Helper.color("green")+"Closing Database Connection..."+Helper.color("reset"));
-//                stmt.close();
-//                conn.close();
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
 
     @AfterClass
     public static void tearDown() {

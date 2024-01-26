@@ -1,2 +1,174 @@
-17.01 18:52:02.633 [main] INFO  - Loading chrome driver...
-17.01 18:52:04.818 [main] INFO  - Opening environment environmentBO
+26.01 11:46:22.158 [main] INFO  - Loading chrome driver...
+26.01 11:46:25.092 [main] INFO  - Test suit started iMovingSmokeTDDTest
+26.01 11:46:25.128 [main] INFO  - Opening environment environment
+26.01 11:46:30.318 [main] INFO  - Test started SignInTest.loginWithValidData()[pri:1, instance:tests.ui.SignInTest@63ede2a0]
+26.01 11:46:30.320 [main] INFO  - Annotations for test method loginWithValidData:
+26.01 11:46:40.467 [main] INFO  - Opening environment environment
+26.01 11:46:41.781 [main] INFO  - Test started CreateOrderTest.chooseMoveOption()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:46:41.781 [main] INFO  - Annotations for test method chooseMoveOption:
+26.01 11:46:43.211 [main] INFO  - Option value My House
+26.01 11:46:44.576 [main] INFO  - Option value 3 Bedroom (1600-2200 sf.)
+26.01 11:46:46.254 [main] INFO  - Order is [My House, 3 Bedroom (1600-2200 sf.)]
+26.01 11:46:59.175 [main] INFO  - Option value 12' X 15', L
+26.01 11:47:02.763 [main] INFO  - Option value Ottoman, M
+26.01 11:47:06.312 [main] INFO  - Option value Mirror, S
+26.01 11:47:25.157 [main] INFO  - Option value Platform, L
+26.01 11:47:28.731 [main] INFO  - Option value Picture / Painting, M
+26.01 11:47:32.302 [main] INFO  - Option value Platform, L
+1
+26.01 11:47:41.918 [main] INFO  - Option value Floor Lamp, M
+26.01 11:47:45.485 [main] INFO  - Option value Mirror, L
+26.01 11:47:49.044 [main] INFO  - Option value XL 10 x 15,
+26.01 11:48:09.009 [main] INFO  - Option value 1 Piece / Breakfront, M
+26.01 11:48:12.552 [main] INFO  - Option value Picture / Painting, S
+26.01 11:48:29.777 [main] INFO  - Option value Stackable, M
+26.01 11:48:33.333 [main] INFO  - Option value Standard, L
+26.01 11:48:36.870 [main] INFO  - Option value Small Shelve, S
+26.01 11:48:44.887 [main] INFO  - Option value Double, M
+26.01 11:48:48.429 [main] INFO  - Option value Double, S
+26.01 11:48:51.997 [main] INFO  - Option value Cuckoo clock, M
+26.01 11:49:09.192 [main] INFO  - Option value Standard, S
+26.01 11:49:28.724 [main] INFO  - Option value Patio, M
+26.01 11:49:32.272 [main] INFO  - Option value Tricycle, M
+26.01 11:49:35.876 [main] INFO  - Option value Drum, M
+26.01 11:49:53.140 [main] INFO  - Option value Standard, M
+26.01 11:50:11.879 [main] INFO  - Test started CreateOrderTest.boxCalculatingPage()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:50:11.879 [main] INFO  - Annotations for test method boxCalculatingPage:
+26.01 11:50:13.657 [main] INFO  - Test started CreateOrderTest.details_Page()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:50:13.658 [main] INFO  - Annotations for test method details_Page:
+26.01 11:50:32.839 [main] INFO  - Test started CreateOrderTest.marketplace_Page()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:50:32.839 [main] INFO  - Annotations for test method marketplace_Page:
+26.01 11:50:41.727 [main] INFO  - Test started CreateOrderTest.summary_Page()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:50:41.727 [main] INFO  - Annotations for test method summary_Page:
+26.01 11:51:04.491 [main] INFO  - Test started CreateOrderTest.payment_Page()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:51:04.491 [main] INFO  - Annotations for test method payment_Page:
+26.01 11:51:31.033 [main] INFO  - Test started CreateOrderTest.success_Page_Test()[pri:0, instance:tests.ui.CreateOrderTest@57df93c1]
+26.01 11:51:31.034 [main] INFO  - Annotations for test method success_Page_Test:
+26.01 11:51:35.742 [main] INFO  - Opening environment environment
+26.01 11:51:36.693 [main] INFO  - Test started AdditionalPickUpTest.addAdditionalPickUpPayByCC()[pri:0, instance:tests.ui.AdditionalPickUpTest@72998021]
+26.01 11:51:36.693 [main] INFO  - Annotations for test method addAdditionalPickUpPayByCC:
+26.01 11:51:41.478 [main] INFO  - user name exists
+26.01 11:52:00.044 [main] INFO  - Option value Rolling Floor Type, L
+26.01 11:52:07.501 [main] INFO  - Option value Toy, L
+26.01 11:52:18.167 [main] WARN  - Couldn't add item element not interactable
+  (Session info: chrome=120.0.6099.227)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [3b3860084734637bebb231d6d5380da9, clickElement {id=821FE185E354E2B77BB9FA34579A5424_element_2571}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.227, chrome: {chromedriverVersion: 120.0.6099.109 (3419140ab66..., userDataDir: C:\Users\user2022\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56761}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56761/devtoo..., se:cdpVersion: 120.0.6099.227, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[[[ChromeDriver: chrome on windows (3b3860084734637bebb231d6d5380da9)] -> xpath: (//div[@class='flex-center']//img[contains(@title,'Chest')]//following::div[contains(@class,'dropdown')])[position()=1]]] -> xpath: //div[@class='dropdown-menu show']//div[contains(@ng-repeat,'typeAttr.ItemAttributes')]]
+Session ID: 3b3860084734637bebb231d6d5380da9
+26.01 11:52:21.101 [main] INFO  - Option value Air Conditioner Portable, M
+26.01 11:53:13.346 [main] INFO  - Test started AdditionalPickUpTest.addAdditionalPickUpPayByCheck()[pri:0, instance:tests.ui.AdditionalPickUpTest@72998021]
+26.01 11:53:13.346 [main] INFO  - Annotations for test method addAdditionalPickUpPayByCheck:
+26.01 11:53:18.779 [main] INFO  - Going to click user name
+26.01 11:54:34.642 [main] INFO  - Get order number from page 96099/2
+26.01 11:54:34.642 [main] INFO  - Get order number from list 96099/2
+26.01 11:55:09.909 [main] INFO  - Opening environment environmentBO
+26.01 11:55:14.942 [main] INFO  - Test started ApproveOrderTest.approveOrderInBO()[pri:0, instance:tests.ui.backOfficeTest.ApproveOrderTest@761a0bbd]
+26.01 11:55:14.942 [main] INFO  - Annotations for test method approveOrderInBO:
+26.01 11:55:57.827 [main] DEBUG - Test failed: approveOrderInBO
+26.01 11:55:57.969 [main] INFO  - Opening environment environmentBO
+26.01 11:56:02.098 [main] INFO  - Test started CancelOrderTest.cancelOrderInBo()[pri:0, instance:tests.ui.backOfficeTest.CancelOrderTest@7a6e0f3c]
+26.01 11:56:02.098 [main] INFO  - Annotations for test method cancelOrderInBo:
+26.01 11:56:33.387 [main] DEBUG - Test failed: cancelOrderInBo
+26.01 11:56:33.524 [main] INFO  - Opening environment environmentBO
+26.01 11:56:37.311 [main] INFO  - Test started ChangeAddressTest.changeAddress()[pri:0, instance:tests.ui.backOfficeTest.ChangeAddressTest@5184da2b]
+26.01 11:56:37.311 [main] INFO  - Annotations for test method changeAddress:
+26.01 11:57:38.172 [main] DEBUG - Test failed: changeAddress
+26.01 11:57:38.284 [main] INFO  - Opening environment environmentBO
+26.01 11:57:42.521 [main] INFO  - Test started ChangeDateTest.changeDate()[pri:0, instance:tests.ui.backOfficeTest.ChangeDateTest@6fa2d0b2]
+26.01 11:57:42.521 [main] INFO  - Annotations for test method changeDate:
+26.01 11:58:04.861 [main] DEBUG - Test failed: changeDate
+26.01 11:58:04.992 [main] INFO  - Opening environment environmentBO
+26.01 11:58:08.944 [main] INFO  - Test started DeliveryProcessTest.deliveryProcess()[pri:0, instance:tests.ui.backOfficeTest.DeliveryProcessTest@49c37918]
+26.01 11:58:08.944 [main] INFO  - Annotations for test method deliveryProcess:
+26.01 11:58:17.285 [main] INFO  - Connecting to Database...
+26.01 11:58:20.364 [main] INFO  - Connected to the Database.
+26.01 11:58:20.643 [main] INFO  - Date changed to one day earlier
+26.01 11:58:20.910 [main] INFO  - Capture date updated
+26.01 11:58:20.910 [main] INFO  - Closing Database Connection...
+26.01 11:58:20.911 [main] INFO  - Database Connection closed.
+26.01 11:58:20.911 [main] INFO  - trying to connect api...
+26.01 11:58:21.524 [main] INFO  - api connected
+26.01 11:58:24.340 [main] INFO  - Request sent
+26.01 11:58:40.525 [main] DEBUG - Test failed: deliveryProcess
+26.01 11:58:40.637 [main] INFO  - Opening environment environmentBO
+26.01 11:58:44.564 [main] INFO  - Test started QaboSideBarTest.qaDashBoard()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:44.564 [main] INFO  - Annotations for test method qaDashBoard:
+26.01 11:58:46.547 [main] INFO  - Test started QaboSideBarTest.qaUsers()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:46.547 [main] INFO  - Annotations for test method qaUsers:
+26.01 11:58:47.627 [main] INFO  - Test started QaboSideBarTest.qaCompanies()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:47.627 [main] INFO  - Annotations for test method qaCompanies:
+26.01 11:58:48.949 [main] INFO  - Test started QaboSideBarTest.qaBranches()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:48.949 [main] INFO  - Annotations for test method qaBranches:
+26.01 11:58:50.221 [main] INFO  - Test started QaboSideBarTest.qaAffiliates()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:50.222 [main] INFO  - Annotations for test method qaAffiliates:
+26.01 11:58:51.269 [main] INFO  - Test started QaboSideBarTest.qaOrders()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:51.269 [main] INFO  - Annotations for test method qaOrders:
+26.01 11:58:52.683 [main] INFO  - Test started QaboSideBarTest.qaSupplierRequests()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:52.683 [main] INFO  - Annotations for test method qaSupplierRequests:
+26.01 11:58:56.338 [main] INFO  - Test started QaboSideBarTest.qaCalendar()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:56.339 [main] INFO  - Annotations for test method qaCalendar:
+26.01 11:58:58.142 [main] DEBUG - Test failed: qaCalendar
+26.01 11:58:58.278 [main] INFO  - Test started QaboSideBarTest.qaReview()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:58:58.278 [main] INFO  - Annotations for test method qaReview:
+26.01 11:59:00.196 [main] INFO  - Test started QaboSideBarTest.qaDiscounts()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:00.196 [main] INFO  - Annotations for test method qaDiscounts:
+26.01 11:59:02.398 [main] INFO  - Test started QaboSideBarTest.qaFees()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:02.398 [main] INFO  - Annotations for test method qaFees:
+26.01 11:59:04.561 [main] INFO  - Test started QaboSideBarTest.qaFlexibility()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:04.561 [main] INFO  - Annotations for test method qaFlexibility:
+26.01 11:59:06.980 [main] INFO  - Test started QaboSideBarTest.qaDelivery()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:06.980 [main] INFO  - Annotations for test method qaDelivery:
+26.01 11:59:09.194 [main] INFO  - Test started QaboSideBarTest.qaDefault()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:09.194 [main] INFO  - Annotations for test method qaDefault:
+26.01 11:59:11.377 [main] INFO  - Test started QaboSideBarTest.qaService()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:11.377 [main] INFO  - Annotations for test method qaService:
+26.01 11:59:13.539 [main] INFO  - Test started QaboSideBarTest.qaCarriers()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:13.540 [main] INFO  - Annotations for test method qaCarriers:
+26.01 11:59:16.128 [main] INFO  - Test started QaboSideBarTest.qaMerchant()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:16.128 [main] INFO  - Annotations for test method qaMerchant:
+26.01 11:59:48.392 [main] INFO  - Test started QaboSideBarTest.qaFee()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 11:59:48.392 [main] INFO  - Annotations for test method qaFee:
+26.01 12:00:21.609 [main] INFO  - Test started QaboSideBarTest.qaTruck()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:00:21.609 [main] INFO  - Annotations for test method qaTruck:
+26.01 12:00:22.665 [main] INFO  - Test started QaboSideBarTest.qaLicense()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:00:22.666 [main] INFO  - Annotations for test method qaLicense:
+26.01 12:00:23.741 [main] INFO  - Test started QaboSideBarTest.qaInsurance()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:00:23.742 [main] INFO  - Annotations for test method qaInsurance:
+26.01 12:00:24.819 [main] INFO  - Test started QaboSideBarTest.qaServiceLists()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:00:24.819 [main] INFO  - Annotations for test method qaServiceLists:
+26.01 12:00:25.874 [main] INFO  - Test started QaboSideBarTest.qaOrdersCancelling()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:00:25.874 [main] INFO  - Annotations for test method qaOrdersCancelling:
+26.01 12:00:27.028 [main] INFO  - Test started QaboSideBarTest.qaSpecial()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:00:27.028 [main] INFO  - Annotations for test method qaSpecial:
+26.01 12:01:04.523 [main] INFO  - Test started QaboSideBarTest.qaFinancial()[pri:0, instance:tests.ui.backOfficeTest.QaboSideBarTest@43de88f3]
+26.01 12:01:04.523 [main] INFO  - Annotations for test method qaFinancial:
+26.01 12:01:05.841 [main] INFO  - Opening environment environment
+26.01 12:01:07.229 [main] INFO  - Test started FooterLinksTest.footerMenuTest()[pri:0, instance:tests.ui.FooterLinksTest@347c5721]
+26.01 12:01:07.230 [main] INFO  - Annotations for test method footerMenuTest:
+26.01 12:01:07.232 [main] INFO  - Alert appeared, going to click dismiss button
+26.01 12:01:09.887 [main] DEBUG - Test failed: footerMenuTest
+26.01 12:01:10.011 [main] INFO  - Test started FooterLinksTest.footerCostCalculatorTest()[pri:0, instance:tests.ui.FooterLinksTest@347c5721]
+26.01 12:01:10.011 [main] INFO  - Annotations for test method footerCostCalculatorTest:
+26.01 12:01:21.431 [main] INFO  - Option value My Apartment
+26.01 12:01:22.781 [main] INFO  - Option value 1 Bedroom (17' truck)
+26.01 12:01:26.893 [main] INFO  - Option value My Storage
+26.01 12:01:28.251 [main] INFO  - Option value Medium 10' x 15'
+26.01 12:01:30.463 [main] DEBUG - Test failed: footerCostCalculatorTest
+26.01 12:01:30.596 [main] INFO  - Test started FooterLinksTest.footerLocalPageTest()[pri:0, instance:tests.ui.FooterLinksTest@347c5721]
+26.01 12:01:30.596 [main] INFO  - Annotations for test method footerLocalPageTest:
+26.01 12:01:54.798 [main] INFO  - Option value My House
+26.01 12:01:56.125 [main] INFO  - Option value 5+ Bedroom (53' semi truck)
+26.01 12:02:00.202 [main] INFO  - Option value My House
+26.01 12:02:01.536 [main] INFO  - Option value 2 Bedroom (1000-1600 sf.)
+26.01 12:02:07.533 [main] INFO  - Test started FooterLinksTest.footerCrossCountryPage()[pri:0, instance:tests.ui.FooterLinksTest@347c5721]
+26.01 12:02:07.533 [main] INFO  - Annotations for test method footerCrossCountryPage:
+26.01 12:02:25.340 [main] INFO  - Option value My House
+26.01 12:02:26.691 [main] INFO  - Option value 3 Bedroom (26' truck)
+26.01 12:02:30.772 [main] INFO  - Option value My House
+26.01 12:02:32.093 [main] INFO  - Option value 2 Bedroom (1000-1600 sf.)
+26.01 12:02:32.907 [main] INFO  - Test suit finished iMovingSmokeTDDTest
+26.01 12:02:32.907 [main] INFO  - Clearing storage

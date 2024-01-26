@@ -1,6 +1,9 @@
 package org.example.email;
 
+import com.mailosaur.MailosaurClient;
 import com.mailosaur.MailosaurException;
+import com.mailosaur.models.MessageSearchParams;
+import com.mailosaur.models.SearchCriteria;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -9,6 +12,12 @@ import java.io.IOException;
 import static io.restassured.RestAssured.given;
 
 public class MailSaur {
+    String apiKey = "Db9DvpYQ8Gyk28xB";
+    String serverId = "kmsjdboo";
+    String serverDomain = "mxil4fbe.mailosaur.net";
+    MailosaurClient mailosaur = new MailosaurClient(apiKey);
+    SearchCriteria criteria = new SearchCriteria();
+    MessageSearchParams params = new MessageSearchParams();
 
     public static void main(String[] args) throws IOException, MailosaurException {
 
@@ -23,24 +32,5 @@ public class MailSaur {
         Response response = requestSpecification.get("https://mailosaur.com/api/messages?server=kmsjdboo");
         System.out.println(response.getStatusCode());
         response.prettyPrint();
-
-
-
-//        RestAssured.baseURI = "https://mailosaur.com/api/messages?server=kmsjdboo";
-//        requestSpecification = RestAssured.given()
-//                .given()
-//          //      .auth().preemptive().basic("Zk9adJ9bWFEl8Akc","")
-//                .contentType(ContentType.JSON)
-//                .accept(ContentType.JSON);
-
-//        Response response = RestAssured
-//                .given()
-//                .auth().preemptive().basic("Zk9adJ9bWFEl8Akc","")
-//                .request("GET");
-//
-//        response.prettyPrint();
-//        System.out.println(response.statusCode());
-
-
     }
 }

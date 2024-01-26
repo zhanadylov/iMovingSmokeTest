@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.example.utilities.Driver;
 
+import java.util.List;
+
 public class OrderInfoQaBo {
     public OrderInfoQaBo() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -54,6 +56,8 @@ public class OrderInfoQaBo {
     public WebElement selectThisCarrierButton;
     @FindBy(xpath = "//input[contains(@id, 'cb') and following-sibling::label[contains(text(),'Air 1 Moving & Storage - *4.0 - Los Angeles')]]")
     public WebElement availableCarrierAirOneButton;
+    @FindBy(xpath = "//div//input[@name='moverchb']")
+    public List<WebElement> listOfAvailableCarriers;
     @FindBy(xpath = "//button[contains(text(),\"Start Change Carrier\")]")
     public WebElement startChangeCarrierButton;
     @FindBy(xpath = "/html/body/div[1]/div/section[2]/section/div/div/div[3]/div/div/div/div[1]/div[2]/div[2]/div[1]/div[2]")

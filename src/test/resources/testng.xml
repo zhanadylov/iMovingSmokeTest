@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="iMovingSmokeTDDTest" parallel="none" thread-count="2" verbose="2" preserve-order="true">
+<suite name="iMovingSmokeTDDTest" parallel="none" thread-count="1" verbose="1" preserve-order="true">
     <listeners>
         <listener class-name="org.example.hooks.TestListener">
         </listener>
@@ -10,12 +10,12 @@
             <class name="tests.ui.SignInTest">
                 <methods>
                     <include name="loginWithValidData"/>
-                    <include name="SignUp"/>
+                    <!--                    <include name="SignUp"/>-->
                     <!--                    <include name="forgotPassword"/>-->
                 </methods>
             </class>
-<!--        </classes>-->
-<!--        <classes>-->
+            <!--        </classes>-->
+            <!--        <classes>-->
             <class name="tests.ui.CreateOrderTest">
                 <methods>
                     <include name="chooseMoveOption"/>
@@ -27,8 +27,8 @@
                     <include name="success_Page_Test"/>
                 </methods>
             </class>
-<!--        </classes>-->
-<!--        <classes>-->
+            <!--        </classes>-->
+            <!--        <classes>-->
             <class name="tests.ui.AdditionalPickUpTest">
                 <methods>
                     <include name="addAdditionalPickUpPayByCC"/>
@@ -38,65 +38,67 @@
             <class name="tests.ui.backOfficeTest.ApproveOrderTest">
                 <methods>
                     <include name="approveOrderInBO"/>
+                </methods>
+            </class>
+            <class name="tests.ui.backOfficeTest.CancelOrderTest">
+                <methods>
                     <include name="cancelOrderInBo"/>
                 </methods>
             </class>
-            <class name="tests.ui.backOfficeTest.QaboSideBarTest">
-<!--                <methods>-->
-<!--                    <include name="qaDashBoard"/>-->
-<!--                    <include name="qaUsers"/>-->
-<!--                    <include name="qaCompanies"/>-->
-<!--                    <include name="qaBranches"/>-->
-<!--                    <include name="qaAffiliates"/>-->
-<!--                    <include name="qaOrders"/>-->
-<!--                    <include name="qaFinancial"/>-->
-<!--                    <include name="qaSupplierRequests"/>-->
-<!--                    <include name="qaCalendar"/>-->
-<!--                    <include name="qaReview"/>-->
-<!--                    <include name="qaDiscounts"/>-->
-<!--                    <include name="qaFees"/>-->
-<!--                    <include name="qaFlexibility"/>-->
-<!--                    <include name="qaDelivery"/>-->
-<!--                    <include name="qaDefault"/>-->
-<!--                    <include name="qaService"/>-->
-<!--                    <include name="qaCarriers"/>-->
-<!--                    <include name="qaMerchant"/>-->
-<!--                    <include name="qaFee"/>-->
-<!--                    <include name="qaTruck"/>-->
-<!--                    <include name="qaLicense"/>-->
-<!--                    <include name="qaInsurance"/>-->
-<!--                    <include name="qaServiceLists"/>-->
-<!--                    <include name="qaOrdersCancelling"/>-->
-<!--                    <include name="qaSpecial"/>-->
-<!--                </methods>-->
+            <class name="tests.ui.backOfficeTest.ChangeAddressTest">
+                <methods>
+                    <include name="changeAddress"/>
+                </methods>
             </class>
+            <class name="tests.ui.backOfficeTest.ChangeDateTest">
+                <methods>
+                    <include name="changeDate"/>
+                </methods>
+            </class>
+            <class name="tests.ui.backOfficeTest.DeliveryProcessTest">
+                <methods>
+                    <include name="deliveryProcess"/>
+                </methods>
+            </class>
+                        <class name="tests.ui.backOfficeTest.QaboSideBarTest">
+                            <methods>
+                                <include name="qaDashBoard"/>
+                                <include name="qaUsers"/>
+                                <include name="qaCompanies"/>
+                                <include name="qaBranches"/>
+                                <include name="qaAffiliates"/>
+                                <include name="qaOrders"/>
+                                <include name="qaSupplierRequests"/>
+                                <include name="qaCalendar"/>
+                                <include name="qaReview"/>
+                                <include name="qaDiscounts"/>
+                                <include name="qaFees"/>
+                                <include name="qaFlexibility"/>
+                                <include name="qaDelivery"/>
+                                <include name="qaDefault"/>
+                                <include name="qaService"/>
+                                <include name="qaCarriers"/>
+                                <include name="qaMerchant"/>
+                                <include name="qaFee"/>
+                                <include name="qaTruck"/>
+                                <include name="qaLicense"/>
+                                <include name="qaInsurance"/>
+                                <include name="qaServiceLists"/>
+                                <include name="qaOrdersCancelling"/>
+                                <include name="qaSpecial"/>
+                                <include name="qaFinancial"/>
+                            </methods>
+                        </class>
+                        <class name="tests.ui.FooterLinksTest">
+                            <methods>
+                                <include name="footerMenuTest"/>
+                                <include name="footerCostCalculatorTest"/>
+                                <include name="footerLocalPageTest"/>
+                                <include name="footerCrossCountryPage"/>
+                            </methods>
+                        </class>
         </classes>
     </test>
-<!--    <test name="CreateOrderTest">-->
-<!--        <classes>-->
-<!--            <class name="tests.ui.CreateOrderTest">-->
-<!--                <methods>-->
-<!--                    <include name="chooseMoveOption"/>-->
-<!--                    <include name="boxCalculatingPage"/>-->
-<!--                    <include name="details_Page"/>-->
-<!--                    <include name="marketplace_Page"/>-->
-<!--                    <include name="summary_Page"/>-->
-<!--                    <include name="payment_Page"/>-->
-<!--                    <include name="success_Page_Test"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="AdditionalPickUpTest">-->
-<!--        <classes>-->
-<!--            <class name="tests.ui.AdditionalPickUpTest">-->
-<!--                <methods>-->
-<!--                    <include name="addAdditionalPickUpPayByCC"/>-->
-<!--                    <include name="addAdditionalPickUpPayByCheck"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--        </classes>-->
-<!--    </test>-->
 <!--    <test name="QaboSideBarTest" preserve-order="true">-->
 <!--        <classes>-->
 <!--            <class name="tests.ui.backOfficeTest.QaboSideBarTest">-->
@@ -111,9 +113,20 @@
 <!--            </class>-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--    <test name="Driver">-->
+<!--    <test name="FooterLinksTest" preserve-order="true">-->
 <!--        <classes>-->
-<!--             <class name="org.example.utilities.Driver"/>-->
+<!--            <class name="tests.ui.FooterLinksTest">-->
+<!--                <methods>-->
+<!--                    <include name="footerCostCalculatorTest"/>-->
+<!--                    <include name="footerLocalPageTest"/>-->
+<!--                    <include name="footerCrossCountryPage"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 <!--        </classes>-->
 <!--    </test>-->
+    <!--    <test name="Driver">-->
+    <!--        <classes>-->
+    <!--             <class name="org.example.utilities.Driver"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
 </suite>

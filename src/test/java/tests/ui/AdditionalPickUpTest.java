@@ -32,6 +32,7 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
     QaboOptionsTest qaboOptionsTest = new QaboOptionsTest();
     GetOrderInfo getOrderInfo = new GetOrderInfo();
     GetInventoryValues getInventoryValues = new GetInventoryValues();
+    AlertHelper alertHelper = new AlertHelper(driver);
     public AdditionalPickUpTest(){
         super("environment");
     }
@@ -47,7 +48,7 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
                 Helper.click(homePage.userNameAfterLogin);
             }else{
                 logger.info("User name not exists going to login");
-        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+        performActionOnElements.setValuesToFillFields("qatestimoving@gmail.com","QATest-2022");
         performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
                 Helper.click(homePage.userNameAfterLogin);
             }
@@ -122,7 +123,7 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
                 Helper.click(homePage.userNameAfterLogin);
             }else{
                 logger.info("Going to signin");
-                performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+                performActionOnElements.setValuesToFillFields("qatestimoving@gmail.com","QATest-2022");
                 performActionOnElements.fillCCFieldsElementTest(homePage.SignInButton,homePage.inputEmail, homePage.inputPassword, homePage.loginButtonInSignIn);
                 Helper.click(homePage.userNameAfterLogin);
             }
@@ -144,7 +145,6 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
         full_inventory_page.fullInventoryTitle.isDisplayed();
         Helper.javascriptScrollIntoView(full_inventory_page.addAdditionalPickupLocationLink);
         Helper.click(full_inventory_page.addAdditionalPickupLocationLink);
-//        full_inventory_page.theseAreRecommendedRoomsForaText.isDisplayed();
         full_inventory_page.additionalStorage.isDisplayed();
         full_inventory_page.additionalBoxes.isDisplayed();
         full_inventory_page.additionalItems.isDisplayed();
@@ -152,8 +152,6 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
 //        Helper.click(full_inventory_page.nextRoomButtonPopup);
 //        popUpsTest.passPopInSlashOne();
         full_inventory_page.additionalBoxesRoomHeader.isDisplayed();
-//        Helper.click(full_inventory_page.additionalBoxesRoomHeader);
-//        boxCalculatingPopUp.additionalPickupBoxesTitle.isDisplayed();
 
         AddItem.hoverOverAndClickMinusPlusManageRooms("Medium Box", "+", 1);
         Assert.assertEquals(GetInventoryValues.getBoxesQuantity("Medium Box"), "1");
@@ -195,6 +193,7 @@ private static final Logger logger = LogManager.getLogger(AdditionalPickUpTest.c
         getOrderInfo.comparePriceWebBo(saveOrderInfo.priceListBo, saveOrderInfo.inventoryListInfo);
         qaboOptionsTest.financeTabPayByCheck();
         browserHelper.switchToParentWithChildClose(driver);
+        Helper.pause(3000);
     }
 
 }

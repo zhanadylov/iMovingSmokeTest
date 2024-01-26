@@ -12,21 +12,27 @@ public class FooterLinksPages {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    @FindBy(xpath = "//button[contains(text(),'Continue')]")
+    public WebElement continueButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Add Items')]")
+    public WebElement addItemsButton;
+
     //Menu
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > h6")
     public WebElement menuTitle;
 //    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a")
-    @FindBy(xpath = "//*[@id=\"index\"]/footer/div/div[1]/div[1]/ul/li[1]/a")
+    @FindBy(css = "#index >footer > div > div:nth-child(1) > div.col-lg-3.col-md-2.col-sm-2.col-xs-6 > ul > li:nth-child(2) > a")
     public WebElement aboutUsLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(2) > a")
     public WebElement ourMoversLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(3) > a")
     public WebElement movingServicesLink;
-    @FindBy(css = "#index > div > footer > div > div > div.firstFooterColumn > ul > li:nth-child(4) > a")
+    @FindBy(css = ".section-join > div > a")
     public WebElement moversJoinUsLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(5) > a")
     public WebElement iMovingStandardsLink;
-    @FindBy(css = "#index > div > footer > div.container.newDesign > div:nth-child(1) > ul > li:nth-child(6) > a")
+    @FindBy(css = "footer > div > div:nth-child(1) > div.col-lg-3.col-md-2.col-sm-2.col-xs-6 > ul > li:nth-child(5) > a")
     public WebElement customerSupportLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(7) > a")
     public WebElement termsAndConditionsLink;
@@ -37,16 +43,16 @@ public class FooterLinksPages {
     //Usefull links
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > h6")
     public WebElement usefullLinksTitle;
-    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(1) > a")
+    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(3) > ul > li:nth-child(5) > a")
     public WebElement movingCostCalculatorLink;
     @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(2) > a")
     public WebElement movingChecklistLink;
-    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(3) > a")
+    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(3) > ul > li:nth-child(1) > a")
     public WebElement localMovingCompaniesLink;
 //    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(4) > a")
     @FindBy(xpath = "//a[contains(text(),'Interstate moving companies')]")
     public WebElement interstateMovingCompaniesLink;
-    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(5) > a")
+    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(3) > ul > li:nth-child(3) > a")
     public WebElement crossCountryMovingCompaniesLink;
 //    @FindBy(css = "#index > footer > div > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(6) > a")
     @FindBy(xpath = "//a[contains(text(),'Moving Boxes')]")
@@ -94,14 +100,14 @@ public class FooterLinksPages {
     public WebElement seeMoreMoversLinkCity;
 
     //About Us
-    @FindBy(css = "#index > div > main > article > div > div.about-paragraph.col-sm-12.rteSection > h1 > strong")
-    public WebElement iMovingInaNutshellTitle;
+    @FindBy(css = ".container > div > div> h1")
+    public WebElement aboutUsTitle;
 
     //Join Us
-    @FindBy(css = "#index > div > main > div > section.header-section.how-to-header > figure > h1")
-    public WebElement joiniMovingNetworkTitle;
-    @FindBy(xpath = "//*[@id=\"sendForm\"]")
-    public WebElement submitButton;
+    @FindBy(css = ".section-hero>div>p")
+    public WebElement subTitleInContactUs;
+    @FindBy(css = "div>#sendForm")
+    public WebElement sendMessageButton;
     @FindBy(xpath = "//*[@id=\"captcha_error\"]")
     public WebElement redRequiredreCaptchaMessage;
     @FindBy(xpath = "//*[@id=\"recaptcha-anchor\"]/div[1]")
@@ -189,19 +195,21 @@ public class FooterLinksPages {
     public WebElement faqTitle;
 
     //Moving Cross Country
-    @FindBy(css = "#index > div > main > div > section.header-section.discount-header > figure > div.main-title")
-    public WebElement crossCountryMoving;
+    @FindBy(css = ".container>h1")
+    public WebElement crossCountryMovingTitle;
     @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[1]/div/button")
     public WebElement moveOptionSelectorCross;
     @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[2]/div/button")
     public WebElement moveSizeSelectorCross;
     @FindBy(xpath = "//*[@id=\"roomsForm\"]/div[3]/button")
     public WebElement compareQuotesButtonCross;
-    @FindBy(css = "#ppElement1 > h1")
-    public WebElement ourCrossCountryTitle;
-    @FindBy(css = "#ppElement4 > h2")
-    public WebElement obtainMovingEstimateTitle;
-    @FindBy(css = "#ppElement7 > h2")
+    @FindBy(css = "#index > main > section.section-simple.text-center > div > h2")
+    public WebElement iMovingMakesBookingSimpleTitle;
+    @FindBy(css = "#index > main > section.section-top-movers-cards > div > h2")
+    public WebElement topRatedCrossCountryMoversTitle;
+    @FindBy(css = "#index > main > section.section-help > div > h2")
+    public WebElement coastToCoastChooseiMovingTitle;
+    @FindBy(css = "#index > main > section.section-faq > div > h2")
     public WebElement faqTitleCross;
 
     //Moving boxes

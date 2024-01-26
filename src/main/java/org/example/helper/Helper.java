@@ -160,9 +160,10 @@ public class Helper {
 
     public static void javascriptScrollDownThePage() {
         JavascriptExecutor jse = (JavascriptExecutor)Driver.getDriver();
-        jse.executeScript("window.scrollBy(0,800)");
+//        jse.executeScript("window.scrollBy(0,800)");
+        jse.executeScript("window.scrollBy(0,document.body.scrollHeight)");
     }
-
+    @Step("Clearing field {0}")
     public static void clearField(WebElement element) {
         waitForElementToBeDisplayed(element);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
@@ -180,6 +181,7 @@ public class Helper {
     }
     @Step("Scrolling to element {0}")
     public static void javascriptScrollIntoView(WebElement element){
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoViewIfNeeded(true)",element );
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",element );
     }
 
@@ -213,8 +215,7 @@ public class Helper {
         return element.getAttribute("value");
     }
 
-    public static Boolean compareDates(String olderDate, String soonerDate)
-    {
+    public static Boolean compareDates(String olderDate, String soonerDate) {
         String[] firstDateSplitted = olderDate.split("/");
         int year1, month1, day1;
         year1 = Integer.parseInt(firstDateSplitted[2]);

@@ -3,6 +3,7 @@ package org.example.hooks;
 import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.helper.AlertHelper;
 import org.example.ui.methods.BaseTest;
 import org.example.utilities.Driver;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,10 +16,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 
-public class TestListener extends BaseTest implements ITestListener, IRetryAnalyzer{
+public class TestListener extends BaseTest implements ITestListener{
     private static final Logger logger = LogManager.getLogger(WebDriver.class);
 //    static WebDriver driver = Driver.getDriver();
-    private int count = 0;
+    AlertHelper alertHelper = new AlertHelper(driver);
+
+    private int count = 1;
     private int maxCount = 2;
     private static String getTestMethodName(ITestResult result){
         return result.getMethod().getConstructorOrMethod().getName();
@@ -30,27 +33,27 @@ public class TestListener extends BaseTest implements ITestListener, IRetryAnaly
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
     }
 
-    @Override
-    public boolean retry(ITestResult iTestResult) {
-        if(!iTestResult.isSuccess()){
-            if(count<maxCount) {
-                count++;
-//                driver.navigate().refresh();
-                driver.manage().deleteAllCookies();
-//                clearStorage("sessionStorage");
-                return true;
-            }
-        }
-        return false;
-    }
+//    @Override
+//    public boolean retry(ITestResult iTestResult) {
+//        if(!iTestResult.isSuccess()){
+//            if(count<maxCount) {
+//                count++;
+////                driver.navigate().refresh();
+//                driver.manage().deleteAllCookies();
+////                clearStorage("sessionStorage");
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public void onStart(ITestContext iTestContext) {
         logger.info("Test suit started "+ iTestContext.getName());
         ITestListener.super.onStart(iTestContext);
-            for (ITestNGMethod method : iTestContext.getAllTestMethods()) {
-                method.setRetryAnalyzerClass(TestListener.class);
-            }
+//            for (ITestNGMethod method : iTestContext.getAllTestMethods()) {
+//                method.setRetryAnalyzerClass(TestListener.class);
+//            }
     }
 
     @Override
@@ -61,12 +64,13 @@ public class TestListener extends BaseTest implements ITestListener, IRetryAnaly
 //        driver.manage().deleteAllCookies();
         Annotation[] annotations = method.getAnnotations();
         logger.info("Annotations for test method {}:", method.getName());
+        alertHelper.DismissAlertIfPresent();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         logger.debug("Test failed: "+result.getName());
-        driver.manage().deleteAllCookies();
+//        driver.manage().deleteAllCookies();
         Allure.getLifecycle().addAttachment("Screenshot on failed step: ", "image/png", "png",
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Logs: ",
@@ -77,7 +81,7 @@ public class TestListener extends BaseTest implements ITestListener, IRetryAnaly
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         logger.warn("Test Skipped: " + getTestMethodName(iTestResult));
-        driver.manage().deleteAllCookies();
+//        driver.manage().deleteAllCookies();
         Allure.getLifecycle().addAttachment("Screenshot on skipped step", "image/png", "png",
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Logs: ",
@@ -87,12 +91,12 @@ public class TestListener extends BaseTest implements ITestListener, IRetryAnaly
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
         ITestListener.super.onTestFailedButWithinSuccessPercentage(iTestResult);
         logger.warn("Test failed but withing success percentage: "+iTestResult.getTestName());
-        driver.manage().deleteAllCookies();
+//        driver.manage().deleteAllCookies();
         Allure.getLifecycle().addAttachment("Screenshot on FailedButWithinSuccessPercentage step", "image/png", "png",
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Logs: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-        driver.close();
+//        driver.close();
     }
     @Override
     public void onFinish(ITestContext iTestContext) {
@@ -100,11 +104,12 @@ public class TestListener extends BaseTest implements ITestListener, IRetryAnaly
         logger.info("Test suit finished "+iTestContext.getName());
         logger.info("Clearing storage");
         clearStorage("localStorage");
-        driver.close();
+        Driver.closeDriver();
     }
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
         this.onTestFailure(result);
+
     }
     public static void clearStorage(String storageType) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();

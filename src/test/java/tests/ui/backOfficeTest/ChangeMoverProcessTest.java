@@ -5,18 +5,17 @@ import org.apache.logging.log4j.Logger;
 import org.example.helper.DropDownHelper;
 import org.example.helper.Helper;
 import org.example.ui.methods.BaseTest;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import org.example.ui.methods.CalendarClass;
 import org.example.ui.methods.HelperForWeb;
 import org.example.ui.qabo.LoginPage;
 import org.example.ui.qabo.OrderInfoQaBo;
 import org.example.ui.qabo.OrdersListPageInQabo;
 import org.example.ui.qabo.QaboDashBoardPage;
-//@Listeners(TestListener.class)
-public class ChangeDateTest extends BaseTest {
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class ChangeMoverProcessTest extends BaseTest {
     private static final Logger logger = LogManager.getLogger(ChangeDateTest.class);
     LoginPage loginPage = new LoginPage();
     QaboDashBoardPage qaboDashBoardPage = new QaboDashBoardPage();
@@ -31,10 +30,9 @@ public class ChangeDateTest extends BaseTest {
     String moverName = "";
     String moverEmail = "";
     String moverPassword = "Star12@";
-
-    public ChangeDateTest(){
-    super("environmentBO");
-}
+    public ChangeMoverProcessTest(){
+        super("environmentBO");
+    }
     @BeforeClass
     public void loginToBo(){
         try{
@@ -49,8 +47,9 @@ public class ChangeDateTest extends BaseTest {
             logger.warn("BO in dashboard");
         }
     }
+
     @Test
-    public void changeDate(){
+    public void changeMoverProcess(){
         Helper.navigateToElement(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.click(qaboDashBoardPage.ordersLabelInSideBar);
         Helper.waitForElementToBeDisplayed(ordersListPageInQabo.ordersTitleText);
@@ -62,9 +61,9 @@ public class ChangeDateTest extends BaseTest {
         moverName = ordersListPageInQabo.branchNameCarrier.getText();
         Helper.waitForElementToBeDisplayed(ordersListPageInQabo.orderNumberLink);
         Helper.click(ordersListPageInQabo.orderNumberLink);
-        Helper.click(orderInfoQaBo.changeDateButton);
-        calendarClass.getRandomDateInMonthQABO(orderInfoQaBo.changeDateButtonDatePicker);
-        newDateValue = String.valueOf(calendarClass.dayInMonthRange);
+        Helper.waitForElementToBeDisplayed(orderInfoQaBo.selectMoverButton);
+        Helper.click(orderInfoQaBo.selectMoverButton);
+
         Helper.click(orderInfoQaBo.changeDateButtonInPopup);
         orderInfoQaBo.cancelChangeDateButtonInPopup.isDisplayed();
         orderInfoQaBo.cancelChangeDateButtonInPopup.isEnabled();

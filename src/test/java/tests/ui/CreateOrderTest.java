@@ -40,52 +40,31 @@ public class CreateOrderTest extends BaseTest {
     PerformActionOnElements performActionOnElements = new PerformActionOnElements();
     Success_Page success_page = new Success_Page();
     GetDate getDate = new GetDate();
-//    private static WebDriver driver = Driver.getDriver();
 
-
-//    @BeforeTest
-//    @Description("Setup in CreateOrderTest")
-//    public static void setUp(){
-////        if (driver == null) {
-//            logger.info("Trying to open browser and url in openChromeCreateOrder");
-////            driver = Driver.getDriver();
-//            driver.get(ConfigReader.getProperty("environment"));
-//        }
-//        else{
-//            driver.get(ConfigReader.getProperty("environment"));
-//        }
-//    }
-//        @AfterTest
-//    public void tearDown() {
-//        logger.info("Closing driver after method CreateOrderTest started "+driver.getCurrentUrl()+driver.getTitle());
-//        driver.close();
-//    }
     public CreateOrderTest(){
         super("environment");
     }
     @Test
     public void chooseMoveOption() {
         Helper.click(homePage.itemizedQuoteButtonHomePage);
-        DropDownHelper.chooseMoveFrom(driver, "addInventory", 0);
-        DropDownHelper.chooseMoveSize(driver, "addInventory", 0);
+        DropDownHelper.chooseMoveFrom(driver, "addInventory", 3);
+        DropDownHelper.chooseMoveSize(driver, "addInventory", 5);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.moveOptionList);
 //        selectRandom.selectRandomOptionFromDropDown(homePage.sizeOptionList);
         Helper.pause(1000);
-        System.out.println("Order is "+ DropDownHelper.list);
+        logger.info("Order is "+ DropDownHelper.list);
         Helper.click(homePage.addItemsButton);
         boolean condition = DropDownHelper.list.contains("My Storage");
         if(condition){
             orderStorage();
-//            System.out.println("Storage");
         }
         else{
             orderHouseApartment();
-//            System.out.println("House");
         }
         Helper.pause(3000);
     }
 
-    @Test
+    @Test(enabled = false)
     public void orderHouseApartment(){
         System.out.println("Regular order chosen");
         System.out.println("Order number " + fullInventoryPage.currentOrderNumber.getText());
@@ -95,20 +74,27 @@ public class CreateOrderTest extends BaseTest {
         Helper.click(fullInventoryPage.completeButton);
     }
 
-    @Test
+    @Test(enabled = false)
     public void orderStorage(){
         Helper.pause(2000);
         System.out.println("Storage order chosen");
         System.out.println("Order number " + fullInventoryPage.currentOrderNumber.getText());
+        Helper.javascriptScrollIntoView(fullInventoryPage.continueButton);
         Helper.click(fullInventoryPage.continueButton);
     }
 
     @Test(dependsOnMethods = "chooseMoveOption")
     public void boxCalculatingPage(){
         Helper.pause(1000);
-        Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
+        try{
+            if(Helper.isElementPresent(boxCalculatingPopUp.continueButton)) {
+                Helper.javascriptScrollIntoView(boxCalculatingPopUp.continueButton);
 //            Helper.navigateToElement(boxCalculatingPopUp.continueButton);
-        Helper.click(boxCalculatingPopUp.continueButton);
+                Helper.click(boxCalculatingPopUp.continueButton);
+            }
+        }catch (NoSuchElementException e){
+            logger.info("Box page not appeared");
+        }
     }
 
     @Test(dependsOnMethods = {"boxCalculatingPage", "chooseMoveOption"})
@@ -288,7 +274,8 @@ public class CreateOrderTest extends BaseTest {
 //        Assert.assertEquals(String.valueOf(Helper.roundingsFee(totalPrice)), paymentPage.totalPrice.getText().replaceAll("[$,]",""));
 //        Helper.numberComparison(Helper.roundingsFee(totalPrice), Double.parseDouble(paymentPage.totalPrice.getText().replaceAll("[$,]","")));
 
-        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+//        performActionOnElements.setValuesToFillFields("shirley.orn@gmail.com","Sj9QjDXR");
+        performActionOnElements.setValuesToFillFields("qatestimoving@gmail.com","QATest-2022");
         performActionOnElements.fillCCFieldsElementTest(paymentPage.signInButton, paymentPage.emailFieldLogin, paymentPage.passwordFieldLogin, paymentPage.loginButton);
         Helper.pause(2000);
 

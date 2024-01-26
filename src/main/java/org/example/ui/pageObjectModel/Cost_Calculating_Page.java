@@ -12,7 +12,7 @@ public class Cost_Calculating_Page {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(xpath = "/html/body/div[1]/main/section[1]/div/div[2]/h1")
+    @FindBy(css = ".container>h1")
     public WebElement titleInCalculatingPage;
 
     @FindBy(xpath = "(//*[@id=\"step1\"]/div[1]/div[1]/div/input[7])[1]")
@@ -35,14 +35,20 @@ public class Cost_Calculating_Page {
     @FindBy(xpath = "(//*[@id=\"step1\"]/button)[1]")
     public WebElement showCostEstimationButton;
     //Step 2
-    @FindBy(xpath = "(//*[@id=\"step2\"]/h2)[1]")
-    public WebElement yourCostForaTitle;
-    @FindBy(xpath = "(//*[@id=\"step2\"]/input)[1]")
-    public WebElement priceBoxShouldDisplayed;
-    @FindBy(xpath = "(//*[@id=\"step2\"]/p[1])[1]")
-    public WebElement textUnderPrice;
-    @FindBy(xpath = "(//button[contains(text(),'Continue')])[1]")
-    public WebElement continueButton;
+    @FindBy(css = "#index > main > section.section-yt > div.container > h2")
+    public WebElement dontMakeAnyCallsTitle;
+    @FindBy(css = "#index > main > section.section-yt > div.container > div > div.col-lg-5.col-xs-12 > a")
+    public WebElement videoButton;
+    @FindBy(css = "#ytModal > div > button")
+    public WebElement xButtonInVideoPopup;
+    @FindBy(css = "#\\31  > h2")
+    public WebElement howMuchWillCostMoveTitle;
+
+    @FindBy(css = "#index > main > section:nth-child(8) > div > h2")
+    public WebElement factorsAffectMovingCostsTitle;
+    @FindBy(css = "#index > main > section:nth-child(9) > div > h2")
+    public WebElement howSaveMoneyTitle;
+
     //Step 3
     @FindBy(xpath = "(//*[@id=\"step3\"]/h2)[1]")
     public WebElement chooseYourCarrierTitle;

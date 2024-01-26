@@ -1,5 +1,7 @@
 package org.example.helper;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +9,8 @@ import org.example.utilities.Driver;
 
 
 public class AlertHelper{
-	
+	private static final Logger logger = LogManager.getLogger(AlertHelper.class);
+
 	private WebDriver driver = Driver.getDriver();
 
 	
@@ -17,17 +20,17 @@ public class AlertHelper{
 	}
 	
 	public Alert getAlert() {
-
 		return driver.switchTo().alert();
 
 	}
 	
 	public void AcceptAlert() {
+		logger.info("Alert appeared");
 		getAlert().accept();
 	}
 	
 	public void DismissAlert() {
-
+		logger.info("Alert appeared, going to click dismiss button");
 		getAlert().dismiss();
 	}
 

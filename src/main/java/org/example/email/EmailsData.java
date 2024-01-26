@@ -4,17 +4,20 @@ import com.mailosaur.MailosaurClient;
 import com.mailosaur.MailosaurException;
 import com.mailosaur.models.Message;
 import com.mailosaur.models.SearchCriteria;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class EmailForResetPasswordTest extends MailSaur {
+public class EmailsData extends MailSaur {
     static String apiKey = "Db9DvpYQ8Gyk28xB";
     static String serverId = "kmsjdboo";
     String serverDomain = "kmsjdboo.mailosaur.net";
 
+    private static final Logger logger = LogManager.getLogger(EmailsData.class);
 
-@Test
+    @Test
     public static void check_email_for_reset_password() throws IOException {
         try {
             MailosaurClient mailosaur = new MailosaurClient(apiKey);
@@ -29,27 +32,24 @@ public class EmailForResetPasswordTest extends MailSaur {
 //            Assert.assertTrue(message.text().body().contains(currentOrderNumber));
 
         } catch (MailosaurException e) {
-            e.printStackTrace();
-            System.err.println("Customer is not get the Email");
+            logger.warn("Customer is not get the Email "+e);
         }
     }
-//    public void check_for_mover(String confirmText){
-//        Helper.pause(120000);
-//
-//        try {
-//            criteria.withSentFrom("info@imoving.com");
-//            criteria.withSentTo("kmsjdboo@mailosaur.net");
+    public void check_for_mover(String confirmText){
+
+        try {
+            criteria.withSentFrom("info@imoving.com");
+            criteria.withSentTo("kmsjdboo@mailosaur.net");
 //            criteria.withSubject("Your booking is confirmed - iMoving order number ".concat(currentOrderNumber));
 //            String expected = confirmText + " " + currentOrderNumber;
-//            Message message = mailosaur.messages().get(serverId, criteria);
-//            System.out.println("Subject: " + message.subject());
-//            String actual = message.subject();
+            Message message = mailosaur.messages().get(serverId, criteria);
+            System.out.println("Subject: " + message.subject());
+            String actual = message.subject();
 //            Assert.assertEquals("Comparing emails: ", expected, actual);
-//        } catch (MailosaurException | IOException e) {
-//            e.printStackTrace();
-//            System.err.println("Mover is not get the Email");
-//        }
-//    }
+        } catch (MailosaurException | IOException e) {
+            logger.warn("Mover is not get the Email "+e);
+        }
+    }
 //
 //    public void check_gmail_email_should_appear(String anotherOrder) throws MailosaurException, IOException {
 //        Helper.pause(120000);
