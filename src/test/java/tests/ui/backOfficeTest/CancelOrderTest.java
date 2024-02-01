@@ -84,7 +84,8 @@ public class CancelOrderTest extends BaseTest {
         Helper.click(ordersListPageInQabo.orderNumberLink);
         Helper.click(orderInfoQaBo.declineOrderButton);
         Helper.click(orderInfoQaBo.declineOrderButtonInPopUp);
-        Helper.pause(5000);
+        Helper.pause(10000);
+        Helper.waitForElementVisibilityOf(orderInfoQaBo.orderStatus);
         Assert.assertEquals(orderInfoQaBo.orderStatus.getText(), "In Change Mover Process");
         Helper.click(qaboDashBoardPage.logOffButton);
         Helper.waitForElementVisibilityOf(loginPage.iMovingManagementText);

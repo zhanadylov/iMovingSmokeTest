@@ -67,7 +67,7 @@ public class ChangeMoverProcessTest extends BaseTest {
         Helper.click(orderInfoQaBo.changeDateButtonInPopup);
         orderInfoQaBo.cancelChangeDateButtonInPopup.isDisplayed();
         orderInfoQaBo.cancelChangeDateButtonInPopup.isEnabled();
-        Assert.assertEquals(orderInfoQaBo.orderStatus.getText(), "In Change Move Date Process");
+        Assert.assertEquals(orderInfoQaBo.orderStatus.getText(), "In Change Mover Process");
 
         helperForWeb.setCarrierNewPassword(moverName, moverPassword, orderNumber);
 

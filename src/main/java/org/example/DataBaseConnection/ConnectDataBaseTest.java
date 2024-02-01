@@ -60,6 +60,12 @@ public class ConnectDataBaseTest {
 //        }
 //    }
 
+    public static String getOrderIdByOrderId(String orderNumber){
+        String id = "select Id from ImovingOrder \n" +
+                "where OrderId = '"+orderNumber+"';";
+        return id;
+    }
+
     @BeforeMethod
     public static void setUp() {
         final String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
@@ -100,7 +106,7 @@ public class ConnectDataBaseTest {
                         "set MoveDate = dateadd(day, -6, GETDATE())\n" +
 //                    "where date(MoveDate)=`"+moveDate+"`";
 //                        "where Id = ".concat(orderNumber);
-                        "where Id = CAST('"+orderNumber+"' AS NVARCHAR(MAX));";
+                        "where OrderId = CAST('"+orderNumber+"' AS NVARCHAR(MAX));";
             }
             stmt.executeUpdate(updateDateQuery);
             logger.info(Helper.color("cyan") + "Move date Changed!" + Helper.color("reset"));
@@ -142,10 +148,11 @@ public class ConnectDataBaseTest {
 
             String updateDateQuery = "update ImovingOrder\n" +
                     "set MoveDate = dateadd(day, -1, GETDATE())\n" +
-                    "where Id = " + orderNumber;
-            System.out.println("Order update is " + orderNumber);
+//                    "where Id = " + orderNumber;
+                    "where OrderId = CAST('"+orderNumber+"' AS NVARCHAR(MAX));";
+            logger.info("Order update is: " + orderNumber);
             stmt.executeUpdate(updateDateQuery);
-            logger.info("Date changed to one day earlier");
+            logger.info("Date changed to one day earlier: "+updateDateQuery);
         } catch (SQLException ex) {
             logger.error("Problem with updating date to one day earlier!!!", ex);
         }
@@ -175,10 +182,12 @@ public class ConnectDataBaseTest {
 
             String updateCaptureDate = "update ScheduledTaskLogItem \n" +
                     "set StartDate = dateadd(day, 0, GETDATE())\n" +
-                    "where OrderId = " + orderNumber + " and TaskName ='Capture'";
-            System.out.println("Order capture is " + orderNumber);
+//                    "where OrderId = " + orderNumber + " and TaskName ='Capture'";
+//                    "where OrderId = CAST('"+orderNumber+"' AS NVARCHAR(MAX)); and TaskName ='Capture'";
+                    "where OrderId = CAST('"+getOrderIdByOrderId(orderNumber)+"' AS NVARCHAR(MAX)) and TaskName ='Capture'";
+            logger.info("Order capture is: " + orderNumber);
             stmt.executeUpdate(updateCaptureDate);
-            logger.info("Capture date updated");
+            logger.info("Capture date updated: "+updateCaptureDate);
         } catch (SQLException ex) {
             logger.error("Problem with updating Capture field!!!", ex);
         }

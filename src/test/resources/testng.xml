@@ -40,11 +40,6 @@
                     <include name="approveOrderInBO"/>
                 </methods>
             </class>
-            <class name="tests.ui.backOfficeTest.CancelOrderTest">
-                <methods>
-                    <include name="cancelOrderInBo"/>
-                </methods>
-            </class>
             <class name="tests.ui.backOfficeTest.ChangeAddressTest">
                 <methods>
                     <include name="changeAddress"/>
@@ -53,6 +48,11 @@
             <class name="tests.ui.backOfficeTest.ChangeDateTest">
                 <methods>
                     <include name="changeDate"/>
+                </methods>
+            </class>
+            <class name="tests.ui.backOfficeTest.CancelOrderTest">
+                <methods>
+                    <include name="cancelOrderInBo"/>
                 </methods>
             </class>
             <class name="tests.ui.backOfficeTest.DeliveryProcessTest">

@@ -69,6 +69,8 @@ public class ChangeAddressTest extends BaseTest {
         Helper.click(orderInfoQaBo.changeAddressButtonInPopup);
 //        Helper.pause(2000);
         Thread.sleep(4000);
+        Helper.waitForElementVisibilityOf(orderInfoQaBo.pickUpAddress);
+        logger.info("pickup address: "+orderInfoQaBo.pickUpAddress.getText());
         Assert.assertTrue(orderInfoQaBo.pickUpAddress.getText().contains(newAdddedAddressValue));
 
         helperForWeb.setCarrierNewPassword(moverName, moverPassword, orderNumber);
